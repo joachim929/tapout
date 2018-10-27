@@ -1,0 +1,91 @@
+
+/** Bigger than Mobile size */
+@media(min-width:767px){
+    .site-navigation{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/** Mobile size */
+@media(max-width:767px){
+    .site-navigation{
+        text-align: center;
+    }
+    .tap-out-nav-border {
+        border-bottom: 1px solid var(--off-background-color);
+    }
+}
+
+/** So NavBar doesn't go onto 2 lines */
+@media(max-width:1008px){
+    .nav>li>a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+/*@media(max-width:808px){*/
+    /*.nav>li>a {*/
+        /*padding-left: 2.5px;*/
+        /*padding-right: 2.5px;*/
+    /*}*/
+/*}*/
+.tap-out-nav {
+    border-bottom: 1px solid var(--off-background-color);
+    height: 52px;
+}
+.test {
+    box-sizing: border-box;
+}
+.nav-image {
+    padding: 0 0 0 15px;
+    /*padding-left: 10px;*/
+    margin: 0;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+.navbar-nav {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+.site-navigation{
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+.site-navigation a:hover, a:active{
+    background-color: var(--background-color);
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+.site-navigation a:link, a:visited{
+    background-color: var(--background-color) !important;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+.site-navigation a{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.site-navigation li{
+    height: 50px;
+}
+
+.company-logo{
+    padding: 0 !important;
+}
+
+.icon-bar{
+    background-color: var(--text-color);
+}

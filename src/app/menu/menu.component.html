@@ -1,0 +1,98 @@
+<div class="container" style="text-align: center">
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="disclaimer">The categories are collapsible</p>
+    </div>
+    <div class="col-sm-6">
+      <p class="disclaimer">All prices are subject to a 10% VAT charge</p>
+    </div>
+    <div class="col-sm-12 grand-container">
+      <div class="inner-container">
+        <a href="./assets/Tap-out-Menu.pdf" id="pdf-link">
+          <div class="pdf-button">
+            Download our Menu
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+
+  </div>
+  <!-- Containing 2 for loops -->
+  <div class="row">
+    <!-- Does left side on big screen -->
+    <div class="col-sm-12 col-md-6 grand-container">
+      <!-- Loop through left menu categories -->
+      <ng-container *ngFor="let foods of foodItems">
+        <div class="inner-container">
+          <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{foods.foodCategoryID}}" aria-expanded="false" aria-controls="collapseExample">
+            {{foods.foodCategoryName}}
+          </button>
+          <div class="collapse tap-out-content-container {{foods.foodCategoryID}}">
+            <!-- Loop through menu items -->
+            <ng-container *ngFor="let food of foods.foodCategory">
+              <div class="row tap-out-row">
+                <div class="row row-eq-height tap-out-row">
+                  <div class="col-xs-9 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
+                    <p class="tap-out-sub-heading">{{food.foodDescriptor}}</p>
+                  </div>
+                  <div class="col-xs-3 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
+                    <p class="tap-out-paragraph">{{food.foodPrice}}<span [innerHTML]= "vietnameseDong"></span></p>
+                  </div>
+                </div>
+                <div class="tap-out-description" *ngIf="food.foodDescription != 'false'">
+                  <p class="tap-out-paragraph">{{food.foodDescription}}</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+
+     <!--Does right side on big screen -->
+    <div class="col-sm-12 col-md-6 grand-container">
+      <!-- Loop through left menu categories -->
+      <ng-container *ngFor="let drinks of drinkItems">
+        <div class="inner-container">
+          <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{drinks.drinkCategoryID}}" aria-expanded="false" aria-controls="collapseExample">
+            {{drinks.drinkCategoryName}}
+          </button>
+          <div class="collapse tap-out-content-container {{drinks.drinkCategoryID}}">
+            <!-- Loop through menu items -->
+            <ng-container *ngFor="let drink of drinks.drinkCategory">
+              <div class="row tap-out-row">
+                <div class="row row-eq-height tap-out-row">
+                  <div class="col-xs-9 tap-out-content-border">
+                    <p class="tap-out-sub-heading">{{drink.descriptor}}</p>
+                  </div>
+                  <div class="col-xs-3 tap-out-content-border">
+                    <p class="tap-out-paragraph">{{drink.price}}<span [innerHTML]= "vietnameseDong"></span></p>
+                  </div>
+                </div>
+                <div class="tap-out-description" *ngIf="drink.description != 'false'">
+                  <p class="tap-out-paragraph">{{drink.description}}</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+      <div class="inner-container">
+        <p class="disclaimer disclaimer-alc">IBU is an abbreviation for the International Bitterness Units scale, a gauge of beer's bitterness.
+          What IBUs measure are the parts per million of isohumulone found in a beer.
+          Isohumulone is the acid found in hops that gives beer its bitter bite.
+        </p>
+        <p class="disclaimer disclaimer-alc">Alcohol by volume (abbreviated as ABV, abv, or alc/vol) is a standard measure of how much alcohol
+          (ethanol) is contained in a given volume of an alcoholic beverage (expressed as a volume percent). It is defined as
+          the number of millilitres (mL) of pure ethanol present in 100 mL of solution at 20 °C (68 °F).
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

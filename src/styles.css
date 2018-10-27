@@ -1,1 +1,166 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --text-color: white;
+    --main-color: #7adad7;
+    --comp-color: #da7a7d;
+    --background-color: black;
+    --off-background-color: #2c2c2c;
+    --border-split-color: #3c3c3c;
+}
+
+/** Mobile size **/
+@media(max-width:767px){
+    body {
+        background-position: 50% 75%;
+        background-size: 45%;
+    }
+}
+
+/** Larger than mobile */
+@media(min-width:767px){
+    body {
+        background-position: 50% 75%;
+        background-size: 35%;
+    }
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    background-image:url(./assets/tap-out-back-dark4.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* Used so no content hides under the nav-bar */
+.top-page{
+    margin-top: 60px;
+}
+.bottom-page{
+    margin-top: 42px;
+}
+
+/* Container holding at least 2 containers, more if page is split up */
+.grand-container {
+
+}
+/* Container holding the info */
+.inner-container {
+    text-align: center;
+    padding: 1px;
+    margin: 0;
+}
+
+
+/* CSS for headers/big header buttons */
+.btn-primary{
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid var(--background-color);
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--off-background-color);
+    color: var(--main-color);
+    text-transform: uppercase;
+    outline: none !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.btn-primary:hover {
+    border-color: var(--background-color);
+    background-color: var(--border-split-color);
+    color: var(--main-color);
+}
+.btn-primary:active {
+    border-color: var(--background-color);
+    background-color: var(--border-split-color);
+    color: var(--main-color);
+}
+.btn-primary:focus {
+    border-color: var(--background-color) !important;
+    background-color: var(--border-split-color) !important;
+    color: var(--main-color) !important;
+}
+
+
+/* CSS for subheadings */
+.tap-out-sub-heading {
+    margin: 0;
+    padding: 5px;
+    color: var(--comp-color);
+    font-weight: bold;
+    text-align: left;
+
+}
+
+.tap-out-header {
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid var(--background-color);
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--off-background-color);
+    color: var(--main-color);
+    text-transform: uppercase;
+    outline: none !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+/* Styling for the rest of the content */
+.tap-out-paragraph {
+    margin: 0;
+    padding: 5px;
+}
+
+/* This aligns content containers with the rest of the pages content, so buttons/headers*/
+.tap-out-content-container {
+    border: 1px solid var(--background-color);
+    margin: 0;
+    background-color: var(--off-background-color);
+}
+.tap-out-row {
+    margin: 0;
+    display: inline;
+}
+.tap-out-content-border {
+    border-top: solid var(--background-color) 1px;
+    border-bottom: solid var(--border-split-color) 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tap-out-description {
+    text-align: left;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+
+/* Arrow CSS for indicating button can be toggled*/
+i {
+    border: solid var(--main-color);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 5px;
+}
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}

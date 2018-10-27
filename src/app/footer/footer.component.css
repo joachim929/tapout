@@ -1,0 +1,46 @@
+
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--off-background-color);
+    border-top: solid var(--background-color) 1px;
+}
+
+.fa {
+    color: var(--text-color);
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+}
+.footer-container{
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    float: left;
+}
+.fa-instagram {
+    float: right;
+}
+.creator {
+    /* Can center it vertically now but not horizontally with position:fixed; */
+    /*position: fixed;*/
+    font-size: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    border: 0;
+
+
+}
+.creator:hover {
+    opacity: 0.7;
+}

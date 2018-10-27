@@ -1,0 +1,48 @@
+.disclaimer {
+    opacity: 0.6;
+    text-align: left;
+    padding-left: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+.disclaimer-alc {
+    text-align: left;
+
+}
+
+.pdf-button{
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid var(--main-color);
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-transform: uppercase;
+    outline: none !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+}
+#pdf-link {
+    text-decoration: none;
+}
+
+.pdf-button:hover {
+    border-color: var(--main-color);
+    background-color: var(--off-background-color);
+    color: var(--text-color);
+}
+.pdf-button:active {
+    border-color: var(--main-color);
+    background-color: var(--off-background-color);
+    color: var(--text-color);
+}
+.pdf-button:focus {
+    border-color: var(--main-color) !important;
+    background-color: var(--off-background-color) !important;
+    color: var(--text-color) !important;
+}
