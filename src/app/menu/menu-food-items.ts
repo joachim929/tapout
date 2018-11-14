@@ -7,53 +7,93 @@ export const FOODITEMS: FoodItem[] = [
     { foodCategory: [
         {
             foodID: 1,
-            foodDescriptor: 'Grilled Prawn Salad',
-            foodPrice: '150K',
-            foodDescription: 'Grilled prawns, roasted peppers & zucchini, cherry tomatoes, goats cheese, and a rosemary vinaigrette'
+            foodDescriptor: 'Skewers off the grill - Chicken',
+            foodPrice: '(3x) 65K (5x) 90K',
+            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
         },
         {
             foodID: 2,
-            foodDescriptor: 'Onion Blossom',
-            foodPrice: '75K',
-            foodDescription: 'Full white onion carved into a blossom shape then battered & fried, served with a spicy cocktail sauce'
+            foodDescriptor: 'Skewers off the grill - Beef',
+            foodPrice: '(3x) 80K (5x) 120K',
+            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
         },
         {
             foodID: 3,
-            foodDescriptor: 'Chili Con Carne Small / Large',
-            foodPrice: '75K / 125K',
-            foodDescription: 'A bowl of homemade chili topped with cheddar cheese, fried tortillas, sour cream & green onions'
+            foodDescriptor: 'Skewers off the grill - Prawn',
+            foodPrice: '(3x) 120K (5x) 175K',
+            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
         },
         {
             foodID: 4,
-            foodDescriptor: 'Fried Oysters',
-            foodPrice: '85K',
-            foodDescription: 'Topped with pomegranate molasses, cool ranch dressing and diced jalapeno'
+            foodDescriptor: 'Skewers off the grill - Veggie',
+            foodPrice: '(3x) 50K (5x) 70K',
+            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
         },
 
         {
             foodID: 5,
-            foodDescriptor: 'Fully Loaded Baked Potato',
-            foodPrice: '70K',
-            foodDescription: 'Stuffed with sour cream, butter, bacon, cheddar cheese and green onion'
+            foodDescriptor: 'Fried Oysters',
+            foodPrice: '85K',
+            foodDescription: 'Topped with pomegranate molasses, cool ranch dressing and diced jalapenos'
         },
         {
             foodID: 6,
-            foodDescriptor: 'Fried Chicken Wings 6pcs / 12pcs',
-            foodPrice: '90K / 170K',
-            foodDescription: 'Choice of sweet & sticky bourbon or Siracha Buffalo sauce'
+            foodDescriptor: 'Salmon Fritter',
+            foodPrice: '75K',
+            foodDescription: '2x Zucchini fritters topped with dill, cream & smoked salmon'
         },
         {
             foodID: 7,
-            foodDescriptor: 'Mac ‘N Cheese Balls',
-            foodPrice: '75K',
-            foodDescription: 'Cheddar & bacon macaroni rolled into balls and fried. Topped with cool ranch dressing, ' +
-            'bacon, cheddar cheese and green onions.'
+            foodDescriptor: 'Prawn Tacos',
+            foodPrice: '85K',
+            foodDescription: '2 homemade flour tortillas, cajun prawns, sauteed onions & red pepper, ' +
+            'marinated mango, pineapple salsa, sour cream'
         },
         {
             foodID: 8,
-            foodDescriptor: 'Spinach & Artichoke Dip',
-            foodPrice: '85K',
-            foodDescription: 'Cold dip served with homemade chips, and assorted fresh vegetables'
+            foodDescriptor: 'Pulled Pork Tacos',
+            foodPrice: '75K',
+            foodDescription: '2 homemade flour tortillas, avocado, pickled red cabbage, smoked pork shoulder,' +
+            ' pineapple salsa, sour cream'
+        },
+        {
+            foodID: 9,
+            foodDescriptor: 'Fried Chicken Wings',
+            foodPrice: '(6x) 110K (12x) 190K',
+            foodDescription: 'Choice of Sweet & Sticky Bourbon, Siracha Buffalo or Sweet & Spicy Korean BBQ sauce'
+        },
+        {
+            foodID: 4,
+            foodDescriptor: 'Smoked Camembert',
+            foodPrice: '150K',
+            foodDescription: '125g Smoked Camembert wheel, covered in sweet chili and Jalapeño peppers, ' +
+            'rosemary alongside some toasted bread'
+        },
+
+        {
+            foodID: 5,
+            foodDescriptor: 'Grilled Prawn Salad',
+            foodPrice: '95K',
+            foodDescription: 'Grilled prawns, roasted peppers & zucchini, cherry tomatoes, rosemary vinaigrette'
+        },
+        {
+            foodID: 6,
+            foodDescriptor: 'Mac ‘N Cheese Balls',
+            foodPrice: '75K',
+            foodDescription: 'Cheddar & bacon macaroni rolled into balls and fried. Topped with cool ranch dressing,' +
+            ' bacon, cheddar cheese and green onions'
+        },
+        {
+            foodID: 7,
+            foodDescriptor: 'Chili Con Carne',
+            foodPrice: '(S) 100K (L) 175K',
+            foodDescription: 'A bowl of homemade chili topped with cheddar cheese, fried tortillas, sour cream & green onions'
+        },
+        {
+            foodID: 8,
+            foodDescriptor: 'Chili Cheese Fries',
+            foodPrice: '155K',
+            foodDescription: 'Hand cut fries topped with homemade chili, cheddar cheese, sour cream & green onions'
         },
         {
             foodID: 9,
@@ -79,51 +119,35 @@ export const FOODITEMS: FoodItem[] = [
             foodID: 12,
             foodDescriptor: 'Bacon & Cheese Burger',
             foodPrice: '150K',
-            foodDescription: '150gr beef patty, lettuce, tomato, smoked bacon, cheddar cheese, dill pickle, ketchup & mustard'
+            foodDescription: '150gr beef patty, lettuce, tomato, onion, pickle, cheddar cheese, ' +
+            'bacon and homemade mustard sauce'
         },
         {
             foodID: 13,
-            foodDescriptor: 'Bacon, Cranberry and Brie Burger',
-            foodPrice: '185K',
-            foodDescription: '150gr beef patty, smoke bacon, brie cheese, homemade cranberry sauce and lettuce'
+            foodDescriptor: 'The TAP OUT BOMB',
+            foodPrice: '250K',
+            foodDescription: '125gr wheel of Camembert breaded and fried, 150gr beef patty, lettuce, ' +
+            'tomato, homemade mustard sauce'
         },
         {
             foodID: 14,
-            foodDescriptor: 'The TAP OUT BOMB',
-            foodPrice: '250K',
-            foodDescription: '125gr wheel of Camembert breaded and fried, 150gr beef patty, lettuce, tomato, homemade mustard sauce'
-        },
-        {
-            foodID: 15,
-            foodDescriptor: 'Chili Cheese Dogs Single / Double',
+            foodDescriptor: 'Chili Cheese Dogs - Single / Double',
             foodPrice: '110K / 185K',
             foodDescription: 'Frankfurters in a grilled bun topped with chili con carne, cheddar cheese & diced Jalepenos'
         },
         {
-            foodID: 16,
+            foodID: 15,
             foodDescriptor: 'Cubano Sandwich',
             foodPrice: '160K',
-            foodDescription: 'Smoked pork shoulder, ham, Swiss cheese, dill pickles, yellow mustard. Pressed in a Cuban style bread'
+            foodDescription: 'Smoked pork shoulder, ham, Swiss cheese, dill pickles, yellow mustard. ' +
+            'Pressed in a Cuban style bread'
         },
         {
-            foodID: 17,
+            foodID: 16,
             foodDescriptor: 'Pulled Pork Sandwich',
             foodPrice: '150K',
-            foodDescription: 'Smoked & pulled pork shoulder topped with green apple coleslaw, served with a side of your choice'
-        },
-        {
-            foodID: 18,
-            foodDescriptor: 'Steak Sandwich',
-            foodPrice: '200K',
-            foodDescription: '125g grilled Australian rib eye, marinated red peppers & zucchini, coriander &' +
-            ' lime chimichurri and cheddar cheese. Served on a homemade grilled light rye bread.'
-        },
-        {
-            foodID: 19,
-            foodDescriptor: 'Montreal Smoked Meat Sandwich',
-            foodPrice: '180K',
-            foodDescription: 'Wood smoked cured brisket in our homemade rye bread, ' +
-            'smothered in yellow mustard, served with hand cut fries, coleslaw and kosher dill'
+            foodDescription: 'Smoked & pulled pork shoulder topped with green apple coleslaw, served with a ' +
+            'side of your choice. Pressed in a Cuban style bread'
         }
     ], foodCategoryID: 22, foodCategoryName: 'Burgers & Sandwiches'},
     { foodCategory: [
@@ -147,10 +171,18 @@ export const FOODITEMS: FoodItem[] = [
         },
         {
             foodID: 23,
-            foodDescriptor: 'Bourbon Chicken',
-            foodPrice: '160K',
-            foodDescription: 'Grilled chicken breast coated in a sweet & sticky bourbon sauce, topped with goats' +
-            ' cheese and avocado, served with a side of your choice'
+            foodDescriptor: 'Meaty Sharing Plate (2-4)',
+            foodPrice: '525K',
+            foodDescription: 'Half Rack of Smoked Ribs, 100g Smoked Pulled Pork Shoulder, ' +
+            '3x Chicken Skewers, 3x Beef Skewers, and a choice of 2 sides'
+        },
+        {
+            foodID: 23,
+            foodDescriptor: 'Meat Feast (4-6)',
+            foodPrice: '995K',
+            foodDescription: 'Full Rack of Smoked Ribs, 200g Smoked Pulled Pork Shoulder, ' +
+            '6x Chicken wings, 5x Chicken Skewers, 5x Beef Skewers, ' +
+            'and choice of 3 sides'
         }
     ], foodCategoryID: 23, foodCategoryName: 'Mains'},
     { foodCategory: [
@@ -188,27 +220,16 @@ export const FOODITEMS: FoodItem[] = [
     { foodCategory: [
         {
             foodID: 29,
-            foodDescriptor: 'Ice cream tacos',
-            foodPrice: '90K',
-            foodDescription: 'Homemade cheesecake & fudge, peanut butter, vanilla ice cream stuffed into a home made waffle “taco” cone'
+            foodDescriptor: 'Coconut Ice cream - 1 scoop / 3 scoops',
+            foodPrice: '30K / 70K',
+            foodDescription: 'Topped with roasted peanut'
         },
         {
             foodID: 30,
-            foodDescriptor: 'Group Ice Cream Tacos deal:',
-            foodPrice: '230K',
-            foodDescription: '3 Tacos'
-        },
-        {
-            foodID: 31,
             foodDescriptor: 'Baked Pineapple & Camembert',
-            foodPrice: '190K',
-            foodDescription: '125g Camembert wheel oven baked topped with a sweet pineapple reduction. Served with toasted bread.'
-        },
-        {
-            foodID: 32,
-            foodDescriptor: 'Banana Foster',
-            foodPrice: '90K',
-            foodDescription: 'Bananas flambéed with dark rum & banana liqueur, brown sugar and cinnamon, served with coconut ice cream'
+            foodPrice: '160K',
+            foodDescription: '125g Camembert wheel oven baked topped with a sweet pineapple reduction. ' +
+            'Served with toasted bread'
         }
     ], foodCategoryID: 25, foodCategoryName: 'Desserts'}
 ];

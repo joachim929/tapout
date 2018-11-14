@@ -5,63 +5,56 @@ import {WeeklyEventObject} from './event-content-object';
 
 export const EVENTWEEKLYITEMS: WeeklyEventObject[] = [
     {
+        eventID: 8,
+        eventSubHeading: 'Daily Happy Hour',
+        eventTime: new Date('October 28, 2018 18:00'),
+        eventDescription: 'Buy 2 drinks, get the 3rd free, 5pm-7pm'
+    },
+    {
         eventID: 1,
-        eventSubHeading: 'Check-in Mondays',
+        eventSubHeading: 'Mondays - Tap Out Check-in',
         eventTime: new Date('October 29, 2018 18:00'),
-        eventDescription: 'Get 20% off on all food, if you check into Tap Out - ' +
-        'Eatery and Bar and tag 5 people in your post'
+        eventDescription: 'Come to Tap Out, check into our Facebook page, and tag 5 of your friends,' +
+        ' receive 20% discount on all food.'
     },
     {
         eventID: 2,
-        eventSubHeading: 'Rooster Night - Every Tuesday',
+        eventSubHeading: 'Tuesdays - Rooster Night',
         eventTime: new Date('October 30, 2018 18:00'),
-        eventDescription: 'We are thinking only Ga (chicken) and Bia (Rooster beers)\n' +
-        '6x wings any style, 1 medium Rooster bia - 130K ₫\n' +
-        '12x wings any style, 1 pint Rooster bia - 210K ₫\n ' +
-        '24x wings any style, 4x medium Rooster bia 350K ₫\n' +
-        'Buy 2 get the 3rd free on Rooster beers'
+        eventDescription: '6 wings plus 1 glass of Rooster 130K ₫\n' +
+        '12 wings plus 1 pint of Rooster 210K ₫'
     },
     {
         eventID: 3,
-        eventSubHeading: 'Wine Wednesdays',
+        eventSubHeading: 'Wednesday - Wine Wednesday\'s',
         eventTime: new Date('October 31, 2018 16:00'),
-        eventDescription: 'No need to \'WINE\' about how bad your week is going,' +
-        ' just get to Tap Out and indulge yourself in 50% off Wine by the glass\n' +
-        'Whether it is white wines to cool off in the heat in, or if it is a ' +
-        'lovely red with some of your meaty dishes\n' +
-        '4pm-8pm (wine by the glass)'
+        eventDescription: '50% off all wine by the glass 4-7pm'
     },
     {
         eventID: 4,
-        eventSubHeading: 'Thursdays - Cocktail Night',
+        eventSubHeading: 'Thursday - Cocktail Night',
         eventTime: new Date('November 1, 2018 16:00'),
-        eventDescription: 'Buy 1 get 1 free on cocktails 4pm-8pm\n' +
-        'Buy 2 get the 3rd free 8pm-10pm\n' +
-        'Come and take advantage of a great happy hour every Thursday,' +
-        ' on all our signature cocktails.\n' +
-        'Cocktails ranging from celery sours, to some more quirky ones'
+        eventDescription: 'Buy 1 get 1 free on our signature cocktails 4-8pm\n' +
+        'Buy 2 get 3rd free on cocktails 8-10pm'
     },
     {
         eventID: 5,
-        eventSubHeading: 'Friday Night - Steak and Date Night',
+        eventSubHeading: 'Friday - Steak and Date Night',
         eventTime: new Date('November 2, 2018 22:00'),
-        eventDescription: '250g Australian grain fed sirloin steak, plus 1 side,' +
-        ' plus 1 glass of Red (Carbenette Sauvignon) - 300K ₫\n' +
-        'Perfect deal for you and your date'
+        eventDescription: '250g Australian grain fed Rib Eye steak, 1x side plus 1 glass of red wine for 300K'
     },
     {
         eventID: 6,
-        eventSubHeading: 'Saturday Night - Oyster Night',
+        eventSubHeading: 'Saturday - Oyster Night',
         eventTime: new Date('November 3, 2018 22:00'),
-        eventDescription: 'Every Saturday we have a special for all those Oyster lovers out there,' +
-        ' whether it is fresh oysters, grilled with cheese oysters, or our very own special smoked oysters'
+        eventDescription: 'Every Saturday we have a special for all those Oyster lovers out there, ' +
+        'whether it is fresh oysters, grilled with cheese oysters, or our very own special smoked oysters'
     },
     {
         eventID: 7,
-        eventSubHeading: 'Crafty Sundays',
+        eventSubHeading: 'Sunday - Crafty Sundays',
         eventTime: new Date('November 4, 2018 15:00'),
-        eventDescription: 'Buy 2 get the 3rd free on all craft beers rom 3pm-7pm\n' +
-        'Bar snacks and other food deals available also\n' +
-        'Ribs and a free Te Te craft beer deal'
+        eventDescription: 'Buy 2 get the 3rd free on all craft beers rom 3-7pm\n' +
+        'Buy half a rack of ribs, and get a free Te Te Craft beer with it'
     }
 ];

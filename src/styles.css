@@ -33,6 +33,9 @@ body {
     background-attachment: fixed;
 }
 
+.line-breaker {
+    white-space: pre-wrap;
+}
 
 /* Used so no content hides under the nav-bar */
 .top-page{
