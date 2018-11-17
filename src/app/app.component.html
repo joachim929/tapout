@@ -1,5 +1,5 @@
 <nav class="navbar navbar-fixed-top tap-out-nav tap-out-nav-border" style="background-color: black">
-    <div class="container test">
+    <section class="container">
         <div class="navbar-header" style="float: left">
             <a class="navbar-toggle nav-image"><img src="./assets/nav-bar-logo-scaled.png"></a>
         </div>
@@ -14,14 +14,10 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-    </div>
-    <div>
-
-    </div>
-
+    </section>
 
     <!-- Navbar -->
-    <div class="collapse navbar-collapse" [ngClass]="{ 'in' : isIn }">
+    <section class="collapse navbar-collapse" [ngClass]="{ 'in' : isIn }">
         <!--<img style="float:left" [src]="imgSrc" width="50" height="50" alt="">-->
         <ul class="nav navbar-nav site-navigation tap-out-nav-border">
             <!-- Logo/Homepage link -->
@@ -33,7 +29,7 @@
             <li><a (click)="collapseMenu()" routerLink="/contact">CONTACT</a></li>
             <li><a (click)="collapseMenu()" routerLink="/about">ABOUT</a></li>
         </ul>
-    </div>
+    </section>
 </nav>
 <div class="top-page"></div>
 <router-outlet></router-outlet>

@@ -1,57 +1,55 @@
 
-<div class="container" >
-    <div class="row ">
+<main class="container" >
+    <div class="row">
         <div class="col-xs-12 col-sm-12 grand-container">
-            <ng-container *ngFor="let events of eventWeeklyItems">
-                <div class="inner-container">
-                    <!-- @todo find out what aria-expanded and aria-controls mean -->
-                    <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{events.eventID}}" aria-expanded="false" aria-controls="collapseExample">
-                        <!-- 'fullDate' has the following format: Monday, July 14, 2005 -->
-                        {{events.eventSubHeading}}
-                    </button>
-                    <div class="collapse in tap-out-content-container {{events.eventID}}">
-                        <div class="row tap-out-row">
-                            <!-- Checks to see if description is false or not so we don't get unnecessary CSS which makes it look ugly -->
-                            <div class="tap-out-description" *ngIf="events.eventDescription != 'false'">
-                                <p class="tap-out-paragraph line-breaker">{{events.eventDescription}}</p>
-                            </div>
+
+            <section class="inner-container" *ngFor="let events of eventWeeklyItems">
+                <!-- @todo find out what aria-expanded and aria-controls mean -->
+                <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{events.eventID}}" aria-expanded="false" aria-controls="collapseExample">
+                    <!-- 'fullDate' has the following format: Monday, July 14, 2005 -->
+                    {{events.eventSubHeading}}
+                </button>
+                <div class="collapse in tap-out-content-container {{events.eventID}}">
+                    <article class="row tap-out-row">
+                        <!-- Checks to see if description is false or not so we don't get unnecessary CSS which makes it look ugly -->
+                        <div class="tap-out-description" *ngIf="events.eventDescription != 'false'">
+                            <p class="tap-out-paragraph line-breaker">{{events.eventDescription}}</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </ng-container>
-            <ng-container *ngFor="let eventsObjects of eventItems">
-                <div class="inner-container">
-                    <!-- @todo find out what aria-expanded and aria-controls mean -->
-                    <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{eventsObjects.eventCategoryID}}" aria-expanded="false" aria-controls="collapseExample">
-                        {{eventsObjects.eventCategoryName}}
-                    </button>
-                    <div class="collapse in tap-out-content-container {{eventsObjects.eventCategoryID}}">
-                        <div *ngFor="let eventObject of eventsObjects.eventCategory" class="row tap-out-row">
-                            <!--<div class="row row-eq-height tap-out-row">-->
-                                <!--<div class="col-xs-9 tap-out-content-border">-->
-                                    <!--<p class="tap-out-sub-heading">{{eventObject.eventTime | date: 'longDate'}}:</p>-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-3 tap-out-content-border">-->
-                                    <!--&lt;!&ndash; 'shortTime' has the following format: 8:00 PM &ndash;&gt;-->
-                                    <!--<p class="tap-out-paragraph">Starting Time:</p>-->
-                                <!--</div>-->
+            </section>
+
+            <section class="inner-container" *ngFor="let eventsObjects of eventItems">
+                <!-- @todo find out what aria-expanded and aria-controls mean -->
+                <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{eventsObjects.eventCategoryID}}" aria-expanded="false" aria-controls="collapseExample">
+                    {{eventsObjects.eventCategoryName}}
+                </button>
+                <div class="collapse in tap-out-content-container {{eventsObjects.eventCategoryID}}">
+                    <article *ngFor="let eventObject of eventsObjects.eventCategory" class="row tap-out-row">
+                        <!--<div class="row row-eq-height tap-out-row">-->
+                            <!--<div class="col-xs-9 tap-out-content-border">-->
+                                <!--<p class="tap-out-sub-heading">{{eventObject.eventTime | date: 'longDate'}}:</p>-->
                             <!--</div>-->
-                            <div class="row row-eq-height tap-out-row">
-                                <div class="col-xs-9 tap-out-content-border">
-                                    <p class="tap-out-sub-heading line-breaker" [innerHtml]="eventObject.eventDescription"></p>
-                                </div>
-                                <div class="col-xs-3 tap-out-content-border">
-                                    <!-- 'shortTime' has the following format: 8:00 PM -->
-                                    <p class="tap-out-paragraph">{{eventObject.eventTime | date: 'short'}}</p>
-                                </div>
+                            <!--<div class="col-xs-3 tap-out-content-border">-->
+                                <!--&lt;!&ndash; 'shortTime' has the following format: 8:00 PM &ndash;&gt;-->
+                                <!--<p class="tap-out-paragraph">Starting Time:</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="row row-eq-height tap-out-row">
+                            <div class="col-xs-9 tap-out-content-border">
+                                <p class="tap-out-sub-heading line-breaker" [innerHtml]="eventObject.eventDescription"></p>
+                            </div>
+                            <div class="col-xs-3 tap-out-content-border">
+                                <!-- 'shortTime' has the following format: 8:00 PM -->
+                                <p class="tap-out-paragraph">{{eventObject.eventTime | date: 'short'}}</p>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </ng-container>
+            </section>
         </div>
     </div>
-</div>
+</main>
 
 
 <!--

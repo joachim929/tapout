@@ -1,11 +1,11 @@
 
-<div class="container" >
+<main class="container" >
     <!-- Container for about-page grid -->
     <div class="row">
         <!-- In this case grand-container doesn't do anything, only there for continuity -->
-        <div class="col-sm-12 grand-container">
+        <section class="col-sm-12 grand-container">
             <!-- Loop for about page info -->
-            <div *ngFor="let individual of individuals" class="col-12 inner-container">
+            <article *ngFor="let individual of individuals" class="col-12 inner-container">
                 <div class="tap-out-header">
                     <!-- Descriptor -->
                     {{individual.descriptor}}
@@ -14,7 +14,7 @@
                     <!-- Description -->
                     <p class="tap-out-paragraph">{{individual.description}}</p>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     </div>
-</div>
+</main>

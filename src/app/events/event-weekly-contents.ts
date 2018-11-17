@@ -6,9 +6,9 @@ import {WeeklyEventObject} from './event-content-object';
 export const EVENTWEEKLYITEMS: WeeklyEventObject[] = [
     {
         eventID: 8,
-        eventSubHeading: 'Daily Happy Hour',
+        eventSubHeading: 'Happy Hour',
         eventTime: new Date('October 28, 2018 18:00'),
-        eventDescription: 'Buy 2 drinks, get the 3rd free, 5pm-7pm'
+        eventDescription: 'Monday - Friday: 50% off all CRAFT BEERS and COCKTAILS 5pm-6pm'
     },
     {
         eventID: 1,
@@ -28,14 +28,13 @@ export const EVENTWEEKLYITEMS: WeeklyEventObject[] = [
         eventID: 3,
         eventSubHeading: 'Wednesday - Wine Wednesday\'s',
         eventTime: new Date('October 31, 2018 16:00'),
-        eventDescription: '50% off all wine by the glass 4-7pm'
+        eventDescription: '50% off all wine by the glass 4pm-7pm'
     },
     {
         eventID: 4,
         eventSubHeading: 'Thursday - Cocktail Night',
         eventTime: new Date('November 1, 2018 16:00'),
-        eventDescription: 'Buy 1 get 1 free on our signature cocktails 4-8pm\n' +
-        'Buy 2 get 3rd free on cocktails 8-10pm'
+        eventDescription: 'Buy 2 get the 3rd free on Cocktails 6pm-10pm'
     },
     {
         eventID: 5,
@@ -54,7 +53,7 @@ export const EVENTWEEKLYITEMS: WeeklyEventObject[] = [
         eventID: 7,
         eventSubHeading: 'Sunday - Crafty Sundays',
         eventTime: new Date('November 4, 2018 15:00'),
-        eventDescription: 'Buy 2 get the 3rd free on all craft beers rom 3-7pm\n' +
+        eventDescription: 'Buy 2 get the 3rd free on all craft beers from 3pm-7pm\n' +
         'Buy half a rack of ribs, and get a free Te Te Craft beer with it'
     }
 ];

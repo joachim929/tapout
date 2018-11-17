@@ -25,22 +25,15 @@
         padding-right: 5px;
     }
 }
-/*@media(max-width:808px){*/
-    /*.nav>li>a {*/
-        /*padding-left: 2.5px;*/
-        /*padding-right: 2.5px;*/
-    /*}*/
-/*}*/
 .tap-out-nav {
     border-bottom: 1px solid var(--off-background-color);
-    height: 52px;
+    height: 53px;
 }
 .test {
     box-sizing: border-box;
 }
 .nav-image {
     padding: 0 0 0 15px;
-    /*padding-left: 10px;*/
     margin: 0;
 }
 

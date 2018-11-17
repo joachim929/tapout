@@ -16,7 +16,7 @@ const routes: Routes = [
     {path: 'events', component: EventsComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'about', component: AboutComponent}
-]
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
