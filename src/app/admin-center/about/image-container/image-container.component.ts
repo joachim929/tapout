@@ -7,11 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ImageContainerComponent {
 
-  private pageImage;
+  private item;
 
   @Input()
   set img(img: object) {
-    this.pageImage = img;
+    this.item = img;
   }
 
 }

@@ -5,6 +5,10 @@ article.edit-article {
     border: 1px solid var(--background-color);
 }
 
+.page-item-header {
+    max-width: 100%;
+}
+
 article.edit-article button {
     text-align: left;
     width: 100%;
