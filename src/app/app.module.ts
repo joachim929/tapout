@@ -16,14 +16,6 @@ import { HeaderComponent } from './header/header.component';
 import { VisitorComponent } from './visitor/visitor.component';
 //Services for website components
 
-
-//Edit components
-import { EditComponent } from './edit/edit.component';
-import { EditAboutComponent } from './edit-about/edit-about.component';
-
-//Services for edit components
-import { AboutService } from './edit-about/about.service';
-
 //Modules
 import { AdminCenterModule } from './admin-center/admin-center.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,9 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
         HomeComponent,
         FooterComponent,
         HeaderComponent,
-        VisitorComponent,
-        EditComponent,
-        EditAboutComponent
+        VisitorComponent
     ],
     imports: [
         BrowserModule,
@@ -51,7 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
         AppRoutingModule
     ],
     providers: [
-        AboutService
+
     ],
     bootstrap: [AppComponent]
 })
