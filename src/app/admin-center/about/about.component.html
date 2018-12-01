@@ -1,0 +1,132 @@
+<section class="edit-container">
+    <ng-container *ngFor="let item of pageItems; let itemIndex = index">
+        <article class="row edit-article" *ngIf="item['imgUrl'] !== undefined; else pageItem">
+            <button class="" type="button" data-toggle="collapse"
+                    attr.data-target=".image-id-{{item.id}}"
+                    aria-expanded="false" aria-controls="collapsible-page-image">
+                Page position: {{item.pagePosition}}
+            </button>
+            <div class="collapse in row edit-article-content image-id-{{item.id}}">
+
+                <app-image-container [img]="item"></app-image-container>
+
+                <div class="col-xs-2">
+                    <!-- @todo make buttons functional -->
+                    <button *ngIf="firstCheck(itemIndex)" class="edit-buttons" (click)="moveItemUp(item, itemIndex)">
+                        Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+                    </button>
+                    <button *ngIf="lastCheck(itemIndex)" class="edit-buttons" (click)="moveItemDown(item, itemIndex)">
+                        Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+                    </button>
+                    <button class="edit-buttons">
+                        Delete<img src="/assets/icons/icon-delete-25x25.png">
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <ng-template #pageItem>
+            <article class="row edit-article">
+                <button class="" type="button" data-toggle="collapse"
+                        attr.data-target=".en-item-id-{{item.enItemId}}"
+                        aria-expanded="false" aria-controls="collapsible-page-item">
+                    Page position: {{item.pagePosition}}
+                </button>
+                <div class="collapse in row edit-article-content en-item-id-{{item.enItemId}}">
+                        <!-- Plain view -->
+                        <div *ngIf="!item.toggleEdit">
+                            <div class="col-xs-5">
+                                <h3>English</h3>
+                                <h4>Heading:</h4>
+                                <p>{{item.enHeading}}</p>
+                                <h4>Content:</h4>
+                                <p>{{item.enContent}}</p>
+                            </div>
+                            <div class="col-xs-5">
+                                <h3>Vietnamese</h3>
+                                <h4>Heading:</h4>
+                                <p>{{item.vnHeading}}</p>
+                                <h4>Content:</h4>
+                                <p>{{item.vnContent}}</p>
+                            </div>
+                        </div>
+
+                        <!-- Edit view -->
+                        <div *ngIf="item.toggleEdit">
+                            <div class="col-xs-5">
+                                <h3>English</h3>
+
+                                <h4 class="validation-warning"
+                                    *ngIf="validationCheckHeading(item.enHeading)">Heading needs to be between 4 and
+                                    255 characters</h4>
+                                <h4 *ngIf="!validationCheckHeading(item.enHeading)">Heading:</h4>
+                                <input class="edit-page-item-heading" type="text"
+                                       [(ngModel)]="item.enHeading" name="enHeading"
+                                       placeholder="Enter an English heading here...">
+
+                                <h4 class="validation-warning"
+                                    *ngIf="validationCheckContent(item.enContent)">
+                                    Content can't be empty or about 255 characters</h4>
+                                <h4 *ngIf="!validationCheckContent(item.enContent)">Content:</h4>
+                                <textarea id="en-content-{{item.enItemId}}" class="edit-page-item-content"
+                                          [(ngModel)]="item.enContent" name="enContent"
+                                          placeholder="Enter some English text here..."></textarea>
+                            </div>
+                            <div class="col-xs-5">
+                                <h3>Vietnamese</h3>
+
+                                <h4 class="validation-warning"
+                                    *ngIf="validationCheckHeading(item.vnHeading)">Heading needs to be between 4 and
+                                    255 characters</h4>
+                                <h4 *ngIf="!validationCheckHeading(item.vnHeading)">Heading:</h4>
+                                <input class="edit-page-item-heading" type="text"
+                                       [(ngModel)]="item.vnHeading" name="vnHeading"
+                                       placeholder="Enter a Vietnamese heading here...">
+
+                                <h4 class="validation-warning"
+                                    *ngIf="validationCheckContent(item.vnContent)">
+                                    Content can't be empty or about 255 characters</h4>
+                                <h4 *ngIf="!validationCheckContent(item.vnContent)">Content:</h4>
+                                <textarea id="vn-content-{{item.vnItemId}}" class="edit-page-item-content"
+                                          placeholder="Enter some Vietnamese text here" [(ngModel)]="item.vnContent"
+                                          name="vnContent"></textarea>
+                            </div>
+
+                    </div>
+
+                    <!-- @todo make buttons functional -->
+                    <div class="col-xs-2 edit-item-functions">
+                        <button *ngIf="firstCheck(itemIndex)" class="edit-buttons"
+                                (click)="moveItemUp(item, itemIndex)">
+                            Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+                        </button>
+                        <button *ngIf="lastCheck(itemIndex)" class="edit-buttons"
+                                (click)="moveItemDown(item, itemIndex)">
+                            Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+                        </button>
+                        <button class="edit-buttons" (click)="initializeEdit(item, itemIndex)"
+                                *ngIf="!item.toggleEdit">
+                            Edit<img src="/assets/icons/icon-edit-25x25.png">
+                        </button>
+                        <button class="edit-buttons"
+                                (click)="cancelEdit(item, itemIndex);"
+                                *ngIf="item.toggleEdit">
+                            Cancel
+                        </button>
+                        <button class="edit-buttons" *ngIf="!item.toggleEdit">
+                            Delete<img src="/assets/icons/icon-delete-25x25.png">
+                        </button>
+                        <button class="edit-buttons" *ngIf="item.toggleEdit" (click)="saveChangesToPageItem(item, itemIndex)">
+                            Save<img src="/assets/icons/icon-save-25x25.png">
+                        </button>
+                        <p class="tap-out-sub-heading">Created at:</p>
+                        <p class="tap-out-paragraph">{{item.createdAt}}</p>
+                        <p class="tap-out-sub-heading">Last edited at:</p>
+                        <p class="tap-out-paragraph"><span *ngIf="item.editedAt === null">N/A</span>{{item.editedAt}}
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </ng-template>
+    </ng-container>
+</section>

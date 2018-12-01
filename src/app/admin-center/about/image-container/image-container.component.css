@@ -1,0 +1,10 @@
+figure {
+    align-content: center;
+    padding: 10px;
+}
+
+figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

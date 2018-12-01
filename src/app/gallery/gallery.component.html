@@ -1,20 +1,17 @@
-<main class="container" >
-    <section class="row ">
-        <section class="col-sm-12 col-lg-6 gallery-grand-container">
-            <article *ngFor="let item of images">
-                <figure class="inner-container" *ngIf="item.id % 2 !== 0">
-                    <img src="{{item.url}}" class="gallery-image">
-                </figure>
-            </article>
-        </section>
-
-        <section class="col-sm-12 col-lg-6 gallery-grand-container">
-            <article *ngFor="let item of images">
-                <figure class="inner-container" *ngIf="item.id % 2 === 0">
-                    <img src="{{item.url}}" class="gallery-image">
-                </figure>
-            </article>
-        </section>
+<section class="row ">
+    <section class="col-sm-12 col-lg-6 gallery-grand-container">
+        <article *ngFor="let item of images">
+            <figure class="inner-container" *ngIf="item.id % 2 !== 0">
+                <img src="{{item.url}}" class="gallery-image">
+            </figure>
+        </article>
     </section>
-</main>
 
+    <section class="col-sm-12 col-lg-6 gallery-grand-container">
+        <article *ngFor="let item of images">
+            <figure class="inner-container" *ngIf="item.id % 2 === 0">
+                <img src="{{item.url}}" class="gallery-image">
+            </figure>
+        </article>
+    </section>
+</section>

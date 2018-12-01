@@ -33,6 +33,10 @@ body {
     background-attachment: fixed;
 }
 
+img {
+    border: 1px solid var(--background-color);
+}
+
 .line-breaker {
     white-space: pre-wrap;
 }
@@ -88,17 +92,7 @@ body {
     color: var(--main-color) !important;
 }
 
-
-/* CSS for subheadings */
-.tap-out-sub-heading {
-    margin: 0;
-    padding: 5px;
-    color: var(--comp-color);
-    font-weight: bold;
-    text-align: left;
-
-}
-
+/* CSS for headers */
 .tap-out-header {
     width: 100%;
     font-size: 16px;
@@ -112,6 +106,15 @@ body {
     outline: none !important;
     padding-top: 6px;
     padding-bottom: 6px;
+}
+
+/* CSS for subheadings */
+.tap-out-sub-heading {
+    margin: 0;
+    padding: 5px;
+    color: var(--comp-color);
+    font-weight: bold;
+    text-align: left;
 }
 
 /* Styling for the rest of the content */

@@ -1,0 +1,26 @@
+<header class="row inner-container">
+    <section class="col-sm-12 button-container">
+        <div class="col-sm-12">
+            <h4>Admin Edit Center{{page}}</h4>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn-primary" routerLink="Home" (click)="page = ': Home'">Home</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn-primary" routerLink="Menu" (click)="page = ': Menu'">Menu</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn-primary" routerLink="Gallery" (click)="page = ': Gallery'">Gallery</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn-primary" routerLink="Events" (click)="page = ': Events'">Events</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn-primary" routerLink="Contact" (click)="page = ': Contact'">Contact</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn-primary" routerLink="About" (click)="page = ': About'">About</button>
+        </div>
+    </section>
+</header>
+<router-outlet></router-outlet>

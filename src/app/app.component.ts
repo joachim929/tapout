@@ -8,23 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
     title = 'Tap Out Vietnam';
 
-    imgSrc;
+    constructor() {}
 
-    isIn = false;   // store state
-
-    toggleState() { // click handler
-        const bool = this.isIn;
-        this.isIn = bool === false;
-    }
-
-    collapseMenu() {
-        this.isIn = false;
-    }
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.imgSrc = '/assets/nav-bar-logo-scaled.png';
-    }
+    ngOnInit() {}
 }
