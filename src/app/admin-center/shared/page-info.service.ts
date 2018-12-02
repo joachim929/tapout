@@ -16,10 +16,9 @@ export class PageInfoService {
   disableButtons = false;
   selectedPageItem: PageItem;
 
-  API_URL = 'http://localhost:80/Tapout/tapoutAPI';
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(
+      private httpClient: HttpClient
+  ) { }
 
   private sortAboutItems() {
     let pageIndex = 1;
@@ -59,7 +58,7 @@ export class PageInfoService {
     );
   }
 
-  private getPageUri(pageName) {
+  getPageUri(pageName) {
     let pageUri = 'http://localhost:80/Tapout/tapoutAPI/';
     if (pageName === 'Events') {
       pageUri += 'event/';
@@ -71,7 +70,7 @@ export class PageInfoService {
     return pageUri;
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
 
@@ -79,27 +78,51 @@ export class PageInfoService {
     };
   }
 
+  updatePagePosition(pageItem, pageName): Observable<any> {
+    const body = new HttpParams()
+        .set('pageItems', JSON.stringify(pageItem))
+        .set('task', 'pagePosition')
+        .set('page', 'About');
+
+    const httpPutOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
+    };
+
+    return this.httpClient.post<PageItem[]>(this.getPageUri(pageName) + 'update.php',
+        body, httpPutOptions
+    ).pipe(
+        catchError(this.handleError('updatePagePosition'))
+    );
+  }
+
+  // @todo: Move to buttonSaveService
   validationCheckHeading(heading) {
     return heading.length < 4 || heading.length > 254;
   }
 
+  // @todo: Move to buttonSaveService
   validationCheckContent(content) {
     return content.length === 0;
   }
 
+  // @todo: Move to buttonSaveService
   toggleEdit(itemIndex) {
     this.pageItems[itemIndex].toggleEdit = !this.pageItems[itemIndex].toggleEdit;
   }
 
+  // @todo: Move to buttonEditService
   initializeEdit(item, itemIndex) {
-    this.selectedPageItem = item;
+    this.selectedPageItem = Object.assign({}, item);
     this.pageItems[itemIndex].toggleEdit = !this.pageItems[itemIndex].toggleEdit;
   }
 
-  cancelEdit(item, itemIndex) {
+  // @todo: Move to buttonEditService
+  cancelEdit(itemIndex) {
     this.pageItems[itemIndex].toggleEdit = !this.pageItems[itemIndex].toggleEdit;
+    this.pageItems[itemIndex] = this.selectedPageItem;
   }
 
+  // @todo: Move to buttonSaveService
   saveChangesToPageItem(item, itemIndex) {
     if (this.checkAllFields(item)) {
       this.toggleEdit(itemIndex);
@@ -109,8 +132,9 @@ export class PageInfoService {
     }
   }
 
+  // @todo: Move to buttonSaveService
   private checkAllFields(item) {
-    return !this.validationCheckHeading(item.enContent)
+    return !this.validationCheckContent(item.enContent)
         && !this.validationCheckContent(item.vnContent)
         && !this.validationCheckHeading(item.enHeading)
         && !this.validationCheckHeading(item.vnHeading);

@@ -1,10 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-
-import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-
-import {PageItem} from './page-item';
 
 import {PageInfoService} from './page-info.service';
 
@@ -13,8 +7,9 @@ import {PageInfoService} from './page-info.service';
 })
 export class ButtonMoveService {
 
-    constructor(private httpClient: HttpClient,
-                private pageInfoService: PageInfoService) {
+    constructor(
+        private pageInfoService: PageInfoService
+    ) {
     }
 
     firstCheck(index) {
@@ -61,7 +56,7 @@ export class ButtonMoveService {
 
     private editPosition(pageItem) {
         this.pageInfoService.disableButtons = true;
-        this.updatePagePosition(pageItem, 'About')
+        this.pageInfoService.updatePagePosition(pageItem, 'About')
             .subscribe(result => {
                     if (result === false) {
                         alert('Whoops something went wrong');
@@ -71,20 +66,5 @@ export class ButtonMoveService {
             );
     }
 
-    private updatePagePosition(pageItem, pageName): Observable<any> {
-        const body = new HttpParams()
-            .set('pageItems', JSON.stringify(pageItem))
-            .set('task', 'pagePosition')
-            .set('page', 'About');
 
-        const httpPutOptions = {
-            headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
-        };
-
-        return this.httpClient.post<PageItem[]>(this.pageInfoService.getPageUri(pageName) + 'update.php',
-            body, httpPutOptions
-        ).pipe(
-            catchError(this.pageInfoService.handleError('updatePagePosition'))
-        );
-    }
 }

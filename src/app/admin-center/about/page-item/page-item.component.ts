@@ -4,30 +4,30 @@ import {ButtonMoveService} from '../../shared/button-move.service';
 import {PageInfoService} from '../../shared/page-info.service';
 import {ButtonDeleteService} from '../../shared/button-delete.service';
 
-import {PageItem} from '../../shared/page-item';
+import { PageItem } from '../../shared/page-item';
 
 @Component({
-  selector: 'app-image-container',
-  templateUrl: './image-container.component.html',
-  styleUrls: ['./image-container.component.css']
+  selector: 'app-page-item',
+  templateUrl: './page-item.component.html',
+  styleUrls: ['./page-item.component.css']
 })
-export class ImageContainerComponent {
+export class PageItemComponent {
 
   constructor(
       private pageInfoService: PageInfoService,
       private buttonMoveService: ButtonMoveService,
       private buttonDeleteService: ButtonDeleteService
-  ) {}
+  ) { }
 
   private item;
   private itemIndex;
 
   @Input()
-  set imageItem(imageItem: PageItem) {
-    this.item = imageItem;
+  set pageItem(pageItem: PageItem) {
+    this.item = pageItem;
   }
   @Input()
-  set imageIndex(imageIndex: number) {
-    this.itemIndex = imageIndex;
+  set pageIndex(pageIndex: number) {
+    this.itemIndex = pageIndex;
   }
 }

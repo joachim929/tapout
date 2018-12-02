@@ -1,29 +1,26 @@
-<figure class="col-xs-10">
-  <img src="{{item.imgUrl}}">
-</figure>
+<button class="" type="button" data-toggle="collapse"
+        attr.data-target=".image-id-{{item.id}}"
+        aria-expanded="false" aria-controls="collapsible-page-image">
+  Page position: {{item.pagePosition}}
+</button>
+<div class="collapse in row edit-article-content image-id-{{item.id}}">
 
+  <figure class="col-xs-10">
+    <img src="{{item.imgUrl}}">
+  </figure>
 
-<!--<button class="" type="button" data-toggle="collapse"-->
-        <!--attr.data-target=".image-id-{{item.id}}"-->
-        <!--aria-expanded="false" aria-controls="collapsible-page-image">-->
-  <!--Page position: {{item.pagePosition}}-->
-<!--</button>-->
-<!--<div class="collapse in row edit-article-content image-id-{{item.id}}">-->
-
-  <!--<figure class="col-xs-10">-->
-    <!--<img src="{{item.imgUrl}}">-->
-  <!--</figure>-->
-
-  <!--<div class="col-xs-2">-->
-    <!--&lt;!&ndash; @todo make buttons functional &ndash;&gt;-->
-    <!--<button *ngIf="firstCheck(itemIndex)" class="edit-buttons" (click)="moveItemUp(item, itemIndex)">-->
-      <!--Move up<img src="/assets/icons/icon-arrow-up-25x25.png">-->
-    <!--</button>-->
-    <!--<button *ngIf="lastCheck(itemIndex)" class="edit-buttons" (click)="moveItemDown(item, itemIndex)">-->
-      <!--Move down<img src="/assets/icons/icon-arrow-down-25x25.png">-->
-    <!--</button>-->
-    <!--<button class="edit-buttons">-->
-      <!--Delete<img src="/assets/icons/icon-delete-25x25.png">-->
-    <!--</button>-->
-  <!--</div>-->
-<!--</div>-->
+  <div class="col-xs-2">
+    <!-- @todo make delete button functional -->
+    <button *ngIf="buttonMoveService.firstCheck(itemIndex)" class="edit-buttons"
+            (click)="buttonMoveService.moveItemUp(item, itemIndex)">
+      Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+    </button>
+    <button *ngIf="buttonMoveService.lastCheck(itemIndex)" class="edit-buttons"
+            (click)="buttonMoveService.moveItemDown(item, itemIndex)">
+      Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+    </button>
+    <button class="edit-buttons" (click)="buttonDeleteService.initializeDelete(item, 'About', itemIndex)">
+      Delete<img src="/assets/icons/icon-delete-25x25.png">
+    </button>
+  </div>
+</div>

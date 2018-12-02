@@ -12,6 +12,7 @@ import {MenuComponent} from './menu/menu.component';
 import {EventsComponent} from './events/events.component';
 import {ContactComponent} from './contact/contact.component';
 import {ImageContainerComponent} from './about/image-container/image-container.component';
+import {PageItemComponent} from './about/page-item/page-item.component';
 
 // Modules
 import {AdminCenterRoutingModule} from './admin-center-routing.module';
@@ -34,7 +35,8 @@ import {PageInfoService} from './shared/page-info.service';
         MenuComponent,
         EventsComponent,
         ContactComponent,
-        ImageContainerComponent
+        ImageContainerComponent,
+        PageItemComponent
     ],
     providers: [
         PageInfoService
