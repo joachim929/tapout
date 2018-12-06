@@ -2,15 +2,13 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 // Components
-import {AdminCenterComponent} from './admin-center/admin-center.component';
-import {AboutComponent} from './about/about.component';
-import {HomeComponent} from './home/home.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {EventsComponent} from './events/events.component';
-import {ContactComponent} from './contact/contact.component';
-import {MenuComponent} from './menu/menu.component';
-import {NewItemComponent} from './about/new-item/new-item.component';
-import {NewImageComponent} from './about/new-image/new-image.component';
+import {AdminCenterComponent} from './admin-center.component';
+import {AboutComponent} from './pages/about/about.component';
+import {HomeComponent} from './pages/home/home.component';
+import {GalleryComponent} from './pages/gallery/gallery.component';
+import {EventsComponent} from './pages/events/events.component';
+import {ContactComponent} from './pages/contact/contact.component';
+import {MenuComponent} from './pages/menu/menu.component';
 
 const adminRoutes: Routes = [
     {
@@ -18,16 +16,13 @@ const adminRoutes: Routes = [
         component: AdminCenterComponent,
         children: [
             {
-                path: 'About', component: AboutComponent, children: [
-                {path: 'Item', component: NewItemComponent},
-                {path: 'Image', component: NewImageComponent}
-            ]
+                path: 'about', component: AboutComponent
             },
-            {path: 'Home', component: HomeComponent},
-            {path: 'Gallery', component: GalleryComponent},
-            {path: 'Events', component: EventsComponent},
-            {path: 'Contact', component: ContactComponent},
-            {path: 'Menu', component: MenuComponent},
+            {path: 'home', component: HomeComponent},
+            {path: 'gallery', component: GalleryComponent},
+            {path: 'events', component: EventsComponent},
+            {path: 'contact', component: ContactComponent},
+            {path: 'menu', component: MenuComponent},
         ]
     }
 ];

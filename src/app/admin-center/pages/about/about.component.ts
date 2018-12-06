@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 // Services
-import {PageInfoService} from '../shared/page-info.service';
-import {ButtonDeleteService} from '../shared/button-delete.service';
-import {ButtonMoveService} from '../shared/button-move.service';
-import {ButtonSaveService} from '../shared/button-save.service';
+import {PageInfoService} from '../../shared/page-info.service';
+import {ButtonDeleteService} from '../../shared/button-delete.service';
+import {ButtonMoveService} from '../../shared/button-move.service';
+import {ButtonSaveService} from '../../shared/button-save.service';
 
 @Component({
     selector: 'app-about',

@@ -12,9 +12,8 @@ const routes: Routes = [
         path: 'edit',
         loadChildren: './admin-center/admin-center.module#AdminCenterModule',
         data: { preload: true}
-    }
-    // @todo make page not found
-    // {path: '**', component: HomeComponent}
+    },
+    {path: '**', redirectTo: '/home'}
 ];
 
 @NgModule({

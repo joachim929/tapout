@@ -4,23 +4,23 @@ import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 
 // Components
-import {AdminCenterComponent} from './admin-center/admin-center.component';
-import {AboutComponent} from './about/about.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {HomeComponent} from './home/home.component';
-import {MenuComponent} from './menu/menu.component';
-import {EventsComponent} from './events/events.component';
-import {ContactComponent} from './contact/contact.component';
-import {ImageContainerComponent} from './about/image-container/image-container.component';
-import {PageItemComponent} from './about/page-item/page-item.component';
+import {AdminCenterComponent} from './admin-center.component';
+import {AboutComponent} from './pages/about/about.component';
+import {GalleryComponent} from './pages/gallery/gallery.component';
+import {HomeComponent} from './pages/home/home.component';
+import {MenuComponent} from './pages/menu/menu.component';
+import {EventsComponent} from './pages/events/events.component';
+import {ContactComponent} from './pages/contact/contact.component';
+import {ImageContainerComponent} from './pages/about/image-container/image-container.component';
+import {PageItemComponent} from './pages/about/page-item/page-item.component';
+import {HeaderComponent} from './components/header/header.component';
 
 // Modules
 import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
-import { NewItemComponent } from './about/new-item/new-item.component';
-import { NewImageComponent } from './about/new-image/new-image.component';
+
 
 @NgModule({
     imports: [
@@ -39,8 +39,7 @@ import { NewImageComponent } from './about/new-image/new-image.component';
         ContactComponent,
         ImageContainerComponent,
         PageItemComponent,
-        NewItemComponent,
-        NewImageComponent
+        HeaderComponent
     ],
     providers: [
         PageInfoService

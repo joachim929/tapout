@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-import {ButtonMoveService} from '../../shared/button-move.service';
-import {PageInfoService} from '../../shared/page-info.service';
-import {ButtonDeleteService} from '../../shared/button-delete.service';
-import {ButtonSaveService} from '../../shared/button-save.service';
+import {ButtonMoveService} from '../../../shared/button-move.service';
+import {PageInfoService} from '../../../shared/page-info.service';
+import {ButtonDeleteService} from '../../../shared/button-delete.service';
+import {ButtonSaveService} from '../../../shared/button-save.service';
 
-import { PageItem } from '../../shared/page-item';
+import { PageItem } from '../../../shared/page-item';
 
 @Component({
   selector: 'app-page-item',

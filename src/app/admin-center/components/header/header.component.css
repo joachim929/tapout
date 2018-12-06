@@ -1,0 +1,21 @@
+.button-container div {
+    padding: 0;
+}
+
+section.button-container {
+    padding: 0;
+}
+
+h4 {
+    padding: 5px;
+    float: left;
+}
+
+.inner-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    margin: 0;
+}

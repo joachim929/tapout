@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 
-import {ButtonMoveService} from '../../shared/button-move.service';
-import {ButtonDeleteService} from '../../shared/button-delete.service';
+import {ButtonMoveService} from '../../../shared/button-move.service';
+import {ButtonDeleteService} from '../../../shared/button-delete.service';
 
-import {PageItem} from '../../shared/page-item';
+import {PageItem} from '../../../shared/page-item';
 
 @Component({
   selector: 'app-image-container',
