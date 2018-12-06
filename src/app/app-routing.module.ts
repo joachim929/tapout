@@ -1,27 +1,20 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes, CanActivate} from '@angular/router';
-
-import {MenuComponent} from './menu/menu.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {EventsComponent} from './events/events.component';
-import {ContactComponent} from './contact/contact.component';
-import {AboutComponent} from './about/about.component';
-import {HomeComponent} from './home/home.component';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: 'home', component: HomeComponent},
-    {path: 'menu', component: MenuComponent},
-    {path: 'gallery', component: GalleryComponent},
-    {path: 'events', component: EventsComponent},
-    {path: 'contact', component: ContactComponent},
-    {path: 'about', component: AboutComponent},
+    {
+        path: 'home',
+        loadChildren: './guest-center/guest-center.module#GuestCenterModule',
+        data: {preload: true}
+    },
     {
         path: 'edit',
         loadChildren: './admin-center/admin-center.module#AdminCenterModule',
         data: { preload: true}
-    },
-    {path: '**', component: HomeComponent}
+    }
+    // @todo make page not found
+    // {path: '**', component: HomeComponent}
 ];
 
 @NgModule({

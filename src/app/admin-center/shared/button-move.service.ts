@@ -9,8 +9,7 @@ export class ButtonMoveService {
 
     constructor(
         private pageInfoService: PageInfoService
-    ) {
-    }
+    ) { }
 
     firstCheck(index) {
         return index !== 0;

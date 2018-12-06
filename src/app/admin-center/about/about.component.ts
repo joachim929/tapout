@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 // Services
 import {PageInfoService} from '../shared/page-info.service';
@@ -12,8 +13,12 @@ import {ButtonSaveService} from '../shared/button-save.service';
     styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+    newItemToggle = false;
+    newImageToggle = false;
 
     constructor(
+        private router: Router,
+
         private pageInfoService: PageInfoService,
         private buttonDeleteService: ButtonDeleteService,
         private buttonMoveService: ButtonMoveService,

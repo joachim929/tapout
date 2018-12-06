@@ -10,16 +10,15 @@
   </figure>
 
   <div class="col-xs-2">
-    <!-- @todo make delete button functional -->
-    <button *ngIf="buttonMoveService.firstCheck(itemIndex)" class="edit-buttons"
-            (click)="buttonMoveService.moveItemUp(item, itemIndex)">
+    <button *ngIf="firstCheck(itemIndex)" class="edit-buttons"
+            (click)="moveItemUp(item, itemIndex)">
       Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
     </button>
-    <button *ngIf="buttonMoveService.lastCheck(itemIndex)" class="edit-buttons"
-            (click)="buttonMoveService.moveItemDown(item, itemIndex)">
+    <button *ngIf="lastCheck(itemIndex)" class="edit-buttons"
+            (click)="moveItemDown(item, itemIndex)">
       Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
     </button>
-    <button class="edit-buttons" (click)="buttonDeleteService.initializeDelete(item, 'About', itemIndex)">
+    <button class="edit-buttons" (click)="initializeDelete(item, 'About', itemIndex)">
       Delete<img src="/assets/icons/icon-delete-25x25.png">
     </button>
   </div>

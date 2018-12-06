@@ -1,4 +1,17 @@
 <section class="edit-container">
+    <article class="row create-item">
+        <button class="col-xs-6" type="button" routerLink="Item" (click)="newItemToggle = true;">
+            Add new item<img src="/assets/icons/icon-add-25x25.png">
+        </button>
+        <button class="col-xs-6" type="button" routerLink="Image" (click)="newImageToggle = true;">
+            Add new image<img src="/assets/icons/icon-image-30x25.png">
+        </button>
+        <button *ngIf="newItemToggle === true || newImageToggle === true;" (click)="back()">
+            Back
+        </button>
+        <router-outlet>
+        </router-outlet>
+    </article>
     <ng-container *ngFor="let item of pageInfoService.pageItems; let itemIndex = index">
         <article class="row edit-article" *ngIf="item['imgUrl'] !== undefined; else pageItem">
            <app-image-container [imageItem]="item" [imageIndex]="itemIndex"></app-image-container>

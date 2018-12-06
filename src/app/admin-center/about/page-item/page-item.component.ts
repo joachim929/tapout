@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import {ButtonMoveService} from '../../shared/button-move.service';
 import {PageInfoService} from '../../shared/page-info.service';
 import {ButtonDeleteService} from '../../shared/button-delete.service';
+import {ButtonSaveService} from '../../shared/button-save.service';
 
 import { PageItem } from '../../shared/page-item';
 
@@ -12,16 +13,6 @@ import { PageItem } from '../../shared/page-item';
   styleUrls: ['./page-item.component.css']
 })
 export class PageItemComponent {
-
-  constructor(
-      private pageInfoService: PageInfoService,
-      private buttonMoveService: ButtonMoveService,
-      private buttonDeleteService: ButtonDeleteService
-  ) { }
-
-  private item;
-  private itemIndex;
-
   @Input()
   set pageItem(pageItem: PageItem) {
     this.item = pageItem;
@@ -30,4 +21,13 @@ export class PageItemComponent {
   set pageIndex(pageIndex: number) {
     this.itemIndex = pageIndex;
   }
+  private item;
+  private itemIndex;
+
+  constructor(
+      private pageInfoService: PageInfoService,
+      private buttonMoveService: ButtonMoveService,
+      private buttonDeleteService: ButtonDeleteService,
+      private buttonSaveService: ButtonSaveService
+  ) { }
 }

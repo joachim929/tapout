@@ -9,6 +9,5 @@ export class ButtonEditService {
 
   constructor(
       private pageInfoService: PageInfoService
-  ) {
-  }
+  ) { }
 }

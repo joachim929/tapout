@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import {ButtonMoveService} from '../../shared/button-move.service';
-import {PageInfoService} from '../../shared/page-info.service';
 import {ButtonDeleteService} from '../../shared/button-delete.service';
 
 import {PageItem} from '../../shared/page-item';
@@ -12,16 +11,6 @@ import {PageItem} from '../../shared/page-item';
   styleUrls: ['./image-container.component.css']
 })
 export class ImageContainerComponent {
-
-  constructor(
-      private pageInfoService: PageInfoService,
-      private buttonMoveService: ButtonMoveService,
-      private buttonDeleteService: ButtonDeleteService
-  ) {}
-
-  private item;
-  private itemIndex;
-
   @Input()
   set imageItem(imageItem: PageItem) {
     this.item = imageItem;
@@ -29,5 +18,33 @@ export class ImageContainerComponent {
   @Input()
   set imageIndex(imageIndex: number) {
     this.itemIndex = imageIndex;
+  }
+
+  constructor(
+      private buttonMoveService: ButtonMoveService,
+      private buttonDeleteService: ButtonDeleteService
+  ) {}
+
+  private item;
+  private itemIndex;
+
+  firstCheck(itemIndex): boolean {
+    return this.buttonMoveService.firstCheck(itemIndex);
+  }
+
+  lastCheck(itemIndex): boolean {
+    return this.buttonMoveService.lastCheck(itemIndex);
+  }
+
+  moveItemUp(item, itemIndex): void {
+    this.buttonMoveService.moveItemUp(item, itemIndex);
+  }
+
+  moveItemDown(item, itemIndex): void {
+    this.buttonMoveService.moveItemDown(item, itemIndex);
+  }
+
+  initializeDelete(item, pageName, itemIndex): void {
+    this.buttonDeleteService.initializeDelete(item, pageName, itemIndex);
   }
 }

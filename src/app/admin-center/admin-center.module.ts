@@ -19,6 +19,8 @@ import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
+import { NewItemComponent } from './about/new-item/new-item.component';
+import { NewImageComponent } from './about/new-image/new-image.component';
 
 @NgModule({
     imports: [
@@ -36,7 +38,9 @@ import {PageInfoService} from './shared/page-info.service';
         EventsComponent,
         ContactComponent,
         ImageContainerComponent,
-        PageItemComponent
+        PageItemComponent,
+        NewItemComponent,
+        NewImageComponent
     ],
     providers: [
         PageInfoService
