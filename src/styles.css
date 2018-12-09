@@ -49,10 +49,6 @@ img {
     margin-top: 42px;
 }
 
-/* Container holding at least 2 containers, more if page is split up */
-.grand-container {
-
-}
 /* Container holding the info */
 .inner-container {
     text-align: center;
@@ -77,11 +73,6 @@ img {
     padding-bottom: 6px;
 }
 .btn-primary:hover {
-    border-color: var(--background-color);
-    background-color: var(--border-split-color);
-    color: var(--main-color);
-}
-.btn-primary:active {
     border-color: var(--background-color);
     background-color: var(--border-split-color);
     color: var(--main-color);

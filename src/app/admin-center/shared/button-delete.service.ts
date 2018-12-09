@@ -19,25 +19,25 @@ export class ButtonDeleteService {
 
     private selectedItem: PageItem;
 
-    initializeDelete(pageItem, pageName, itemIndex): void {
-        const deleteCheck = confirm('Click \'OK\' to delete');
-        if (deleteCheck) {
-            this.selectedItem = Object.assign({}, pageItem);
-            this.deleteRequest(pageItem, pageName)
-                .subscribe(result => {
-                        if (result === false) {
-                            alert('Whoops something went wrong');
-                            this.pageInfoService.pageItems[itemIndex] = this.selectedItem;
-                        } else {
-                            this.selectedItem = null;
-                            pageItem = null;
-                            this.pageInfoService.pageItems.splice(itemIndex, 1);
-                            this.pageInfoService.sortAboutItems();
-                        }
-                    }
-                );
-        }
-    }
+    // initializeDelete(pageItem, pageName, itemIndex): void {
+    //     const deleteCheck = confirm('Click \'OK\' to delete');
+    //     if (deleteCheck) {
+    //         this.selectedItem = Object.assign({}, pageItem);
+    //         this.deleteRequest(pageItem, pageName)
+    //             .subscribe(result => {
+    //                     if (result === false) {
+    //                         alert('Whoops something went wrong');
+    //                         this.pageInfoService.pageItems[itemIndex] = this.selectedItem;
+    //                     } else {
+    //                         this.selectedItem = null;
+    //                         pageItem = null;
+    //                         this.pageInfoService.pageItems.splice(itemIndex, 1);
+    //                         this.pageInfoService.sortAboutItems();
+    //                     }
+    //                 }
+    //             );
+    //     }
+    // }
 
     deleteRequest(pageItem, pageName): Observable<any> {
         const body = new HttpParams()

@@ -1,237 +1,332 @@
 /**
  * Created by J on 02/06/2018.
  */
-import { FoodItem } from './food-item';
+import {FoodItem} from './food-item';
 
 export const FOODITEMS: FoodItem[] = [
-    { foodCategory: [
-        {
-            foodID: 1,
-            foodDescriptor: 'Skewers off the grill - Chicken',
-            foodPrice: '(3x) 65K (5x) 90K',
-            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
-        },
-        {
-            foodID: 2,
-            foodDescriptor: 'Skewers off the grill - Beef',
-            foodPrice: '(3x) 80K (5x) 120K',
-            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
-        },
-        {
-            foodID: 3,
-            foodDescriptor: 'Skewers off the grill - Prawn',
-            foodPrice: '(3x) 120K (5x) 175K',
-            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
-        },
-        {
-            foodID: 4,
-            foodDescriptor: 'Skewers off the grill - Veggie',
-            foodPrice: '(3x) 50K (5x) 70K',
-            foodDescription: 'Choose between our classic Tap Out sauce or Satay spicy sauce'
-        },
-
-        {
-            foodID: 5,
-            foodDescriptor: 'Fried Oysters',
-            foodPrice: '85K',
-            foodDescription: 'Topped with pomegranate molasses, cool ranch dressing and diced jalapenos'
-        },
-        {
-            foodID: 6,
-            foodDescriptor: 'Salmon Fritter',
-            foodPrice: '75K',
-            foodDescription: '2x Zucchini fritters topped with dill, cream & smoked salmon'
-        },
-        {
-            foodID: 7,
-            foodDescriptor: 'Prawn Tacos',
-            foodPrice: '85K',
-            foodDescription: '2 homemade flour tortillas, cajun prawns, sauteed onions & red pepper, ' +
-            'marinated mango, pineapple salsa, sour cream'
-        },
-        {
-            foodID: 8,
-            foodDescriptor: 'Pulled Pork Tacos',
-            foodPrice: '75K',
-            foodDescription: '2 homemade flour tortillas, avocado, pickled red cabbage, smoked pork shoulder,' +
-            ' pineapple salsa, sour cream'
-        },
-        {
-            foodID: 9,
-            foodDescriptor: 'Fried Chicken Wings',
-            foodPrice: '(6x) 110K (12x) 190K',
-            foodDescription: 'Choice of Sweet & Sticky Bourbon, Siracha Buffalo or Sweet & Spicy Korean BBQ sauce'
-        },
-        {
-            foodID: 4,
-            foodDescriptor: 'Smoked Camembert',
-            foodPrice: '150K',
-            foodDescription: '125g Smoked Camembert wheel, covered in sweet chili and Jalapeño peppers, ' +
-            'rosemary alongside some toasted bread'
-        },
-
-        {
-            foodID: 5,
-            foodDescriptor: 'Grilled Prawn Salad',
-            foodPrice: '95K',
-            foodDescription: 'Grilled prawns, roasted peppers & zucchini, cherry tomatoes, rosemary vinaigrette'
-        },
-        {
-            foodID: 6,
-            foodDescriptor: 'Mac ‘N Cheese Balls',
-            foodPrice: '75K',
-            foodDescription: 'Cheddar & bacon macaroni rolled into balls and fried. Topped with cool ranch dressing,' +
-            ' bacon, cheddar cheese and green onions'
-        },
-        {
-            foodID: 7,
-            foodDescriptor: 'Chili Con Carne',
-            foodPrice: '(S) 100K (L) 175K',
-            foodDescription: 'A bowl of homemade chili topped with cheddar cheese, fried tortillas, sour cream & green onions'
-        },
-        {
-            foodID: 8,
-            foodDescriptor: 'Chili Cheese Fries',
-            foodPrice: '155K',
-            foodDescription: 'Hand cut fries topped with homemade chili, cheddar cheese, sour cream & green onions'
-        },
-        {
-            foodID: 9,
-            foodDescriptor: 'Loaded Fries',
-            foodPrice: '140K',
-            foodDescription: 'Hand cut fries topped with pulled pork, bacon, cheddar cheese and Cool Ranch dressing'
-        }
-    ], foodCategoryID: 21, foodCategoryName: 'Starters'},
-    { foodCategory: [
-        {
-            foodID: 10,
-            foodDescriptor: '',
-            foodPrice: 'false',
-            foodDescription: 'Served with a side of your choice'
-        },
-        {
-            foodID: 11,
-            foodDescriptor: 'Classic Burger',
-            foodPrice: '125K',
-            foodDescription: '150gr beef patty, lettuce, tomato, onion, pickle, ketchup & mustard'
-        },
-        {
-            foodID: 12,
-            foodDescriptor: 'Bacon & Cheese Burger',
-            foodPrice: '150K',
-            foodDescription: '150gr beef patty, lettuce, tomato, onion, pickle, cheddar cheese, ' +
-            'bacon and homemade mustard sauce'
-        },
-        {
-            foodID: 13,
-            foodDescriptor: 'The TAP OUT BOMB',
-            foodPrice: '250K',
-            foodDescription: '125gr wheel of Camembert breaded and fried, 150gr beef patty, lettuce, ' +
-            'tomato, homemade mustard sauce'
-        },
-        {
-            foodID: 14,
-            foodDescriptor: 'Chili Cheese Dogs - Single / Double',
-            foodPrice: '110K / 185K',
-            foodDescription: 'Frankfurters in a grilled bun topped with chili con carne, cheddar cheese & diced Jalepenos'
-        },
-        {
-            foodID: 15,
-            foodDescriptor: 'Cubano Sandwich',
-            foodPrice: '160K',
-            foodDescription: 'Smoked pork shoulder, ham, Swiss cheese, dill pickles, yellow mustard. ' +
-            'Pressed in a Cuban style bread'
-        },
-        {
-            foodID: 16,
-            foodDescriptor: 'Pulled Pork Sandwich',
-            foodPrice: '150K',
-            foodDescription: 'Smoked & pulled pork shoulder topped with green apple coleslaw, served with a ' +
-            'side of your choice. Pressed in a Cuban style bread'
-        }
-    ], foodCategoryID: 22, foodCategoryName: 'Burgers & Sandwiches'},
-    { foodCategory: [
-        {
-            foodID: 20,
-            foodDescriptor: 'Wood Smoked Ribs Half / Full Rack',
-            foodPrice: '300K / 550K',
-            foodDescription: 'Served with Two Choice of Sides'
-        },
-        {
-            foodID: 21,
-            foodDescriptor: '250g Australian Grain fed Rib Eye Steak',
-            foodPrice: '250K',
-            foodDescription: 'Flame grilled and pan finished with butter, garlic and rosemary'
-        },
-        {
-            foodID: 22,
-            foodDescriptor: 'Fish & Chips',
-            foodPrice: '170K',
-            foodDescription: 'Beer battered fish and fries, served with a homemade tartar sauce'
-        },
-        {
-            foodID: 23,
-            foodDescriptor: 'Meaty Sharing Plate (2-4)',
-            foodPrice: '525K',
-            foodDescription: 'Half Rack of Smoked Ribs, 100g Smoked Pulled Pork Shoulder, ' +
-            '3x Chicken Skewers, 3x Beef Skewers, and a choice of 2 sides'
-        },
-        {
-            foodID: 23,
-            foodDescriptor: 'Meat Feast (4-6)',
-            foodPrice: '995K',
-            foodDescription: 'Full Rack of Smoked Ribs, 200g Smoked Pulled Pork Shoulder, ' +
-            '6x Chicken wings, 5x Chicken Skewers, 5x Beef Skewers, ' +
-            'and choice of 3 sides'
-        }
-    ], foodCategoryID: 23, foodCategoryName: 'Mains'},
-    { foodCategory: [
-        {
-            foodID: 24,
-            foodDescriptor: 'Hand Cut Fries',
-            foodPrice: '50K',
-            foodDescription: 'false'
-        },
-        {
-            foodID: 25,
-            foodDescriptor: 'Sweet Potato Fries',
-            foodPrice: '50K',
-            foodDescription: 'false'
-        },
-        {
-            foodID: 26,
-            foodDescriptor: 'Salad',
-            foodPrice: '45K',
-            foodDescription: 'Lettuce, cherry tomato, marinated zucchini & peppers, rosemary vinaigrette'
-        },
-        {
-            foodID: 27,
-            foodDescriptor: 'Green Beans',
-            foodPrice: '40K',
-            foodDescription: 'Steamed and tossed with butter, garlic and cherry tomatoes'
-        },
-        {
-            foodID: 28,
-            foodDescriptor: 'Coleslaw',
-            foodPrice: '35K',
-            foodDescription: 'false'
-        }
-    ], foodCategoryID: 24, foodCategoryName: 'Sides'},
-    { foodCategory: [
-        {
-            foodID: 29,
-            foodDescriptor: 'Coconut Ice cream - 1 scoop / 3 scoops',
-            foodPrice: '30K / 70K',
-            foodDescription: 'Topped with roasted peanut'
-        },
-        {
-            foodID: 30,
-            foodDescriptor: 'Baked Pineapple & Camembert',
-            foodPrice: '160K',
-            foodDescription: '125g Camembert wheel oven baked topped with a sweet pineapple reduction. ' +
-            'Served with toasted bread'
-        }
-    ], foodCategoryID: 25, foodCategoryName: 'Desserts'}
+    {
+        foodCategory: [
+            {
+                foodID: 1,
+                foodDescriptor: 'Saigon Steak N\' Eggs',
+                foodPrice: '220K',
+                foodDescription: 'Thick sliced beef brisket two fried eggs and grilled tomato with home made bread roll'
+            },
+            {
+                foodID: 2,
+                foodDescriptor: 'Bacon & Eggs',
+                foodPrice: '95K',
+                foodDescription: 'Smoked pork belly slices with two fried eggs and grilled tomato with home made bread roll'
+            },
+            {
+                foodID: 3,
+                foodDescriptor: 'Just Eggs',
+                foodPrice: '55K',
+                foodDescription: 'Two eggs, any style with grilled vegetables and home made bread roll'
+            },
+            {
+                foodID: 4,
+                foodDescriptor: 'Cheese Omelette',
+                foodPrice: '120K',
+                foodDescription: 'A fluffy omelette with out house smoked Camembert cheese'
+            },
+            {
+                foodID: 5,
+                foodDescriptor: 'BBQ Hash',
+                foodPrice: '85K',
+                foodDescription: 'Grilled potatoes and fried eggs with Tap House BBQ meats'
+            },
+            {
+                foodID: 6,
+                foodDescriptor: 'Overnight Oats',
+                foodPrice: '100K',
+                foodDescription: 'Steel cut oatmeal in coconut milk with banana, grilled pineapple, and toasted cashews'
+            },
+            {
+                foodID: 7,
+                foodDescriptor: 'Bloody Mary Standard',
+                foodPrice: '95K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 8,
+                foodDescriptor: 'Tap That Mary',
+                foodPrice: '120K',
+                foodDescription: 'Double Shot Vodka, all the usual stuff, dressed with a Tap Out Rib and crispy rasher of bacon'
+            },
+            {
+                foodID: 9,
+                foodDescriptor: 'Coffee',
+                foodPrice: '50K',
+                foodDescription: 'Cappuccino, Latte, Flat Whie, Americano, Espresso, Vietnamese Black Coffee (40)'
+            },
+            {
+                foodID: 4,
+                foodDescriptor: 'Fresh Juice',
+                foodPrice: '60K',
+                foodDescription: 'OJ, passion fruit, orange, pineapple'
+            }
+        ],
+        foodCategoryID: 21,
+        foodCategoryName: 'Breakfast'
+    },
+    {
+        foodCategory: [
+            {
+                foodID: 10,
+                foodDescriptor: 'Oookkra',
+                foodPrice: '50K',
+                foodDescription: 'Beer tempura okra spears served with Alabama BBQ sauce'
+            },
+            {
+                foodID: 11,
+                foodDescriptor: 'Vietnamese Style Grilled Corn',
+                foodPrice: '55K',
+                foodDescription: 'BBQ corn garnished with Shrimp Salts, Sriracha and green onions'
+            },
+            {
+                foodID: 12,
+                foodDescriptor: 'Let Us Rap',
+                foodPrice: '95K',
+                foodDescription: 'House-ground beef patties topped with nuoc mam slaw BBQ jackfruit, wrapped in lettuce'
+            },
+            {
+                foodID: 13,
+                foodDescriptor: 'Sausage Smoker',
+                foodPrice: '120K',
+                foodDescription: 'Platter of smoked sausage with house beer mustard and pickles'
+            },
+            {
+                foodID: 14,
+                foodDescriptor: 'Tap Out Wings',
+                foodPrice: '130K',
+                foodDescription: 'Nuoc mam glazed chicken wings with sambal dipping sauce'
+            },
+            {
+                foodID: 15,
+                foodDescriptor: 'Fully Loaded Wedges',
+                foodPrice: '140K',
+                foodDescription: 'Crispy Daw Lat potato wedges topped with cheddar and BBQ trimmings'
+            },
+            {
+                foodID: 16,
+                foodDescriptor: 'Duck Liver Pate',
+                foodPrice: '150K',
+                foodDescription: 'Tap Out\'s very own - served with grilled bread of the day'
+            },
+            {
+                foodID: 17,
+                foodDescriptor: 'BBQ Platter for 2 / 4',
+                foodPrice: '350K / 550K',
+                foodDescription: 'Vini style rib tips, smoked sausage, Tap Out\'s special pastrami, pork belly, and smoked jackfruit'
+            }
+        ],
+        foodCategoryID: 22,
+        foodCategoryName: 'Bar Snacks'
+    },
+    {
+        foodCategory: [
+            {
+                foodID: 20,
+                foodDescriptor: 'Yohoe\'s Wet Ribs',
+                foodPrice: '210K - 650K',
+                foodDescription: 'Six hour Mesquite smoked Spare Ribs covered in our Tap Out BBQ sauce \n' +
+                'Quarter rack (200G) \t210K₫\n' +
+                'Half rack \t\t\t380K₫\n' +
+                'Full rack \t\t\t650K₫'
+            },
+            {
+                foodID: 21,
+                foodDescriptor: 'Mini Vini Style Ribs',
+                foodPrice: '165K',
+                foodDescription: 'Smoked and barbecued Vina style short ribs'
+            },
+            {
+                foodID: 22,
+                foodDescriptor: 'Tap Out Pastrami',
+                foodPrice: '195K',
+                foodDescription: 'Phu Quoc pepper 18 hour smoked beef brisket'
+            },
+            {
+                foodID: 23,
+                foodDescriptor: 'Smoked Jack Fruit',
+                foodPrice: '80K',
+                foodDescription: 'Smoked barbecued Jack Fruit, tastes just like pulled pork'
+            },
+            {
+                foodID: 23,
+                foodDescriptor: 'Pork Belly',
+                foodPrice: '160K',
+                foodDescription: 'Hickory smoked pork belly, but going Char Siu style with this one'
+            },
+            {
+                foodID: 23,
+                foodDescriptor: 'Sausage',
+                foodPrice: '150K',
+                foodDescription: 'Smoked Sausage'
+            },
+            {
+                foodID: 23,
+                foodDescriptor: '1/4 Ribs + Any 2 Meats + Any 2 Sides',
+                foodPrice: '450K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 23,
+                foodDescriptor: '1/2 Yohoe\'s Ribs + Any 5 Meats + Any 3 Sides',
+                foodPrice: '950K',
+                foodDescription: 'false'
+            }
+        ],
+        foodCategoryID: 23,
+        foodCategoryName: 'Smoked BBQ Plates & Sharing'
+    },
+    {
+        foodCategory: [
+            {
+                foodID: 24,
+                foodDescriptor: 'Tap Out Burger',
+                foodPrice: '130K',
+                foodDescription: 'Fresh ground beef on a fluffy brioche bun, lettuce, tomato, Alabama BBQ Sauce\n' +
+                'Add cheese \t\t\t+30K₫\n' +
+                'Add crispy bacon \t+30K₫'
+            },
+            {
+                foodID: 25,
+                foodDescriptor: 'Veggie Burger',
+                foodPrice: '160K',
+                foodDescription: 'Smoked jackfruit on a toasted brioche bun topped with Vietnamese slaw and pickles'
+            },
+            {
+                foodID: 26,
+                foodDescriptor: 'Tap Out\'s Special Pastrami',
+                foodPrice: '200K',
+                foodDescription: 'Smoked beef brisket seasoned with phu quoc pepper duck pate, and pickled mustard on ' +
+                'homemade rye bread'
+            },
+            {
+                foodID: 27,
+                foodDescriptor: 'The BLT Slab',
+                foodPrice: '160K',
+                foodDescription: 'Thick cut, smoked pork belly on grilled sourdough with lettuce, tomato, with Alabama BBQ sauce'
+            },
+            {
+                foodID: 28,
+                foodDescriptor: 'Yohoe\'s Rib',
+                foodPrice: '180K',
+                foodDescription: 'Boneless ribs on a toasted brioche bun with fresh slaw and pickles, Alabama BBQ Sauce, brioche bun'
+            },
+            {
+                foodID: 28,
+                foodDescriptor: 'The Gooey Heart Stopper',
+                foodPrice: '180K',
+                foodDescription: 'A wheel of Tap Out smoked camembert, battered and fried on a toasted brioche bun, caramelized' +
+                ' sharlots, arugula, and Alabama BBQ Sauce\n' +
+                'Add beef \t\t\t+80K₫'
+            }
+        ],
+        foodCategoryID: 24,
+        foodCategoryName: 'Burgers & Sandwiches'
+    },
+    {
+        foodCategory: [
+            {
+                foodID: 29,
+                foodDescriptor: 'Grilled Corn',
+                foodPrice: '30K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Vietnamese Coleslaw',
+                foodPrice: '40K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Garlic Rice',
+                foodPrice: '40K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Sweet Potato Fries',
+                foodPrice: '50K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Dalat Potato Salad',
+                foodPrice: '50K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Crispy Potatoes',
+                foodPrice: '50K',
+                foodDescription: 'false'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Grilled Okra',
+                foodPrice: '30K',
+                foodDescription: 'false'
+            }
+        ],
+        foodCategoryID: 25,
+        foodCategoryName: 'Sides'
+    },
+    {
+        foodCategory: [
+            {
+                foodID: 29,
+                foodDescriptor: 'Chophouse Salad',
+                foodPrice: '100K',
+                foodDescription: 'Chopped lettuce, tomato, onion and grilled corn tossed in chili-ranch dressing\n' +
+                'Add chicken \t\t\t+30K₫'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Arugula Salad',
+                foodPrice: '140K',
+                foodDescription: 'Arugula, toasted cashews, grilled tomato, grilled pineapple, ' +
+                'pickled vegetables and smoked camembert cheese\n' +
+                'Add crispy bacon \t+30K₫\n' +
+                'Add chicken \t\t\t+30K₫'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Saigon Chicken Salad',
+                foodPrice: '130K',
+                foodDescription: 'Chicken tossed on Vietnamese coleslaw'
+            }
+        ],
+        foodCategoryID: 26,
+        foodCategoryName: 'Salads'
+    },
+    {
+        foodCategory: [
+            {
+                foodID: 29,
+                foodDescriptor: 'Chocolate Brownie',
+                foodPrice: '115K',
+                foodDescription: 'Homemade chocolate brownie topped with coconut ice cream and roasted peanut'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Cheesecake',
+                foodPrice: '95K',
+                foodDescription: 'Rich creamy homemade cheese cake'
+            },
+            {
+                foodID: 30,
+                foodDescriptor: 'Baked Pineapple & Camembert',
+                foodPrice: '160K',
+                foodDescription: '125g Camembert wheel oven baked topped with a sweet pineapple reduction. ' +
+                'Served with toasted bread'
+            }
+        ],
+        foodCategoryID: 27,
+        foodCategoryName: 'Desserts'
+    }
 ];
-
-

@@ -5,6 +5,14 @@ article {
     border: 1px solid var(--background-color);
 }
 
+article.edit-article button {
+    width: 100%;
+}
+
+button.newItem img {
+    padding-right: 5px;
+}
+
 button {
     text-align: center;
     max-width: 100%;
@@ -17,10 +25,6 @@ button {
     outline: none !important;
     padding: 5px;
 }
-img {
-    max-height: 22px;
-    border: 0;
-}
 
 button img {
     float: left;
@@ -29,9 +33,80 @@ button img {
 button:hover {
     background-color: var(--border-split-color);
 }
-button:active {
+
+figure {
+    align-content: center;
+    padding: 10px;
+}
+
+figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    text-align: left;
+    /*width: 100%;*/
+    background-color: var(--off-background-color);
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid var(--background-color);
+    text-decoration: none;
+    color: var(--main-color);
+    outline: none !important;
+    padding: 5px;
+}
+
+div.edit-article-content button.edit-buttons {
+    margin: 5px;
+    text-align: center;
     background-color: var(--border-split-color);
 }
-button:focus {
-    background-color: var(--border-split-color)
+div.edit-article-content button.edit-buttons:hover {
+    background-color: var(--background-color);
 }
+
+button img {
+    border: 0;
+    height: 22px;
+}
+
+div.edit-article-content {
+    margin: 0;
+    border: 1px solid var(--background-color);
+}
+.page-item-header {
+    max-width: 100%;
+}
+
+h3 {
+    text-align: center;
+}
+h4 {
+    font-size: 14px;
+    color: var(--comp-color);
+}
+input {
+    width: 100%;
+    color: var(--background-color);
+    border: 0;
+    padding: 3px;
+}
+
+textarea {
+    width: 100%;
+    color: var(--background-color);
+    height: 150px;
+    resize: none;
+    border: 0;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 20px;
+    padding: 3px;
+    margin: 0;
+}
+

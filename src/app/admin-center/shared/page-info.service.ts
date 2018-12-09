@@ -21,27 +21,22 @@ export class PageInfoService {
         this.page = pageRequest;
     }
 
-    sortAboutItems() {
+    sortAboutItems(pageItems) {
         let pageIndex = 1;
 
-        for (let i = 0; i < this.pageItems.length; i++) {
-            this.pageItems[i].pagePosition = pageIndex;
-            this.pageItems[i].toggleEdit = false;
+        for (let i = 0; i < pageItems.length; i++) {
+            pageItems[i].pagePosition = pageIndex;
+            pageItems[i].toggleEdit = false;
             pageIndex++;
         }
+        return pageItems;
     }
 
-    getPageContent(page): void {
-        this.getPageItems(page)
-            .subscribe(pageItems => {
-                this.pageItems = pageItems;
-                this.itemCount = this.pageItems.length;
-                this.sortAboutItems();
-                console.log(this.pageItems);
-            });
+    setItemCount(pageItemLength): void {
+        this.itemCount = pageItemLength;
     }
 
-    private getPageItems(pageName): Observable<PageItem[]> {
+    getPageItems(pageName): Observable<PageItem[]> {
         const getParams = new HttpParams()
             .set('page', 'About')
             .set('task', 'edit');

@@ -11,8 +11,6 @@ import {HomeComponent} from './pages/home/home.component';
 import {MenuComponent} from './pages/menu/menu.component';
 import {EventsComponent} from './pages/events/events.component';
 import {ContactComponent} from './pages/contact/contact.component';
-import {ImageContainerComponent} from './pages/about/image-container/image-container.component';
-import {PageItemComponent} from './pages/about/page-item/page-item.component';
 import {HeaderComponent} from './components/header/header.component';
 
 // Modules
@@ -37,8 +35,6 @@ import {PageInfoService} from './shared/page-info.service';
         MenuComponent,
         EventsComponent,
         ContactComponent,
-        ImageContainerComponent,
-        PageItemComponent,
         HeaderComponent
     ],
     providers: [
