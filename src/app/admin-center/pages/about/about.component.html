@@ -1,19 +1,27 @@
 <section class="edit-container">
     <article class="row create-item">
-        <button [ngClass]="{'col-xs-12': newItemToggle, 'col-xs-6': !newImageToggle && !newItemToggle}" class="newItem" type="button" (click)="newItemToggle = !newItemToggle;" *ngIf="!newImageToggle">
+        <button class="col-xs-6 newItem"
+                type="button"
+                (click)="newItemToggle = !newItemToggle;"
+                *ngIf="!newImageToggle">
             Add new item<img src="/assets/icons/icon-add-25x25.png">
         </button>
-        <button [ngClass]="{'col-xs-12': newImageToggle, 'col-xs-6': !newImageToggle && !newItemToggle}" class="newItem" type="button" (click)="newImageToggle = !newImageToggle;" *ngIf="!newItemToggle">
-            Add new image<img src="/assets/icons/icon-image-30x25.png">
-        </button>
-        <button *ngIf="newItemToggle === true || newImageToggle === true;" (click)="back()">
+        <button class="col-xs-6" *ngIf="newItemToggle === true || newImageToggle === true;" (click)="newItemBack()">
             Back
         </button>
-        <article class="row edit-article" *ngIf="newItemToggle">Test Item</article>
-        <article class="row edit-article" *ngIf="newImageToggle">Test Image</article>
-        <router-outlet>
-        </router-outlet>
+        <button class="col-xs-6 newItem"
+                type="button"
+                (click)="newImageToggle = !newImageToggle;"
+                *ngIf="!newItemToggle">
+            Add new image<img src="/assets/icons/icon-image-30x25.png">
+        </button>
     </article>
+
+    <article class="row">
+            <app-new-image *ngIf="newImageToggle"></app-new-image>
+            <app-new-item *ngIf="newItemToggle"></app-new-item>
+    </article>
+
     <ng-container *ngFor="let item of pageItems; let itemIndex = index">
         <article class="row edit-article" *ngIf="item['imgUrl'] !== undefined; else pageItem">
             <button class="" type="button" data-toggle="collapse"
@@ -22,9 +30,7 @@
                 Page position: {{item.pagePosition}}
             </button>
             <div class="collapse in row edit-article-content image-id-{{item.id}}">
-                <figure class="col-xs-10">
-                    <img src="{{item.imgUrl}}">
-                </figure>
+                <app-image class="col-xs-10" [image]="item"></app-image>
 
                 <div class="col-xs-2">
                     <button *ngIf="firstCheck(itemIndex)" class="edit-buttons"

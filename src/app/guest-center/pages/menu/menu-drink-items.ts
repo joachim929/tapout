@@ -244,22 +244,6 @@ export const DRINKITEMS: DrinkItem[] = [
     {
         drinkCategory: [
             {
-                drinkID: 16,
-                descriptor: 'Surf N Turf Flight',
-                price: '350K',
-                description: '4x Craft beers of your choice, along with 2x chicken wings, prawn skewer and fried oysters.'
-            },
-            {
-                drinkID: 17,
-                descriptor: 'Cluck & Moo Flight',
-                price: '330K',
-                description: '4x Craft beers of your choice, along with 2x chicken wings, pad thai chicken skewer and beef skewer'
-            }
-        ], drinkCategoryID: 10, drinkCategoryName: 'Flights & Bites'
-    },
-    {
-        drinkCategory: [
-            {
                 drinkID: 24,
                 descriptor: 'Sanama – Cabernet Sauvignon – Chile 2016',
                 price: '90K/400K',

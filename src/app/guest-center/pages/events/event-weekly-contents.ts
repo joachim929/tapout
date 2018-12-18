@@ -9,40 +9,40 @@ export const EVENTWEEKLYITEMS: WeeklyEventObject[] = [
         eventSubHeading: 'Happy Hour',
         eventTime: new Date('October 28, 2018 18:00'),
         eventDescription: 'Monday - Friday: 50% off all CRAFT BEERS and COCKTAILS 5pm-6pm'
-    }
-    // ,
+    },
     // {
     //     eventID: 1,
-    //     eventSubHeading: 'Mondays - Tap Out Check-in',
+    //     eventSubHeading: 'Lunch Special!',
     //     eventTime: new Date('October 29, 2018 18:00'),
-    //     eventDescription: 'Come to Tap Out, check into our Facebook page, and tag 5 of your friends,' +
-    //     ' receive 20% discount on all food.'
+    //     eventDescription: '12 Noon - 2PM' +
+    //     'BLT Slab - Tap Out Burger - Veggie Burger - Argulua Salad - Chophouse Salad\n\n' +
+    //     'Choose 1 Main, 1 Side and Drink for 160K₫'
     // },
-    // {
-    //     eventID: 2,
-    //     eventSubHeading: 'Tuesdays - Rooster Night',
-    //     eventTime: new Date('October 30, 2018 18:00'),
-    //     eventDescription: '6 wings plus 1 glass of Rooster 130K ₫\n' +
-    //     '12 wings plus 1 pint of Rooster 210K ₫'
-    // },
-    // {
-    //     eventID: 3,
-    //     eventSubHeading: 'Wednesday - Wine Wednesday\'s',
-    //     eventTime: new Date('October 31, 2018 16:00'),
-    //     eventDescription: '50% off all wine by the glass 4pm-7pm'
-    // },
-    // {
-    //     eventID: 4,
-    //     eventSubHeading: 'Thursday - Cocktail Night',
-    //     eventTime: new Date('November 1, 2018 16:00'),
-    //     eventDescription: 'Buy 2 get the 3rd free on Cocktails 6pm-10pm'
-    // },
-    // {
-    //     eventID: 5,
-    //     eventSubHeading: 'Friday - Steak and Date Night',
-    //     eventTime: new Date('November 2, 2018 22:00'),
-    //     eventDescription: '250g Australian grain fed Rib Eye steak, 1x side plus 1 glass of red wine for 300K'
-    // },
+    {
+        eventID: 2,
+        eventSubHeading: 'Mondays',
+        eventTime: new Date('October 30, 2018 18:00'),
+        eventDescription: 'Mate meet Monday! 2 for 1 on BBQ Platters'
+    },
+    {
+        eventID: 3,
+        eventSubHeading: 'Wednesdays',
+        eventTime: new Date('October 31, 2018 16:00'),
+        eventDescription: 'Full Rack of Ribs with 2 Sides - 300K₫'
+    },
+    {
+        eventID: 4,
+        eventSubHeading: 'Thursdays',
+        eventTime: new Date('November 1, 2018 16:00'),
+        eventDescription: 'Half price Cocktails until 8PM'
+    },
+    {
+        eventID: 5,
+        eventSubHeading: 'Fridays',
+        eventTime: new Date('November 2, 2018 22:00'),
+        eventDescription: 'Happy Hour from 5-8PM\n' +
+        '2 for 1 on all Bar Snacks 5-7PM'
+    },
     // {
     //     eventID: 6,
     //     eventSubHeading: 'Saturday - Oyster Night',

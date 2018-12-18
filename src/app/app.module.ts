@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Main website components
 import {AppComponent} from './app.component';
@@ -20,6 +21,7 @@ import {AppRoutingModule} from './app-routing.module';
         BrowserModule,
         HttpClientModule,
         FormsModule,
+        BrowserAnimationsModule,
         AdminCenterModule,
         GuestCenterModule,
         AppRoutingModule

@@ -130,7 +130,7 @@ export class AboutComponent implements OnInit {
         return this.buttonSaveService.validationCheckHeading(heading);
     }
 
-    back(): void {
+    newItemBack(): void {
         this.newItemToggle = false;
         this.newImageToggle = false;
     }

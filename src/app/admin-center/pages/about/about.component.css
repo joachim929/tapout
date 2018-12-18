@@ -13,6 +13,11 @@ button.newItem img {
     padding-right: 5px;
 }
 
+article.newItem {
+    border: 1px solid var(--background-color);
+    padding: 5px;
+}
+
 button {
     text-align: center;
     max-width: 100%;
@@ -43,19 +48,6 @@ figure img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-button {
-    text-align: left;
-    /*width: 100%;*/
-    background-color: var(--off-background-color);
-    font-size: 16px;
-    border-radius: 0;
-    border: 1px solid var(--background-color);
-    text-decoration: none;
-    color: var(--main-color);
-    outline: none !important;
-    padding: 5px;
 }
 
 div.edit-article-content button.edit-buttons {

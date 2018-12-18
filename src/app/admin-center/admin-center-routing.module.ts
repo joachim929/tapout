@@ -16,7 +16,8 @@ const adminRoutes: Routes = [
         component: AdminCenterComponent,
         children: [
             {
-                path: 'about', component: AboutComponent
+                path: 'about',
+                component: AboutComponent,
             },
             {path: 'home', component: HomeComponent},
             {path: 'gallery', component: GalleryComponent},
