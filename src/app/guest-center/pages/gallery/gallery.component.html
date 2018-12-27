@@ -1,25 +1,24 @@
-<section class="">
-    <section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
-        <figure *ngFor="let item of first" class="inner-container" [@fadeIn] >
-            <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
-        </figure>
-    </section>
-
-    <section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
-        <figure *ngFor="let item of second" class="inner-container" [@fadeIn]>
-            <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
-        </figure>
-    </section>
-    <section class="clearfix visible-md"></section>
-    <section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
-        <figure *ngFor="let item of third" class="inner-container" [@fadeIn]>
-            <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
-        </figure>
-    </section>
-
-    <section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
-        <figure *ngFor="let item of fourth" class="inner-container" [@fadeIn] >
-            <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
-        </figure>
-    </section>
+<section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
+    <figure *ngFor="let item of first" class="inner-container" [@fadeIn]>
+        <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
+    </figure>
 </section>
+
+<section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
+    <figure *ngFor="let item of second" class="inner-container" [@fadeIn]>
+        <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
+    </figure>
+</section>
+<section class="clearfix visible-md"></section>
+<section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
+    <figure *ngFor="let item of third" class="inner-container" [@fadeIn]>
+        <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
+    </figure>
+</section>
+
+<section class="col-xs-12 col-md-6 col-lg-3 gallery-grand-container">
+    <figure *ngFor="let item of fourth" class="inner-container" [@fadeIn]>
+        <img src="{{item.url}}" class="gallery-image" (load)="imageLoaded();">
+    </figure>
+</section>
+

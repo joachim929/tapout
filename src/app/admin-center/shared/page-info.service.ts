@@ -14,6 +14,8 @@ export class PageInfoService {
     page: string;
     pageItems: PageItem[];
     disableButtons = false;
+    readonly httpPostOptions = {headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})};
+
     constructor(private httpClient: HttpClient) {
     }
 
@@ -72,15 +74,23 @@ export class PageInfoService {
             .set('task', 'pagePosition')
             .set('page', 'About');
 
-        const httpPutOptions = {
-            headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
-        };
-
         return this.httpClient.post<PageItem[]>(this.getPageUri(pageName) + 'update.php',
-            body, httpPutOptions
+            body, this.httpPostOptions
         ).pipe(
             catchError(this.handleError('updatePagePosition'))
         );
+    }
+
+    updatePageItem(pageItem, pageName): Observable<any> {
+        const body = new HttpParams()
+            .set('pageItem', JSON.stringify(pageItem))
+            .set('task', 'updatePageItem')
+            .set('page', 'About');
+
+        return this.httpClient.post<PageItem>(this.getPageUri(pageName) + 'update.php', body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError('updatePageItem'))
+            );
     }
 
     toggleEdit(itemIndex): void {

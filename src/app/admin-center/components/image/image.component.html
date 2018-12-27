@@ -1,0 +1,8 @@
+<!-- @todo: change to col-6 or something, remember the database changes for images: height, width, alt, description...-->
+<figure class="">
+    <picture>
+        <source media="" srcset="">
+        <img src="{{image.imgUrl}}" alt="{{getAlt()}}" style="max-width: 400px;">
+    </picture>
+    <figcaption *ngIf="getCaption()">{{image.caption}}</figcaption>
+</figure>

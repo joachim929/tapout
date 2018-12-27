@@ -1,15 +1,15 @@
 <section class="edit-container">
     <article class="row create-item">
-        <button class="col-xs-6 newItem"
+        <button class="col-xs-6 newItem button"
                 type="button"
                 (click)="newItemToggle = !newItemToggle;"
                 *ngIf="!newImageToggle">
             Add new item<img src="/assets/icons/icon-add-25x25.png">
         </button>
-        <button class="col-xs-6" *ngIf="newItemToggle === true || newImageToggle === true;" (click)="newItemBack()">
+        <button class="col-xs-6 button newItem" *ngIf="newItemToggle === true || newImageToggle === true;" (click)="newItemBack()">
             Back
         </button>
-        <button class="col-xs-6 newItem"
+        <button class="col-xs-6 newItem button"
                 type="button"
                 (click)="newImageToggle = !newImageToggle;"
                 *ngIf="!newItemToggle">
@@ -17,31 +17,34 @@
         </button>
     </article>
 
-    <article class="row">
-            <app-new-image *ngIf="newImageToggle"></app-new-image>
-            <app-new-item *ngIf="newItemToggle"></app-new-item>
-    </article>
+    <app-new-image *ngIf="newImageToggle"></app-new-image>
+
+    <!--<app-new-item *ngIf="newItemToggle"></app-new-item>-->
+
+    <!-- @todo: uncomment line above and remove this once done-->
+    <app-new-item></app-new-item>
+
 
     <ng-container *ngFor="let item of pageItems; let itemIndex = index">
         <article class="row edit-article" *ngIf="item['imgUrl'] !== undefined; else pageItem">
-            <button class="" type="button" data-toggle="collapse"
+            <button class="button" type="button" data-toggle="collapse"
                     attr.data-target=".image-id-{{item.id}}"
                     aria-expanded="false" aria-controls="collapsible-page-image">
                 Page position: {{item.pagePosition}}
             </button>
-            <div class="collapse in row edit-article-content image-id-{{item.id}}">
+            <div class="collapse in row border-black no-margin image-id-{{item.id}}">
                 <app-image class="col-xs-10" [image]="item"></app-image>
 
                 <div class="col-xs-2">
-                    <button *ngIf="firstCheck(itemIndex)" class="edit-buttons"
+                    <button class="button-edit" *ngIf="firstCheck(itemIndex)"
                             (click)="moveItemUp(item, itemIndex)">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
-                    <button *ngIf="lastCheck(itemIndex)" class="edit-buttons"
+                    <button class="button-edit" *ngIf="lastCheck(itemIndex)"
                             (click)="moveItemDown(item, itemIndex)">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
-                    <button class="edit-buttons" (click)="initializeDelete(item, 'About', itemIndex)">
+                    <button class="button-edit" (click)="initializeDelete(item, 'About', itemIndex)">
                         Delete<img src="/assets/icons/icon-delete-25x25.png">
                     </button>
                 </div>
@@ -50,12 +53,12 @@
 
         <ng-template #pageItem>
             <article class="row edit-article">
-                <button class="" type="button" data-toggle="collapse"
+                <button class="button" type="button" data-toggle="collapse"
                         attr.data-target=".en-item-id-{{item.enItemId}}"
                         aria-expanded="false" aria-controls="collapsible-page-item">
                     Page position: {{item.pagePosition}}
                 </button>
-                <div class="collapse in row edit-article-content en-item-id-{{item.enItemId}}">
+                <div class="collapse in row border-black no-margin en-item-id-{{item.enItemId}}">
 
                     <!--  @todo: Make component for plain view and component for edit view and depending on
                           @todo: - item.toggleEdit show certain component OR put in a router outlet to do that -->
@@ -125,28 +128,28 @@
 
                     <!-- @todo make save button functional -->
                     <div class="col-xs-2 edit-item-functions">
-                        <button *ngIf="firstCheck(itemIndex)" class="edit-buttons"
+                        <button class="button-edit" *ngIf="firstCheck(itemIndex)"
                                 (click)="moveItemUp(item, itemIndex)">
                             Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                         </button>
-                        <button *ngIf="lastCheck(itemIndex)" class="edit-buttons"
+                        <button class="button-edit" *ngIf="lastCheck(itemIndex)"
                                 (click)="moveItemDown(item, itemIndex)">
                             Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                         </button>
-                        <button class="edit-buttons" (click)="initializeEdit(item, itemIndex)"
+                        <button class="button-edit" (click)="initializeEdit(item, itemIndex)"
                                 *ngIf="!item.toggleEdit">
                             Edit<img src="/assets/icons/icon-edit-25x25.png">
                         </button>
-                        <button class="edit-buttons"
+                        <button class="button-edit"
                                 (click)="cancelEdit(itemIndex);"
                                 *ngIf="item.toggleEdit">
                             Cancel
                         </button>
-                        <button class="edit-buttons" *ngIf="!item.toggleEdit"
+                        <button class="button-edit" *ngIf="!item.toggleEdit"
                                 (click)="initializeDelete(item, 'About', itemIndex)">
                             Delete<img src="/assets/icons/icon-delete-25x25.png">
                         </button>
-                        <button class="edit-buttons" *ngIf="item.toggleEdit"
+                        <button class="button-edit" *ngIf="item.toggleEdit"
                                 (click)="saveChangesToPageItem(item, itemIndex)">
                             Save<img src="/assets/icons/icon-save-25x25.png">
                         </button>

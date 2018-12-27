@@ -1,0 +1,14 @@
+article {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: var(--off-background-color);
+    border: 1px solid var(--background-color);
+}
+
+.new-item-container {
+    padding: 10px 0;
+}
+
+.page-position {
+    width: 40%;
+}

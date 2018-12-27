@@ -22,7 +22,7 @@ export class ButtonSaveService {
   saveChangesToPageItem(item, itemIndex) {
     if (this.checkAllFields(item)) {
       item.toggleEdit = !item.toggleEdit;
-      return alert('Saved successfully');
+      this.editPageItem(item);
     } else {
       return alert('Can\'t save right now, make sure all the input boxes are filled in correctly');
     }
@@ -33,5 +33,17 @@ export class ButtonSaveService {
         && !this.validationCheckContent(item.vnContent)
         && !this.validationCheckHeading(item.enHeading)
         && !this.validationCheckHeading(item.vnHeading);
+  }
+
+  private editPageItem(pageItem) {
+    this.pageInfoService.disableButtons = true;
+    this.pageInfoService.updatePageItem(pageItem, 'About')
+        .subscribe(result => {
+              if (result === false) {
+                alert('Whoops something went wrong');
+              }
+              this.pageInfoService.disableButtons = false;
+            }
+        );
   }
 }

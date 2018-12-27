@@ -10,14 +10,17 @@ export const EVENTWEEKLYITEMS: WeeklyEventObject[] = [
         eventTime: new Date('October 28, 2018 18:00'),
         eventDescription: 'Monday - Friday: 50% off all CRAFT BEERS and COCKTAILS 5pm-6pm'
     },
-    // {
-    //     eventID: 1,
-    //     eventSubHeading: 'Lunch Special!',
-    //     eventTime: new Date('October 29, 2018 18:00'),
-    //     eventDescription: '12 Noon - 2PM' +
-    //     'BLT Slab - Tap Out Burger - Veggie Burger - Argulua Salad - Chophouse Salad\n\n' +
-    //     'Choose 1 Main, 1 Side and Drink for 160K₫'
-    // },
+    {
+        eventID: 1,
+        eventSubHeading: 'Lunch Special!',
+        eventTime: new Date('October 29, 2018 18:00'),
+        eventDescription: '12 Noon - 2PM\n' +
+        'Choose one Main, one Side & one Drink: 160K₫\n\n' +
+        'Main:\nBLT Slab - Tap Out Burger - Saigon\'s Veggie Burger - Chophouse Salad - Arugula Salad\n\n' +
+        'Side:\nGrilled Corn - Vietnamese Coleslaw - Garlic rice - Sweet Potato Fries - ' +
+        'Dalat Potato Salad - Crispy Potatoes - Grilled Okra\n\n' +
+        'Drink:\nBlack Coffee - Juices - Soft Drinks'
+    },
     {
         eventID: 2,
         eventSubHeading: 'Mondays',
