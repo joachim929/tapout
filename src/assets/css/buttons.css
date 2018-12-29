@@ -1,0 +1,44 @@
+/* Project buttons */
+.button {
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid var(--background-color);
+    text-decoration: none;
+    background-color: var(--off-background-color);
+    color: var(--main-color);
+    text-transform: uppercase;
+    outline: none !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.button:hover {
+    background-color: var(--border-split-color);
+}
+.button img {
+    float: left;
+    padding-right: 5px;
+    border: 0;
+    height: 22px;
+}
+.button-edit {
+    text-align: center;
+    width: 100%;
+    background-color: var(--off-background-color);
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid var(--background-color);
+    text-decoration: none;
+    color: var(--main-color);
+    outline: none !important;
+    padding: 5px;
+}
+.button-edit:hover {
+    background-color: var(--background-color);
+}
+.button-edit img {
+    float: left;
+    padding-right: 5px;
+    border: 0;
+    height: 22px;
+}

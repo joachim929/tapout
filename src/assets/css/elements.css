@@ -1,0 +1,52 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    background: var(--background-color) url(../tap-out-back-dark4.png) no-repeat fixed;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 1px solid var(--background-color);
+}
+
+textarea {
+    color: var(--background-color);
+    width: 100%;
+    resize: none;
+    padding: 3px;
+    outline: none;
+    border: 0;
+    height: 150px;
+}
+
+label {
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    color: var(--background-color);
+    width: 100%;
+    padding: 3px;
+    outline: none;
+    border: 0;
+}
+
+figure {
+    align-content: center;
+    padding: 15px;
+}
+
+figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3, h4, p {
+    padding: 5px;
+}

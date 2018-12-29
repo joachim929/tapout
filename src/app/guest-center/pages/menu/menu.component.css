@@ -1,13 +1,8 @@
 .disclaimer {
     opacity: 0.6;
-    text-align: left;
     padding-left: 20px;
     text-align: center;
     font-size: 12px;
-}
-.disclaimer-alc {
-    text-align: left;
-
 }
 
 .pdf-button{
@@ -23,9 +18,6 @@
     outline: none !important;
     padding: 6px 15px;
     margin-bottom: 10px;
-}
-#pdf-link {
-    text-decoration: none;
 }
 
 .pdf-button:hover {

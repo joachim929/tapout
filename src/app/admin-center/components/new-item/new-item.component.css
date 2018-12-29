@@ -1,8 +1,5 @@
 article {
-    margin-top: 5px;
-    margin-bottom: 5px;
     background-color: var(--off-background-color);
-    border: 1px solid var(--background-color);
 }
 
 .new-item-container {
@@ -11,4 +8,8 @@ article {
 
 .page-position {
     width: 40%;
+}
+
+.button-edit {
+    margin: 5px;
 }

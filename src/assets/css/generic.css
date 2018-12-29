@@ -1,0 +1,40 @@
+.bold {
+    font-weight: bold;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.pull-left {
+    text-align: left !important;
+}
+
+.pull-right {
+    text-align: right !important;
+}
+
+
+.border-black {
+    border: 1px solid var(--background-color);
+}
+
+.line-breaker {
+    white-space: pre-wrap;
+}
+
+/* Used so no content hides under the nav-bar */
+.top-page{
+    margin-top: 60px;
+}
+.bottom-page{
+    margin-top: 42px;
+}

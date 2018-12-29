@@ -1,3 +1,7 @@
+@import url("assets/css/buttons.css");
+@import url("assets/css/elements.css");
+@import url("assets/css/generic.css");
+
 :root{
     --text-color: white;
     --main-color: #7adad7;
@@ -23,127 +27,6 @@
     }
 }
 
-
-body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    background-image:url(./assets/tap-out-back-dark4.png);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-img {
-    border: 1px solid var(--background-color);
-}
-
-textarea {
-    color: var(--background-color);
-    width: 100%;
-    resize: none;
-    padding: 3px;
-    outline: none;
-    border: 0;
-    height: 150px;
-}
-
-label {
-    font-weight: normal;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-input {
-    color: var(--background-color);
-    width: 100%;
-    padding: 3px;
-    outline: none;
-    border: 0;
-}
-
-figure {
-    align-content: center;
-    padding: 10px;
-}
-
-figure img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h3, h4, p {
-    padding: 5px;
-}
-
-.no-margin {
-    margin: 0;
-}
-
-.no-padding {
-    padding: 0;
-}
-
-/* Project buttons */
-.button {
-    width: 100%;
-    font-size: 16px;
-    border-radius: 0;
-    border: 1px solid var(--background-color);
-    text-decoration: none;
-    background-color: var(--off-background-color);
-    color: var(--main-color);
-    text-transform: uppercase;
-    outline: none !important;
-    padding-top: 6px;
-    padding-bottom: 6px;
-}
-.button:hover {
-    background-color: var(--border-split-color);
-}
-.button img {
-    float: left;
-    padding-right: 5px;
-    border: 0;
-    height: 22px;
-}
-.button-edit {
-    text-align: center;
-    width: 100%;
-    background-color: var(--off-background-color);
-    font-size: 16px;
-    border-radius: 0;
-    border: 1px solid var(--background-color);
-    text-decoration: none;
-    color: var(--main-color);
-    outline: none !important;
-    padding: 5px;
-}
-.button-edit:hover {
-    background-color: var(--background-color);
-}
-.button-edit img {
-    float: left;
-    padding-right: 5px;
-    border: 0;
-    height: 22px;
-}
-.border-black {
-    border: 1px solid var(--background-color);
-}
-
-.line-breaker {
-    white-space: pre-wrap;
-}
-
-/* Used so no content hides under the nav-bar */
-.top-page{
-    margin-top: 60px;
-}
-.bottom-page{
-    margin-top: 42px;
-}
-
 /* Container holding the info */
 .inner-container {
     text-align: center;
@@ -153,6 +36,7 @@ h3, h4, p {
 
 
 /* CSS for headers/big header buttons */
+/* @todo: replace these with buttons from button css*/
 .btn-primary{
     width: 100%;
     font-size: 16px;
