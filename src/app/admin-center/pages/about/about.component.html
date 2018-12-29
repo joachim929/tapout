@@ -33,7 +33,13 @@
                 Page position: {{item.pagePosition}}
             </button>
             <div class="collapse in row border-black no-margin image-id-{{item.id}}">
-                <app-image class="col-xs-10" [image]="item"></app-image>
+                <app-image class="col-xs-5" [image]="item"></app-image>
+                <div class="col-xs-5">
+                    <p>{{item.caption}}</p>
+                    <p>{{item.alt}}</p>
+                    <p>{{item.height}}</p>
+                    <p>{{item.width}}</p>
+                </div>
 
                 <div class="col-xs-2">
                     <button class="button-edit" *ngIf="firstCheck(itemIndex)"

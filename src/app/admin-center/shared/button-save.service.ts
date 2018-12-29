@@ -28,7 +28,8 @@ export class ButtonSaveService {
     }
   }
 
-  private checkAllFields(item): boolean {
+  checkAllFields(item): boolean {
+      console.log(item);
     return !this.validationCheckContent(item.enContent)
         && !this.validationCheckContent(item.vnContent)
         && !this.validationCheckHeading(item.enHeading)

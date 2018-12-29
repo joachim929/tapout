@@ -16,6 +16,7 @@ import {PageItem} from '../../shared/page-item';
     styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+    gotData = false;
     newItemToggle = false;
     newImageToggle = false;
 
@@ -23,14 +24,11 @@ export class AboutComponent implements OnInit {
 
     pageItems: PageItem[];
 
-    constructor(
-        private router: Router,
-
-        private pageInfoService: PageInfoService,
-        private buttonDeleteService: ButtonDeleteService,
-        private buttonMoveService: ButtonMoveService,
-        private buttonSaveService: ButtonSaveService
-    ) {
+    constructor(private router: Router,
+                private pageInfoService: PageInfoService,
+                private buttonDeleteService: ButtonDeleteService,
+                private buttonMoveService: ButtonMoveService,
+                private buttonSaveService: ButtonSaveService) {
     }
 
     ngOnInit() {
@@ -42,8 +40,13 @@ export class AboutComponent implements OnInit {
             .subscribe(pageItems => {
                 this.pageItems = this.pageInfoService.sortAboutItems(pageItems);
                 this.pageInfoService.setItemCount(this.pageItems.length);
+                this.gotData = true;
                 console.log(this.pageItems);
             });
+    }
+
+    fetchItemCount(): number {
+        return this.pageInfoService.getItemCount();
     }
 
     firstCheck(itemIndex): boolean {

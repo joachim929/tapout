@@ -3,36 +3,65 @@
         <form>
             <div class="col-xs-12">
                 <label for="pagePosition">Page Position</label><br>
-                <input type="number" id="pagePosition" name="pagePosition" class="page-position"
+                <input type="number"
+                       id="pagePosition"
+                       name="pagePosition"
+                       class="page-position"
+                       [(ngModel)]="model.pagePosition"
+                       (blur)="formatPagePosition()"
                        placeholder="Enter the desired page position...">
+                <p *ngIf="pagePositionInvalid">Invalid input</p>
             </div>
             <div class="col-xs-5">
 
                 <h3>English</h3>
 
                 <label for="enHeading">Heading</label><br>
-                <input type="text" id="enHeading" name="enHeading" autocomplete="off"
+                <input type="text"
+                       id="enHeading"
+                       name="enHeading"
+                       autocomplete="off"
+                       [(ngModel)]="model.enHeading"
+                       (blur)="checkEnHeading()"
                        placeholder="Enter the desired English heading..."><br>
+                <p *ngIf="enHeadingInvalid">Invalid input</p>
 
                 <label for="enContent">Content</label><br>
-                <textarea id="enContent" name="enContent"
+                <textarea id="enContent"
+                          name="enContent"
+                          [(ngModel)]="model.enContent"
+                          (blur)="checkEnContent()"
                           placeholder="Enter the desired English content..."></textarea>
+                <p *ngIf="enContentInvalid">Invalid input</p>
             </div>
             <div class="col-xs-5">
 
                 <h3>Vietnamese</h3>
 
                 <label for="enHeading">Heading</label><br>
-                <input type="text" id="vnHeading" name="vnHeading" autocomplete="off"
+                <input type="text"
+                       id="vnHeading"
+                       name="vnHeading"
+                       autocomplete="off"
+                       [(ngModel)]="model.vnHeading"
+                       (blur)="checkVnHeading()"
                        placeholder="Enter the desired Vietnamese heading..."><br>
+                <p *ngIf="vnHeadingInvalid">Invalid input</p>
 
                 <label for="enContent">Content</label><br>
-                <textarea id="vnContent" name="vnContent"
+                <textarea id="vnContent"
+                          name="vnContent"
+                          [(ngModel)]="model.vnContent"
+                          (blur)="checkVnContent()"
                           placeholder="Enter the desired Vietnamese content..."></textarea>
+                <p *ngIf="vnContentInvalid">Invalid input</p>
             </div>
             <!-- @todo buttons here -->
             <div class="col-xs-2">
-
+                <button class="button-edit" (click)="saveItem()"><img src="/assets/icons/icon-add-25x25.png">Save
+                </button>
+                <button class="button-edit" (click)="clearItem()"><img src="/assets/icons/icon-cancel-25x25.png">Clear
+                </button>
             </div>
         </form>
     </div>

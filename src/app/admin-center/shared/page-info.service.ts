@@ -38,6 +38,12 @@ export class PageInfoService {
         this.itemCount = pageItemLength;
     }
 
+    getItemCount(): number {
+        if (this.itemCount !== null) {
+            return this.itemCount;
+        }
+    }
+
     getPageItems(pageName): Observable<PageItem[]> {
         const getParams = new HttpParams()
             .set('page', 'About')
@@ -90,6 +96,18 @@ export class PageInfoService {
         return this.httpClient.post<PageItem>(this.getPageUri(pageName) + 'update.php', body, this.httpPostOptions)
             .pipe(
                 catchError(this.handleError('updatePageItem'))
+            );
+    }
+
+    newPageItem(pageItem, pageName): Observable<any> {
+        const body = new HttpParams()
+            .set('pageItem', JSON.stringify(pageItem))
+            .set('task', 'createPageItem')
+            .set('page', pageName);
+
+        return this.httpClient.post<any>(this.getPageUri(pageName) + 'create.php', body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError('createPageItem'))
             );
     }
 
