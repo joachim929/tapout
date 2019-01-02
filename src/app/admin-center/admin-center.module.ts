@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -13,21 +13,25 @@ import {MenuComponent} from './pages/menu/menu.component';
 import {EventsComponent} from './pages/events/events.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {HeaderComponent} from './components/header/header.component';
+import {NewItemComponent} from './components/new-item/new-item.component';
+import {NewImageComponent} from './components/new-image/new-image.component';
+import {ImageComponent} from './components/image/image.component';
+import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-category.component';
+import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
 
 // Modules
 import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
-import { NewItemComponent } from './components/new-item/new-item.component';
-import { NewImageComponent } from './components/new-image/new-image.component';
-import { ImageComponent } from './components/image/image.component';
+
 
 @NgModule({
     imports: [
         HttpClientModule,
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         AdminCenterRoutingModule
     ],
@@ -42,7 +46,9 @@ import { ImageComponent } from './components/image/image.component';
         HeaderComponent,
         NewItemComponent,
         NewImageComponent,
-        ImageComponent
+        ImageComponent,
+        NewMenuCategoryComponent,
+        NewMenuItemComponent
     ],
     providers: [
         PageInfoService

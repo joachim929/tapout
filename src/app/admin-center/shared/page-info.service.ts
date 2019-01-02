@@ -54,7 +54,7 @@ export class PageInfoService {
             params: getParams
         };
 
-        return this.httpClient.get<PageItem[]>(this.getPageUri(pageName) + '/read.php',
+        return this.httpClient.get<PageItem[]>(this.getPageUri(pageName) + 'read.php',
             httpOptions
         )
             .pipe(

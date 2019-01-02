@@ -1,15 +1,17 @@
-<section class="edit-container">
+<section class="">
     <article class="row create-item">
-        <button class="col-xs-6 newItem button"
+        <button class="col-xs-6 button new-item"
                 type="button"
                 (click)="newItemToggle = !newItemToggle;"
                 *ngIf="!newImageToggle">
             Add new item<img src="/assets/icons/icon-add-25x25.png">
         </button>
-        <button class="col-xs-6 button newItem" *ngIf="newItemToggle === true || newImageToggle === true;" (click)="newItemBack()">
+        <button class="col-xs-6 button new-item"
+                *ngIf="newItemToggle === true || newImageToggle === true;"
+                (click)="newItemBack()">
             Back
         </button>
-        <button class="col-xs-6 newItem button"
+        <button class="col-xs-6 button new-item"
                 type="button"
                 (click)="newImageToggle = !newImageToggle;"
                 *ngIf="!newItemToggle">
@@ -19,7 +21,7 @@
 
     <app-new-image *ngIf="newImageToggle"></app-new-image>
 
-    <!--<app-new-item *ngIf="newItemToggle"></app-new-item>-->
+    <!--<new-menu-itemitem *ngIf="newItemToggle"></new-menu-itemitem>-->
 
     <!-- @todo: uncomment line above and remove this once done-->
     <app-new-item></app-new-item>

@@ -7,7 +7,7 @@ import {ButtonDeleteService} from '../../shared/button-delete.service';
 import {ButtonMoveService} from '../../shared/button-move.service';
 import {ButtonSaveService} from '../../shared/button-save.service';
 
-// Interfaces
+// Object Classes
 import {PageItem} from '../../shared/page-item';
 
 @Component({

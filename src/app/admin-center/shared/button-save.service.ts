@@ -42,6 +42,9 @@ export class ButtonSaveService {
         .subscribe(result => {
               if (result === false) {
                 alert('Whoops something went wrong');
+              } else {
+                  // @todo figure out a way to update info
+                  // this.pageInfoService.pageItems = result;
               }
               this.pageInfoService.disableButtons = false;
             }
