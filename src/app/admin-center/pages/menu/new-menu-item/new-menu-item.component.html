@@ -1,0 +1,98 @@
+<article class="row new-item-container">
+    <div class="col-xs-12 border-black">
+        <form>
+
+            <div class="col-xs-4">
+                <label for="category" class="col-xs-12">Category</label>
+                <select id="category"
+                        class="col-xs-12"
+                        name="category"
+                        [(ngModel)]="model.category">
+                    <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                </select>
+            </div>
+
+            <div class="col-xs-4">
+                <label for="price" class="col-xs-12">Price</label>
+                <input type="text"
+                       id="price"
+                       name="price"
+                       class="col-xs-12"
+                       [(ngModel)]="model.price"
+                       placeholder="Enter the desired item price...">
+            </div>
+
+            <div class="col-xs-4">
+                <label for="pagePosition" class="col-xs-12">PagePosition</label>
+                <input type="number"
+                       id="pagePosition"
+                       name="pagePosition"
+                       class="col-xs-12"
+                       [(ngModel)]="model.pagePosition"
+                       placeholder="Enter the desired position within the category...">
+            </div>
+
+            <div class="col-xs-5">
+                <h3 class="col-xs-12">English</h3>
+
+                <label for="enTitle" class="col-xs-12">Title</label>
+                <input type="text"
+                       id="enTitle"
+                       name="enTitle"
+                       autocomplete="off"
+                       class="col-xs-12"
+                       [(ngModel)]="model.enTitle"
+                       placeholder="Enter the desired English title...">
+
+                <label for="enDescription" class="col-xs-7">Description</label>
+                <label for="noEnDescription" class="col-xs-4">No description</label>
+                <input type="checkbox"
+                       id="noEnDescription"
+                       class="col-xs-1"
+                       name="noEnDescription"
+                       [(ngModel)]="model.disableDescription">
+                <textarea id="enDescription"
+                          name="enDescription"
+                          class="col-xs-12"
+                          [(ngModel)]="model.enDescription"
+                          placeholder="Enter the desired English Description..."
+                          [disabled]="model.disableDescription"></textarea>
+            </div>
+
+            <div class="col-xs-5">
+                <h3 class="col-xs-12">Vietnamese</h3>
+
+                <label for="vnTitle" class="col-xs-12">Title</label>
+                <input type="text"
+                       id="vnTitle"
+                       name="vnTitle"
+                       autocomplete="off"
+                       class="col-xs-12"
+                       [(ngModel)]="model.vnTitle"
+                       placeholder="Enter the desired Vietnamese title...">
+                <label for="vnDescription" class="col-xs-7">Description</label>
+                <label for="noVnDescription" class="col-xs-4">No description</label>
+                <input type="checkbox"
+                       id="noVnDescription"
+                       class="col-xs-1"
+                       name="noVnDescription"
+                       [(ngModel)]="model.disableDescription">
+                <textarea id="vnDescription"
+                          class="col-xs-12"
+                          name="vnDescription"
+                          [(ngModel)]="model.vnDescription"
+                          placeholder="Enter the desired Vietnamese Description..."
+                          [disabled]="model.disableDescription"></textarea>
+            </div>
+
+        </form>
+    </div>
+    <p>Category: {{model.category}}</p>
+    <p>Price: {{model.price}}</p>
+    <p>Page position: {{model.pagePosition}}</p>
+    <p>English Title: {{model.enTitle}}</p>
+    <p>English Description: {{model.enDescription}}</p>
+    <p>Vietnamese Title: {{model.vnTitle}}</p>
+    <p>Vietnamese Description: {{model.vnDescription}}</p>
+    <p>Disable description: {{model.disableDescription}}</p>
+</article>
