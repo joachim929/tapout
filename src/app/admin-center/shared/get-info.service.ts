@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError} from 'rxjs/internal/operators';
-import {Observable, of} from 'rxjs/index';
+import {Observable, of} from 'rxjs';
 
 // Models @todo: Just pass on the info, let the component convert to object
 import {MenuCategory} from '../pages/menu/menu-category.model';
+import {Category} from '../pages/menu/new-menu-item/new-menu-item.model';
 
 @Injectable({
     providedIn: 'root'
@@ -17,15 +18,29 @@ export class GetInfoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    setPage(page: string) {
-        this.page = page;
+    public getCategories(task: string, page: string): Observable<Category[]> {
+        this.setTask(task);
+        this.setPage(page);
+
+        const getParams = new HttpParams()
+            .set('page', this.page)
+            .set('task', this.task);
+
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-type': 'application/json'}),
+            params: getParams
+        };
+
+        return this.httpClient.get<Category[]>(this.getPageUri() + 'read.php', httpOptions)
+            .pipe(
+                catchError(this.handleError<Category[]>('searchCategories'))
+            );
     }
 
-    setTask(task: string) {
-        this.task = task;
-    }
+    public getPageItems(task: string, page: string): Observable<any> {
+        this.setTask(task);
+        this.setPage(page);
 
-    getPageItems(): Observable<any> {
         const getParams = new HttpParams()
             .set('page', this.page)
             .set('task', this.task);
@@ -37,11 +52,19 @@ export class GetInfoService {
         // @todo: Just pass on the info, let the component convert to object
         return this.httpClient.get<MenuCategory[]>(this.getPageUri() + 'read.php', httpOptions)
             .pipe(
-                catchError(this.handleError('get' + this.page + 'data'))
+                catchError(this.handleError('get ' + this.page + ' data'))
             );
     }
 
-    handleError<T>(operation = 'operation', result?: T) {
+    private setPage(page: string) {
+        this.page = page;
+    }
+
+    private setTask(task: string) {
+        this.task = task;
+    }
+
+    private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             console.error(error);
 
@@ -49,6 +72,7 @@ export class GetInfoService {
         };
     }
 
+    // @todo: probably refactor this to another service
     private getPageUri(): string {
         let pageUri = 'http://localhost:80/Tapout/tapoutAPI/';
         if (this.page === 'Events') {

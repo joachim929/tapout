@@ -5,5 +5,5 @@ export class MenuCategory {
     type: string;
     name: string;
     position: number;
-    items: Array<MenuItem>;
+    items: MenuItem[];
 }

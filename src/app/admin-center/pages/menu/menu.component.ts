@@ -17,17 +17,17 @@ export class MenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getInfoService.setPage('Menu');
-        this.getInfoService.setTask('edit');
         if (typeof this.test === 'undefined') {
             this.getData();
         }
     }
 
     getData() {
-        this.getInfoService.getPageItems().subscribe(response => {
-            this.test = response;
-        });
+        this.getInfoService.getPageItems('edit', 'Menu')
+            .subscribe(response => {
+                this.test = response;
+                console.log(this.test);
+            });
     }
 
     newMenuItemBack(): void {

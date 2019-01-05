@@ -1,25 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import {NewMenuItem} from './new-menu-item';
+// Objects
+import {NewMenuItem, Category} from './new-menu-item.model';
+
+// Services
+import {GetInfoService} from '../../../shared/get-info.service';
 
 @Component({
-  selector: 'app-new-menu-item',
-  templateUrl: './new-menu-item.component.html',
-  styleUrls: ['./new-menu-item.component.css']
+    selector: 'app-new-menu-item',
+    templateUrl: './new-menu-item.component.html',
+    styleUrls: ['./new-menu-item.component.css']
 })
 export class NewMenuItemComponent implements OnInit {
-  model: NewMenuItem;
+    model: NewMenuItem;
+    categories: Array<Category>;
 
-  categories = [
-      'Breakfast', 'Burgers', 'Sandwiches', 'Mains', 'Sides', 'Desserts'
-  ];
+    constructor(private getInfoService: GetInfoService) {
+    }
 
-  constructor() { }
+    ngOnInit() {
+        this.model = new NewMenuItem();
+        this.model.disableDescription = false;
+        if (typeof this.categories === 'undefined') {
+            this.getData();
+        }
+    }
 
-  ngOnInit() {
-    this.model = new NewMenuItem();
-    this.model.disableDescription = false;
-  }
+    getData() {
+        this.getInfoService.getCategories('getCategories', 'Menu')
+            .subscribe(response => {
+                this.categories = response;
+                console.log(this.categories);
+            });
+    }
 
 
 }

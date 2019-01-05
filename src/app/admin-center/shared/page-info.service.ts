@@ -14,16 +14,18 @@ export class PageInfoService {
     page: string;
     pageItems: PageItem[];
     disableButtons = false;
-    readonly httpPostOptions = {headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})};
+    readonly httpPostOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
+    };
 
     constructor(private httpClient: HttpClient) {
     }
 
-    setPage(pageRequest) {
+    public setPage(pageRequest) {
         this.page = pageRequest;
     }
 
-    sortAboutItems(pageItems) {
+    public sortAboutItems(pageItems) {
         let pageIndex = 1;
 
         for (let i = 0; i < pageItems.length; i++) {
@@ -34,17 +36,17 @@ export class PageInfoService {
         return pageItems;
     }
 
-    setItemCount(pageItemLength): void {
+    public setItemCount(pageItemLength): void {
         this.itemCount = pageItemLength;
     }
 
-    getItemCount(): number {
+    public getItemCount(): number {
         if (this.itemCount !== null) {
             return this.itemCount;
         }
     }
 
-    getPageItems(pageName): Observable<PageItem[]> {
+    public getPageItems(pageName): Observable<PageItem[]> {
         const getParams = new HttpParams()
             .set('page', 'About')
             .set('task', 'edit');
@@ -62,7 +64,7 @@ export class PageInfoService {
             );
     }
 
-    getPageUri(pageName): string {
+    public getPageUri(pageName): string {
         let pageUri = 'http://localhost:80/Tapout/tapoutAPI/';
         if (pageName === 'Events') {
             pageUri += 'event/';
@@ -74,7 +76,7 @@ export class PageInfoService {
         return pageUri;
     }
 
-    updatePagePosition(pageItem, pageName): Observable<any> {
+    public updatePagePosition(pageItem, pageName): Observable<any> {
         const body = new HttpParams()
             .set('pageItems', JSON.stringify(pageItem))
             .set('task', 'pagePosition')
@@ -87,35 +89,37 @@ export class PageInfoService {
         );
     }
 
-    updatePageItem(pageItem, pageName): Observable<any> {
+    public updatePageItem(pageItem, pageName): Observable<any> {
         const body = new HttpParams()
             .set('pageItem', JSON.stringify(pageItem))
             .set('task', 'updatePageItem')
             .set('page', 'About');
 
-        return this.httpClient.post<PageItem>(this.getPageUri(pageName) + 'update.php', body, this.httpPostOptions)
+        return this.httpClient.post<PageItem>(this.getPageUri(pageName) + 'update.php',
+            body, this.httpPostOptions)
             .pipe(
                 catchError(this.handleError('updatePageItem'))
             );
     }
 
-    newPageItem(pageItem, pageName): Observable<any> {
+    public newPageItem(pageItem, pageName): Observable<any> {
         const body = new HttpParams()
             .set('pageItem', JSON.stringify(pageItem))
             .set('task', 'createPageItem')
             .set('page', pageName);
 
-        return this.httpClient.post<any>(this.getPageUri(pageName) + 'create.php', body, this.httpPostOptions)
+        return this.httpClient.post<any>(this.getPageUri(pageName) + 'create.php',
+            body, this.httpPostOptions)
             .pipe(
                 catchError(this.handleError('createPageItem'))
             );
     }
 
-    toggleEdit(itemIndex): void {
+    public toggleEdit(itemIndex): void {
         this.pageItems[itemIndex].toggleEdit = !this.pageItems[itemIndex].toggleEdit;
     }
 
-    handleError<T>(operation = 'operation', result?: T) {
+    public handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             console.error(error);
 
