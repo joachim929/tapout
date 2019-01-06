@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
+// Services
 import {GetInfoService} from '../../shared/get-info.service';
+import {MenuInfoService} from './menu-info.service';
 
 @Component({
     selector: 'app-menu',
@@ -13,7 +15,8 @@ export class MenuComponent implements OnInit {
     newCategoryToggle = false;
     newItemToggle = false;
 
-    constructor(private getInfoService: GetInfoService) {
+    constructor(private getInfoService: GetInfoService,
+                private menuInfoService: MenuInfoService) {
     }
 
     ngOnInit() {
@@ -25,8 +28,7 @@ export class MenuComponent implements OnInit {
     getData() {
         this.getInfoService.getPageItems('edit', 'Menu')
             .subscribe(response => {
-                this.test = response;
-                console.log(this.test);
+                this.menuInfoService.setMenuData(response);
             });
     }
 

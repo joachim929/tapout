@@ -6,3 +6,8 @@
 p {
     color: var(--comp-color);
 }
+
+.button-container {
+    min-height: 342px;
+    padding: 0 15px;
+}

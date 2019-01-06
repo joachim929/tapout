@@ -42,3 +42,10 @@
     border: 0;
     height: 22px;
 }
+
+.invalid {
+    background-color: var(--comp-color);
+}
+.invalid:hover {
+    background-color: var(--comp-color);
+}

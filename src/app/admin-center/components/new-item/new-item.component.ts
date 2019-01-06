@@ -108,7 +108,6 @@ export class NewItemComponent implements OnInit {
         } else {
             check = false;
         }
-        console.log(this.model.enContent, this.model.enHeading, this.model.vnHeading, this.model.vnContent, this.model.pagePosition);
         return check;
     }
 
@@ -118,8 +117,6 @@ export class NewItemComponent implements OnInit {
             if (heading.length < 255) {
                 check = true;
             }
-        } else {
-            console.log('Heading: ' + heading);
         }
         return check;
     }
@@ -130,8 +127,6 @@ export class NewItemComponent implements OnInit {
             if (content.length > 0) {
                 check = true;
             }
-        } else {
-            console.log('Content: ' + content);
         }
         return check;
     }

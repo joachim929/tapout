@@ -1,125 +1,184 @@
-<article class="row new-item-container">
-    <div class="col-xs-12 border-black">
-        <form>
-
+<article class="row new-item-container border-black">
+    <form #itemForm="ngForm">
+        <div class="row no-margin">
             <div class="col-xs-4">
                 <label for="category" class="col-xs-12">Category</label>
                 <select id="category"
                         class="col-xs-12"
                         name="category"
-                        [(ngModel)]="model.categoryId">
+                        (blur)="formatCategoryId()"
+                        [(ngModel)]="model.categoryId"
+                        #category="ngModel" required minlength="1">
                     <option *ngFor="let category of categories" [value]="category.id">
                         {{category.enName}} / {{category.vnName}}
                     </option>
                 </select>
-                <p>Select a category</p>
-            </div>
+                <p *ngIf="category.invalid && category.touched" class="col-xs-12">
+                    A category needs to be selected
+                </p>
 
+            </div>
             <div class="col-xs-4">
+
                 <label for="price" class="col-xs-12">Price</label>
                 <input type="text"
                        id="price"
                        name="price"
                        class="col-xs-12"
+                       (blur)="checkPrice()"
                        [(ngModel)]="model.price"
-                       placeholder="Enter the desired item price...">
-                <p>Invalid price</p>
-            </div>
+                       #price="ngModel" required
+                       autocomplete="off"
+                       minlength="2" maxlength="200"
+                       placeholder="Enter the item price...">
+                <p *ngIf="price.invalid && price.touched" class="col-xs-12">
+                    A price needs to be set
+                </p>
 
+            </div>
             <div class="col-xs-4">
-                <!-- @todo: Onblur check contents and adjust it, needs to be greater than 0 and less than total length of items -->
+
                 <label for="pagePosition" class="col-xs-12">Category Position</label>
                 <input type="number"
                        id="pagePosition"
                        name="pagePosition"
                        class="col-xs-12"
+                       (blur)="formatPosition()"
                        [(ngModel)]="model.pagePosition"
-                       placeholder="Enter the desired position within the category...">
+                       [disabled]="category.invalid"
+                       #pagePosition="ngModel" required
+                       placeholder="Enter the category position...">
+                <p *ngIf="pagePosition.invalid && pagePosition.touched" class="col-xs-12">
+                    A page position needs to be set
+                </p>
             </div>
 
-            <div class="col-xs-5">
-                <h3 class="col-xs-12">English</h3>
+        </div>
+        <div class="col-xs-10">
 
-                <label for="enTitle" class="col-xs-12">Title</label>
-                <input type="text"
-                       id="enTitle"
-                       name="enTitle"
-                       autocomplete="off"
-                       class="col-xs-12"
-                       [(ngModel)]="model.enTitle"
-                       placeholder="Enter the desired English title...">
-                <p>Invalid input</p>
+            <div class="row">
+                <div class="col-xs-6">
 
-                <label for="enDescription" class="col-xs-7">Description</label>
-                <label for="noEnDescription" class="col-xs-4">No description</label>
+                    <h3 class="col-xs-12">English</h3>
 
-                <input type="checkbox"
-                       id="noEnDescription"
-                       class="col-xs-1"
-                       name="noEnDescription"
-                       [(ngModel)]="model.disableDescription">
+                    <label for="enTitle" class="col-xs-12">Title</label>
+                    <input type="text"
+                           id="enTitle"
+                           name="enTitle"
+                           autocomplete="off"
+                           class="col-xs-12"
+                           [(ngModel)]="model.enTitle"
+                           #enTitle="ngModel" required
+                           minlength="2"
+                           maxlength="255"
+                           placeholder="Enter the desired English title...">
+                    <p *ngIf="enTitle.invalid && enTitle.touched" class="col-xs-12">
+                        The title needs to be set, needs to be between 4 and 255 characters</p>
 
-                <textarea id="enDescription"
-                          name="enDescription"
-                          class="col-xs-12"
-                          [(ngModel)]="model.enDescription"
-                          placeholder="Enter the desired English Description..."
-                          [disabled]="model.disableDescription"></textarea>
-                <p>Invalid input</p>
+                </div>
+                <div class="col-xs-6">
+
+                    <h3 class="col-xs-12">Vietnamese</h3>
+
+                    <label for="vnTitle" class="col-xs-12">Title</label>
+                    <input type="text"
+                           id="vnTitle"
+                           name="vnTitle"
+                           autocomplete="off"
+                           class="col-xs-12"
+                           [(ngModel)]="model.vnTitle"
+                           #vnTitle="ngModel" required
+                           minlength="2"
+                           maxlength="255"
+                           placeholder="Enter the desired Vietnamese title...">
+                    <p *ngIf="vnTitle.invalid && vnTitle.touched" class="col-xs-12">
+                        The title needs to be set, needs to be between 4 and 255 characters
+                    </p>
+
+                </div>
             </div>
+            <div class="row">
+                <div class="col-xs-6">
 
-            <div class="col-xs-5">
-                <h3 class="col-xs-12">Vietnamese</h3>
+                    <label for="enDescription" class="col-xs-7">Description</label>
+                    <label for="noEnDescription" class="col-xs-4">No description</label>
 
-                <label for="vnTitle" class="col-xs-12">Title</label>
-                <input type="text"
-                       id="vnTitle"
-                       name="vnTitle"
-                       autocomplete="off"
-                       class="col-xs-12"
-                       [(ngModel)]="model.vnTitle"
-                       placeholder="Enter the desired Vietnamese title...">
-                <p>Invalid input</p>
+                    <input type="checkbox"
+                           id="noEnDescription"
+                           class="col-xs-1"
+                           name="noEnDescription"
+                           [(ngModel)]="model.disableDescription"
+                           #noEnDescription="ngModel">
 
-                <label for="vnDescription" class="col-xs-7">Description</label>
-                <label for="noVnDescription" class="col-xs-4">No description</label>
+                    <textarea id="enDescription"
+                              name="enDescription"
+                              class="col-xs-12"
+                              [(ngModel)]="model.enDescription"
+                              placeholder="Enter the desired English Description..."
+                              #enDescription="ngModel"
+                              minlength="4" required
+                              [disabled]="model.disableDescription"></textarea>
+                    <p *ngIf="enDescription.invalid && enDescription.touched && !model.disableDescription"
+                       class="col-xs-12">
+                        The description needs to be set, needs to be between longer than 4 characters,
+                        you can also disable the description
+                    </p>
 
-                <input type="checkbox"
-                       id="noVnDescription"
-                       class="col-xs-1"
-                       name="noVnDescription"
-                       [(ngModel)]="model.disableDescription">
+                </div>
+                <div class="col-xs-6">
 
-                <textarea id="vnDescription"
-                          class="col-xs-12"
-                          name="vnDescription"
-                          [(ngModel)]="model.vnDescription"
-                          placeholder="Enter the desired Vietnamese Description..."
-                          [disabled]="model.disableDescription"></textarea>
+                    <label for="vnDescription" class="col-xs-7">Description</label>
+                    <label for="noVnDescription" class="col-xs-4">No description</label>
 
-                <p>Invalid input</p>
+                    <input type="checkbox"
+                           id="noVnDescription"
+                           class="col-xs-1"
+                           name="noVnDescription"
+                           [(ngModel)]="model.disableDescription"
+                           #noVnDescription="ngModel">
+
+                    <textarea id="vnDescription"
+                              class="col-xs-12"
+                              name="vnDescription"
+                              [(ngModel)]="model.vnDescription"
+                              placeholder="Enter the desired Vietnamese Description..."
+                              #vnDescription="ngModel"
+                              minlength="4" required
+                              [disabled]="model.disableDescription"></textarea>
+
+                    <p *ngIf="vnDescription.invalid && vnDescription.touched && !model.disableDescription"
+                       class="col-xs-12">
+                        The description needs to be set, needs to be between longer than 4 characters,
+                        you can also disable the description
+                    </p>
+
+                </div>
             </div>
+        </div>
+        <div class="col-xs-2 button-container">
 
-            <div class="col-xs-2">
-                <button class="button-edit" style="margin-top: 40px">
-                    Save<img src="/assets/icons/icon-save-25x25.png">
-                </button>
-                <button class="button-edit">
-                    Clear<img src="/assets/icons/icon-edit-25x25.png">
-                </button>
-                <button class="button-edit">
-                    Cancel<img src="/assets/icons/icon-cancel-25x25.png">
-                </button>
-            </div>
+            <button class="button-edit" style="margin-top: 40px" [disabled]="!itemForm.form.valid"
+                    (click)="saveItem(itemForm.form)" [class.invalid]="itemForm.form.invalid">
+                Save<img src="/assets/icons/icon-save-25x25.png">
+            </button>
+            <button class="button-edit" (click)="itemForm.reset()">
+                Clear<img src="/assets/icons/icon-edit-25x25.png">
+            </button>
+            <!-- @todo: closes component, still needs to be implemented -->
+            <button class="button-edit">
+                Cancel<img src="/assets/icons/icon-cancel-25x25.png">
+            </button>
 
-        </form>
+        </div>
+    </form>
+    <div class="row" style="width: 100%">
+        <p>Category ID: {{model.categoryId}}</p>
+        <p>Price: {{model.price}}</p>
+        <p>Page position: {{model.pagePosition}}</p>
+        <p>English Title: {{model.enTitle}}</p>
+        <p>English Description: {{model.enDescription}}</p>
+        <p>Vietnamese Title: {{model.vnTitle}}</p>
+        <p>Vietnamese Description: {{model.vnDescription}}</p>
+        <p>Disable description: {{model.disableDescription}}</p>
     </div>
-    <p>Category ID: {{model.categoryId}}</p>
-    <p>Price: {{model.price}}</p>
-    <p>Page position: {{model.pagePosition}}</p>
-    <p>English Title: {{model.enTitle}}</p>
-    <p>English Description: {{model.enDescription}}</p>
-    <p>Vietnamese Title: {{model.vnTitle}}</p>
-    <p>Vietnamese Description: {{model.vnDescription}}</p>
-    <p>Disable description: {{model.disableDescription}}</p>
 </article>
