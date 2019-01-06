@@ -47,7 +47,7 @@ export class NewMenuItemComponent implements OnInit {
         const catLength = this.menuInfoService.getCategoryLength(this.model.categoryId) + 1;
 
         this.model.pagePosition = this.model.pagePosition = Math.round(this.model.pagePosition);
-        if ( this.model.pagePosition < 1 ||
+        if (this.model.pagePosition < 1 ||
             this.model.pagePosition > catLength) {
             this.model.pagePosition = catLength;
         } else {
@@ -64,8 +64,23 @@ export class NewMenuItemComponent implements OnInit {
     }
 
     public saveItem(form): void {
-        console.log('Save button clicked', form);
-        // let check = this.checkValidation();
+        console.log(form);
+        const newMenuItem = new NewMenuItem();
+        newMenuItem.category = form.value.category;
+        newMenuItem.enTitle = this.model.enTitle;
+        newMenuItem.pagePosition = this.model.pagePosition;
+        newMenuItem.price = this.model.price
+        newMenuItem.vnTitle = this.model.vnTitle;
+
+        if (!this.model.disableDescription) {
+            newMenuItem.enDescription = this.model.enDescription;
+            newMenuItem.vnDescription = this.model.vnDescription;
+        }
+
+        this.menuInfoService.newCategoryItem(newMenuItem, 'Menu')
+            .subscribe(response => {
+                console.log(response);
+            });
     }
 
     private formatPrice(): void {
