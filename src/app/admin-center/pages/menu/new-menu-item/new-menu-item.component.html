@@ -1,7 +1,7 @@
 <article class="row new-item-container border-black">
     <form #itemForm="ngForm">
         <div class="row no-margin">
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 <label for="category" class="col-xs-12">Category</label>
                 <select id="category"
                         class="col-xs-12"
@@ -18,14 +18,13 @@
                 </p>
 
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
 
                 <label for="price" class="col-xs-12">Price</label>
                 <input type="text"
                        id="price"
                        name="price"
                        class="col-xs-12"
-                       (blur)="checkPrice()"
                        [(ngModel)]="model.price"
                        #price="ngModel" required
                        autocomplete="off"
@@ -34,22 +33,47 @@
                 <p *ngIf="price.invalid && price.touched" class="col-xs-12">
                     A price needs to be set
                 </p>
+                <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                    You don't need to use the dong sign, make sure a 'K' is after each price
+                </p>
 
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
+                <label for="caption" class="col-xs-12">Caption</label>
+                <input type="text"
+                       id="caption"
+                       name="caption"
+                       class="col-xs-12"
+                       [(ngModel)]="model.caption"
+                       #caption="ngModel" required
+                       autocomplete="off"
+                       minlength="2" maxlength="200"
+                       placeholder="Enter the item caption...">
+                <p *ngIf="caption.invalid && caption.touched" class="col-xs-12">
+                    Caption needs to be set
+                </p>
+                <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                    Caption is only for you to see, it needs to have a unique value, and shortly describe the item
+                </p>
 
-                <label for="pagePosition" class="col-xs-12">Category Position</label>
+            </div>
+            <div class="col-xs-3">
+
+                <label for="categoryPosition" class="col-xs-12">Category Position</label>
                 <input type="number"
-                       id="pagePosition"
-                       name="pagePosition"
+                       id="categoryPosition"
+                       name="categoryPosition"
                        class="col-xs-12"
                        (blur)="formatPosition()"
-                       [(ngModel)]="model.pagePosition"
+                       [(ngModel)]="model.categoryPosition"
                        [disabled]="category.invalid"
-                       #pagePosition="ngModel" required
-                       placeholder="Enter the category position...">
-                <p *ngIf="pagePosition.invalid && pagePosition.touched" class="col-xs-12">
+                       #categoryPosition="ngModel" required
+                       placeholder="Enter the placement...">
+                <p *ngIf="categoryPosition.invalid && categoryPosition.touched" class="col-xs-12">
                     A page position needs to be set
+                </p>
+                <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                    Category needs to be selected
                 </p>
             </div>
 
@@ -123,6 +147,9 @@
                         The description needs to be set, needs to be between longer than 4 characters,
                         you can also disable the description
                     </p>
+                    <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                        Don't forget the Vietnamese description
+                    </p>
 
                 </div>
                 <div class="col-xs-6">
@@ -151,13 +178,18 @@
                         The description needs to be set, needs to be between longer than 4 characters,
                         you can also disable the description
                     </p>
+                    <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                        Don't forget the English description
+                    </p>
 
                 </div>
             </div>
         </div>
         <div class="col-xs-2 button-container">
-
-            <button class="button-edit" style="margin-top: 40px" [disabled]="!itemForm.form.valid"
+            <button class="button-edit" style="margin-top: 20px"
+                    (click)="toggleTableHints(itemForm.form.invalid)">
+                Info</button>
+            <button class="button-edit" [disabled]="!itemForm.form.valid"
                     (click)="saveItem(itemForm.form)" [class.invalid]="itemForm.form.invalid">
                 Save<img src="/assets/icons/icon-save-25x25.png">
             </button>
@@ -174,7 +206,7 @@
     <div class="row" style="width: 100%">
         <p>Category ID: {{model.categoryId}}</p>
         <p>Price: {{model.price}}</p>
-        <p>Page position: {{model.pagePosition}}</p>
+        <p>Page position: {{model.categoryPosition}}</p>
         <p>English Title: {{model.enTitle}}</p>
         <p>English Description: {{model.enDescription}}</p>
         <p>Vietnamese Title: {{model.vnTitle}}</p>

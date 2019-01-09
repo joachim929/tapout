@@ -36,7 +36,7 @@ export class MenuInfoService {
     // @todo: Merge into a single service
     public newCategoryItem(item, pageName: string): Observable<any> {
         const body = new HttpParams()
-            .set('newItem', JSON.stringify(item))
+            .set('newMenuItem', JSON.stringify(item))
             .set('task', 'createMenuItem')
             .set('page', pageName);
 

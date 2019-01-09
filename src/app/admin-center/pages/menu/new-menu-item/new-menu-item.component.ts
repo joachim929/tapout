@@ -15,6 +15,7 @@ import {MenuInfoService} from '../menu-info.service';
 export class NewMenuItemComponent implements OnInit {
     model: NewMenuItem;
     categories: Array<Category>;
+    hideTableHints = true;
 
     constructor(private getInfoService: GetInfoService,
                 private menuInfoService: MenuInfoService) {
@@ -22,23 +23,27 @@ export class NewMenuItemComponent implements OnInit {
         this.model.disableDescription = false;
     }
 
+    // @todo: On create new item, show error messages if there are any.
     ngOnInit() {
         if (typeof this.categories === 'undefined') {
             this.getData();
         }
     }
 
-    public checkPrice(): void {
-        if (typeof this.model.price !== 'undefined' &&
-            this.model.price.length > 0) {
-            this.formatPrice();
+    public toggleTableHints(formInvalid) {
+        if (formInvalid) {
+            this.hideTableHints = !this.hideTableHints;
+            setTimeout(() => {
+                this.hideTableHints = true;
+            }, 5000);
         }
+
     }
 
     public formatCategoryId(): void {
         this.model.categoryId = +this.model.categoryId;
 
-        if (typeof this.model.pagePosition !== 'undefined') {
+        if (typeof this.model.categoryPosition !== 'undefined') {
             this.formatPosition();
         }
     }
@@ -46,15 +51,15 @@ export class NewMenuItemComponent implements OnInit {
     public formatPosition(): void {
         const catLength = this.menuInfoService.getCategoryLength(this.model.categoryId) + 1;
 
-        this.model.pagePosition = this.model.pagePosition = Math.round(this.model.pagePosition);
-        if (this.model.pagePosition < 1 ||
-            this.model.pagePosition > catLength) {
-            this.model.pagePosition = catLength;
-        } else {
-            this.model.pagePosition = null;
+        this.model.categoryPosition = this.model.categoryPosition = Math.round(this.model.categoryPosition);
+        if (this.model.categoryPosition < 1 ||
+            this.model.categoryPosition > catLength) {
+            this.model.categoryPosition = catLength;
         }
     }
 
+    // @todo: This call is kinda redundant as we got all the data already, just need to wait for it before we can access it
+    // @todo -      solve with a emitter?
     public getData(): void {
         this.getInfoService.getCategories('getCategories', 'Menu')
             .subscribe(response => {
@@ -67,42 +72,23 @@ export class NewMenuItemComponent implements OnInit {
         console.log(form);
         const newMenuItem = new NewMenuItem();
         newMenuItem.category = form.value.category;
+        newMenuItem.caption = this.model.caption;
         newMenuItem.enTitle = this.model.enTitle;
-        newMenuItem.pagePosition = this.model.pagePosition;
-        newMenuItem.price = this.model.price
+        newMenuItem.categoryPosition = this.model.categoryPosition;
+        newMenuItem.price = this.model.price;
         newMenuItem.vnTitle = this.model.vnTitle;
 
         if (!this.model.disableDescription) {
             newMenuItem.enDescription = this.model.enDescription;
             newMenuItem.vnDescription = this.model.vnDescription;
+        } else {
+            newMenuItem.enDescription = null;
+            newMenuItem.vnDescription = null;
         }
 
         this.menuInfoService.newCategoryItem(newMenuItem, 'Menu')
             .subscribe(response => {
                 console.log(response);
             });
-    }
-
-    private formatPrice(): void {
-        this.model.price = this.model.price.replace(/[^0-9,. ]/g, '');
-        const tempPrice = this.model.price.split(' ');
-
-        const priceLength = tempPrice.length;
-
-        if (priceLength > 1) {
-            this.model.price = '';
-            for (let index = 0; index < priceLength; index++) {
-                if (tempPrice[index].length === 0) {
-                    continue;
-                }
-                if (index === priceLength - 1) {
-                    this.model.price += tempPrice[index] + 'K';
-                } else {
-                    this.model.price += tempPrice[index] + 'K / ';
-                }
-            }
-        } else {
-            this.model.price += 'K';
-        }
     }
 }

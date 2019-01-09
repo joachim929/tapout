@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
     getData() {
         this.getInfoService.getPageItems('edit', 'Menu')
             .subscribe(response => {
+                console.log(response);
                 this.menuInfoService.setMenuData(response);
             });
     }
