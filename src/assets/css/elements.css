@@ -12,6 +12,11 @@ a:hover {
     text-decoration: none;
     color: var(--text-color);
 }
+a:focus {
+    text-decoration: none;
+    color: var(--text-color);
+    outline: none;
+}
 
 img {
     border: 1px solid var(--background-color);
