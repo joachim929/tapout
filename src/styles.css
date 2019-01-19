@@ -3,7 +3,7 @@
 @import url("assets/css/generic.css");
 @import url("assets/css/new-item.css");
 
-:root{
+:root {
     --text-color: white;
     --main-color: #7adad7;
     --comp-color: #da7a7d;
@@ -12,8 +12,42 @@
     --border-split-color: #3c3c3c;
 }
 
+@media (max-width: 885px) {
+
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .collapse.navbar-collapse {
+        display: none !important;
+    }
+
+    .nav.navbar-nav {
+        float: none !important;
+    }
+
+    .navbar-nav > li {
+        float: none;
+    }
+
+    .navbar-nav > li > a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .collapse.in {
+        display: block !important;
+    }
+
+}
+
 /** Mobile size **/
-@media(max-width:767px){
+@media (max-width: 767px) {
     body {
         background-position: 50% 75%;
         background-size: 45%;
@@ -21,7 +55,7 @@
 }
 
 /** Larger than mobile */
-@media(min-width:767px){
+@media (min-width: 767px) {
     body {
         background-position: 50% 75%;
         background-size: 35%;
@@ -35,10 +69,9 @@
     margin: 0;
 }
 
-
 /* CSS for headers/big header buttons */
 /* @todo: replace these with buttons from button css*/
-.btn-primary{
+.btn-primary {
     width: 100%;
     font-size: 16px;
     border-radius: 0;
@@ -52,11 +85,13 @@
     padding-top: 6px;
     padding-bottom: 6px;
 }
+
 .btn-primary:hover {
     border-color: var(--background-color);
     background-color: var(--border-split-color);
     color: var(--main-color);
 }
+
 .btn-primary:focus {
     border-color: var(--background-color) !important;
     background-color: var(--border-split-color) !important;
@@ -100,16 +135,19 @@
     margin: 0;
     background-color: var(--off-background-color);
 }
+
 .tap-out-row {
     margin: 0;
     display: inline;
 }
+
 .tap-out-content-border {
     border-top: solid var(--background-color) 1px;
     border-bottom: solid var(--border-split-color) 1px;
     padding-left: 5px;
     padding-right: 5px;
 }
+
 .row-eq-height {
     display: -webkit-box;
     display: -webkit-flex;
@@ -117,12 +155,20 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .tap-out-description {
     text-align: left;
     margin: 0;
     padding-left: 5px;
     padding-right: 5px;
 
+}
+
+.disclaimer {
+    opacity: 0.6;
+    padding-left: 20px;
+    text-align: center;
+    font-size: 12px;
 }
 
 /* Arrow CSS for indicating button can be toggled*/
@@ -133,10 +179,12 @@ i {
     padding: 3px;
     margin: 5px;
 }
+
 .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
+
 .up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);

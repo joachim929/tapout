@@ -1,7 +1,7 @@
 /**
  * Created by J on 20/06/2018.
  */
-import {DrinkItem} from './drink-item';
+import {DrinkItem} from '../../shared/drink-item';
 
 export const DRINKITEMS: DrinkItem[] = [
     {

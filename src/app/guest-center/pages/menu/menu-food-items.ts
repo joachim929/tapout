@@ -1,7 +1,7 @@
 /**
  * Created by J on 02/06/2018.
  */
-import {FoodItem} from './food-item';
+import {FoodItem} from '../../shared/food-item';
 
 export const FOODITEMS: FoodItem[] = [
     {
