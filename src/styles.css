@@ -17,29 +17,23 @@
     .navbar-header {
         float: none;
     }
-
     .navbar-toggle {
         display: block;
     }
-
     .collapse.navbar-collapse {
         display: none !important;
     }
-
     .nav.navbar-nav {
         float: none !important;
     }
-
     .navbar-nav > li {
         float: none;
     }
-
     .navbar-nav > li > a {
         padding-top: 20px;
         padding-bottom: 20px;
         border-bottom: 1px solid #fff;
     }
-
     .collapse.in {
         display: block !important;
     }
@@ -96,6 +90,19 @@
     border-color: var(--background-color) !important;
     background-color: var(--border-split-color) !important;
     color: var(--main-color) !important;
+}
+
+.ctn-primary {
+    font-size: 16px;
+    border-radius: 0;
+    text-align: center;
+    border: 1px solid var(--background-color);
+    font-weight: bold;
+    background-color: var(--off-background-color);
+    color: var(--main-color);
+    text-transform: uppercase;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 /* CSS for headers */
@@ -162,13 +169,6 @@
     padding-left: 5px;
     padding-right: 5px;
 
-}
-
-.disclaimer {
-    opacity: 0.6;
-    padding-left: 20px;
-    text-align: center;
-    font-size: 12px;
 }
 
 /* Arrow CSS for indicating button can be toggled*/

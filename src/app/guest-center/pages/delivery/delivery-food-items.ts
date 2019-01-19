@@ -200,7 +200,9 @@ export const FOODITEMS: FoodItem[] = [
                 foodID: 29,
                 foodDescriptor: 'Soft Drinks',
                 foodPrice: '30K',
-                foodDescription: 'Coke\nCoke Light\nSprite\nGinger Ale\nTonic Water\nSoda Water'
+                foodDescription: 'Coke\t\t\t\t\t\t\t\tCoke Light\n' +
+                'Sprite\t\t\t\t\t\t\t\tGinger Ale\n' +
+                'Tonic Water\t\t\t\t\t\t\tSoda Water'
             },
             {
                 foodID: 30,

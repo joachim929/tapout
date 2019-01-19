@@ -1,14 +1,11 @@
 <section class="row">
-    <div class="col-sm-6">
-        <p class="disclaimer">The categories are collapsible</p>
-    </div>
-    <div class="col-sm-6">
+    <div class="col-sm-12" style="text-align: center">
         <p class="disclaimer">All prices are subject to a 10% VAT charge</p>
     </div>
 </section>
 
 <section class="row">
-    <div class="col-sm-12">
+    <div class="col-md-8 col-sm-12">
 
         <!-- Loop through left menu categories -->
         <article class="inner-container" *ngFor="let foods of foodItems">
@@ -44,5 +41,29 @@
                 </ng-container>
             </div>
         </article>
+    </div>
+    <div class="inner=container col-md-4 col-sm-12">
+
+        <div class="ctn-primary">
+            <img src="/assets/icons/icon-phone-25x25.png">Tap Out Delivery
+        </div>
+        <div class="tap-out-content-container">
+
+            <div class="row tap-out-row">
+                <div class="row tap-out-row">
+                    <div class="col-xs-12 tap-out-content-border">
+                        <p class="tap-out-sub-heading" style="text-align: center">Minimum order 200,000<span
+                                [innerHTML]="vietnameseDong"></span></p>
+                    </div>
+                </div>
+
+                <div class="tap-out-description" style="text-align: center">
+                    <p class="tap-out-paragraph line-breaker">Free of charge when calling:
+                        <br>028 6270 2700
+                        <br>096 380 6071</p>
+                </div>
+
+            </div>
+        </div>
     </div>
 </section>
