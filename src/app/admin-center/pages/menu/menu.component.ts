@@ -19,13 +19,17 @@ export class MenuComponent implements OnInit {
                 private menuInfoService: MenuInfoService) {
     }
 
+    get menuData() {
+        return this.menuInfoService.menuData;
+    }
+
     ngOnInit() {
         if (typeof this.test === 'undefined') {
             this.getData();
         }
     }
 
-    getData() {
+    public getData() {
         this.getInfoService.getPageItems('edit', 'Menu')
             .subscribe(response => {
                 console.log(response);
@@ -33,7 +37,7 @@ export class MenuComponent implements OnInit {
             });
     }
 
-    newMenuItemBack(): void {
+    public newMenuItemBack(): void {
         this.newCategoryToggle = false;
         this.newItemToggle = false;
     }

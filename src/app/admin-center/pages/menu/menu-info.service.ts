@@ -19,6 +19,7 @@ export class MenuInfoService {
     }
 
     public setMenuData(data: MenuCategory[]) {
+        console.log(data);
         this.menuData = data;
     }
 
@@ -38,7 +39,8 @@ export class MenuInfoService {
         const body = new HttpParams()
             .set('newMenuItem', JSON.stringify(item))
             .set('task', 'createMenuItem')
-            .set('page', pageName);
+            .set('page', pageName)
+            .set('module', 'Admin');
 
         return this.httpClient.post<any>(this.getPageUri(pageName) + 'create.php',
             body, this.httpPostOptions)

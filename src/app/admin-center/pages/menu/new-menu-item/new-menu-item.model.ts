@@ -1,9 +1,8 @@
 export class NewMenuItem {
-    caption: string;
     categoryId: number;
     category: string;
     price: string;
-    categoryPosition: number;
+    position: number;
     pagePosition: number;
     enTitle: string;
     enDescription?: string;

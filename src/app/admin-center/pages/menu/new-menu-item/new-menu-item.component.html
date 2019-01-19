@@ -9,7 +9,7 @@
                         (blur)="formatCategoryId()"
                         [(ngModel)]="model.categoryId"
                         #category="ngModel" required minlength="1">
-                    <option *ngFor="let category of categories" [value]="category.id">
+                    <option *ngFor="let category of menuData" [value]="category.id">
                         {{category.enName}} / {{category.vnName}}
                     </option>
                 </select>
@@ -39,25 +39,6 @@
 
             </div>
             <div class="col-xs-3">
-                <label for="caption" class="col-xs-12">Caption</label>
-                <input type="text"
-                       id="caption"
-                       name="caption"
-                       class="col-xs-12"
-                       [(ngModel)]="model.caption"
-                       #caption="ngModel" required
-                       autocomplete="off"
-                       minlength="2" maxlength="200"
-                       placeholder="Enter the item caption...">
-                <p *ngIf="caption.invalid && caption.touched" class="col-xs-12">
-                    Caption needs to be set
-                </p>
-                <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
-                    Caption is only for you to see, it needs to have a unique value, and shortly describe the item
-                </p>
-
-            </div>
-            <div class="col-xs-3">
 
                 <label for="categoryPosition" class="col-xs-12">Category Position</label>
                 <input type="number"
@@ -65,7 +46,7 @@
                        name="categoryPosition"
                        class="col-xs-12"
                        (blur)="formatPosition()"
-                       [(ngModel)]="model.categoryPosition"
+                       [(ngModel)]="model.position"
                        [disabled]="category.invalid"
                        #categoryPosition="ngModel" required
                        placeholder="Enter the placement...">
@@ -206,7 +187,7 @@
     <div class="row" style="width: 100%">
         <p>Category ID: {{model.categoryId}}</p>
         <p>Price: {{model.price}}</p>
-        <p>Page position: {{model.categoryPosition}}</p>
+        <p>Page position: {{model.position}}</p>
         <p>English Title: {{model.enTitle}}</p>
         <p>English Description: {{model.enDescription}}</p>
         <p>Vietnamese Title: {{model.vnTitle}}</p>

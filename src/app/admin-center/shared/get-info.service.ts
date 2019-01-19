@@ -18,32 +18,14 @@ export class GetInfoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    public getCategories(task: string, page: string): Observable<Category[]> {
-        this.setTask(task);
-        this.setPage(page);
-
-        const getParams = new HttpParams()
-            .set('page', this.page)
-            .set('task', this.task);
-
-        const httpOptions = {
-            headers: new HttpHeaders({'Content-type': 'application/json'}),
-            params: getParams
-        };
-
-        return this.httpClient.get<Category[]>(this.getPageUri() + 'read.php', httpOptions)
-            .pipe(
-                catchError(this.handleError<Category[]>('searchCategories'))
-            );
-    }
-
     public getPageItems(task: string, page: string): Observable<any> {
         this.setTask(task);
         this.setPage(page);
 
         const getParams = new HttpParams()
             .set('page', this.page)
-            .set('task', this.task);
+            .set('task', this.task)
+            .set('module', 'Admin');
 
         const httpOptions = {
             headers: new HttpHeaders({'Content-type': 'application/json'}),
@@ -58,10 +40,12 @@ export class GetInfoService {
 
     private setPage(page: string) {
         this.page = page;
+        console.log(this.page);
     }
 
     private setTask(task: string) {
         this.task = task;
+        console.log(this.task);
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

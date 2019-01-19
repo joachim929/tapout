@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 // Objects
 import {NewMenuItem, Category} from './new-menu-item.model';
+import {MenuCategory} from '../menu-category.model';
 
 // Services
 import {GetInfoService} from '../../../shared/get-info.service';
@@ -13,8 +14,9 @@ import {MenuInfoService} from '../menu-info.service';
     styleUrls: ['./new-menu-item.component.css']
 })
 export class NewMenuItemComponent implements OnInit {
+    @Input() menuData: MenuCategory[];
     model: NewMenuItem;
-    categories: Array<Category>;
+    categories: MenuCategory[];
     hideTableHints = true;
 
     constructor(private getInfoService: GetInfoService,
@@ -25,9 +27,6 @@ export class NewMenuItemComponent implements OnInit {
 
     // @todo: On create new item, show error messages if there are any.
     ngOnInit() {
-        if (typeof this.categories === 'undefined') {
-            this.getData();
-        }
     }
 
     public toggleTableHints(formInvalid) {
@@ -43,7 +42,7 @@ export class NewMenuItemComponent implements OnInit {
     public formatCategoryId(): void {
         this.model.categoryId = +this.model.categoryId;
 
-        if (typeof this.model.categoryPosition !== 'undefined') {
+        if (typeof this.model.position !== 'undefined') {
             this.formatPosition();
         }
     }
@@ -51,30 +50,20 @@ export class NewMenuItemComponent implements OnInit {
     public formatPosition(): void {
         const catLength = this.menuInfoService.getCategoryLength(this.model.categoryId) + 1;
 
-        this.model.categoryPosition = this.model.categoryPosition = Math.round(this.model.categoryPosition);
-        if (this.model.categoryPosition < 1 ||
-            this.model.categoryPosition > catLength) {
-            this.model.categoryPosition = catLength;
+        this.model.position = this.model.position = Math.round(this.model.position);
+        if (this.model.position < 1 ||
+            this.model.position > catLength) {
+            this.model.position = catLength;
         }
     }
 
-    // @todo: This call is kinda redundant as we got all the data already, just need to wait for it before we can access it
-    // @todo -      solve with a emitter?
-    public getData(): void {
-        this.getInfoService.getCategories('getCategories', 'Menu')
-            .subscribe(response => {
-                this.categories = response;
-                console.log(this.categories);
-            });
-    }
 
     public saveItem(form): void {
         console.log(form);
         const newMenuItem = new NewMenuItem();
         newMenuItem.category = form.value.category;
-        newMenuItem.caption = this.model.caption;
         newMenuItem.enTitle = this.model.enTitle;
-        newMenuItem.categoryPosition = this.model.categoryPosition;
+        newMenuItem.position = this.model.position;
         newMenuItem.price = this.model.price;
         newMenuItem.vnTitle = this.model.vnTitle;
 
