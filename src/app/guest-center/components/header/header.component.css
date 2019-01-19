@@ -18,7 +18,7 @@
 }
 
 /** So NavBar doesn't go onto 2 lines */
-@media(max-width:1008px){
+@media(max-width:1170px){
     .nav>li>a {
         padding-left: 5px;
         padding-right: 5px;
@@ -28,12 +28,12 @@
     border-bottom: 1px solid var(--off-background-color);
     height: 53px;
 }
-.test {
-    box-sizing: border-box;
-}
+
 .nav-image {
     padding: 0 0 0 15px;
     margin: 0;
+    border-bottom: 1px solid var(--off-background-color);
+    border-top: 0;
 }
 
 .navbar {

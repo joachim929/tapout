@@ -9,6 +9,7 @@ import {GalleryComponent} from './pages/gallery/gallery.component';
 import {EventsComponent} from './pages/events/events.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {AboutComponent} from './pages/about/about.component';
+import {DeliveryComponent} from './pages/delivery/delivery.component';
 
 
 const guestRoutes: Routes = [
@@ -22,7 +23,8 @@ const guestRoutes: Routes = [
             {path: 'gallery', component: GalleryComponent},
             {path: 'events', component: EventsComponent},
             {path: 'contact', component: ContactComponent},
-            {path: 'about', component: AboutComponent}
+            {path: 'about', component: AboutComponent},
+            {path: 'delivery', component: DeliveryComponent}
         ]
     }
 ];

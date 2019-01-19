@@ -13,6 +13,7 @@ import {GalleryComponent} from './pages/gallery/gallery.component';
 import {EventsComponent} from './pages/events/events.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {AboutComponent} from './pages/about/about.component';
+import {DeliveryComponent} from './pages/delivery/delivery.component';
 
 // Modules
 import {GuestCenterRoutingModule} from './guest-center-routing.module';
@@ -35,7 +36,8 @@ import {GuestCenterRoutingModule} from './guest-center-routing.module';
         GalleryComponent,
         EventsComponent,
         ContactComponent,
-        AboutComponent
+        AboutComponent,
+        DeliveryComponent
     ],
     providers: [
 
