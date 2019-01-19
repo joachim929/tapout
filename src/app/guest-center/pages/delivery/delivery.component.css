@@ -2,5 +2,14 @@ img {
     border: 0;
     height: 22px;
     float: left;
-    padding-left: 10px;
+}
+
+.multi-description {
+    margin: 0;
+    text-align: left;
+}
+
+.multi {
+    padding-left: 5px;
+    padding-right: 5px;
 }

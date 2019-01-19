@@ -1,69 +1,90 @@
 <section class="row">
-    <div class="col-sm-12" style="text-align: center">
+    <div class="col-xs-12" style="text-align: center">
         <p class="disclaimer">All prices are subject to a 10% VAT charge</p>
     </div>
 </section>
 
-<section class="row">
-    <div class="col-md-8 col-sm-12">
 
-        <!-- Loop through left menu categories -->
-        <article class="inner-container" *ngFor="let foods of foodItems">
-            <button class="btn-primary" type="button" data-toggle="collapse"
-                    attr.data-target=".{{foods.foodCategoryID}}"
-                    aria-expanded="false" aria-controls="collapsible-food-category">
-                {{foods.foodCategoryName}}
-            </button>
+<section class="col-sm-4 col-xs-12">
+    <article class="inner-container">
 
-            <div class="collapse tap-out-content-container {{foods.foodCategoryID}}">
-
-                <!-- Loop through menu items -->
-                <ng-container *ngFor="let food of foods.foodCategory">
-
-                    <div class="row tap-out-row">
-                        <div class="row row-eq-height tap-out-row">
-
-                            <div class="col-xs-9 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
-                                <p class="tap-out-sub-heading">{{food.foodDescriptor}}</p>
-                            </div>
-
-                            <div class="col-xs-3 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
-                                <p class="tap-out-paragraph">{{food.foodPrice}}<span
-                                        [innerHTML]="vietnameseDong"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="tap-out-description" *ngIf="food.foodDescription != 'false'">
-                            <p class="tap-out-paragraph line-breaker">{{food.foodDescription}}</p>
-                        </div>
-
-                    </div>
-                </ng-container>
-            </div>
-        </article>
-    </div>
-    <div class="inner=container col-md-4 col-sm-12">
-
-        <div class="ctn-primary">
+        <button class="btn-primary" type="button" data-toggle="collapse"
+                data-target="#delivery-details"
+                aria-expanded="false" aria-controls="collapsible-delivery-details">
             <img src="/assets/icons/icon-phone-25x25.png">Tap Out Delivery
-        </div>
-        <div class="tap-out-content-container">
+        </button>
+
+        <div id="delivery-details" class="collapse in tap-out-content-container">
 
             <div class="row tap-out-row">
-                <div class="row tap-out-row">
-                    <div class="col-xs-12 tap-out-content-border">
-                        <p class="tap-out-sub-heading" style="text-align: center">Minimum order 200,000<span
+                <div class="col-xs-12 tap-out-content-border">
+                    <p class="tap-out-sub-heading" style="text-align: center;">
+                        Minimum order 200,000
+                        <span [innerHTML]="vietnameseDong"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="tap-out-description" style="text-align: center;">
+                <p class="tap-out-paragraph line-breaker">Free of charge when calling:</p>
+                <a href="tel:028 6270 2700">Tel: 028 6270 2700,</a><br>
+                <a href="tel:096 380 6071">Tel: 096 380 6071</a>
+                <p class="tap-out-paragraph">
+                    Delivery times: 15:00 - 22:00
+                </p>
+            </div>
+
+        </div>
+    </article>
+</section>
+
+<section class="col-sm-8 col-xs-12">
+
+    <!-- Loop through left menu categories -->
+    <article class="inner-container" *ngFor="let foods of foodItems">
+        <button class="btn-primary" type="button" data-toggle="collapse"
+                attr.data-target=".{{foods.categoryId}}"
+                aria-expanded="false" aria-controls="collapsible-food-category">
+            {{foods.categoryName}}
+        </button>
+
+        <div class="collapse in tap-out-content-container {{foods.categoryId}}">
+
+            <!-- Loop through menu items -->
+            <ng-container *ngFor="let food of foods.category">
+
+                <div class="row row-eq-height tap-out-row">
+
+                    <div class="col-xs-9 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
+                        <p class="tap-out-sub-heading">{{food.foodDescriptor}}</p>
+                    </div>
+
+                    <div class="col-xs-3 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
+                        <p class="tap-out-paragraph" *ngIf="food.foodPrice !== null">{{food.foodPrice}}<span
                                 [innerHTML]="vietnameseDong"></span></p>
                     </div>
                 </div>
 
-                <div class="tap-out-description" style="text-align: center">
-                    <p class="tap-out-paragraph line-breaker">Free of charge when calling:
-                        <br>028 6270 2700
-                        <br>096 380 6071</p>
+                <div class="tap-out-description" *ngIf="food.foodDescription != 'false'">
+                    <p class="tap-out-paragraph line-breaker">{{food.foodDescription}}</p>
                 </div>
+                <ng-container *ngFor="let multi of food.multiPrice">
 
-            </div>
+                    <div class="row tap-out-row">
+                        <div class="col-xs-9 multi">
+                            <p class="multi-description">{{multi.description}}</p>
+                        </div>
+                        <div class="col-xs-3 multi">
+                            <p class="tap-out-paragraph">
+                                {{multi.price}}<span
+                                    [innerHTML]="vietnameseDong"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                </ng-container>
+
+            </ng-container>
         </div>
-    </div>
+    </article>
 </section>
