@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top tap-out-nav tap-out-nav-border" style="background-color: black">
   <section class="container">
     <div class="navbar-header" style="float: left">
-      <a class="navbar-toggle nav-image"><img src="/assets/nav-bar-logo-scaled.png"></a>
+      <a class="navbar-toggle nav-image" routerLink="/home" (click)="setTitle('Home')"><img src="/assets/nav-bar-logo-scaled.png"></a>
     </div>
 
     <!-- Hamburger Button -->
@@ -17,19 +17,32 @@
   </section>
 
   <!-- Navbar -->
-  <section class="collapse navbar-collapse" [ngClass]="{ 'in' : isIn }">
-    <!--<img style="float:left" [src]="imgSrc" width="50" height="50" alt="">-->
-    <ul class="nav navbar-nav site-navigation tap-out-nav-border">
-      <!-- Logo/Homepage link -->
+  <section class="collapse navbar-collapse" [ngClass]="{ 'in' : isIn }" id="tap-out-nav">
 
-      <li><a (click)="collapseMenu()" routerLink="/home">HOME</a></li>
-      <li><a (click)="collapseMenu()" routerLink="/menu">MENU</a></li>
-      <li><a (click)="collapseMenu()" routerLink="/gallery">GALLERY</a></li>
-      <li><a (click)="collapseMenu()" routerLink="/events">EVENTS</a></li>
-      <li><a (click)="collapseMenu()" routerLink="/delivery">DELIVERY</a></li>
-      <li><a (click)="collapseMenu()" routerLink="/contact">CONTACT</a></li>
-      <li><a (click)="collapseMenu()" routerLink="/about">ABOUT</a></li>
+    <ul class="nav navbar-nav site-navigation tap-out-nav-border">
+      <li>
+        <a (click)="collapseMenu(); setTitle('Home');" routerLink="/home">HOME</a>
+      </li>
+      <li>
+        <a (click)="collapseMenu(); setTitle('Menu');" routerLink="/menu">MENU</a>
+      </li>
+      <li>
+        <a (click)="collapseMenu(); setTitle('Gallery');" routerLink="/gallery">GALLERY</a>
+      </li>
+      <li>
+        <a (click)="collapseMenu(); setTitle('Events');" routerLink="/events">EVENTS</a>
+      </li>
+      <li>
+        <a (click)="collapseMenu(); setTitle('Delivery');" routerLink="/delivery">DELIVERY</a>
+      </li>
+      <li>
+        <a (click)="collapseMenu(); setTitle('Contact');" routerLink="/contact">CONTACT</a>
+      </li>
+      <li>
+        <a (click)="collapseMenu(); setTitle('About');" routerLink="/about">ABOUT</a>
+      </li>
     </ul>
+
   </section>
 </nav>
 <div class="top-page"></div>

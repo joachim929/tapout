@@ -1,28 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  imgSrc;
+    imgSrc;
 
-  isIn = false;   // store state
+    isIn = false;   // store state
 
-  toggleState() { // click handler
-    const bool = this.isIn;
-    this.isIn = bool === false;
-  }
+    toggleState() { // click handler
+        const bool = this.isIn;
+        this.isIn = bool === false;
+    }
 
-  collapseMenu() {
-    this.isIn = false;
-  }
+    collapseMenu() {
+        this.isIn = false;
+    }
 
-  constructor() { }
+    constructor(private titleService: Title) {
+    }
 
-  ngOnInit() {
-    this.imgSrc = '/assets/nav-bar-logo-scaled.png';
-  }
+    ngOnInit() {
+        this.imgSrc = '/assets/nav-bar-logo-scaled.png';
+    }
+
+    public setTitle( newTitle: string) {
+        this.titleService.setTitle( 'Tap Out Vietnam - ' + newTitle );
+    }
 
 }

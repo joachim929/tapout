@@ -6,7 +6,7 @@ const routes: Routes = [
     {
         path: 'home',
         loadChildren: './guest-center/guest-center.module#GuestCenterModule',
-        data: {preload: true}
+        data: {preload: true},
     },
     {
         path: 'edit',

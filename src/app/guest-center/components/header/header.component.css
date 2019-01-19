@@ -1,5 +1,5 @@
 /** Bigger than Mobile size */
-@media(min-width:767px){
+@media(min-width:885px){
     .site-navigation{
         position: absolute;
         left: 50%;
@@ -8,7 +8,7 @@
 }
 
 /** Mobile size */
-@media(max-width:767px){
+@media(max-width:885px){
     .site-navigation{
         text-align: center;
     }

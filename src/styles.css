@@ -12,28 +12,38 @@
     --border-split-color: #3c3c3c;
 }
 
+#tap-out-nav {
+    max-height: 352px;
+}
+
 @media (max-width: 885px) {
 
     .navbar-header {
         float: none;
     }
+
     .navbar-toggle {
         display: block;
     }
+
     .collapse.navbar-collapse {
         display: none !important;
     }
+
     .nav.navbar-nav {
         float: none !important;
     }
+
     .navbar-nav > li {
         float: none;
     }
+
     .navbar-nav > li > a {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
         border-bottom: 1px solid #fff;
     }
+
     .collapse.in {
         display: block !important;
     }
