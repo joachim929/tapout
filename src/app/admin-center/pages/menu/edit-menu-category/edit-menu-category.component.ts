@@ -18,7 +18,7 @@ export class EditMenuCategoryComponent implements OnInit {
     public hasChanged: boolean;
     private selectedCategory: MenuCategory;
 
-    constructor(private updateService: UpdateMenuService) {
+    constructor(private updateMenuService: UpdateMenuService) {
     }
 
     ngOnInit() {
@@ -36,7 +36,13 @@ export class EditMenuCategoryComponent implements OnInit {
     }
 
     public deleteCategory() {
-
+        this.updateMenuService.deleteCategory(this.model.id)
+            .subscribe( response => {
+                this.updateMenuService.updating = false;
+                if (response === true) {
+                // todo delete the category from the menuData array
+                }
+            });
     }
 
     public initializeUpdate() {
@@ -55,8 +61,9 @@ export class EditMenuCategoryComponent implements OnInit {
         this.menuData[index].vnName = this.model.vnName;
         this.menuData[index].type = this.model.type;
 
-        this.updateService.updateCategory(this.menuData[index])
+        this.updateMenuService.updateCategory(this.menuData[index])
             .subscribe(response => {
+                this.updateMenuService.updating = false;
                 this.menuData[index] = response;
             });
     }

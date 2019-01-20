@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 // Services
 import {GetInfoService} from '../../shared/get-info.service';
 import {MenuInfoService} from './menu-info.service';
+import {UpdateMenuService} from './update-menu.service';
 
 // Models
 import {MenuCategory} from './menu-category.model';
@@ -21,11 +22,16 @@ export class MenuComponent implements OnInit {
     public newItemToggle: boolean;
 
     constructor(private getInfoService: GetInfoService,
+                private updateMenuService: UpdateMenuService,
                 private menuInfoService: MenuInfoService) {
         this.editItemToggle = false;
         this.editCategoryToggle = false;
         this.editItemToggle = false;
         this.newItemToggle = false;
+    }
+
+    get updating(): boolean {
+        return this.updateMenuService.updating;
     }
 
     ngOnInit() {

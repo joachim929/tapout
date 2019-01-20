@@ -1,21 +1,25 @@
 <section class="container">
     <article class="row create-item">
         <button class="col-xs-6 button"
+                [disabled]="updating"
                 (click)="toggleNewItem()">
             Add new menu item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
         </button>
 
         <button class="col-xs-6 button"
+                [disabled]="updating"
                 (click)="toggleNewCategory()">
             Add new menu category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
         </button>
 
         <button class="col-xs-6 button"
+                [disabled]="updating"
                 (click)="toggleEditItem()">
             Edit Menu Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
         </button>
 
         <button class="col-xs-6 button"
+                [disabled]="updating"
                 (click)="toggleEditCategory()">
             Edit Menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
         </button>
@@ -24,5 +28,6 @@
 
 <app-edit-menu-items *ngIf="editItemToggle" [menuData]="menuData"></app-edit-menu-items>
 <app-edit-menu-category *ngIf="editCategoryToggle" [menuData]="menuData"></app-edit-menu-category>
-<app-new-menu-category *ngIf="newCategoryToggle"></app-new-menu-category>
+<app-new-menu-category [menuData]="menuData"></app-new-menu-category>
+<!--<app-new-menu-category *ngIf="newCategoryToggle" [menuData]="menuData"></app-new-menu-category>-->
 <app-new-menu-item *ngIf="newItemToggle" [menuData]="menuData"></app-new-menu-item>

@@ -1,3 +1,12 @@
+input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+input[type="number"]:hover {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
 .menu-item p {
     line-height: 26px;
     margin-top: 5px;
@@ -16,6 +25,14 @@
     background-color: var(--off-background-color);
 }
 
+.input-info p {
+    color: var(--comp-color);
+}
+
+.input-info {
+    min-height: 40px;
+}
+
 .button-edit {
     margin: 5px;
 }
@@ -32,4 +49,8 @@
 .edit-category input {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.right {
+    text-align: right;
 }
