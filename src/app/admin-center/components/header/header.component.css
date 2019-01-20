@@ -1,21 +1,21 @@
-.button-container div {
+a {
+    color: var(--main-color);
     padding: 0;
 }
-
-section.button-container {
-    padding: 0;
+a:hover {
+    color: var(--main-color);
 }
-
-h4 {
-    padding: 5px;
-    float: left;
+a:focus {
+    color: var(--main-color);
 }
 
 .inner-container {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
 }
 
-.row {
-    margin: 0;
+.admin-nav {
+    padding: 0;
 }

@@ -102,19 +102,6 @@
     color: var(--main-color) !important;
 }
 
-.ctn-primary {
-    font-size: 16px;
-    border-radius: 0;
-    text-align: center;
-    border: 1px solid var(--background-color);
-    font-weight: bold;
-    background-color: var(--off-background-color);
-    color: var(--main-color);
-    text-transform: uppercase;
-    padding-top: 6px;
-    padding-bottom: 6px;
-}
-
 /* CSS for headers */
 .tap-out-header {
     width: 100%;
