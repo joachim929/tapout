@@ -9,4 +9,5 @@ export class MenuCategory {
     editedAt?: string;
     position: number;
     items: MenuItem[];
+    editToggle: boolean;
 }

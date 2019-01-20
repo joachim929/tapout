@@ -24,6 +24,8 @@ import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
+import { EditMenuCategoryComponent } from './pages/menu/edit-menu-category/edit-menu-category.component';
+import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-items.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import {PageInfoService} from './shared/page-info.service';
         NewImageComponent,
         ImageComponent,
         NewMenuCategoryComponent,
-        NewMenuItemComponent
+        NewMenuItemComponent,
+        EditMenuCategoryComponent,
+        EditMenuItemsComponent
     ],
     providers: [
         PageInfoService
