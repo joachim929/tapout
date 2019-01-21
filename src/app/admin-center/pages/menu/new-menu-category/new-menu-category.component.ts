@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 // Objects
 import {MenuCategory} from '../menu-category.model';
 
 // Services
 import {UpdateMenuService} from '../update-menu.service';
+import {MenuDataService} from '../menu-data.service';
 
 @Component({
     selector: 'app-new-menu-category',
@@ -12,16 +13,36 @@ import {UpdateMenuService} from '../update-menu.service';
     styleUrls: ['../menu.component.css']
 })
 export class NewMenuCategoryComponent implements OnInit {
-    @Input() menuData: MenuCategory[];
+    _componentToggle: boolean;
+
+    @Output()
+    newCatComponentToggleChange = new EventEmitter<boolean>();
+
+    @Input()
+    get newCatComponentToggle(): boolean {
+        return this._componentToggle;
+    }
+
+    set newCatComponentToggle(val: boolean) {
+        this._componentToggle = val;
+        this.newCatComponentToggleChange.emit(this.newCatComponentToggle);
+    }
+
     public model: MenuCategory;
     public showInfo: boolean;
 
     private highestPagePosition: number;
 
 
-    constructor(private updateMenuService: UpdateMenuService) {
+    constructor(private menuDataService: MenuDataService,
+                private updateMenuService: UpdateMenuService) {
+
         this.highestPagePosition = 0;
         this.model = new MenuCategory();
+    }
+
+    get menuData(): MenuCategory[] {
+        return this.menuDataService.menuData;
     }
 
     get highestPosition(): number {
@@ -60,7 +81,7 @@ export class NewMenuCategoryComponent implements OnInit {
             this.updateMenuService.createNewCategory(this.model)
                 .subscribe(response => {
                     this.updateMenuService.updating = false;
-                //    todo do something with the response
+                    //    todo do something with the response
                 });
         }
     }

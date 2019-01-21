@@ -31,7 +31,6 @@ export class GetInfoService {
             headers: new HttpHeaders({'Content-type': 'application/json'}),
             params: getParams
         };
-        // @todo: Just pass on the info, let the component convert to object
         return this.httpClient.get<MenuCategory[]>(this.getPageUri() + 'read.php', httpOptions)
             .pipe(
                 catchError(this.handleError('get ' + this.page + ' data'))

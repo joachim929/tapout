@@ -5,7 +5,6 @@ import {NewMenuItem, Category} from './new-menu-item.model';
 import {MenuCategory} from '../menu-category.model';
 
 // Services
-import {GetInfoService} from '../../../shared/get-info.service';
 import {MenuInfoService} from '../menu-info.service';
 
 @Component({
@@ -19,8 +18,7 @@ export class NewMenuItemComponent implements OnInit {
     categories: MenuCategory[];
     hideTableHints = true;
 
-    constructor(private getInfoService: GetInfoService,
-                private menuInfoService: MenuInfoService) {
+    constructor(private menuInfoService: MenuInfoService) {
         this.model = new NewMenuItem();
         this.model.disableDescription = false;
     }
