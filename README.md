@@ -1,4 +1,8 @@
-# MyNewTestApp
+# Tap Out
+
+This is very much still a work in progress. To get this up and running you will need to make sure you 
+use my tapoutAPI repository as well. Especially if you want to take a look at how the admin module works
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
