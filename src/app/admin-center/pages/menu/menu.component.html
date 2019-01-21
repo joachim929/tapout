@@ -26,8 +26,9 @@
     </article>
 </section>
 
-<app-edit-menu-items *ngIf="editItemToggle" [menuData]="menuData"></app-edit-menu-items>
-<app-edit-menu-category *ngIf="editCategoryToggle" [menuData]="menuData"></app-edit-menu-category>
-<app-new-menu-category [menuData]="menuData"></app-new-menu-category>
-<!--<app-new-menu-category *ngIf="newCategoryToggle" [menuData]="menuData"></app-new-menu-category>-->
-<app-new-menu-item *ngIf="newItemToggle" [menuData]="menuData"></app-new-menu-item>
+<app-edit-menu-items *ngIf="editItemToggle && gotData" [menuData]="menuData"></app-edit-menu-items>
+<!--<app-edit-menu-items [menuData]="menuData"></app-edit-menu-items>-->
+<app-edit-menu-category *ngIf="editCategoryToggle && gotData"></app-edit-menu-category>
+<!--<app-edit-menu-category [menuData]="menuData"></app-edit-menu-category>-->
+<app-new-menu-category *ngIf="newCategoryToggle && gotData" [menuData]="menuData"></app-new-menu-category>
+<app-new-menu-item *ngIf="newItemToggle && gotData" [menuData]="menuData"></app-new-menu-item>

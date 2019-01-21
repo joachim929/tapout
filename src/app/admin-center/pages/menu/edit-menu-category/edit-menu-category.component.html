@@ -1,4 +1,4 @@
-<ng-container *ngFor="let category of menuData">
+<ng-container *ngFor="let category of menuData; let index = index;">
     <button class="button"
             data-toggle="collapse"
             attr.data-target="#category-{{category.id}}">
@@ -50,10 +50,16 @@
             </div>
 
             <div class="col-xs-3">
-                <button class="button-edit" (click)="moveDown()">
+                <button class="button-edit"
+                        (click)="moveUp(index)"
+                        [disabled]="index === 0"
+                        [class.invalid]="index === 0">
                     Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                 </button>
-                <button class="button-edit" (click)="moveUp()">
+                <button class="button-edit"
+                        (click)="moveDown(index)"
+                        [disabled]="lastCategory(index)"
+                        [class.invalid]="lastCategory(index)">
                     Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                 </button>
                 <button class="button-edit"
@@ -83,13 +89,19 @@
 
             <!-- Buttons -->
             <div class="col-xs-3">
-                <button class="button-edit" (click)="moveDown()">
+                <button class="button-edit"
+                        (click)="moveUp(index)"
+                        [disabled]="index === 0"
+                        [class.invalid]="index === 0">
                     Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                 </button>
-                <button class="button-edit" (click)="moveUp()">
+                <button class="button-edit"
+                        (click)="moveDown(index)"
+                        [disabled]="lastCategory(index)"
+                        [class.invalid]="lastCategory(index)">
                     Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                 </button>
-                <button class="button-edit" (click)="deleteCategory()">
+                <button class="button-edit" (click)="deleteCategory(category)">
                     Delete<img src="/assets/icons/icon-delete-25x25.png">
                 </button>
                 <button class="button-edit"
@@ -100,3 +112,4 @@
         </div>
     </div>
 </ng-container>
+

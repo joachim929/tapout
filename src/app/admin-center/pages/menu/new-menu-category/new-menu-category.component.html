@@ -94,7 +94,7 @@
             <button class="button-edit"
                     [disabled]="!categoryForm.form.valid"
                     [class.invalid]="categoryForm.form.invalid"
-                    (click)="initializeNewCategory()">
+                    (click)="initializeNewCategory(categoryForm.form)">
                 Save<img src="/assets/icons/icon-save-25x25.png">
             </button>
             <button class="button-edit" (click)="categoryForm.reset()">

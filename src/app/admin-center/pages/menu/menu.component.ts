@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 // Services
 import {GetInfoService} from '../../shared/get-info.service';
-import {MenuInfoService} from './menu-info.service';
 import {UpdateMenuService} from './update-menu.service';
+import {MenuDataService} from './menu-data.service';
 
 // Models
 import {MenuCategory} from './menu-category.model';
@@ -14,8 +14,7 @@ import {MenuCategory} from './menu-category.model';
     styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-    public menuData: MenuCategory[];
-
+    public gotData: boolean;
     public editItemToggle: boolean;
     public editCategoryToggle: boolean;
     public newCategoryToggle: boolean;
@@ -23,11 +22,18 @@ export class MenuComponent implements OnInit {
 
     constructor(private getInfoService: GetInfoService,
                 private updateMenuService: UpdateMenuService,
-                private menuInfoService: MenuInfoService) {
+                private menuDataService: MenuDataService) {
+
         this.editItemToggle = false;
         this.editCategoryToggle = false;
         this.editItemToggle = false;
         this.newItemToggle = false;
+        this.gotData = false;
+
+    }
+
+    get menuData(): MenuCategory[] {
+        return this.menuDataService.menuData;
     }
 
     get updating(): boolean {
@@ -41,8 +47,8 @@ export class MenuComponent implements OnInit {
     public getData() {
         this.getInfoService.getPageItems('edit', 'Menu')
             .subscribe(response => {
-                this.menuData = response;
-                this.menuInfoService.setMenuData(response);
+                this.menuDataService.menuData = response;
+                this.gotData = true;
             });
     }
 

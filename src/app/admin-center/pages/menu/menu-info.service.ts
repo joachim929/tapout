@@ -19,7 +19,6 @@ export class MenuInfoService {
     }
 
     public setMenuData(data: MenuCategory[]) {
-        console.log(data);
         this.menuData = data;
     }
 

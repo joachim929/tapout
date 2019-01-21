@@ -40,12 +40,10 @@ export class GetInfoService {
 
     private setPage(page: string) {
         this.page = page;
-        console.log(this.page);
     }
 
     private setTask(task: string) {
         this.task = task;
-        console.log(this.task);
     }
 
     private handleError<T>(operation = 'operation', result?: T) {
