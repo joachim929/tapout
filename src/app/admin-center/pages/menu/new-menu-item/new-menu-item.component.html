@@ -1,4 +1,4 @@
-<article class="col-xs-12 new-item-container border-black">
+<article class="col-xs-12 new-item-container border-black spacer">
 
     <form #itemForm="ngForm">
         <div class="row no-margin">
@@ -180,10 +180,10 @@
                 Clear<img src="/assets/icons/icon-edit-25x25.png">
             </button>
             <!-- @todo: closes component, still needs to be implemented -->
-            <button class="button-edit">
+            <button class="button-edit" (click)="newItemComponentToggle = false">
                 Cancel<img src="/assets/icons/icon-cancel-25x25.png">
             </button>
-
+<div (click)="newItemComponentToggle = false">Test</div>
         </div>
     </form>
     <!--<div class="row" style="width: 100%">-->

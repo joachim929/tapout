@@ -1,3 +1,46 @@
-<p>
-  edit-menu-items works!
-</p>
+<div class="col-xs-6 button-container" *ngFor="let category of menuData; let index = index;"
+     [class.spacer]="(index === 0) || (index === 1)">
+    <button class="button"
+            (click)="selectedCategory = category"
+            [class.button-active]="compareCategoryIds(category.id)">
+        {{category.enName}} / {{category.vnName}}
+    </button>
+</div>
+
+<div *ngFor="let item of selectedCategory.items; let index = index">
+
+    <button class="button"
+            data-toggle="collapse"
+            attr.data-target="#item-{{item.itemId}}"
+            [class.spacer]="index === 0">
+        <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
+        <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
+    </button>
+    <div class="col-xs-12 collapse in border-black menu-item"
+         id="item-{{item.itemId}}">
+
+        <div *ngIf="!item.editToggle">
+            <!-- None form details -->
+            <div class="col-xs-9">
+                <p>Position: {{item.position}}</p>
+            </div>
+
+            <!-- None form buttons -->
+            <div class="col-xs-3">
+            </div>
+        </div>
+
+
+        <form #menuItem *ngIf="item.editToggle">
+            <!-- Form details -->
+            <div class="col-xs-9" hidden>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="col-xs-3" hidden>
+            </div>
+        </form>
+
+    </div>
+
+</div>

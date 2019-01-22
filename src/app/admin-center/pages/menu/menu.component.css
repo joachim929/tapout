@@ -6,6 +6,9 @@ input[type="number"]:hover {
     -webkit-appearance: none;
     -moz-appearance: textfield;
 }
+.spacer {
+    margin-top: 10px;
+}
 
 .menu-item p {
     line-height: 26px;
@@ -19,6 +22,11 @@ input[type="number"]:hover {
 }
 .create-item .button {
     width: 50%;
+}
+
+.button-container {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .menu-item {

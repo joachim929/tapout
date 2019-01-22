@@ -11,3 +11,6 @@ p {
     min-height: 342px;
     padding: 0 15px;
 }
+.spacer {
+    margin-top: 10px;
+}

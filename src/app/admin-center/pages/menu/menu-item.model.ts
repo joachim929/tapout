@@ -11,4 +11,5 @@ export class MenuItem {
     vnDescription: string;
     vnId: number;
     vnTitle: string;
+    editToggle: boolean;
 }
