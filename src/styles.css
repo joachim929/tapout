@@ -5,11 +5,12 @@
 
 :root {
     --text-color: white;
-    --main-color: #7adad7;
-    --comp-color: #da7a7d;
+    --main-color: #7ADAD7;
+    --comp-color: #DA7A7D;
     --background-color: black;
-    --off-background-color: #2c2c2c;
-    --border-split-color: #3c3c3c;
+    --off-background-color: #2C2C2C;
+    --off-white-color: #CDCDCD;
+    --border-split-color: #3C3C3C;
 }
 
 #tap-out-nav {
