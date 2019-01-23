@@ -24,23 +24,9 @@ export class EditMenuItemsComponent implements OnInit {
                 private menuDataService: MenuDataService) {
     }
 
-    get selectedItem(): MenuItem {
-        if (typeof this._item !== 'undefined') {
-            return this._item;
-        } else {
-            return false;
-        }
-    }
-
-    set selectedItem(item: MenuItem) {
-        this._item = item;
-    }
-
     get selectedCategory(): MenuCategory {
         if (typeof this._category !== 'undefined') {
             return this._category;
-        } else {
-            return false;
         }
     }
 
@@ -61,6 +47,45 @@ export class EditMenuItemsComponent implements OnInit {
     ngOnInit() {
         this.model = new MenuItem();
         this.editInProgress = false;
+    }
+
+    public moveUp(form) {
+        console.log(form.form);
+    }
+
+    public moveDown(form) {
+        console.log(form.form);
+    }
+
+    public cancelEdit(index: number) {
+        this.model = new MenuItem;
+        this._category.items[index].editToggle = false;
+    }
+
+    public initializeEdit(item: MenuItem) {
+        for (let i = 0; i < this.selectedCategory.items.length; i++) {
+            this._category.items[i].editToggle =
+                (item.itemId === this._category.items[i].itemId);
+        }
+        this.model = new MenuItem;
+        this.model.categoryId = item.categoryId;
+        this.model.createdAt = item.createdAt;
+        this.model.editedAt = item.editedAt;
+        this.model.enDescription = item.enDescription;
+        this.model.enId = item.enId;
+        this.model.enTitle = item.enTitle;
+        this.model.itemId = item.itemId;
+        this.model.position = item.position;
+        this.model.price = item.price;
+        this.model.vnDescription = item.vnDescription;
+        this.model.vnId = item.vnId;
+        this.model.vnTitle = item.vnTitle;
+        this.model.disableDescription =
+            ((typeof item.enDescription === 'undefined' && typeof item.vnDescription === 'undefined'));
+    }
+
+    public lastItem(index: number) {
+        return index === (this.selectedCategory.items.length - 1);
     }
 
     public compareCategoryIds(id: number) {

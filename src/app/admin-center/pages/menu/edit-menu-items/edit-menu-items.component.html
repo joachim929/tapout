@@ -6,41 +6,240 @@
         {{category.enName}} / {{category.vnName}}
     </button>
 </div>
+<div *ngIf="selectedCategory">
+    <div *ngFor="let item of selectedCategory.items; let index = index">
 
-<div *ngFor="let item of selectedCategory.items; let index = index">
+        <button class="button"
+                data-toggle="collapse"
+                attr.data-target="#item-{{item.itemId}}"
+                [class.spacer]="index === 0">
+            <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
+            <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
+        </button>
+        <div class="col-xs-12 collapse in border-black menu-item"
+             id="item-{{item.itemId}}">
 
-    <button class="button"
-            data-toggle="collapse"
-            attr.data-target="#item-{{item.itemId}}"
-            [class.spacer]="index === 0">
-        <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
-        <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
-    </button>
-    <div class="col-xs-12 collapse in border-black menu-item"
-         id="item-{{item.itemId}}">
+            <div *ngIf="!item.editToggle">
+                <!-- None form details -->
+                <div class="col-xs-9">
+                    <div class="row">
 
-        <div *ngIf="!item.editToggle">
-            <!-- None form details -->
-            <div class="col-xs-9">
-                <p>Position: {{item.position}}</p>
+                        <p class="col-xs-2">English Title:</p>
+                        <p class="col-xs-6">{{item.enTitle}}</p>
+                        <p class="col-xs-2">Category:</p>
+                        <p class="col-xs-2">{{selectedCategory.enName}}/<br>{{selectedCategory.vnName}}</p>
+
+                    </div>
+                    <div class="row">
+
+                        <p class="col-xs-2">Vietnamese Title:</p>
+                        <p class="col-xs-6">{{item.vnTitle}}</p>
+                        <p class="col-xs-1">Position:</p>
+                        <p class="col-xs-3">{{item.position}}</p>
+
+                    </div>
+                    <div class="row">
+
+                        <p class="col-xs-2">Price:</p>
+                        <p class="col-xs-4">{{item.price}}</p>
+
+                    </div>
+
+                    <div class="row">
+
+                        <p class="col-xs-2">English Description:</p>
+                        <p class="col-xs-4">{{item.enDescription}}</p>
+                        <p class="col-xs-2">Vietnamese Description:</p>
+                        <p class="col-xs-4">{{item.vnDescription}}</p>
+
+                    </div>
+                    <div class="row">
+
+                        <p class="col-xs-2">Created at:</p>
+                        <p class="col-xs-4">{{item.createdAt}}</p>
+                        <p class="col-xs-2">Edited at:</p>
+                        <p class="col-xs-4">{{item.editedAt}}</p>
+
+                    </div>
+                </div>
+
+                <!-- None form buttons -->
+                <div class="col-xs-3">
+                    <button class="button-edit"
+                            (click)="moveUp(index)"
+                            [disabled]="index === 0"
+                            [class.disabled]="index === 0">
+                        Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+                    </button>
+                    <button class="button-edit"
+                            (click)="moveDown(index)"
+                            [disabled]="lastItem(index)"
+                            [class.disabled]="lastItem(index)">
+                        Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+                    </button>
+                    <button class="button-edit">
+                        Delete<img src="/assets/icons/icon-delete-25x25.png">
+                    </button>
+                    <button class="button-edit" (click)="initializeEdit(item);">
+                        Edit<img src="/assets/icons/icon-edit-25x25.png">
+                    </button>
+                </div>
             </div>
 
-            <!-- None form buttons -->
-            <div class="col-xs-3">
-            </div>
+
+            <form #menuItem="ngForm" *ngIf="item.editToggle">
+                <!-- Form details -->
+                <div class="col-xs-9">
+                    <div class="edit-category row">
+
+                        <label class="col-xs-2" for="enTitle">English Title:</label>
+                        <input class="col-xs-6"
+                               id="enTitle"
+                               name="enTitle"
+                               type="text"
+                               minlength="4"
+                               maxlength="255"
+                               required
+                               [(ngModel)]="model.enTitle"
+                               #enTitle="ngModel">
+
+                        <label class="col-xs-2" for="category">Category:</label>
+                        <select class="col-xs-2"
+                                id="category"
+                                name="category"
+                                required
+                                [(ngModel)]="model.categoryId"
+                                #category="ngModel">
+                            <option *ngFor="let category of menuData" [value]="category.id">
+                                {{category.enName}} / {{category.vnName}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="edit-category row">
+
+                        <label class="col-xs-2" for="vnTitle">Vietnamese Title:</label>
+                        <input class="col-xs-6"
+                               id="vnTitle"
+                               name="vnTitle"
+                               type="text"
+                               minlength="4"
+                               maxlength="255"
+                               required
+                               [(ngModel)]="model.vnTitle"
+                               #vnTitle="ngModel">
+
+                        <label class="col-xs-2" for="position">Position:</label>
+                        <input class="col-xs-2"
+                               id="position"
+                               name="position"
+                               type="number"
+                               min="0"
+                               required
+                               [(ngModel)]="model.position"
+                               #position="ngModel">
+
+                    </div>
+                    <div class="edit-category row">
+
+                        <label class="col-xs-2" for="price">Price:</label>
+                        <input class="col-xs-6"
+                               id="price"
+                               name="price"
+                               type="text"
+                               required
+                               [(ngModel)]="model.price"
+                               #price="ngModel">
+                        <label class="col-xs-2" for="noDescription">No description</label>
+                        <input class=""
+                               id="noDescription"
+                               name="noDescription"
+                               type="checkbox"
+                               [(ngModel)]="model.disableDescription"
+                               #noDescription="ngModel">
+
+                    </div>
+                    <div class="edit-category row">
+
+                        <label class="col-xs-2" for="enDescription">English Description:</label>
+                        <textarea class="col-xs-10"
+                                  id="enDescription"
+                                  name="enDescription"
+                                  minlength="4"
+                                  required
+                                  [disabled]="model.disableDescription"
+                                  [(ngModel)]="model.enDescription"
+                                  #enDescription="ngModel"></textarea>
+
+                        <label class="col-xs-2" for="vnDescription">Vietnamese Description:</label>
+                        <textarea class="col-xs-10"
+                                  id="vnDescription"
+                                  name="vnDescription"
+                                  minlength="4"
+                                  required
+                                  [disabled]="model.disableDescription"
+                                  [(ngModel)]="model.vnDescription"
+                                  #vnDescription="ngModel"></textarea>
+
+                    </div>
+                    <div class="row">
+
+                        <p class="col-xs-2">Created at:</p>
+                        <p class="col-xs-4">{{item.createdAt}}</p>
+                        <p class="col-xs-2">Edited at:</p>
+                        <p class="col-xs-4">{{item.editedAt}}</p>
+
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="col-xs-3">
+                    <button class="button-edit"
+                            (click)="moveUp(menuItem)"
+                            [disabled]="index === 0"
+                            [class.disabled]="index === 0">
+                        Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+                    </button>
+                    <button class="button-edit"
+                            (click)="moveDown(menuItem)"
+                            [disabled]="lastItem(index)"
+                            [class.disabled]="lastItem(index)">
+                        Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+                    </button>
+                    <button class="button-edit"
+                            [disabled]="menuItem.form.invalid"
+                            [class.invalid]="menuItem.form.invalid">
+                        Save<img src="/assets/icons/icon-save-25x25.png">
+                    </button>
+                    <button class="button-edit" (click)="cancelEdit(index);">
+                        Cancel<img src="/assets/icons/icon-cancel-25x25.png">
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <p>CategoryId: {{model.categoryId}}</p>
+                        <p>Position: {{model.position}}</p>
+                        <p>English Title: {{model.enTitle}}</p>
+                        <p>Vietnamese Title: {{model.vnTitle}}</p>
+                        <p>English Description: {{model.enDescription}}</p>
+                        <p>Vietnamese Description: {{model.vnDescription}}</p>
+                        <p>Price: {{model.price}}</p>
+                    </div>
+                    <div class="col-xs-6">
+                        <p>Valid or not</p>
+                        <p>enTitle: {{enTitle.invalid}}</p>
+                        <p>category: {{category.invalid}}</p>
+                        <p>vnTitle: {{vnTitle.invalid}}</p>
+                        <p>position: {{position.invalid}}</p>
+                        <p>Price: {{price.invalid}}</p>
+                        <p>enDescription: {{enDescription.invalid}}</p>
+                        <p>vnDescription: {{vnDescription.invalid}}</p>
+                    </div>
+                </div>
+
+            </form>
+
         </div>
 
-
-        <form #menuItem *ngIf="item.editToggle">
-            <!-- Form details -->
-            <div class="col-xs-9" hidden>
-            </div>
-
-            <!-- Form Buttons -->
-            <div class="col-xs-3" hidden>
-            </div>
-        </form>
-
     </div>
-
 </div>

@@ -58,6 +58,15 @@ input[type="number"]:hover {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.edit-category input[type="checkbox"] {
+    margin-top: 17px;
+    width: 13px;
+}
+
+.edit-category textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .right {
     text-align: right;

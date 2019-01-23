@@ -125,13 +125,10 @@ export class EditMenuCategoryComponent implements OnInit {
     }
 
     public formChange() {
-        if (this.selectedCategory.enName !== this.model.enName ||
+        this.hasChanged =
+            this.selectedCategory.enName !== this.model.enName ||
             this.selectedCategory.vnName !== this.model.vnName ||
-            this.selectedCategory.type !== this.model.type) {
-            this.hasChanged = true;
-        } else {
-            this.hasChanged = false;
-        }
+            this.selectedCategory.type !== this.model.type;
     }
 
     private formatEditToggle() {

@@ -5,11 +5,12 @@
 
 :root {
     --text-color: white;
+    --off-white-color: #CDCDCD;
     --main-color: #7ADAD7;
     --comp-color: #DA7A7D;
     --background-color: black;
+    --darkest-grey-color: #232323;
     --off-background-color: #2C2C2C;
-    --off-white-color: #CDCDCD;
     --border-split-color: #3C3C3C;
 }
 

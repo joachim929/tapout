@@ -58,6 +58,13 @@
     height: 22px;
 }
 
+.disabled {
+    background-color: var(--darkest-grey-color);
+}
+.disabled:hover {
+    background-color: var(--darkest-grey-color);
+}
+
 .invalid {
     background-color: var(--comp-color);
 }
