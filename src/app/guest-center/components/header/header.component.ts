@@ -7,18 +7,11 @@ import {Title} from '@angular/platform-browser';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+
     imgSrc;
 
     isIn = false;   // store state
-
-    toggleState() { // click handler
-        const bool = this.isIn;
-        this.isIn = bool === false;
-    }
-
-    collapseMenu() {
-        this.isIn = false;
-    }
 
     constructor(private titleService: Title) {
     }
@@ -27,8 +20,17 @@ export class HeaderComponent implements OnInit {
         this.imgSrc = '/assets/nav-bar-logo-scaled.png';
     }
 
-    public setTitle( newTitle: string) {
-        this.titleService.setTitle( 'Tap Out Vietnam - ' + newTitle );
+    public setTitle(newTitle: string) {
+        this.titleService.setTitle('Tap Out Vietnam - ' + newTitle);
+    }
+
+    toggleState() { // click handler
+        const bool = this.isIn;
+        this.isIn = bool === false;
+    }
+
+    collapseMenu() {
+        this.isIn = false;
     }
 
 }

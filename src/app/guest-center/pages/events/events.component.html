@@ -1,6 +1,27 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12">
 
+        <section class="inner-container" *ngFor="let eventsObjects of eventItems">
+            <button class="btn-primary" type="button" data-toggle="collapse"
+                    attr.data-target=".{{eventsObjects.eventCategoryID}}" aria-expanded="false"
+                    aria-controls="collapsible-content">
+                {{eventsObjects.eventCategoryName}}
+            </button>
+            <div class="collapse in tap-out-content-container {{eventsObjects.eventCategoryID}}">
+                <article *ngFor="let eventObject of eventsObjects.eventCategory" class="row tap-out-row">
+                    <div class="row row-eq-height tap-out-row">
+                        <div class="col-xs-9 tap-out-content-border">
+                            <p class="tap-out-paragraph line-breaker" [innerHtml]="eventObject.eventDescription" style="text-align: left;"></p>
+                        </div>
+                        <div class="col-xs-3 tap-out-content-border">
+                            <!-- 'shortTime' has the following format: 8:00 PM -->
+                            <p class="tap-out-paragraph" *ngIf="eventObject.eventDescription !== 'February 5, 2019 - Closed for the day'">{{eventObject.eventTime | date: 'short'}}</p>
+                            <!--<p class="tap-out-paragraph" *ngIf="eventObject.eventDescription === 'Closed for the day'">{{eventObject.eventTime | date: 'shortDate'}}</p>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
         <section class="inner-container" *ngFor="let events of eventWeeklyItems">
             <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{events.eventID}}"
                     aria-expanded="false" aria-controls="collapsible-content">
@@ -17,42 +38,5 @@
             </div>
         </section>
 
-        <section class="inner-container" *ngFor="let eventsObjects of eventItems">
-            <button class="btn-primary" type="button" data-toggle="collapse"
-                    attr.data-target=".{{eventsObjects.eventCategoryID}}" aria-expanded="false"
-                    aria-controls="collapsible-content">
-                {{eventsObjects.eventCategoryName}}
-            </button>
-            <div class="collapse in tap-out-content-container {{eventsObjects.eventCategoryID}}">
-                <article *ngFor="let eventObject of eventsObjects.eventCategory" class="row tap-out-row">
-                    <!--<div class="row row-eq-height tap-out-row">-->
-                    <!--<div class="col-xs-9 tap-out-content-border">-->
-                    <!--<p class="tap-out-sub-heading">{{eventObject.eventTime | date: 'longDate'}}:</p>-->
-                    <!--</div>-->
-                    <!--<div class="col-xs-3 tap-out-content-border">-->
-                    <!--&lt;!&ndash; 'shortTime' has the following format: 8:00 PM &ndash;&gt;-->
-                    <!--<p class="tap-out-paragraph">Starting Time:</p>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <div class="row row-eq-height tap-out-row">
-                        <div class="col-xs-9 tap-out-content-border">
-                            <p class="tap-out-sub-heading line-breaker" [innerHtml]="eventObject.eventDescription"></p>
-                        </div>
-                        <div class="col-xs-3 tap-out-content-border">
-                            <!-- 'shortTime' has the following format: 8:00 PM -->
-                            <p class="tap-out-paragraph">{{eventObject.eventTime | date: 'short'}}</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
     </div>
 </div>
-
-
-<!--
-Google Calender API:
-    key: AIzaSyDOGw9WDaSnzV-RBg4WimQgCQ9W8koEJhc
-    Client ID: 1063812791177-d2dt9aetchbuk0fbbh8arhbfrsl2jtg0.apps.googleusercontent.com
-    Client secret: SDxSMQmIahZnkyaPS19cgNuN
--->

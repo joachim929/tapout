@@ -1,0 +1,18 @@
+.announcement .tap-out-header{
+    padding: 25px;
+    color: var(--comp-color);
+}
+
+.announcement:hover .tap-out-header{
+    background-color: var(--border-split-color);
+}
+
+.announcement:focus .tap-out-header{
+}
+
+.announcement .tap-out-header img {
+    border: 0;
+    height: 20px;
+    float: right;
+    margin-right: 10px;
+}

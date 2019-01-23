@@ -4,23 +4,28 @@
 import {EventContentObject} from './event-content-object';
 
 export const EVENTITEMS: EventContentObject[] = [
-    // {
-    //     eventCategory: [
-    //         {
-    //             eventID: 1,
-    //             eventTime: new Date('November 2, 2019 21:00'),
-    //             eventDescription: 'This coming Friday from 9pm-1am make sure you come along to Tap Out. ' +
-    //             'We are hosting a charity event with all proceeds going to Audium Charity.\n\n' +
-    //
-    //             'There is a free East West Pale Ale for every one, raffle, auction, charity hour, ' +
-    //             'as well as a DJ playing throughout the night.\n\n' +
-    //
-    //             'Come on down and help support this great charity.\n' +
-    //             '<a href="https://www.facebook.com/events/2483074328375580/">https://www.facebook.com/events/2483074328375580/</a>'
-    //         }
-    //     ],
-    //     eventCategoryID: 100,
-    //     eventCategoryName: 'Audium Charity'
-    // }
+    {
+        eventCategory: [
+            {
+                eventID: 1,
+                eventTime: new Date('February 4, 2019 06:00'),
+                eventDescription: 'Open from 6am to 4pm\n\n' +
+                'We will be showing the Super bowl'
+            },
+            {
+                eventID: 2,
+                eventTime: new Date('February 5, 2019 00:00'),
+                eventDescription: 'February 5, 2019 - Closed for the day'
+            },
+            {
+                eventID: 3,
+                eventTime: new Date('February 6, 2019 15:00'),
+                eventDescription: 'From the 6th - 10th of February we will be open from 3pm - midnight\n\n' +
+                'Our menu for those days can be found her: <a href="">Special menu</a>'
+            }
+        ],
+        eventCategoryID: 100,
+        eventCategoryName: 'Tet, Lunar New Year'
+    }
 ];
 

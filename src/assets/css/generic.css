@@ -22,7 +22,6 @@
     text-align: right !important;
 }
 
-
 .border-black {
     border: 1px solid var(--background-color);
 }
@@ -32,9 +31,10 @@
 }
 
 /* Used so no content hides under the nav-bar */
-.top-page{
+.top-page {
     margin-top: 60px;
 }
-.bottom-page{
+
+.bottom-page {
     margin-top: 42px;
 }
