@@ -15,6 +15,7 @@ import {MenuDataService} from '../menu-data.service';
 })
 export class EditMenuItemsComponent implements OnInit {
     public model: MenuItem;
+    public hasChanged: boolean;
     public editInProgress: boolean;
 
     private _category: MenuCategory;
@@ -38,6 +39,7 @@ export class EditMenuItemsComponent implements OnInit {
         } else {
             this._category = category;
         }
+        console.log(this._category);
     }
 
     get menuData(): MenuCategory[] {
@@ -49,24 +51,134 @@ export class EditMenuItemsComponent implements OnInit {
         this.editInProgress = false;
     }
 
-    public moveUp(form) {
-        console.log(form.form);
+    initializeDelete() {
+        console.log('Implement initialize delete button');
     }
 
-    public moveDown(form) {
-        console.log(form.form);
+    // todo implement this
+    moveUp(index: number) {
+        this.cancelEdit(index);
+        const tempCurrent = this._category.items[index];
+        const tempPrevious = this._category.items[index - 1];
+        tempCurrent.position--;
+        tempPrevious.position++;
+
+        // on success implement this
+        this._category.items[index] = tempPrevious;
+        this._category.items[index - 1] = tempCurrent;
     }
 
-    public cancelEdit(index: number) {
+    // todo implement this
+    moveDown(index: number) {
+        this.cancelEdit(index);
+        const tempCurrent = this._category.items[index];
+        const tempNext = this._category.items[index + 1];
+        tempCurrent.position++;
+        tempNext.position--;
+
+        // on success implement this
+        this._category.items[index] = tempNext;
+        this._category.items[index + 1] = tempCurrent;
+    }
+
+    checkCategory() {
+        const tempCategory = this.getCategoryById(this.model.categoryId);
+
+        if (this.model.position > tempCategory.items.length + 1) {
+            this.model.position = tempCategory.items.length + 1;
+        }
+
+        this.formChange();
+    }
+
+    toggleCategory(category: MenuCategory) {
+        if (typeof this._category !== 'undefined' && typeof this._category.items !== 'undefined') {
+            this.selectedCategory.items.forEach((item, index) => {
+                this.selectedCategory.items[index].editToggle = false;
+            });
+        }
+        this.selectedCategory = category;
+    }
+
+    getCategoryById(id: number): MenuCategory | null {
+        let category = null;
+        for (let i = 0; i < this.menuData.length; i++) {
+            if (id === this.menuData[i].id) {
+                category = this.menuData[i];
+                break;
+            }
+        }
+        return category;
+    }
+
+    formChange() {
+        let difference = false;
+        if (this.model.categoryId !== this._item.categoryId) {
+            difference = true;
+        }
+        if (this.model.enTitle !== this._item.enTitle) {
+            difference = true;
+        }
+        if (this.model.position !== this._item.position) {
+            difference = true;
+        }
+        if (this.model.price !== this._item.price) {
+            difference = true;
+        }
+        if (this.model.vnTitle !== this._item.vnTitle) {
+            difference = true;
+        }
+        if (this.model.disableDescription) {
+            if (this._item.enDescription !== null &&
+                this._item.vnDescription !== null) {
+                difference = true;
+            }
+        } else {
+            if (this.model.enDescription !== this._item.enDescription) {
+                difference = true;
+            }
+            if (this.model.vnDescription !== this._item.vnDescription) {
+                difference = true;
+            }
+        }
+        this.hasChanged = difference;
+    }
+
+    checkPosition() {
+        const tempCategory = this.getCategoryById(this.model.categoryId);
+        if (tempCategory !== null) {
+            const itemsLength = tempCategory.items.length + 1;
+
+            if (itemsLength !== null) {
+                this.model.position = this.model.position = Math.round(this.model.position);
+                if (this.model.position < 1 ||
+                    this.model.position > itemsLength) {
+                    this.model.position = itemsLength;
+                }
+            }
+        }
+        this.formChange();
+    }
+
+    /**
+     * This function resets parameters to cancel an edit
+     */
+    cancelEdit(index: number) {
         this.model = new MenuItem;
         this._category.items[index].editToggle = false;
     }
 
-    public initializeEdit(item: MenuItem) {
+    initializeEdit(item: MenuItem) {
         for (let i = 0; i < this.selectedCategory.items.length; i++) {
             this._category.items[i].editToggle =
                 (item.itemId === this._category.items[i].itemId);
         }
+
+        this.setModelItem(item);
+    }
+
+    setModelItem(item: MenuItem) {
+        this._item = item;
         this.model = new MenuItem;
         this.model.categoryId = item.categoryId;
         this.model.createdAt = item.createdAt;
@@ -81,14 +193,20 @@ export class EditMenuItemsComponent implements OnInit {
         this.model.vnId = item.vnId;
         this.model.vnTitle = item.vnTitle;
         this.model.disableDescription =
-            ((typeof item.enDescription === 'undefined' && typeof item.vnDescription === 'undefined'));
+            ((item.enDescription === null && item.vnDescription === null));
     }
 
-    public lastItem(index: number) {
+    /**
+     * This function checks if it is the last in the array
+     */
+    lastItem(index: number) {
         return index === (this.selectedCategory.items.length - 1);
     }
 
-    public compareCategoryIds(id: number) {
+    /**
+     * This function checks if a given id has the same value of the selected category
+     */
+    compareCategoryIds(id: number) {
         let comparison = false;
         if (typeof this.selectedCategory !== 'undefined') {
             comparison = id === this.selectedCategory.id;

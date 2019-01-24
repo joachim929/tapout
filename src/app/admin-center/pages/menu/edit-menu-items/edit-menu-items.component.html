@@ -1,7 +1,7 @@
 <div class="col-xs-6 button-container" *ngFor="let category of menuData; let index = index;"
      [class.spacer]="(index === 0) || (index === 1)">
     <button class="button"
-            (click)="selectedCategory = category"
+            (click)="toggleCategory(category)"
             [class.button-active]="compareCategoryIds(category.id)">
         {{category.enName}} / {{category.vnName}}
     </button>
@@ -12,49 +12,48 @@
         <button class="button"
                 data-toggle="collapse"
                 attr.data-target="#item-{{item.itemId}}"
-                [class.spacer]="index === 0">
+                [class.spacer]="index === 0"
+                (click)="cancelEdit(index)">
             <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
             <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
         </button>
         <div class="col-xs-12 collapse in border-black menu-item"
              id="item-{{item.itemId}}">
 
-            <div *ngIf="!item.editToggle">
+            <div class="row row-eq-height" *ngIf="!item.editToggle">
                 <!-- None form details -->
                 <div class="col-xs-9">
-                    <div class="row">
 
+                    <div class="row">
                         <p class="col-xs-2">English Title:</p>
                         <p class="col-xs-6">{{item.enTitle}}</p>
                         <p class="col-xs-2">Category:</p>
+
                         <p class="col-xs-2">{{selectedCategory.enName}}/<br>{{selectedCategory.vnName}}</p>
-
                     </div>
-                    <div class="row">
 
+                    <div class="row">
                         <p class="col-xs-2">Vietnamese Title:</p>
                         <p class="col-xs-6">{{item.vnTitle}}</p>
-                        <p class="col-xs-1">Position:</p>
-                        <p class="col-xs-3">{{item.position}}</p>
 
+                        <p class="col-xs-2">Position:</p>
+                        <p class="col-xs-2">{{item.position}}</p>
                     </div>
-                    <div class="row">
 
+                    <div class="row">
                         <p class="col-xs-2">Price:</p>
                         <p class="col-xs-4">{{item.price}}</p>
-
                     </div>
 
                     <div class="row">
-
                         <p class="col-xs-2">English Description:</p>
                         <p class="col-xs-4">{{item.enDescription}}</p>
+
                         <p class="col-xs-2">Vietnamese Description:</p>
                         <p class="col-xs-4">{{item.vnDescription}}</p>
-
                     </div>
-                    <div class="row">
 
+                    <div class="row">
                         <p class="col-xs-2">Created at:</p>
                         <p class="col-xs-4">{{item.createdAt}}</p>
                         <p class="col-xs-2">Edited at:</p>
@@ -64,34 +63,40 @@
                 </div>
 
                 <!-- None form buttons -->
-                <div class="col-xs-3">
+                <div class="col-xs-3 button-edit-container">
+
                     <button class="button-edit"
                             (click)="moveUp(index)"
                             [disabled]="index === 0"
                             [class.disabled]="index === 0">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
+
                     <button class="button-edit"
                             (click)="moveDown(index)"
                             [disabled]="lastItem(index)"
                             [class.disabled]="lastItem(index)">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
-                    <button class="button-edit">
-                        Delete<img src="/assets/icons/icon-delete-25x25.png">
-                    </button>
+
                     <button class="button-edit" (click)="initializeEdit(item);">
                         Edit<img src="/assets/icons/icon-edit-25x25.png">
                     </button>
+
+                    <button class="button-edit button-delete"
+                            (click)="initializeDelete()">
+                        Delete<img src="/assets/icons/icon-delete-25x25.png">
+                    </button>
+
                 </div>
             </div>
 
 
-            <form #menuItem="ngForm" *ngIf="item.editToggle">
+            <form class="row row-eq-height" #menuItem="ngForm" *ngIf="item.editToggle">
                 <!-- Form details -->
                 <div class="col-xs-9">
-                    <div class="edit-category row">
 
+                    <div class="edit-category row">
                         <label class="col-xs-2" for="enTitle">English Title:</label>
                         <input class="col-xs-6"
                                id="enTitle"
@@ -100,6 +105,7 @@
                                minlength="4"
                                maxlength="255"
                                required
+                               (change)="formChange()"
                                [(ngModel)]="model.enTitle"
                                #enTitle="ngModel">
 
@@ -108,16 +114,16 @@
                                 id="category"
                                 name="category"
                                 required
+                                (change)="checkCategory()"
                                 [(ngModel)]="model.categoryId"
                                 #category="ngModel">
-                            <option *ngFor="let category of menuData" [value]="category.id">
+                            <option *ngFor="let category of menuData" [ngValue]="category.id">
                                 {{category.enName}} / {{category.vnName}}
                             </option>
                         </select>
-
                     </div>
-                    <div class="edit-category row">
 
+                    <div class="edit-category row">
                         <label class="col-xs-2" for="vnTitle">Vietnamese Title:</label>
                         <input class="col-xs-6"
                                id="vnTitle"
@@ -126,6 +132,7 @@
                                minlength="4"
                                maxlength="255"
                                required
+                               (change)="formChange();"
                                [(ngModel)]="model.vnTitle"
                                #vnTitle="ngModel">
 
@@ -136,37 +143,39 @@
                                type="number"
                                min="0"
                                required
+                               (blur)="checkPosition()"
                                [(ngModel)]="model.position"
                                #position="ngModel">
-
                     </div>
-                    <div class="edit-category row">
 
+                    <div class="edit-category row">
                         <label class="col-xs-2" for="price">Price:</label>
                         <input class="col-xs-6"
                                id="price"
                                name="price"
                                type="text"
                                required
+                               (change)="formChange();"
                                [(ngModel)]="model.price"
                                #price="ngModel">
+
                         <label class="col-xs-2" for="noDescription">No description</label>
-                        <input class=""
-                               id="noDescription"
+                        <input id="noDescription"
                                name="noDescription"
                                type="checkbox"
+                               (change)="formChange();"
                                [(ngModel)]="model.disableDescription"
                                #noDescription="ngModel">
-
                     </div>
-                    <div class="edit-category row">
 
+                    <div class="edit-category row">
                         <label class="col-xs-2" for="enDescription">English Description:</label>
                         <textarea class="col-xs-10"
                                   id="enDescription"
                                   name="enDescription"
                                   minlength="4"
                                   required
+                                  (change)="formChange();"
                                   [disabled]="model.disableDescription"
                                   [(ngModel)]="model.enDescription"
                                   #enDescription="ngModel"></textarea>
@@ -177,46 +186,67 @@
                                   name="vnDescription"
                                   minlength="4"
                                   required
+                                  (change)="formChange();"
                                   [disabled]="model.disableDescription"
                                   [(ngModel)]="model.vnDescription"
                                   #vnDescription="ngModel"></textarea>
-
                     </div>
-                    <div class="row">
 
+                    <div class="row">
                         <p class="col-xs-2">Created at:</p>
                         <p class="col-xs-4">{{item.createdAt}}</p>
                         <p class="col-xs-2">Edited at:</p>
                         <p class="col-xs-4">{{item.editedAt}}</p>
-
                     </div>
+
                 </div>
 
                 <!-- Form Buttons -->
-                <div class="col-xs-3">
+                <div class="col-xs-3 button-edit-container">
+
                     <button class="button-edit"
-                            (click)="moveUp(menuItem)"
+                            (click)="moveUp(index)"
                             [disabled]="index === 0"
                             [class.disabled]="index === 0">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
+
                     <button class="button-edit"
-                            (click)="moveDown(menuItem)"
+                            (click)="moveDown(index)"
                             [disabled]="lastItem(index)"
                             [class.disabled]="lastItem(index)">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
+
                     <button class="button-edit"
-                            [disabled]="menuItem.form.invalid"
-                            [class.invalid]="menuItem.form.invalid">
-                        Save<img src="/assets/icons/icon-save-25x25.png">
-                    </button>
-                    <button class="button-edit" (click)="cancelEdit(index);">
+                            (click)="cancelEdit(index);">
                         Cancel<img src="/assets/icons/icon-cancel-25x25.png">
                     </button>
+
+                    <!-- todo implement this -->
+                    <button class="button-edit"
+                            [disabled]="menuItem.form.invalid"
+                            [class.invalid]="menuItem.form.invalid || !hasChanged">
+                        Save<img src="/assets/icons/icon-save-25x25.png">
+                    </button>
+
+                    <button class="button-edit button-delete"
+                            (click)="initializeDelete()">
+                        Delete<img src="/assets/icons/icon-delete-25x25.png">
+                    </button>
+
+                    <!-- todo implement info/warning messages here -->
+                    <div class="warning">
+                        <p class="warning" *ngIf="model.categoryId !== selectedCategory.id">
+                            You have selected to move this item to a different category
+                        </p>
+                    </div>
+
                 </div>
+
+                <!-- todo: Once finished remove this -->
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-4">
                         <p>CategoryId: {{model.categoryId}}</p>
                         <p>Position: {{model.position}}</p>
                         <p>English Title: {{model.enTitle}}</p>
@@ -225,7 +255,7 @@
                         <p>Vietnamese Description: {{model.vnDescription}}</p>
                         <p>Price: {{model.price}}</p>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-4">
                         <p>Valid or not</p>
                         <p>enTitle: {{enTitle.invalid}}</p>
                         <p>category: {{category.invalid}}</p>
@@ -234,6 +264,16 @@
                         <p>Price: {{price.invalid}}</p>
                         <p>enDescription: {{enDescription.invalid}}</p>
                         <p>vnDescription: {{vnDescription.invalid}}</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p>Category:</p>
+                        <p>id: {{selectedCategory.id}}</p>
+                        <p>type: {{selectedCategory.type}}</p>
+                        <p>enName: {{selectedCategory.enName}}</p>
+                        <p>vnName: {{selectedCategory.vnName}}</p>
+                        <p>position: {{selectedCategory.position}}</p>
+                        <p>items length: {{selectedCategory.items.length}}</p>
+                        <p>editToggle: {{selectedCategory.editToggle}}</p>
                     </div>
                 </div>
 

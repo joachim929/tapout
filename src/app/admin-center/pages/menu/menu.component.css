@@ -29,6 +29,11 @@ input[type="number"]:hover {
     padding-right: 0;
 }
 
+.button-edit-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .menu-item {
     background-color: var(--off-background-color);
 }
@@ -70,4 +75,16 @@ input[type="number"]:hover {
 
 .right {
     text-align: right;
+}
+
+.warning .warning {
+    font-weight: bold;
+}
+
+.warning .invalid {
+    color: var(--comp-color);
+}
+
+.button-delete {
+    margin-top: auto;
 }
