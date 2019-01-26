@@ -14,9 +14,7 @@
     --border-split-color: #3C3C3C;
 }
 
-#tap-out-nav {
-    max-height: 352px;
-}
+
 
 @media (max-width: 885px) {
 

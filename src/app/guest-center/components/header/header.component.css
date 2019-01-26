@@ -24,6 +24,18 @@
         padding-right: 5px;
     }
 }
+
+.tap-out-nav-border {
+    background-color: var(--background-color);
+}
+
+#tap-out-nav {
+    /*max-height: 352px;*/
+}
+
+.navbar-collapse {
+    border-top: 0;
+}
 .tap-out-nav {
     border-bottom: 1px solid var(--off-background-color);
     height: 53px;
@@ -64,12 +76,12 @@
     font-weight: bold;
 }
 .site-navigation a{
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .site-navigation li{
-    height: 50px;
+    /*height: 50px;*/
 }
 
 .company-logo{

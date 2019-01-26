@@ -21,7 +21,7 @@ export const EVENTITEMS: EventContentObject[] = [
                 eventID: 3,
                 eventTime: new Date('February 6, 2019 15:00'),
                 eventDescription: 'From the 6th - 10th of February we will be open from 3pm - midnight\n\n' +
-                'Our menu for those days can be found her: <a href="">Special menu</a>'
+                'Our menu for those days will different than the usual menu'
             }
         ],
         eventCategoryID: 100,
