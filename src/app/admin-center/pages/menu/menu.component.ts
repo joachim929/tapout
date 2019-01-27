@@ -47,8 +47,12 @@ export class MenuComponent implements OnInit {
     public getData() {
         this.getInfoService.getPageItems('edit', 'Menu')
             .subscribe(response => {
-                this.menuDataService.menuData = response;
-                this.gotData = true;
+                if (response !== null) {
+                    this.menuDataService.menuData = response;
+                    this.gotData = true;
+                } else {
+                    this.gotData = false;
+                }
             });
     }
 

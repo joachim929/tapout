@@ -124,9 +124,10 @@ export class EditMenuCategoryComponent implements OnInit {
         this.menuData[index].type = this.model.type;
 
         this.updateMenuService.updateCategory(this.menuData[index])
-            .subscribe(response => {
+            .subscribe(() => {
+                this.cancelEdit();
+                this.menuData[index].editToggle = false;
                 this.updateMenuService.updating = false;
-                this.menuData[index] = response;
             });
     }
 

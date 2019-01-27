@@ -1,25 +1,29 @@
 <section class="container">
     <article class="row create-item">
         <button class="col-xs-6 button"
-                [disabled]="updating"
+                [disabled]="!gotData || updating"
+                [class.disabled]="!gotData || updating"
                 (click)="toggleNewItem()">
             Add new menu item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
         </button>
 
         <button class="col-xs-6 button"
                 [disabled]="updating"
+                [class.disabled]="updating"
                 (click)="toggleNewCategory()">
             Add new menu category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
         </button>
 
         <button class="col-xs-6 button"
-                [disabled]="updating"
+                [disabled]="!gotData || updating"
+                [class.disabled]="!gotData || updating"
                 (click)="toggleEditItem()">
             Edit Menu Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
         </button>
 
         <button class="col-xs-6 button"
-                [disabled]="updating"
+                [disabled]="!gotData || updating"
+                [class.disabled]="!gotData || updating"
                 (click)="toggleEditCategory()">
             Edit Menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
         </button>
@@ -30,5 +34,5 @@
 <!--<app-edit-menu-items [menuData]="menuData"></app-edit-menu-items>-->
 <app-edit-menu-category *ngIf="editCategoryToggle && gotData"></app-edit-menu-category>
 <!--<app-edit-menu-category [menuData]="menuData"></app-edit-menu-category>-->
-<app-new-menu-category *ngIf="newCategoryToggle && gotData" [(newCatComponentToggle)]="newCategoryToggle"></app-new-menu-category>
+<app-new-menu-category *ngIf="newCategoryToggle" [(newCatComponentToggle)]="newCategoryToggle"></app-new-menu-category>
 <app-new-menu-item *ngIf="newItemToggle && gotData" [menuData]="menuData"></app-new-menu-item>
