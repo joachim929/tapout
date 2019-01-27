@@ -1,16 +1,9 @@
-.button-edit {
-    margin-left: 0;
-    margin-right: 0;
-}
+@import url("../menu.component.css");
 
 p {
     color: var(--comp-color);
 }
 
-.button-container {
-    min-height: 342px;
-    padding: 0 15px;
-}
-.spacer {
-    margin-top: 10px;
+h3 {
+    margin: 0;
 }

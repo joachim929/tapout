@@ -6,6 +6,8 @@ import {MenuCategory} from '../menu-category.model';
 
 // Services
 import {MenuInfoService} from '../menu-info.service';
+import {NotificationService} from '../../../shared/notification.service';
+import {MenuDataService} from '../menu-data.service';
 
 @Component({
     selector: 'app-new-menu-item',
@@ -33,14 +35,17 @@ export class NewMenuItemComponent implements OnInit {
     model: NewMenuItem;
     categories: MenuCategory[];
     hideTableHints = true;
+    selectedCategory: MenuCategory;
 
-    constructor(private menuInfoService: MenuInfoService) {
-        this.model = new NewMenuItem();
-        this.model.disableDescription = false;
+    constructor(private menuInfoService: MenuInfoService,
+                private menuDataService: MenuDataService,
+                private notificationService: NotificationService) {
+
     }
 
-    // @todo: On create new item, show error messages if there are any.
     ngOnInit() {
+        this.model = new NewMenuItem();
+        this.model.disableDescription = false;
     }
 
     public toggleTableHints(formInvalid) {
@@ -55,6 +60,8 @@ export class NewMenuItemComponent implements OnInit {
 
     public formatCategoryId(): void {
         this.model.categoryId = +this.model.categoryId;
+        this.selectedCategory = this.menuDataService.getMenuCategoryById(this.model.categoryId);
+        console.log(this.selectedCategory);
 
         if (typeof this.model.position !== 'undefined') {
             this.formatPosition();
@@ -62,7 +69,12 @@ export class NewMenuItemComponent implements OnInit {
     }
 
     public formatPosition(): void {
-        const catLength = this.menuInfoService.getCategoryLength(this.model.categoryId) + 1;
+        let catLength: number;
+        if (this.selectedCategory.items === null) {
+            catLength = 0;
+        } else {
+            catLength = this.selectedCategory.items.length + 1;
+        }
 
         this.model.position = this.model.position = Math.round(this.model.position);
         if (this.model.position < 1 ||
