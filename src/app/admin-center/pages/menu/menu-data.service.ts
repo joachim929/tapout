@@ -46,5 +46,20 @@ export class MenuDataService {
         this._menuData[index].position--;
     }
 
+    public updateCategoryPosition(data: MenuCategory[], index) {
+        if (data.length === 2) {
+            if (data[0].id === this.menuData[index].id) {
+                this.setCategoryPosition(data[0], index);
+            } else if (data[1].id === this.menuData[index].id) {
+                this.setCategoryPosition(data[1], index);
+            }
+        }
+    }
+
+    private setCategoryPosition(category: MenuCategory, index) {
+        this.menuData[index].position = category.position;
+        this.menuData[index].editedAt = category.editedAt;
+    }
+
 
 }

@@ -43,45 +43,44 @@ export class EditMenuCategoryComponent implements OnInit {
 
 
     public moveUp(index: number) {
+        this.updateMenuService.updating = true;
         this.menuDataService.incrementCategoryPosition(index - 1);
         this.menuDataService.decrementCategoryPosition(index);
 
         this.updateMenuService
             .updateCategoryPosition(this.getMenuCategory(index - 1), this.getMenuCategory(index))
             .subscribe(response => {
-                this.updateMenuService.updating = false;
-
                 if (response.success === true) {
-                    this.menuDataService.decrementCategoryPosition(index - 1);
-                    this.menuDataService.incrementCategoryPosition(index);
+                    this.menuDataService.updateCategoryPosition(response.data, index);
+                    this.menuDataService.updateCategoryPosition(response.data, index - 1);
                     this.menuDataService.sortMenu();
                 } else {
                     console.log('Update position failed');
                     //    todo failed to update? Show error messages?
                 }
+
+                this.updateMenuService.updating = false;
             });
     }
 
     public moveDown(index: number) {
-        const tempNext = this.getMenuCategory(index + 1);
-        console.log(tempNext);
-        const tempCurrent = this.getMenuCategory(index);
-        console.log(tempCurrent);
+        this.updateMenuService.updating = true;
+        this.menuDataService.incrementCategoryPosition(index);
+        this.menuDataService.decrementCategoryPosition(index + 1);
 
-        tempNext.position--;
-        tempCurrent.position++;
-
-        this.updateMenuService.updateCategoryPosition(tempNext, tempCurrent)
+        this.updateMenuService.updateCategoryPosition(this.getMenuCategory(index + 1), this.getMenuCategory(index))
             .subscribe(response => {
-                this.updateMenuService.updating = false;
 
                 if (response.success === true) {
-                    this.menuData[index + 1] = tempNext;
-                    this.menuData[index] = tempCurrent;
+                    this.menuDataService.updateCategoryPosition(response.data, index);
+                    this.menuDataService.updateCategoryPosition(response.data, index + 1);
+                    this.menuDataService.sortMenu();
                 } else {
                     console.log('Update position failed');
                     //    todo failed to update? Show error messages?
                 }
+
+                this.updateMenuService.updating = false;
             });
     }
 

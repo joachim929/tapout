@@ -101,10 +101,7 @@ export class UpdateMenuService {
             .set('items', JSON.stringify([previous, current]));
 
         this.updating = true;
-        /**
-         * todo: Check what the return type needs to be/ create response object
-         *          but give it a different name as it seems to be a popular name
-         */
+
         return this.httpClient.post<MenuCategory[]>(this.apiRoot + 'update.php',
             body, this.httpPostOptions);
     }
