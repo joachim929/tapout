@@ -77,7 +77,6 @@
                        #position="ngModel">
             </div>
             <div class="col-xs-12 input-info" style="height: 40px;">
-                <p *ngIf="position.invalid">Test</p>
                 <p *ngIf="showInfo">
                     Page position needs to be between 1 and {{highestPosition}} (including {{highestPosition}})
                 </p>
@@ -107,8 +106,3 @@
         </div>
     </form>
 </article>
-<!-- todo For debugging purposes -->
-<p>EnName: {{model.enName}}</p>
-<p>VnName: {{model.vnName}}</p>
-<p>Type: {{model.type}}</p>
-<p>Position: {{model.position}}</p>

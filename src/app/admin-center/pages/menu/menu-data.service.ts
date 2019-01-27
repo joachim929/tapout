@@ -31,6 +31,14 @@ export class MenuDataService {
         return this._menuData[index];
     }
 
+    public getMenuCategoryById(id: number): MenuCategory {
+        for (let i = 0; i < this.menuData.length; i++) {
+            if (id === this.menuData[i].id) {
+                return this.menuData[i];
+            }
+        }
+    }
+
     public setMenuCategory(index: number, newCategory: MenuCategory) {
         if (typeof index !== 'undefined' && typeof newCategory !== 'undefined') {
             this._menuData[index] = newCategory;

@@ -23,11 +23,11 @@
         <div class="col-xs-12 collapse in border-black menu-item"
              id="item-{{item.itemId}}">
 
-            <div class="row row-eq-height" *ngIf="!item.editToggle">
+            <div class="row row-eq-height no-margin" *ngIf="!item.editToggle">
                 <!-- None form details -->
                 <div class="col-xs-9">
 
-                    <div class="row">
+                    <div class="row no-margin">
                         <p class="col-xs-2">English Title:</p>
                         <p class="col-xs-6">{{item.enTitle}}</p>
                         <p class="col-xs-2">Category:</p>
@@ -35,7 +35,7 @@
                         <p class="col-xs-2">{{selectedCategory.enName}}/<br>{{selectedCategory.vnName}}</p>
                     </div>
 
-                    <div class="row">
+                    <div class="row no-margin">
                         <p class="col-xs-2">Vietnamese Title:</p>
                         <p class="col-xs-6">{{item.vnTitle}}</p>
 
@@ -43,12 +43,12 @@
                         <p class="col-xs-2">{{item.position}}</p>
                     </div>
 
-                    <div class="row">
+                    <div class="row no-margin">
                         <p class="col-xs-2">Price:</p>
                         <p class="col-xs-4">{{item.price}}</p>
                     </div>
 
-                    <div class="row">
+                    <div class="row no-margin">
                         <p class="col-xs-2">English Description:</p>
                         <p class="col-xs-4">{{item.enDescription}}</p>
 
@@ -56,7 +56,7 @@
                         <p class="col-xs-4">{{item.vnDescription}}</p>
                     </div>
 
-                    <div class="row">
+                    <div class="row no-margin">
                         <p class="col-xs-2">Created at:</p>
                         <p class="col-xs-4">{{item.createdAt}}</p>
                         <p class="col-xs-2">Edited at:</p>
@@ -95,11 +95,11 @@
             </div>
 
 
-            <form class="row row-eq-height" #menuItem="ngForm" *ngIf="item.editToggle">
+            <form class="row row-eq-height no-margin" #menuItem="ngForm" *ngIf="item.editToggle">
                 <!-- Form details -->
                 <div class="col-xs-9">
 
-                    <div class="edit-category row">
+                    <div class="edit-category row no-margin">
                         <label class="col-xs-2" for="enTitle">English Title:</label>
                         <input class="col-xs-6"
                                id="enTitle"
@@ -126,7 +126,7 @@
                         </select>
                     </div>
 
-                    <div class="edit-category row">
+                    <div class="edit-category row no-margin">
                         <label class="col-xs-2" for="vnTitle">Vietnamese Title:</label>
                         <input class="col-xs-6"
                                id="vnTitle"
@@ -151,7 +151,7 @@
                                #position="ngModel">
                     </div>
 
-                    <div class="edit-category row">
+                    <div class="edit-category row no-margin">
                         <label class="col-xs-2" for="price">Price:</label>
                         <input class="col-xs-6"
                                id="price"
@@ -171,7 +171,7 @@
                                #noDescription="ngModel">
                     </div>
 
-                    <div class="edit-category row">
+                    <div class="edit-category row no-margin">
                         <label class="col-xs-2" for="enDescription">English Description:</label>
                         <textarea class="col-xs-10"
                                   id="enDescription"
@@ -195,7 +195,7 @@
                                   #vnDescription="ngModel"></textarea>
                     </div>
 
-                    <div class="row">
+                    <div class="row no-margin">
                         <p class="col-xs-2">Created at:</p>
                         <p class="col-xs-4">{{item.createdAt}}</p>
                         <p class="col-xs-2">Edited at:</p>
@@ -248,7 +248,7 @@
                 </div>
 
                 <!-- todo: Once finished remove this -->
-                <div class="row">
+                <div class="row no-margin">
                     <div class="col-xs-4">
                         <p>CategoryId: {{model.categoryId}}</p>
                         <p>Position: {{model.position}}</p>
