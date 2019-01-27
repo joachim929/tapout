@@ -7,18 +7,24 @@ import {Observable, of} from 'rxjs';
 import {MenuCategory} from './menu-category.model';
 import {MenuItem} from './menu-item.model';
 
+// Services
+import {ExternalLinksService} from '../../../shared/external-links.service';
+
+
 @Injectable({
     providedIn: 'root'
 })
 export class UpdateMenuService {
-    readonly apiRoot = 'http://localhost:80/Tapout/tapoutAPI/menu/';
+    readonly apiRoot: string;
     readonly httpPostOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
     };
     public _updating: boolean;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient,
+                private externalLinksService: ExternalLinksService) {
         this._updating = false;
+        this.apiRoot = this.externalLinksService.localhost + 'menu/';
     }
 
     set updating(toggle: boolean) {

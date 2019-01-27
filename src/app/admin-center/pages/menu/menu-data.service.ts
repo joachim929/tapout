@@ -17,8 +17,10 @@ export class MenuDataService {
     }
 
     set menuData(newMenuData: MenuCategory[]) {
-        this._menuData = newMenuData;
-        this.sortMenu();
+        if (typeof  newMenuData !== 'undefined' && newMenuData !== null) {
+            this._menuData = newMenuData;
+            this.sortMenu();
+        }
     }
 
     public sortMenu() {
@@ -30,8 +32,10 @@ export class MenuDataService {
     }
 
     public setMenuCategory(index: number, newCategory: MenuCategory) {
-        this._menuData[index] = newCategory;
-        this.sortMenu();
+        if (typeof index !== 'undefined' && typeof newCategory !== 'undefined') {
+            this._menuData[index] = newCategory;
+            this.sortMenu();
+        }
     }
 
     public incrementCategoryPosition(index: number) {

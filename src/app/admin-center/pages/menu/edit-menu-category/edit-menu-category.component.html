@@ -2,7 +2,8 @@
     <button class="button"
             data-toggle="collapse"
             attr.data-target="#category-{{category.id}}"
-            [class.spacer]="index === 0">
+            [class.spacer]="index === 0"
+            [disabled]="updating">
         <span style="float: left">Page Position: {{category.position}}</span>
         {{category.enName}} / {{category.vnName}}
     </button>
@@ -48,35 +49,42 @@
 
                 <p class="col-xs-12 time-info">Created at: {{category.createdAt}}</p>
                 <p class="col-xs-12 time-info">Last edited at: {{category.editedAt}}</p>
+
             </div>
 
             <div class="col-xs-3">
+
                 <button class="button-edit"
                         (click)="moveUp(index)"
-                        [disabled]="index === 0"
+                        [disabled]="index === 0 || updating"
                         [class.invalid]="index === 0">
                     Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                 </button>
+
                 <button class="button-edit"
                         (click)="moveDown(index)"
-                        [disabled]="lastCategory(index)"
+                        [disabled]="lastCategory(index) || updating"
                         [class.invalid]="lastCategory(index)">
                     Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                 </button>
+
+                <button class="button-edit" [disabled]="updating"
+                        (click)="category.editToggle = !category.editToggle; cancelEdit();">
+                    Cancel<img src="/assets/icons/icon-cancel-25x25.png">
+                </button>
+
                 <button class="button-edit"
-                        [disabled]="!hasChanged || categoryItem.form.invalid"
+                        [disabled]="!hasChanged || categoryItem.form.invalid || updating"
                         [class.invalid]="!hasChanged || categoryItem.form.invalid"
                         (click)="initializeUpdate()">
                     Save<img src="/assets/icons/icon-save-25x25.png">
                 </button>
-                <button class="button-edit"
-                        (click)="category.editToggle = !category.editToggle; cancelEdit();">
-                    Cancel<img src="/assets/icons/icon-cancel-25x25.png">
-                </button>
+
             </div>
         </form>
 
         <div *ngIf="!category.editToggle">
+
             <div class="col-xs-9">
                 <p class="col-xs-3">English name:</p>
                 <p class="col-xs-3">{{category.enName}}</p>
@@ -90,25 +98,30 @@
 
             <!-- Buttons -->
             <div class="col-xs-3">
+
                 <button class="button-edit"
                         (click)="moveUp(index)"
-                        [disabled]="index === 0"
+                        [disabled]="index === 0 || updating"
                         [class.invalid]="index === 0">
                     Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                 </button>
+
                 <button class="button-edit"
                         (click)="moveDown(index)"
-                        [disabled]="lastCategory(index)"
+                        [disabled]="lastCategory(index) || updating"
                         [class.invalid]="lastCategory(index)">
                     Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                 </button>
-                <button class="button-edit" (click)="deleteCategory(category)">
-                    Delete<img src="/assets/icons/icon-delete-25x25.png">
-                </button>
-                <button class="button-edit"
+
+                <button class="button-edit" [disabled]="updating"
                         (click)="category.editToggle = !category.editToggle; initializeEdit(category);">
                     Edit<img src="/assets/icons/icon-edit-25x25.png">
                 </button>
+
+                <button class="button-edit" (click)="deleteCategory(category)">
+                    Delete<img src="/assets/icons/icon-delete-25x25.png">
+                </button>
+
             </div>
         </div>
     </div>

@@ -6,6 +6,9 @@ import {catchError} from 'rxjs/operators';
 // Objects
 import {MenuCategory} from './menu-category.model';
 
+// Services
+import {ExternalLinksService} from '../../../shared/external-links.service';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -15,7 +18,8 @@ export class MenuInfoService {
         headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
     };
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient,
+                private externalLinksService: ExternalLinksService) {
     }
 
     public setMenuData(data: MenuCategory[]) {
@@ -59,7 +63,7 @@ export class MenuInfoService {
 
     // @todo: Merge into a single service
     private getPageUri(pageName): string {
-        let pageUri = 'http://localhost:80/Tapout/tapoutAPI/';
+        let pageUri = this.externalLinksService.localhost;
         if (pageName === 'Events') {
             pageUri += 'event/';
         } else if (pageName === 'Menu') {

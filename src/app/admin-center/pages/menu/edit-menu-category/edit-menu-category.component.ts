@@ -14,7 +14,6 @@ import {MenuDataService} from '../menu-data.service';
 })
 export class EditMenuCategoryComponent implements OnInit {
     public model: MenuCategory;
-    public editInProgress: boolean;
     public hasChanged: boolean;
     private selectedCategory: MenuCategory;
 
@@ -26,9 +25,12 @@ export class EditMenuCategoryComponent implements OnInit {
         return this.menuDataService.menuData;
     }
 
+    get updating(): boolean {
+        return this.updateMenuService.updating;
+    }
+
     ngOnInit() {
         this.model = new MenuCategory();
-        this.editInProgress = false;
     }
 
     public lastCategory(index: number): boolean {
@@ -88,16 +90,21 @@ export class EditMenuCategoryComponent implements OnInit {
 
         this.updateMenuService.deleteCategory(this.model.id)
             .subscribe(response => {
-                this.updateMenuService.updating = false;
-                if (response.errors === null && response.warnings === null) {
-                    // todo delete the category from the menuData array
+                if (response === true) {
+
                     for (let i = 0; i < this.menuData.length; i++) {
+
                         if (this.menuData[i].id === this.model.id) {
-                            delete this.menuData[i];
+                            this.menuData.splice(i, 1);
+                            if (this.menuData.length !== 0) {
+                                this.menuDataService.sortMenu();
+                            }
                         }
                     }
                     this.model = new MenuCategory;
                 }
+
+                this.updateMenuService.updating = false;
             });
     }
 
