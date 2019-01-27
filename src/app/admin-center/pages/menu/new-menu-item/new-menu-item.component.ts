@@ -103,7 +103,18 @@ export class NewMenuItemComponent implements OnInit {
 
         this.menuInfoService.newCategoryItem(newMenuItem, 'Menu')
             .subscribe(response => {
-                console.log(response);
+                if (typeof response !== 'undefined') {
+                    if (response.success === true) {
+                        this.menuDataService.addMenuItemToCategory(response.data);
+
+                        this.notificationService.addMessage('Added new item to ' + response.data.enTitle);
+                        this.newItemComponentToggle = false;
+                    } else {
+                        this.notificationService.addMessage('Failed to add a new item');
+                    }
+                } else {
+                    this.notificationService.addMessage('Whoops, something went wrong');
+                }
             });
     }
 }

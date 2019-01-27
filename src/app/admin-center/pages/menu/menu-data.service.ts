@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 // Objects
 import {MenuCategory} from './menu-category.model';
+import {MenuItem} from "./menu-item.model";
 
 @Injectable({
     providedIn: 'root'
@@ -27,6 +28,10 @@ export class MenuDataService {
         this._menuData.sort((a, b) => a.position - b.position);
     }
 
+    public sortItems(index: number) {
+        this._menuData[index].items.sort((a, b) => a.position - b.position);
+    }
+
     public getMenuCategory(index: number): MenuCategory {
         return this._menuData[index];
     }
@@ -43,6 +48,17 @@ export class MenuDataService {
         if (typeof index !== 'undefined' && typeof newCategory !== 'undefined') {
             this._menuData[index] = newCategory;
             this.sortMenu();
+        }
+    }
+
+    public addMenuItemToCategory(item: MenuItem) {
+        if (typeof item.categoryId !== 'undefined') {
+            for (let i = 0; i < this.menuData.length; i++) {
+                if (item.categoryId === this.menuData[i].id) {
+                    this.menuData[i].items.push(item);
+                    this.sortItems(i);
+                }
+            }
         }
     }
 
