@@ -60,6 +60,7 @@
 
 .disabled {
     background-color: var(--darkest-grey-color);
+    color: var(--main-disabled-color);
 }
 .disabled:hover {
     background-color: var(--darkest-grey-color);

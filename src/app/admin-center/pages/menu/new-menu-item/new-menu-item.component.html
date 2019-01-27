@@ -168,22 +168,25 @@
             </div>
         </div>
         <div class="col-xs-2 button-container">
+
             <button class="button-edit" style="margin-top: 20px"
                     (click)="toggleTableHints(itemForm.form.invalid)">
                 Info
             </button>
+
             <button class="button-edit" [disabled]="!itemForm.form.valid"
                     (click)="saveItem(itemForm.form)" [class.invalid]="itemForm.form.invalid">
                 Save<img src="/assets/icons/icon-save-25x25.png">
             </button>
+
             <button class="button-edit" (click)="itemForm.reset()">
                 Clear<img src="/assets/icons/icon-edit-25x25.png">
             </button>
-            <!-- @todo: closes component, still needs to be implemented -->
+
             <button class="button-edit" (click)="newItemComponentToggle = false">
                 Cancel<img src="/assets/icons/icon-cancel-25x25.png">
             </button>
-<div (click)="newItemComponentToggle = false">Test</div>
+
         </div>
     </form>
     <!--<div class="row" style="width: 100%">-->

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 // Objects
 import {NewMenuItem, Category} from './new-menu-item.model';
@@ -13,6 +13,22 @@ import {MenuInfoService} from '../menu-info.service';
     styleUrls: ['./new-menu-item.component.css']
 })
 export class NewMenuItemComponent implements OnInit {
+
+    _componentToggle: boolean;
+
+    @Output()
+    newItemComponentToggleChange = new EventEmitter<boolean>();
+
+    @Input()
+    get newItemComponentToggle(): boolean {
+        return this._componentToggle;
+    }
+
+    set newItemComponentToggle(val: boolean) {
+        this._componentToggle = val;
+        this.newItemComponentToggleChange.emit(this.newItemComponentToggle);
+    }
+
     @Input() menuData: MenuCategory[];
     model: NewMenuItem;
     categories: MenuCategory[];

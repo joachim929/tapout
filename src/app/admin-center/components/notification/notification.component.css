@@ -4,6 +4,10 @@
 }
 .button {
     text-align: center;
+    background-color: var(--border-split-color);
+}
+.button:hover {
+    background-color: var(--off-background-color);
 }
 .row {
     margin-bottom: 5px;

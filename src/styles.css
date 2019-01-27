@@ -7,9 +7,10 @@
     --text-color: white;
     --off-white-color: #CDCDCD;
     --main-color: #7ADAD7;
+    --main-disabled-color: #3E7D7A;
     --comp-color: #DA7A7D;
     --background-color: black;
-    --darkest-grey-color: #232323;
+    --darkest-grey-color: #191919;
     --off-background-color: #2C2C2C;
     --border-split-color: #3C3C3C;
 }

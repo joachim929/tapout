@@ -6,6 +6,7 @@ import {MenuCategory} from '../menu-category.model';
 // Services
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
+import {NotificationService} from '../../../shared/notification.service';
 
 @Component({
     selector: 'app-new-menu-category',
@@ -35,7 +36,8 @@ export class NewMenuCategoryComponent implements OnInit {
 
 
     constructor(private menuDataService: MenuDataService,
-                private updateMenuService: UpdateMenuService) {
+                private updateMenuService: UpdateMenuService,
+                private notificationService: NotificationService) {
 
         this.highestPagePosition = 0;
         this.model = new MenuCategory();
@@ -80,8 +82,17 @@ export class NewMenuCategoryComponent implements OnInit {
         if (categoryForm.valid) {
             this.updateMenuService.createNewCategory(this.model)
                 .subscribe(response => {
+                    if (response.success && response.data !== null) {
+                        this.menuData.push(response.data);
+                        this.menuDataService.sortMenu();
+                        this.model = new MenuCategory();
+                        this.newCatComponentToggle = false;
+                        this.notificationService.addMessage('New category created');
+                    } else {
+                        this.notificationService.addMessage('Failed to add new category');
+                    }
+
                     this.updateMenuService.updating = false;
-                    //    todo do something with the response
                 });
         }
     }
