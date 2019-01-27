@@ -1,0 +1,11 @@
+<section class="container" *ngIf="messages">
+  <article class="row">
+    <ng-container *ngFor="let message of messages; let index = index">
+      <div class="col-xs-12 button" *ngIf="message.toggle === true">
+        {{message.message}} <img src="/assets/icons/icon-cancel-25x25.png"
+                                 (click)="toggleMessage(index)">
+      </div>
+    </ng-container>
+
+  </article>
+</section>

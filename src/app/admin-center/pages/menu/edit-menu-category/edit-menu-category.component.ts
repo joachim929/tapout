@@ -6,6 +6,7 @@ import {MenuCategory} from '../menu-category.model';
 // Services
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
+import {NotificationService} from '../../../shared/notification.service';
 
 @Component({
     selector: 'app-edit-menu-category',
@@ -18,7 +19,8 @@ export class EditMenuCategoryComponent implements OnInit {
     private selectedCategory: MenuCategory;
 
     constructor(private updateMenuService: UpdateMenuService,
-                private menuDataService: MenuDataService) {
+                private menuDataService: MenuDataService,
+                private notificationService: NotificationService) {
     }
 
     get menuData(): MenuCategory[] {
@@ -55,8 +57,7 @@ export class EditMenuCategoryComponent implements OnInit {
                     this.menuDataService.updateCategoryPosition(response.data, index - 1);
                     this.menuDataService.sortMenu();
                 } else {
-                    console.log('Update position failed');
-                    //    todo failed to update? Show error messages?
+                    this.notificationService.addMessage('Supposedly failed to update the page position, try refresh the page');
                 }
 
                 this.updateMenuService.updating = false;
@@ -76,8 +77,7 @@ export class EditMenuCategoryComponent implements OnInit {
                     this.menuDataService.updateCategoryPosition(response.data, index + 1);
                     this.menuDataService.sortMenu();
                 } else {
-                    console.log('Update position failed');
-                    //    todo failed to update? Show error messages?
+                    this.notificationService.addMessage('Supposedly failed to update the page position, try refresh the page');
                 }
 
                 this.updateMenuService.updating = false;
@@ -90,7 +90,6 @@ export class EditMenuCategoryComponent implements OnInit {
         this.updateMenuService.deleteCategory(this.model.id)
             .subscribe(response => {
                 if (response === true) {
-
                     for (let i = 0; i < this.menuData.length; i++) {
 
                         if (this.menuData[i].id === this.model.id) {
@@ -101,6 +100,8 @@ export class EditMenuCategoryComponent implements OnInit {
                         }
                     }
                     this.model = new MenuCategory;
+                } else {
+                    this.notificationService.addMessage('Something went wrong deleting a category');
                 }
 
                 this.updateMenuService.updating = false;
@@ -113,7 +114,7 @@ export class EditMenuCategoryComponent implements OnInit {
                 this.updateCategory(i);
                 break;
             } else {
-                console.log('Couldn\'t find object in menuData array');
+                this.notificationService.addMessage('Something went wrong, try refresh the page');
             }
         }
     }
@@ -124,7 +125,14 @@ export class EditMenuCategoryComponent implements OnInit {
         this.menuData[index].type = this.model.type;
 
         this.updateMenuService.updateCategory(this.menuData[index])
-            .subscribe(() => {
+            .subscribe((response) => {
+                if (response.success === true &&
+                    response.data !== null &&
+                    response.data.length === 1) {
+                    this.menuData[index].editedAt = response.data[0].editedAt;
+                } else {
+                    this.notificationService.addMessage('Something went wrong updating the category');
+                }
                 this.cancelEdit();
                 this.menuData[index].editToggle = false;
                 this.updateMenuService.updating = false;
@@ -136,13 +144,6 @@ export class EditMenuCategoryComponent implements OnInit {
             this.selectedCategory.enName !== this.model.enName ||
             this.selectedCategory.vnName !== this.model.vnName ||
             this.selectedCategory.type !== this.model.type;
-    }
-
-    private formatEditToggle() {
-        console.log(this.menuData);
-        for (let i = 0; i < this.menuData.length; i++) {
-            this.menuData[i].editToggle = false;
-        }
     }
 
     public initializeEdit(category: MenuCategory) {

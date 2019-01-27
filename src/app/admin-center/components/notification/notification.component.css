@@ -1,0 +1,11 @@
+.button img {
+    float: right;
+    cursor: pointer;
+}
+.button {
+    text-align: center;
+}
+.row {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

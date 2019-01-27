@@ -39,7 +39,7 @@
                            #vnName="ngModel">
 
                     <label class="col-xs-3" for="categoryTypes">Category type:</label>
-                    <select class="col-xs-3" id="categoryTypes"
+                    <select class="col-xs-9" id="categoryTypes"
                             name="type" required
                             (change)="formChange()"
                             [(ngModel)]="model.type"
@@ -48,8 +48,10 @@
                         <option>drink</option>
                     </select>
 
-                    <p class="col-xs-12 time-info">Created at: {{category.createdAt}}</p>
-                    <p class="col-xs-12 time-info">Last edited at: {{category.editedAt}}</p>
+                    <p class="col-xs-3">Created at:</p>
+                    <p class="col-xs-9">{{category.createdAt}}</p>
+                    <p class="col-xs-3">Last edited at:</p>
+                    <p class="col-xs-9">{{category.editedAt}}</p>
 
                 </div>
 
@@ -58,14 +60,14 @@
                     <button class="button-edit"
                             (click)="moveUp(index)"
                             [disabled]="index === 0 || updating"
-                            [class.invalid]="index === 0">
+                            [class.disabled]="index === 0">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
 
                     <button class="button-edit"
                             (click)="moveDown(index)"
                             [disabled]="lastCategory(index) || updating"
-                            [class.invalid]="lastCategory(index)">
+                            [class.disabled]="lastCategory(index)">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
 
@@ -92,9 +94,11 @@
                     <p class="col-xs-3">Vietnamese name:</p>
                     <p class="col-xs-3">{{category.vnName}}</p>
                     <p class="col-xs-3">Category type:</p>
-                    <p class="col-xs-3">{{category.type}}</p>
-                    <p class="col-xs-12 time-info">Created at: {{category.createdAt}}</p>
-                    <p class="col-xs-12 time-info">Last edited at: {{category.editedAt}}</p>
+                    <p class="col-xs-9">{{category.type}}</p>
+                    <p class="col-xs-3">Created at:</p>
+                    <p class="col-xs-9">{{category.createdAt}}</p>
+                    <p class="col-xs-3">Last edited at:</p>
+                    <p class="col-xs-9">{{category.editedAt}}</p>
                 </div>
 
                 <!-- Buttons -->
@@ -103,23 +107,26 @@
                     <button class="button-edit"
                             (click)="moveUp(index)"
                             [disabled]="index === 0 || updating"
-                            [class.invalid]="index === 0">
+                            [class.disabled]="index === 0">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
 
                     <button class="button-edit"
                             (click)="moveDown(index)"
                             [disabled]="lastCategory(index) || updating"
-                            [class.invalid]="lastCategory(index)">
+                            [class.disabled]="lastCategory(index)">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
 
-                    <button class="button-edit" [disabled]="updating"
+                    <button class="button-edit"
+                            [disabled]="updating"
                             (click)="category.editToggle = !category.editToggle; initializeEdit(category);">
                         Edit<img src="/assets/icons/icon-edit-25x25.png">
                     </button>
 
-                    <button class="button-edit" (click)="deleteCategory(category)">
+                    <button class="button-edit"
+                            [disabled]="updating"
+                            (click)="deleteCategory(category)">
                         Delete<img src="/assets/icons/icon-delete-25x25.png">
                     </button>
 

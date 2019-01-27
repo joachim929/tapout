@@ -26,6 +26,7 @@ import {AdminCenterRoutingModule} from './admin-center-routing.module';
 import {PageInfoService} from './shared/page-info.service';
 import { EditMenuCategoryComponent } from './pages/menu/edit-menu-category/edit-menu-category.component';
 import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-items.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-i
         NewMenuCategoryComponent,
         NewMenuItemComponent,
         EditMenuCategoryComponent,
-        EditMenuItemsComponent
+        EditMenuItemsComponent,
+        NotificationComponent
     ],
     providers: [
         PageInfoService
