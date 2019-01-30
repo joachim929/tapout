@@ -26,6 +26,10 @@ export class NewMenuItemComponent implements OnInit {
         return this._componentToggle;
     }
 
+    get updating(): boolean {
+        return this.updateMenuService.updating;
+    }
+
     set newItemComponentToggle(val: boolean) {
         this._componentToggle = val;
         this.newItemComponentToggleChange.emit(this.newItemComponentToggle);
@@ -85,7 +89,6 @@ export class NewMenuItemComponent implements OnInit {
 
     // todo don't use NewMenuItem, use MenuItem
     public saveItem(form): void {
-        console.log(form);
         const newMenuItem = new NewMenuItem();
         newMenuItem.category = form.value.category;
         newMenuItem.enTitle = this.model.enTitle;
@@ -115,6 +118,7 @@ export class NewMenuItemComponent implements OnInit {
                 } else {
                     this.notificationService.addMessage('Whoops, something went wrong');
                 }
+                this.updateMenuService.updating = false;
             });
     }
 }

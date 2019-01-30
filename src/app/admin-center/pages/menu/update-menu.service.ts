@@ -61,6 +61,8 @@ export class UpdateMenuService {
             .set('page', 'Menu')
             .set('module', 'Admin');
 
+        this.updating = true;
+
         return this.httpClient.post<any>(this.apiRoot + 'create.php',
             body, this.httpPostOptions)
             .pipe(
@@ -170,6 +172,7 @@ export class UpdateMenuService {
     }
 
     private handleError<T>(operation = 'operation', result?: T) {
+        this.updating = false;
         return (error: any): Observable<T> => {
             console.error(error);
 

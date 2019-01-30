@@ -47,6 +47,10 @@ export class NewMenuCategoryComponent implements OnInit {
         return this.menuDataService.menuData;
     }
 
+    get updating(): boolean {
+        return this.updateMenuService.updating;
+    }
+
     get highestPosition(): number {
         return this.highestPagePosition + 1;
     }

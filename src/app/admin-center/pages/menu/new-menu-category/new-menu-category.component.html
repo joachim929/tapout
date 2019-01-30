@@ -87,19 +87,32 @@
         <div class="col-xs-3">
 
             <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
                     (click)="toggleShowInfo()">
                 Info
             </button>
+
             <button class="button-edit"
-                    [disabled]="!categoryForm.form.valid"
+                    [disabled]="!categoryForm.form.valid || updating"
+                    [class.disabled]="updating"
                     [class.invalid]="categoryForm.form.invalid"
                     (click)="initializeNewCategory(categoryForm.form)">
                 Save<img src="/assets/icons/icon-save-25x25.png">
+
             </button>
-            <button class="button-edit" (click)="categoryForm.reset()">
+
+            <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
+                    (click)="categoryForm.reset()">
                 Clear<img src="/assets/icons/icon-edit-25x25.png">
             </button>
-            <button class="button-edit" (click)="newCatComponentToggle = false">
+
+            <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
+                    (click)="newCatComponentToggle = false">
                 Cancel<img src="/assets/icons/icon-cancel-25x25.png">
             </button>
 
