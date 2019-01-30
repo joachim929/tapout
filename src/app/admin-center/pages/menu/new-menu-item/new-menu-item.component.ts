@@ -5,9 +5,9 @@ import {NewMenuItem, Category} from './new-menu-item.model';
 import {MenuCategory} from '../menu-category.model';
 
 // Services
-import {MenuInfoService} from '../menu-info.service';
 import {NotificationService} from '../../../shared/notification.service';
 import {MenuDataService} from '../menu-data.service';
+import {UpdateMenuService} from '../update-menu.service';
 
 @Component({
     selector: 'app-new-menu-item',
@@ -37,7 +37,7 @@ export class NewMenuItemComponent implements OnInit {
     hideTableHints = true;
     selectedCategory: MenuCategory;
 
-    constructor(private menuInfoService: MenuInfoService,
+    constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService) {
 
@@ -101,7 +101,7 @@ export class NewMenuItemComponent implements OnInit {
             newMenuItem.vnDescription = null;
         }
 
-        this.menuInfoService.newCategoryItem(newMenuItem, 'Menu')
+        this.updateMenuService.newCategoryItem(newMenuItem)
             .subscribe(response => {
                 if (typeof response !== 'undefined') {
                     if (response.success === true) {

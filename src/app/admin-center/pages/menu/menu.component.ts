@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
-// Services
-import {GetInfoService} from '../../shared/get-info.service';
-import {UpdateMenuService} from './update-menu.service';
-import {MenuDataService} from './menu-data.service';
-
 // Models
 import {MenuCategory} from './menu-category.model';
+
+// Services
+import {UpdateMenuService} from './update-menu.service';
+import {MenuDataService} from './menu-data.service';
 
 @Component({
     selector: 'app-menu',
@@ -20,8 +19,7 @@ export class MenuComponent implements OnInit {
     public newCategoryToggle: boolean;
     public newItemToggle: boolean;
 
-    constructor(private getInfoService: GetInfoService,
-                private updateMenuService: UpdateMenuService,
+    constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService) {
 
         this.editItemToggle = false;
@@ -44,8 +42,8 @@ export class MenuComponent implements OnInit {
         this.getData();
     }
 
-    public getData() {
-        this.getInfoService.getPageItems('edit', 'Menu')
+    getData() {
+        this.updateMenuService.getPageItems()
             .subscribe(response => {
                 if (response !== null) {
                     this.menuDataService.menuData = response;
@@ -56,7 +54,7 @@ export class MenuComponent implements OnInit {
             });
     }
 
-    public toggleNewItem() {
+    toggleNewItem() {
         this.newItemToggle = !this.newItemToggle;
         if (this.newCategoryToggle) {
             this.newCategoryToggle = false;
@@ -69,7 +67,7 @@ export class MenuComponent implements OnInit {
         }
     }
 
-    public toggleNewCategory() {
+    toggleNewCategory() {
         this.newCategoryToggle = !this.newCategoryToggle;
         if (this.newItemToggle) {
             this.newItemToggle = false;
@@ -82,7 +80,7 @@ export class MenuComponent implements OnInit {
         }
     }
 
-    public toggleEditItem() {
+    toggleEditItem() {
         this.editItemToggle = !this.editItemToggle;
         if (this.newItemToggle) {
             this.newItemToggle = false;
@@ -95,7 +93,7 @@ export class MenuComponent implements OnInit {
         }
     }
 
-    public toggleEditCategory() {
+    toggleEditCategory() {
         this.editCategoryToggle = !this.editCategoryToggle;
         if (this.newItemToggle) {
             this.newItemToggle = false;

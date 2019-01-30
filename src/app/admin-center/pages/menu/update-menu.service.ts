@@ -35,7 +35,7 @@ export class UpdateMenuService {
         return this._updating;
     }
 
-    public getPageItems(): Observable<any> {
+    getPageItems(): Observable<any> {
 
         const getParams = new HttpParams()
             .set('page', 'Menu')
@@ -47,10 +47,28 @@ export class UpdateMenuService {
             params: getParams
         };
 
-        return this.httpClient.get<MenuCategory[]>(this.apiRoot + 'read.php', httpOptions);
+        return this.httpClient.get<MenuCategory[]>(this.apiRoot + 'read.php',
+            httpOptions)
+            .pipe(
+                catchError(this.handleError('Failed to get menu data'))
+            );
     }
 
-    public updateCategory(category): Observable<any> {
+    newCategoryItem(item): Observable<any> {
+        const body = new HttpParams()
+            .set('newMenuItem', JSON.stringify(item))
+            .set('task', 'createMenuItem')
+            .set('page', 'Menu')
+            .set('module', 'Admin');
+
+        return this.httpClient.post<any>(this.apiRoot + 'create.php',
+            body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError('createMenuItem'))
+            );
+    }
+
+    updateCategory(category): Observable<any> {
         const body = new HttpParams()
             .set('page', 'Menu')
             .set('task', 'updateCategory')
@@ -59,11 +77,24 @@ export class UpdateMenuService {
 
         this.updating = true;
 
-        return this.httpClient
-            .post<MenuCategory>(this.apiRoot + 'update.php', body, this.httpPostOptions);
+        return this.httpClient.post<MenuCategory>(this.apiRoot + 'update.php',
+            body, this.httpPostOptions);
     }
 
-    public createNewCategory(category): Observable<any> {
+    updateItem(item: MenuItem): Observable<any> {
+        const body = new HttpParams()
+            .set('page', 'Menu')
+            .set('task', 'updateItem')
+            .set('module', 'Admin')
+            .set('item', JSON.stringify(item));
+
+        this.updating = true;
+
+        return this.httpClient.post<MenuItem>(this.apiRoot + 'update.php',
+            body, this.httpPostOptions);
+    }
+
+    createNewCategory(category): Observable<any> {
         console.log(category);
         const body = new HttpParams()
             .set('page', 'Menu')
@@ -77,7 +108,7 @@ export class UpdateMenuService {
             .post<MenuCategory>(this.apiRoot + 'create.php', body, this.httpPostOptions);
     }
 
-    public deleteCategory(id: number): Observable<any> {
+    deleteCategory(id: number): Observable<any> {
         const item = {'id': id, 'type': 'category'};
 
         console.log(item);
@@ -93,7 +124,23 @@ export class UpdateMenuService {
             body, this.httpPostOptions);
     }
 
-    public updateCategoryPosition(previous: MenuCategory, current: MenuCategory): Observable<any> {
+    deleteItem(id: number): Observable<any> {
+        const item = {'id': id, 'type': 'item'};
+
+        console.log(item);
+        const body = new HttpParams()
+            .set('page', 'Menu')
+            .set('task', 'deleteItem')
+            .set('module', 'Admin')
+            .set('item', JSON.stringify(item));
+
+        this.updating = true;
+
+        return this.httpClient.post<boolean>(this.apiRoot + 'delete.php', body,
+            this.httpPostOptions);
+    }
+
+    updateCategoryPosition(previous: MenuCategory, current: MenuCategory): Observable<any> {
         const body = new HttpParams()
             .set('page', 'Menu')
             .set('task', 'updateCategoryPosition')
@@ -106,7 +153,7 @@ export class UpdateMenuService {
             body, this.httpPostOptions);
     }
 
-    public updateItemPosition(previous: MenuItem, current: MenuItem): Observable<any> {
+    updateItemPosition(previous: MenuItem, current: MenuItem): Observable<any> {
         const body = new HttpParams()
             .set('page', 'Menu')
             .set('task', 'updateItemPosition')
@@ -120,5 +167,13 @@ export class UpdateMenuService {
          */
         return this.httpClient.post<MenuItem[]>(this.apiRoot + 'update.php',
             body, this.httpPostOptions);
+    }
+
+    private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+            console.error(error);
+
+            return of(result as T);
+        };
     }
 }

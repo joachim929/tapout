@@ -70,24 +70,29 @@
 
                     <button class="button-edit"
                             (click)="moveUp(index)"
-                            [disabled]="index === 0"
-                            [class.disabled]="index === 0">
+                            [disabled]="index === 0 || updating"
+                            [class.disabled]="index === 0 || updating">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
 
                     <button class="button-edit"
                             (click)="moveDown(index)"
-                            [disabled]="lastItem(index)"
-                            [class.disabled]="lastItem(index)">
+                            [disabled]="lastItem(index) || updating"
+                            [class.disabled]="lastItem(index) || updating">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
 
-                    <button class="button-edit" (click)="initializeEdit(item);">
+                    <button class="button-edit"
+                            (click)="initializeEdit(item);"
+                            [disabled]="updating"
+                            [class.disabled]="updating">
                         Edit<img src="/assets/icons/icon-edit-25x25.png">
                     </button>
 
                     <button class="button-edit button-delete"
-                            (click)="initializeDelete()">
+                            (click)="initializeDelete(item)"
+                            [disabled]="updating"
+                            [class.disabled]="updating">
                         Delete<img src="/assets/icons/icon-delete-25x25.png">
                     </button>
 
@@ -139,16 +144,8 @@
                                [(ngModel)]="model.vnTitle"
                                #vnTitle="ngModel">
 
-                        <label class="col-xs-2" for="position">Position:</label>
-                        <input class="col-xs-2"
-                               id="position"
-                               name="position"
-                               type="number"
-                               min="0"
-                               required
-                               (blur)="checkPosition()"
-                               [(ngModel)]="model.position"
-                               #position="ngModel">
+                        <p class="col-xs-2">Position:</p>
+                        <p class="col-xs-2">{{model.position}}</p>
                     </div>
 
                     <div class="edit-category row no-margin">
@@ -162,8 +159,9 @@
                                [(ngModel)]="model.price"
                                #price="ngModel">
 
-                        <label class="col-xs-2" for="noDescription">No description</label>
-                        <input id="noDescription"
+                        <label class="col-xs-3" for="noDescription">No description</label>
+                        <input class="col-xs-1"
+                               id="noDescription"
                                name="noDescription"
                                type="checkbox"
                                (change)="formChange();"
@@ -209,36 +207,39 @@
 
                     <button class="button-edit"
                             (click)="moveUp(index)"
-                            [disabled]="index === 0"
-                            [class.disabled]="index === 0">
+                            [disabled]="index === 0 || updating"
+                            [class.disabled]="index === 0 || updating">
                         Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
                     </button>
 
                     <button class="button-edit"
                             (click)="moveDown(index)"
-                            [disabled]="lastItem(index)"
-                            [class.disabled]="lastItem(index)">
+                            [disabled]="lastItem(index) || updating"
+                            [class.disabled]="lastItem(index) || updating">
                         Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
                     </button>
 
                     <button class="button-edit"
-                            (click)="cancelEdit(index);">
+                            [disabled]="updating"
+                            (click)="cancelEdit(index);"
+                            [class.disabled]="updating">
                         Cancel<img src="/assets/icons/icon-cancel-25x25.png">
                     </button>
 
-                    <!-- todo implement this -->
                     <button class="button-edit"
-                            [disabled]="menuItem.form.invalid"
-                            [class.invalid]="menuItem.form.invalid || !hasChanged">
+                            (click)="initializeSave(index)"
+                            [disabled]="menuItem.form.invalid || updating || !hasChanged"
+                            [class.invalid]="menuItem.form.invalid || !hasChanged"
+                            [class.disabled]="updating">
                         Save<img src="/assets/icons/icon-save-25x25.png">
                     </button>
 
                     <button class="button-edit button-delete"
-                            (click)="initializeDelete()">
+                            (click)="initializeDelete(item)"
+                            [class.disabled]="updating">
                         Delete<img src="/assets/icons/icon-delete-25x25.png">
                     </button>
 
-                    <!-- todo implement info/warning messages here -->
                     <div class="warning">
                         <p class="warning" *ngIf="model.categoryId !== selectedCategory.id">
                             You have selected to move this item to a different category
@@ -263,7 +264,6 @@
                         <p>enTitle: {{enTitle.invalid}}</p>
                         <p>category: {{category.invalid}}</p>
                         <p>vnTitle: {{vnTitle.invalid}}</p>
-                        <p>position: {{position.invalid}}</p>
                         <p>Price: {{price.invalid}}</p>
                         <p>enDescription: {{enDescription.invalid}}</p>
                         <p>vnDescription: {{vnDescription.invalid}}</p>

@@ -18,24 +18,6 @@ export class GetInfoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    public getPageItems(task: string, page: string): Observable<any> {
-        this.setTask(task);
-        this.setPage(page);
-
-        const getParams = new HttpParams()
-            .set('page', this.page)
-            .set('task', this.task)
-            .set('module', 'Admin');
-
-        const httpOptions = {
-            headers: new HttpHeaders({'Content-type': 'application/json'}),
-            params: getParams
-        };
-        return this.httpClient.get<MenuCategory[]>(this.getPageUri() + 'read.php', httpOptions)
-            .pipe(
-                catchError(this.handleError('get ' + this.page + ' data'))
-            );
-    }
 
     private setPage(page: string) {
         this.page = page;
