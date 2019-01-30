@@ -52,9 +52,13 @@ export class MenuDataService {
     }
 
     updateMenuItem(item: MenuItem) {
+        let index: number;
+
         for (let i = 0; i < this.menuData.length; i++) {
             if (item.categoryId !== this.menuData[i].id) {
                 continue;
+            } else {
+                index = i;
             }
             for (let j = 0; j < this.menuData[i].items.length; j++) {
                 if (item.itemId === this.menuData[i].items[j].itemId) {
@@ -62,6 +66,11 @@ export class MenuDataService {
                 }
             }
         }
+
+        if (typeof index !== 'undefined' && index !== null) {
+            this.sortItems(index);
+        }
+
     }
 
     addMenuItemToCategory(item: MenuItem) {

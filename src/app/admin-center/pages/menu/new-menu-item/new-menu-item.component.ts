@@ -83,7 +83,7 @@ export class NewMenuItemComponent implements OnInit {
         }
     }
 
-
+    // todo don't use NewMenuItem, use MenuItem
     public saveItem(form): void {
         console.log(form);
         const newMenuItem = new NewMenuItem();

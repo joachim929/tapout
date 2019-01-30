@@ -81,7 +81,6 @@ export class EditMenuItemsComponent implements OnInit {
     }
 
     initializeSave(index: number) {
-        console.log('Inizializing edit save', this.model);
 
         this.updateMenuService.updateItem(this.model)
             .subscribe(response => {
@@ -107,7 +106,6 @@ export class EditMenuItemsComponent implements OnInit {
             });
     }
 
-    // todo implement this
     moveUp(index: number) {
         this.cancelEdit(index);
         const tempCurrent = this._category.items[index];
@@ -115,12 +113,25 @@ export class EditMenuItemsComponent implements OnInit {
         tempCurrent.position--;
         tempPrevious.position++;
 
-        // on success implement this
-        this._category.items[index] = tempPrevious;
-        this._category.items[index - 1] = tempCurrent;
+        this.updateMenuService.updateItemPosition(tempCurrent, tempPrevious)
+            .subscribe(response => {
+                if (response.success === true && response.data.length === 2) {
+                    if (response.data[0].itemId === tempCurrent.itemId) {
+                        tempCurrent.editedAt = response.data[0].editedAt;
+                        tempPrevious.editedAt = response.data[1].editedAt;
+                    } else {
+                        tempCurrent.editedAt = response.data[1].editedAt;
+                        tempPrevious.editedAt = response.data[0].editedAt;
+                    }
+                    this.menuDataService.updateMenuItem(tempCurrent);
+                    this.menuDataService.updateMenuItem(tempPrevious);
+                } else {
+                    console.log('something went wrong');
+                }
+                this.updateMenuService.updating = false;
+            });
     }
 
-    // todo implement this
     moveDown(index: number) {
         this.cancelEdit(index);
         const tempCurrent = this._category.items[index];
@@ -128,9 +139,23 @@ export class EditMenuItemsComponent implements OnInit {
         tempCurrent.position++;
         tempNext.position--;
 
-        // on success implement this
-        this._category.items[index] = tempNext;
-        this._category.items[index + 1] = tempCurrent;
+        this.updateMenuService.updateItemPosition(tempCurrent, tempNext)
+            .subscribe(response => {
+                if (response.success === true && response.data.length === 2) {
+                    if (response.data[0].itemId === tempCurrent.itemId) {
+                        tempCurrent.editedAt = response.data[0].editedAt;
+                        tempNext.editedAt = response.data[1].editedAt;
+                    } else {
+                        tempCurrent.editedAt = response.data[1].editedAt;
+                        tempNext.editedAt = response.data[0].editedAt;
+                    }
+                    this.menuDataService.updateMenuItem(tempCurrent);
+                    this.menuDataService.updateMenuItem(tempNext);
+                } else {
+                    console.log('something went wrong');
+                }
+                this.updateMenuService.updating = false;
+            });
     }
 
     checkCategory() {

@@ -56,7 +56,7 @@ export class NewMenuCategoryComponent implements OnInit {
         this.setHighestPagePosition();
     }
 
-    public formatPagePosition() {
+    formatPagePosition() {
         this.setHighestPagePosition();
         this.model.position = Math.round(this.model.position);
         if (this.model.position > this.highestPosition) {
@@ -66,7 +66,7 @@ export class NewMenuCategoryComponent implements OnInit {
         }
     }
 
-    public toggleShowInfo(): void {
+    toggleShowInfo(): void {
         if (typeof this.menuData !== 'undefined') {
             if (this.highestPagePosition === 0) {
                 this.setHighestPagePosition();
@@ -78,7 +78,7 @@ export class NewMenuCategoryComponent implements OnInit {
         }, 5000);
     }
 
-    public initializeNewCategory(categoryForm): void {
+    initializeNewCategory(categoryForm): void {
         if (categoryForm.valid) {
             this.updateMenuService.createNewCategory(this.model)
                 .subscribe(response => {

@@ -64,7 +64,7 @@ export class EditMenuCategoryComponent implements OnInit {
             });
     }
 
-    public moveDown(index: number) {
+    moveDown(index: number) {
         this.updateMenuService.updating = true;
         this.menuDataService.incrementCategoryPosition(index);
         this.menuDataService.decrementCategoryPosition(index + 1);
@@ -84,7 +84,7 @@ export class EditMenuCategoryComponent implements OnInit {
             });
     }
 
-    public deleteCategory(category: MenuCategory) {
+    deleteCategory(category: MenuCategory) {
         this.model.id = category.id;
 
         this.updateMenuService.deleteCategory(this.model.id)
@@ -108,7 +108,7 @@ export class EditMenuCategoryComponent implements OnInit {
             });
     }
 
-    public initializeUpdate() {
+    initializeUpdate() {
         for (let i = 0; i < this.menuData.length; i++) {
             if (this.model.id === this.menuData[i].id) {
                 this.updateCategory(i);
