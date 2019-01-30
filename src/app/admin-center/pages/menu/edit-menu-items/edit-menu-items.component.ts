@@ -69,6 +69,9 @@ export class EditMenuItemsComponent implements OnInit {
                                 if (this.menuData[i].items[j].itemId === item.itemId) {
                                     console.log(this.menuData[i].items[j]);
                                     this.menuData[i].items.splice(j, 1);
+                                    if (this.menuData[i].items.length === 0) {
+                                        this._category = new MenuCategory;
+                                    }
                                 }
                             }
                         }
@@ -85,9 +88,12 @@ export class EditMenuItemsComponent implements OnInit {
         this.updateMenuService.updateItem(this.model)
             .subscribe(response => {
                 if (response.success === true && response.data !== null) {
-                    this.getData();
-                    // this._category.items[index] = response.data;
-                    // this.menuDataService.updateMenuItem(this.selectedCategory.items[index]);
+                    if (this._category.items[index].categoryId !== this.model.categoryId) {
+                        this.getData(this.model.categoryId);
+                    } else {
+                        this._category.items[index] = response.data;
+                        this.menuDataService.updateMenuItem(this._category.items[index]);
+                    }
                 } else {
                     this.notificationService.addMessage('Failed to update item');
                 }
@@ -96,11 +102,12 @@ export class EditMenuItemsComponent implements OnInit {
             });
     }
 
-    getData() {
+    getData(categoryId: number) {
         this.updateMenuService.getPageItems()
             .subscribe(response => {
                 if (response !== null) {
                     this.menuDataService.menuData = response;
+                    this.selectedCategory = this.menuDataService.getMenuCategoryById(categoryId);
                 } else {
                 }
             });
@@ -109,27 +116,16 @@ export class EditMenuItemsComponent implements OnInit {
     moveUp(index: number) {
         this.cancelEdit(index);
         const tempCurrent = this._category.items[index];
+
+
         const tempPrevious = this._category.items[index - 1];
         tempCurrent.position--;
         tempPrevious.position++;
+        if (tempCurrent.position < 1) {
+            tempCurrent.position = 1;
+        }
 
-        this.updateMenuService.updateItemPosition(tempCurrent, tempPrevious)
-            .subscribe(response => {
-                if (response.success === true && response.data.length === 2) {
-                    if (response.data[0].itemId === tempCurrent.itemId) {
-                        tempCurrent.editedAt = response.data[0].editedAt;
-                        tempPrevious.editedAt = response.data[1].editedAt;
-                    } else {
-                        tempCurrent.editedAt = response.data[1].editedAt;
-                        tempPrevious.editedAt = response.data[0].editedAt;
-                    }
-                    this.menuDataService.updateMenuItem(tempCurrent);
-                    this.menuDataService.updateMenuItem(tempPrevious);
-                } else {
-                    console.log('something went wrong');
-                }
-                this.updateMenuService.updating = false;
-            });
+        this.moveCall(tempCurrent, tempPrevious);
     }
 
     moveDown(index: number) {
@@ -138,24 +134,11 @@ export class EditMenuItemsComponent implements OnInit {
         const tempNext = this._category.items[index + 1];
         tempCurrent.position++;
         tempNext.position--;
+        if (tempNext.position < 1) {
+            tempNext.position = 1;
+        }
 
-        this.updateMenuService.updateItemPosition(tempCurrent, tempNext)
-            .subscribe(response => {
-                if (response.success === true && response.data.length === 2) {
-                    if (response.data[0].itemId === tempCurrent.itemId) {
-                        tempCurrent.editedAt = response.data[0].editedAt;
-                        tempNext.editedAt = response.data[1].editedAt;
-                    } else {
-                        tempCurrent.editedAt = response.data[1].editedAt;
-                        tempNext.editedAt = response.data[0].editedAt;
-                    }
-                    this.menuDataService.updateMenuItem(tempCurrent);
-                    this.menuDataService.updateMenuItem(tempNext);
-                } else {
-                    console.log('something went wrong');
-                }
-                this.updateMenuService.updating = false;
-            });
+        this.moveCall(tempCurrent, tempNext);
     }
 
     checkCategory() {
@@ -244,7 +227,12 @@ export class EditMenuItemsComponent implements OnInit {
      */
     cancelEdit(index: number) {
         this.model = new MenuItem;
-        this._category.items[index].editToggle = false;
+        console.log(this._category, index);
+
+        // todo gives error TS2367, without it, it breaks though
+        if (this._category !== 'undefined') {
+            this._category.items[index].editToggle = false;
+        }
     }
 
     initializeEdit(item: MenuItem) {
@@ -293,4 +281,23 @@ export class EditMenuItemsComponent implements OnInit {
         return comparison;
     }
 
+    private moveCall(current, other) {
+        this.updateMenuService.updateItemPosition(current, other)
+            .subscribe(response => {
+                if (response.success === true && response.data.length === 2) {
+                    if (response.data[0].itemId === current.itemId) {
+                        current.editedAt = response.data[0].editedAt;
+                        other.editedAt = response.data[1].editedAt;
+                    } else {
+                        current.editedAt = response.data[1].editedAt;
+                        other.editedAt = response.data[0].editedAt;
+                    }
+                    this.menuDataService.updateMenuItem(current);
+                    this.menuDataService.updateMenuItem(other);
+                } else {
+                    this.notificationService.addMessage('Whoops, something went wrong changing item positions');
+                }
+                this.updateMenuService.updating = false;
+            });
+    }
 }
