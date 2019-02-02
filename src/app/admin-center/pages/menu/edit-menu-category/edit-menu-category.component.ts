@@ -35,16 +35,16 @@ export class EditMenuCategoryComponent implements OnInit {
         this.model = new MenuCategory();
     }
 
-    public lastCategory(index: number): boolean {
+    lastCategory(index: number): boolean {
         return index === (this.menuData.length - 1);
     }
 
-    public getMenuCategory(index: number): MenuCategory {
+    getMenuCategory(index: number): MenuCategory {
         return this.menuDataService.getMenuCategory(index);
     }
 
-
-    public moveUp(index: number) {
+    // todo combine move up and move down functionality as it just repeats
+    moveUp(index: number) {
         this.updateMenuService.updating = true;
         this.menuDataService.incrementCategoryPosition(index - 1);
         this.menuDataService.decrementCategoryPosition(index);
@@ -61,9 +61,11 @@ export class EditMenuCategoryComponent implements OnInit {
                 }
 
                 this.updateMenuService.updating = false;
-            });
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
     }
 
+    // todo combine move up and move down functionality as it just repeats
     moveDown(index: number) {
         this.updateMenuService.updating = true;
         this.menuDataService.incrementCategoryPosition(index);
@@ -81,7 +83,8 @@ export class EditMenuCategoryComponent implements OnInit {
                 }
 
                 this.updateMenuService.updating = false;
-            });
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
     }
 
     deleteCategory(category: MenuCategory) {
@@ -105,7 +108,8 @@ export class EditMenuCategoryComponent implements OnInit {
                 }
 
                 this.updateMenuService.updating = false;
-            });
+
+            }, error => this.notificationService.addMessage('Something went wrong deleting a category'));
     }
 
     initializeUpdate() {
@@ -119,34 +123,14 @@ export class EditMenuCategoryComponent implements OnInit {
         }
     }
 
-    private updateCategory(index: number) {
-        this.menuData[index].enName = this.model.enName;
-        this.menuData[index].vnName = this.model.vnName;
-        this.menuData[index].type = this.model.type;
-
-        this.updateMenuService.updateCategory(this.menuData[index])
-            .subscribe((response) => {
-                if (response.success === true &&
-                    response.data !== null &&
-                    response.data.length === 1) {
-                    this.menuData[index].editedAt = response.data[0].editedAt;
-                } else {
-                    this.notificationService.addMessage('Something went wrong updating the category');
-                }
-                this.cancelEdit();
-                this.menuData[index].editToggle = false;
-                this.updateMenuService.updating = false;
-            });
-    }
-
-    public formChange() {
+    formChange() {
         this.hasChanged =
             this.selectedCategory.enName !== this.model.enName ||
             this.selectedCategory.vnName !== this.model.vnName ||
             this.selectedCategory.type !== this.model.type;
     }
 
-    public initializeEdit(category: MenuCategory) {
+    initializeEdit(category: MenuCategory) {
         this.checkOtherEdits(category.id);
 
         this.selectedCategory = category;
@@ -158,10 +142,31 @@ export class EditMenuCategoryComponent implements OnInit {
         this.model.type = category.type;
     }
 
-    public cancelEdit() {
+    cancelEdit() {
         this.model = new MenuCategory();
         this.selectedCategory = new MenuCategory();
         this.hasChanged = false;
+    }
+
+    private updateCategory(index: number) {
+        this.menuData[index].enName = this.model.enName;
+        this.menuData[index].vnName = this.model.vnName;
+        this.menuData[index].type = this.model.type;
+
+        this.updateMenuService.updateCategory(this.menuData[index])
+            .subscribe(response => {
+                if (response.success === true &&
+                    response.data !== null &&
+                    response.data.length === 1) {
+                    this.menuData[index].editedAt = response.data[0].editedAt;
+                } else {
+                    this.notificationService.addMessage('Something went wrong updating the category');
+                }
+                this.cancelEdit();
+                this.menuData[index].editToggle = false;
+                this.updateMenuService.updating = false;
+
+            }, error => this.notificationService.addMessage('Something went wrong updating the category'));
     }
 
     private checkOtherEdits(categoryId: number) {

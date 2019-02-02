@@ -57,11 +57,9 @@ export class EditMenuItemsComponent implements OnInit {
     }
 
     initializeDelete(item: MenuItem) {
-        console.log('Initializing delete', item);
 
         this.updateMenuService.deleteItem(item.itemId)
             .subscribe(response => {
-                console.log(response);
                 if (response === true) {
                     for (let i = 0; i < this.menuData.length; i++) {
                         if (this.menuData[i].id === item.categoryId) {
@@ -80,7 +78,9 @@ export class EditMenuItemsComponent implements OnInit {
                     this.notificationService.addMessage('Something went wrong deleting the item');
                 }
                 this.updateMenuService.updating = false;
-            });
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
+
     }
 
     initializeSave(index: number) {
@@ -97,9 +97,11 @@ export class EditMenuItemsComponent implements OnInit {
                 } else {
                     this.notificationService.addMessage('Failed to update item');
                 }
-                this.updateMenuService.updating = false;
                 this.cancelEdit(index);
-            });
+                this.updateMenuService.updating = false;
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
+
     }
 
     getData(categoryId: number) {
@@ -108,9 +110,10 @@ export class EditMenuItemsComponent implements OnInit {
                 if (response !== null) {
                     this.menuDataService.menuData = response;
                     this.selectedCategory = this.menuDataService.getMenuCategoryById(categoryId);
-                } else {
                 }
-            });
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
+
     }
 
     moveUp(index: number) {
@@ -296,7 +299,9 @@ export class EditMenuItemsComponent implements OnInit {
                 } else {
                     this.notificationService.addMessage('Whoops, something went wrong changing item positions');
                 }
+
                 this.updateMenuService.updating = false;
-            });
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
     }
 }

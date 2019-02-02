@@ -87,19 +87,18 @@ export class NewMenuCategoryComponent implements OnInit {
             this.updateMenuService.createNewCategory(this.model)
                 .subscribe(response => {
                     if (response.success && response.data !== null) {
+
+                        this.updateMenuService.updating = false;
                         this.updateMenuService.getPageItems()
                             .subscribe(data => {
                                 this.menuDataService.menuData = data;
-                            });
+                            }, error => this.notificationService.addMessage('Couldn\'t get page items'));
+
                         this.model = new MenuCategory();
                         this.newCatComponentToggle = false;
                         this.notificationService.addMessage('New category created');
-                    } else {
-                        this.notificationService.addMessage('Failed to add new category');
                     }
-
-                    this.updateMenuService.updating = false;
-                });
+                }, error => this.notificationService.addMessage('Something went wrong creating a new category'));
         }
     }
 

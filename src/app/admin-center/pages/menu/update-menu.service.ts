@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError} from 'rxjs/internal/operators';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 
 // Objects
 import {MenuCategory} from './menu-category.model';
@@ -50,7 +50,7 @@ export class UpdateMenuService {
         return this.httpClient.get<MenuCategory[]>(this.apiRoot + 'read.php',
             httpOptions)
             .pipe(
-                catchError(this.handleError('Failed to get menu data'))
+                catchError(this.handleError)
             );
     }
 
@@ -66,7 +66,7 @@ export class UpdateMenuService {
         return this.httpClient.post<any>(this.apiRoot + 'create.php',
             body, this.httpPostOptions)
             .pipe(
-                catchError(this.handleError('createMenuItem'))
+                catchError(this.handleError)
             );
     }
 
@@ -80,7 +80,10 @@ export class UpdateMenuService {
         this.updating = true;
 
         return this.httpClient.post<MenuCategory>(this.apiRoot + 'update.php',
-            body, this.httpPostOptions);
+            body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     updateItem(item: MenuItem): Observable<any> {
@@ -93,10 +96,14 @@ export class UpdateMenuService {
         this.updating = true;
 
         return this.httpClient.post<MenuItem>(this.apiRoot + 'update.php',
-            body, this.httpPostOptions);
+            body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     createNewCategory(category): Observable<any> {
+        console.log(category);
         const body = new HttpParams()
             .set('page', 'Menu')
             .set('task', 'createMenuCategory')
@@ -106,7 +113,10 @@ export class UpdateMenuService {
         this.updating = true;
 
         return this.httpClient
-            .post<MenuCategory>(this.apiRoot + 'create.php', body, this.httpPostOptions);
+            .post<MenuCategory>(this.apiRoot + 'create.php', body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     deleteCategory(id: number): Observable<any> {
@@ -122,7 +132,10 @@ export class UpdateMenuService {
         this.updating = true;
 
         return this.httpClient.post<boolean>(this.apiRoot + 'delete.php',
-            body, this.httpPostOptions);
+            body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     deleteItem(id: number): Observable<any> {
@@ -138,7 +151,10 @@ export class UpdateMenuService {
         this.updating = true;
 
         return this.httpClient.post<boolean>(this.apiRoot + 'delete.php', body,
-            this.httpPostOptions);
+            this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     updateCategoryPosition(previous: MenuCategory, current: MenuCategory): Observable<any> {
@@ -151,7 +167,10 @@ export class UpdateMenuService {
         this.updating = true;
 
         return this.httpClient.post<MenuCategory[]>(this.apiRoot + 'update.php',
-            body, this.httpPostOptions);
+            body, this.httpPostOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     updateItemPosition(previous: MenuItem, current: MenuItem): Observable<any> {
@@ -166,16 +185,26 @@ export class UpdateMenuService {
         return this.httpClient.post<any>(this.apiRoot + 'update.php',
             body, this.httpPostOptions)
             .pipe(
-                catchError(this.handleError('switching menu item positions'))
+                catchError(this.handleError)
             );
     }
 
-    private handleError<T>(operation = 'operation', result?: T) {
+    private handleError(error: HttpErrorResponse) {
         this.updating = false;
-        return (error: any): Observable<T> => {
-            console.error(error);
-
-            return of(result as T);
-        };
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+                `Backend returned code ${error.status}, ` +
+                `body was: ${error.error}`);
+        }
+        // return an observable with a user-facing error message
+        return throwError(
+            'Something went wrong, try again later'
+        );
     }
+
 }

@@ -119,6 +119,7 @@ export class NewMenuItemComponent implements OnInit {
                     this.notificationService.addMessage('Whoops, something went wrong');
                 }
                 this.updateMenuService.updating = false;
-            });
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
     }
 }

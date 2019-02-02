@@ -26,7 +26,6 @@ export class NotificationComponent implements OnInit {
     }
 
     toggleMessage(index: number) {
-        console.log(index);
         this.notificationService.toggleMessage(index);
     }
 

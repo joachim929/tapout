@@ -6,6 +6,7 @@ import {MenuCategory} from './menu-category.model';
 // Services
 import {UpdateMenuService} from './update-menu.service';
 import {MenuDataService} from './menu-data.service';
+import {NotificationService} from '../../shared/notification.service';
 
 @Component({
     selector: 'app-menu',
@@ -20,7 +21,8 @@ export class MenuComponent implements OnInit {
     public newItemToggle: boolean;
 
     constructor(private updateMenuService: UpdateMenuService,
-                private menuDataService: MenuDataService) {
+                private menuDataService: MenuDataService,
+                private notificationService: NotificationService) {
 
         this.editItemToggle = false;
         this.editCategoryToggle = false;
@@ -44,13 +46,17 @@ export class MenuComponent implements OnInit {
 
     getData() {
         this.updateMenuService.getPageItems()
-            .subscribe(response => {
-                if (response !== null) {
-                    this.menuDataService.menuData = response;
+            .subscribe(data => {
+                this.updateMenuService.updating = false;
+
+                if (data !== null) {
                     this.gotData = true;
+                    this.menuDataService.menuData = data;
                 } else {
                     this.gotData = false;
                 }
+            }, error => {
+                this.notificationService.addMessage(error);
             });
     }
 
