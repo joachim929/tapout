@@ -229,8 +229,7 @@ export class EditMenuItemsComponent implements OnInit {
         this.model = new MenuItem;
         console.log(this._category, index);
 
-        // todo gives error TS2367, without it, it breaks though
-        if (this._category !== 'undefined') {
+        if (typeof this._category !== 'undefined') {
             this._category.items[index].editToggle = false;
         }
     }

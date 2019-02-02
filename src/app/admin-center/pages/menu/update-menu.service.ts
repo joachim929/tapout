@@ -97,7 +97,6 @@ export class UpdateMenuService {
     }
 
     createNewCategory(category): Observable<any> {
-        console.log(category);
         const body = new HttpParams()
             .set('page', 'Menu')
             .set('task', 'createMenuCategory')
