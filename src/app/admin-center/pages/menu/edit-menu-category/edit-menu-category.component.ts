@@ -43,48 +43,20 @@ export class EditMenuCategoryComponent implements OnInit {
         return this.menuDataService.getMenuCategory(index);
     }
 
-    // todo combine move up and move down functionality as it just repeats
     moveUp(index: number) {
         this.updateMenuService.updating = true;
         this.menuDataService.incrementCategoryPosition(index - 1);
         this.menuDataService.decrementCategoryPosition(index);
 
-        this.updateMenuService
-            .updateCategoryPosition(this.getMenuCategory(index - 1), this.getMenuCategory(index))
-            .subscribe(response => {
-                if (response.success === true) {
-                    this.menuDataService.updateCategoryPosition(response.data, index);
-                    this.menuDataService.updateCategoryPosition(response.data, index - 1);
-                    this.menuDataService.sortMenu();
-                } else {
-                    this.notificationService.addMessage('Supposedly failed to update the page position, try refresh the page');
-                }
-
-                this.updateMenuService.updating = false;
-
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+        this.movePagePosition(index, index - 1);
     }
 
-    // todo combine move up and move down functionality as it just repeats
     moveDown(index: number) {
         this.updateMenuService.updating = true;
         this.menuDataService.incrementCategoryPosition(index);
         this.menuDataService.decrementCategoryPosition(index + 1);
 
-        this.updateMenuService.updateCategoryPosition(this.getMenuCategory(index + 1), this.getMenuCategory(index))
-            .subscribe(response => {
-
-                if (response.success === true) {
-                    this.menuDataService.updateCategoryPosition(response.data, index);
-                    this.menuDataService.updateCategoryPosition(response.data, index + 1);
-                    this.menuDataService.sortMenu();
-                } else {
-                    this.notificationService.addMessage('Supposedly failed to update the page position, try refresh the page');
-                }
-
-                this.updateMenuService.updating = false;
-
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+        this.movePagePosition(index, index + 1);
     }
 
     deleteCategory(category: MenuCategory) {
@@ -146,6 +118,23 @@ export class EditMenuCategoryComponent implements OnInit {
         this.model = new MenuCategory();
         this.selectedCategory = new MenuCategory();
         this.hasChanged = false;
+    }
+
+    private movePagePosition(firstItemIndex: number, secondItemIndex) {
+        this.updateMenuService.updateCategoryPosition(this.getMenuCategory(secondItemIndex), this.getMenuCategory(firstItemIndex))
+            .subscribe(response => {
+
+                if (response.success === true) {
+                    this.menuDataService.updateCategoryPosition(response.data, firstItemIndex);
+                    this.menuDataService.updateCategoryPosition(response.data, secondItemIndex);
+                    this.menuDataService.sortMenu();
+                } else {
+                    this.notificationService.addMessage('Supposedly failed to update the page position, try refresh the page');
+                }
+
+                this.updateMenuService.updating = false;
+
+            }, error => this.notificationService.addMessage('Failed to update category position'));
     }
 
     private updateCategory(index: number) {

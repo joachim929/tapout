@@ -52,7 +52,7 @@ export class NewMenuItemComponent implements OnInit {
         this.model.disableDescription = false;
     }
 
-    public toggleTableHints(formInvalid) {
+    toggleTableHints(formInvalid) {
         if (formInvalid) {
             this.hideTableHints = !this.hideTableHints;
             setTimeout(() => {
@@ -62,7 +62,7 @@ export class NewMenuItemComponent implements OnInit {
 
     }
 
-    public formatCategoryId(): void {
+    formatCategoryId(): void {
         this.model.categoryId = +this.model.categoryId;
         this.selectedCategory = this.menuDataService.getMenuCategoryById(this.model.categoryId);
         console.log(this.selectedCategory);
@@ -72,7 +72,7 @@ export class NewMenuItemComponent implements OnInit {
         }
     }
 
-    public formatPosition(): void {
+    formatPosition(): void {
         let catLength: number;
         if (this.selectedCategory.items === null) {
             catLength = 0;
@@ -88,7 +88,7 @@ export class NewMenuItemComponent implements OnInit {
     }
 
     // todo don't use NewMenuItem, use MenuItem
-    public saveItem(form): void {
+    saveItem(form): void {
         const newMenuItem = new NewMenuItem();
         newMenuItem.category = form.value.category;
         newMenuItem.enTitle = this.model.enTitle;
@@ -107,7 +107,7 @@ export class NewMenuItemComponent implements OnInit {
         this.updateMenuService.newCategoryItem(newMenuItem)
             .subscribe(response => {
                 if (typeof response !== 'undefined') {
-                    if (response.success === true) {
+                    if (response.success === true && response.data !== null) {
                         this.menuDataService.addMenuItemToCategory(response.data);
 
                         this.notificationService.addMessage('Added new item to ' + response.data.enTitle);
