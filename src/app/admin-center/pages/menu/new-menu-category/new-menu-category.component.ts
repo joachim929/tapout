@@ -98,7 +98,10 @@ export class NewMenuCategoryComponent implements OnInit {
                         this.newCatComponentToggle = false;
                         this.notificationService.addMessage('New category created');
                     }
-                }, error => this.notificationService.addMessage('Something went wrong creating a new category'));
+                }, (error) => {
+                    this.updateMenuService.updating = false;
+                    this.notificationService.addMessage('Something went wrong creating a new category');
+                });
         }
     }
 

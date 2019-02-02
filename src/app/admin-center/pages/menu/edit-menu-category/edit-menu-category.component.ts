@@ -76,12 +76,15 @@ export class EditMenuCategoryComponent implements OnInit {
                     }
                     this.model = new MenuCategory;
                 } else {
-                    this.notificationService.addMessage('Something went wrong deleting a category');
+                    this.notificationService.addMessage('Something went wrong Deleting a Category');
                 }
 
                 this.updateMenuService.updating = false;
 
-            }, error => this.notificationService.addMessage('Something went wrong deleting a category'));
+            }, (error) => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Something went wrong Deleting a Menu Category');
+            });
     }
 
     initializeUpdate() {
@@ -134,7 +137,10 @@ export class EditMenuCategoryComponent implements OnInit {
 
                 this.updateMenuService.updating = false;
 
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+            }, (error) => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Failed to update Category Page Position');
+            });
     }
 
     private updateCategory(index: number) {

@@ -68,7 +68,6 @@ export class NewMenuItemComponent implements OnInit {
     public formatCategoryId(): void {
         this.model.categoryId = +this.model.categoryId;
         this.selectedCategory = this.menuDataService.getMenuCategoryById(this.model.categoryId);
-        console.log(this.selectedCategory);
 
         if (typeof this.model.position !== 'undefined') {
             this.formatPosition();
@@ -122,7 +121,7 @@ export class NewMenuItemComponent implements OnInit {
                 }
                 this.updateMenuService.updating = false;
 
-            }, () => {
+            }, (error) => {
                 this.updateMenuService.updating = false;
                 this.notificationService.addMessage('Failed to create a New Menu Item');
             });

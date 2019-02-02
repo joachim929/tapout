@@ -65,7 +65,6 @@ export class EditMenuItemsComponent implements OnInit {
                         if (this.menuData[i].id === item.categoryId) {
                             for (let j = 0; j < this.menuData[i].items.length; j++) {
                                 if (this.menuData[i].items[j].itemId === item.itemId) {
-                                    console.log(this.menuData[i].items[j]);
                                     this.menuData[i].items.splice(j, 1);
                                     if (this.menuData[i].items.length === 0) {
                                         this._category = new MenuCategory;
@@ -75,11 +74,14 @@ export class EditMenuItemsComponent implements OnInit {
                         }
                     }
                 } else {
-                    this.notificationService.addMessage('Something went wrong deleting the item');
+                    this.notificationService.addMessage('Something went wrong deleting the Menu Item');
                 }
                 this.updateMenuService.updating = false;
 
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+            }, (error) => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Failed to Delete Menu Item');
+            });
 
     }
 
@@ -95,12 +97,15 @@ export class EditMenuItemsComponent implements OnInit {
                         this.menuDataService.updateMenuItem(this._category.items[index]);
                     }
                 } else {
-                    this.notificationService.addMessage('Failed to update item');
+                    this.notificationService.addMessage('Failed to Update Menu Item');
                 }
                 this.cancelEdit(index);
                 this.updateMenuService.updating = false;
 
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+            }, (error) => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Failed to Update Menu Item');
+            });
 
     }
 
@@ -112,7 +117,10 @@ export class EditMenuItemsComponent implements OnInit {
                     this.selectedCategory = this.menuDataService.getMenuCategoryById(categoryId);
                 }
 
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+            }, (error) => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Failed to get Menu data for some reason');
+            });
 
     }
 
@@ -205,6 +213,7 @@ export class EditMenuItemsComponent implements OnInit {
         this.hasChanged = difference;
     }
 
+    // todo remove?
     checkPosition() {
         const tempCategory = this.getCategoryById(this.model.categoryId);
         if (tempCategory !== null) {
@@ -230,7 +239,6 @@ export class EditMenuItemsComponent implements OnInit {
      */
     cancelEdit(index: number) {
         this.model = new MenuItem;
-        console.log(this._category, index);
 
         if (typeof this._category !== 'undefined') {
             this._category.items[index].editToggle = false;
@@ -283,7 +291,7 @@ export class EditMenuItemsComponent implements OnInit {
         return comparison;
     }
 
-    private moveCall(current, other) {
+    private moveCall(current: MenuItem, other: MenuItem) {
         this.updateMenuService.updateItemPosition(current, other)
             .subscribe(response => {
                 if (response.success === true && response.data.length === 2) {
@@ -302,6 +310,10 @@ export class EditMenuItemsComponent implements OnInit {
 
                 this.updateMenuService.updating = false;
 
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+            }, (error) => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Failed to update category position');
+            });
+
     }
 }
