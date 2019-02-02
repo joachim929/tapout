@@ -77,8 +77,13 @@ export class MenuDataService {
         if (typeof item.categoryId !== 'undefined') {
             for (let i = 0; i < this.menuData.length; i++) {
                 if (item.categoryId === this.menuData[i].id) {
-                    this.menuData[i].items.push(item);
-                    this.sortItems(i);
+                    if (this.menuData[i].items === null) {
+                        this.menuData[i].items = [item];
+
+                    } else {
+                        this.menuData[i].items.push(item);
+                        this.sortItems(i);
+                    }
                 }
             }
         }

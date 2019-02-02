@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 // Objects
-import {NewMenuItem, Category} from './new-menu-item.model';
 import {MenuCategory} from '../menu-category.model';
+import {MenuItem} from '../menu-item.model';
 
 // Services
 import {NotificationService} from '../../../shared/notification.service';
@@ -26,6 +26,10 @@ export class NewMenuItemComponent implements OnInit {
         return this._componentToggle;
     }
 
+    get menuData() {
+        return this.menuDataService.menuData;
+    }
+
     get updating(): boolean {
         return this.updateMenuService.updating;
     }
@@ -35,8 +39,7 @@ export class NewMenuItemComponent implements OnInit {
         this.newItemComponentToggleChange.emit(this.newItemComponentToggle);
     }
 
-    @Input() menuData: MenuCategory[];
-    model: NewMenuItem;
+    model: MenuItem;
     categories: MenuCategory[];
     hideTableHints = true;
     selectedCategory: MenuCategory;
@@ -48,11 +51,11 @@ export class NewMenuItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.model = new NewMenuItem();
+        this.model = new MenuItem();
         this.model.disableDescription = false;
     }
 
-    toggleTableHints(formInvalid) {
+    public toggleTableHints(formInvalid) {
         if (formInvalid) {
             this.hideTableHints = !this.hideTableHints;
             setTimeout(() => {
@@ -62,7 +65,7 @@ export class NewMenuItemComponent implements OnInit {
 
     }
 
-    formatCategoryId(): void {
+    public formatCategoryId(): void {
         this.model.categoryId = +this.model.categoryId;
         this.selectedCategory = this.menuDataService.getMenuCategoryById(this.model.categoryId);
         console.log(this.selectedCategory);
@@ -72,10 +75,10 @@ export class NewMenuItemComponent implements OnInit {
         }
     }
 
-    formatPosition(): void {
+    public formatPosition(): void {
         let catLength: number;
         if (this.selectedCategory.items === null) {
-            catLength = 0;
+            catLength = 1;
         } else {
             catLength = this.selectedCategory.items.length + 1;
         }
@@ -87,10 +90,9 @@ export class NewMenuItemComponent implements OnInit {
         }
     }
 
-    // todo don't use NewMenuItem, use MenuItem
-    saveItem(form): void {
-        const newMenuItem = new NewMenuItem();
-        newMenuItem.category = form.value.category;
+    public saveItem(form): void {
+        const newMenuItem = new MenuItem();
+        newMenuItem.categoryId = form.value.category;
         newMenuItem.enTitle = this.model.enTitle;
         newMenuItem.position = this.model.position;
         newMenuItem.price = this.model.price;
@@ -107,7 +109,7 @@ export class NewMenuItemComponent implements OnInit {
         this.updateMenuService.newCategoryItem(newMenuItem)
             .subscribe(response => {
                 if (typeof response !== 'undefined') {
-                    if (response.success === true && response.data !== null) {
+                    if (response.success === true) {
                         this.menuDataService.addMenuItemToCategory(response.data);
 
                         this.notificationService.addMessage('Added new item to ' + response.data.enTitle);
@@ -120,6 +122,9 @@ export class NewMenuItemComponent implements OnInit {
                 }
                 this.updateMenuService.updating = false;
 
-            }, error => this.notificationService.addMessage('Failed to update category position'));
+            }, () => {
+                this.updateMenuService.updating = false;
+                this.notificationService.addMessage('Failed to create a New Menu Item');
+            });
     }
 }
