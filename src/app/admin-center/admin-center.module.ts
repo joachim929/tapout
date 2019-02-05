@@ -18,14 +18,14 @@ import {NewImageComponent} from './components/new-image/new-image.component';
 import {ImageComponent} from './components/image/image.component';
 import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-category.component';
 import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
+import { EditMenuCategoryComponent } from './pages/menu/edit-menu-category/edit-menu-category.component';
+import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-items.component';
 
 // Modules
 import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
-import { EditMenuCategoryComponent } from './pages/menu/edit-menu-category/edit-menu-category.component';
-import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-items.component';
 import { NotificationComponent } from './components/notification/notification.component';
 
 
