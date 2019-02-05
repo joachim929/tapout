@@ -24,8 +24,11 @@
 
         <!-- Loop through left menu categories -->
         <article class="inner-container" *ngFor="let foods of foodItems">
-            <button class="btn-primary" type="button" data-toggle="collapse"
+            <button class="btn-primary"
+                    type="button"
+                    data-toggle="collapse"
                     attr.data-target=".{{foods.foodCategoryID}}"
+                    [class.disabled]="tetEventToggle"
                     aria-expanded="false" aria-controls="collapsible-food-category">
                 {{foods.foodCategoryName}}
             </button>
