@@ -22,6 +22,52 @@
     <!-- Does left side on big screen -->
     <section class="col-sm-12 col-md-6">
 
+        <!-- Loop through Tet event menu if Tet is still on
+         todo remove next time you are updating the website -->
+        <ng-container *ngIf="tetEventToggle">
+            <div class="inner-container">
+                <p class="btn-primary" style="margin-bottom: 0; color: #DA7A7D">Our adjusted menu for Tet</p>
+            </div>
+            <article class="inner-container" *ngFor="let foods of tetItems">
+                <button class="btn-primary"
+                        type="button"
+                        data-toggle="collapse"
+                        attr.data-target=".{{foods.foodCategoryID}}"
+                        aria-expanded="false" aria-controls="collapsible-food-category">
+                    {{foods.foodCategoryName}}
+                </button>
+
+                <div class="collapse tap-out-content-container {{foods.foodCategoryID}}">
+
+                    <!-- Loop through menu items -->
+                    <ng-container *ngFor="let food of foods.foodCategory">
+                        <div class="row tap-out-row">
+                            <div class="row row-eq-height tap-out-row">
+
+                                <div class="col-xs-9 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
+                                    <p class="tap-out-sub-heading">{{food.foodDescriptor}}</p>
+                                </div>
+
+                                <div class="col-xs-3 tap-out-content-border" *ngIf="food.foodPrice != 'false'">
+                                    <p class="tap-out-paragraph">{{food.foodPrice}}<span
+                                            [innerHTML]="vietnameseDong"></span></p>
+                                </div>
+
+                            </div>
+
+                            <div class="tap-out-description" *ngIf="food.foodDescription != 'false'">
+                                <p class="tap-out-paragraph line-breaker">{{food.foodDescription}}</p>
+                            </div>
+
+                        </div>
+                    </ng-container>
+                </div>
+            </article>
+            <div class="inner-container">
+                <p class="btn-primary disabled" style="margin-bottom: 0; color: #DA7A7D">Our usual menu will resume on the 11th</p>
+            </div>
+        </ng-container>
+
         <!-- Loop through left menu categories -->
         <article class="inner-container" *ngFor="let foods of foodItems">
             <button class="btn-primary"

@@ -6,15 +6,14 @@
 :root {
     --text-color: white;
     --off-white-color: #CDCDCD;
-    --offer-white-color: #878787;
-    --main-color: #7ADAd7;
+    --main-color: #7ADAD7;
+    --main-disabled-color: #3E7D7A;
     --comp-color: #DA7A7D;
     --background-color: black;
+    --darkest-grey-color: #191919;
     --off-background-color: #2C2C2C;
     --border-split-color: #3C3C3C;
 }
-
-
 
 @media (max-width: 885px) {
 

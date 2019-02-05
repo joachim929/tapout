@@ -49,3 +49,21 @@
 .invalid:hover {
     background-color: var(--comp-color);
 }
+/* todo still using bootstrap standard class in guest module */
+.btn-primary.disabled {
+    background-color: var(--darkest-grey-color);
+    color: var(--main-disabled-color);
+    border: 1px solid var(--background-color);
+}
+.btn-primary.disabled:hover {
+    background-color: var(--darkest-grey-color);
+    border: 1px solid var(--background-color);
+}
+
+.disabled {
+    background-color: var(--darkest-grey-color);
+    color: var(--main-disabled-color);
+}
+.disabled:hover {
+    background-color: var(--darkest-grey-color);
+}

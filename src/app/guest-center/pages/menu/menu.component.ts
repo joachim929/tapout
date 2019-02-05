@@ -23,7 +23,6 @@ export class MenuComponent implements OnInit {
     ngOnInit() {
         const now = new Date();
         this.tetEventToggle = this.tetEndDate > now;
-        console.log(this.tetEventToggle);
         this.tetEvent();
     }
 
