@@ -22,21 +22,24 @@
                 </article>
             </div>
         </section>
-        <section class="inner-container" *ngFor="let events of eventWeeklyItems">
-            <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{events.eventID}}"
-                    aria-expanded="false" aria-controls="collapsible-content">
-                <!-- 'fullDate' has the following format: Monday, July 14, 2005 -->
-                {{events.eventSubHeading}}
-            </button>
-            <div class="collapse in tap-out-content-container {{events.eventID}}">
-                <article class="row tap-out-row">
-                    <!-- Checks to see if description is false or not so we don't get unnecessary CSS which makes it look ugly -->
-                    <div class="tap-out-description" *ngIf="events.eventDescription != 'false'">
-                        <p class="tap-out-paragraph line-breaker">{{events.eventDescription}}</p>
-                    </div>
-                </article>
-            </div>
-        </section>
+        <ng-container *ngIf="_hideWeeklyEvents">
+            <section class="inner-container" *ngFor="let events of eventWeeklyItems">
+                <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{events.eventID}}"
+                        aria-expanded="false" aria-controls="collapsible-content">
+                    <!-- 'fullDate' has the following format: Monday, July 14, 2005 -->
+                    {{events.eventSubHeading}}
+                </button>
+                <div class="collapse in tap-out-content-container {{events.eventID}}">
+                    <article class="row tap-out-row">
+                        <!-- Checks to see if description is false or not so we don't get unnecessary CSS which makes it look ugly -->
+                        <div class="tap-out-description" *ngIf="events.eventDescription != 'false'">
+                            <p class="tap-out-paragraph line-breaker">{{events.eventDescription}}</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </ng-container>
+
 
     </div>
 </div>

@@ -1,114 +1,114 @@
-<article class="col-xs-12 new-item-container border-black">
-    <form #categoryForm="ngForm" autocomplete="off">
-        <!-- Form fields -->
-        <div class="col-xs-9 edit-category">
+<!--<article class="col-xs-12 new-item-container border-black">-->
+    <!--<form #categoryForm="ngForm" autocomplete="off">-->
+        <!--&lt;!&ndash; Form fields &ndash;&gt;-->
+        <!--<div class="col-xs-9 edit-category">-->
 
-            <div class="row">
-                <label class="col-xs-4 right"
-                       for="enName">English Category Name:</label>
-                <input class="col-xs-8"
-                       id="enName"
-                       name="enName"
-                       autocomplete="off"
-                       type="text"
-                       required
-                       maxlength="255"
-                       minlength="4"
-                       [(ngModel)]="model.enName"
-                       #enName="ngModel">
-                <div class="col-xs-12 input-info">
-                    <p *ngIf="(enName.invalid && enName.touched) || showInfo">
-                        Needs to be at least 4 characters long, and can't be longer than 255 characters
-                    </p>
-                </div>
-            </div>
+            <!--<div class="row">-->
+                <!--<label class="col-xs-4 right"-->
+                       <!--for="enName">English Category Name:</label>-->
+                <!--<input class="col-xs-8"-->
+                       <!--id="enName"-->
+                       <!--name="enName"-->
+                       <!--autocomplete="off"-->
+                       <!--type="text"-->
+                       <!--required-->
+                       <!--maxlength="255"-->
+                       <!--minlength="4"-->
+                       <!--[(ngModel)]="model.enName"-->
+                       <!--#enName="ngModel">-->
+                <!--<div class="col-xs-12 input-info">-->
+                    <!--<p *ngIf="(enName.invalid && enName.touched) || showInfo">-->
+                        <!--Needs to be at least 4 characters long, and can't be longer than 255 characters-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="row">
-                <label class="col-xs-4 right"
-                       for="vnName">Vietnamese Category Name:</label>
-                <input class="col-xs-8"
-                       id="vnName"
-                       name="vnName"
-                       autocomplete="off"
-                       type="text"
-                       required
-                       maxlength="255"
-                       minlength="4"
-                       [(ngModel)]="model.vnName"
-                       #vnName="ngModel">
-                <div class="col-xs-12 input-info">
-                    <p *ngIf="(vnName.invalid && vnName.touched) || showInfo">
-                        Needs to be at least 4 characters long, and can't be longer than 255 characters
-                    </p>
-                </div>
-            </div>
+            <!--<div class="row">-->
+                <!--<label class="col-xs-4 right"-->
+                       <!--for="vnName">Vietnamese Category Name:</label>-->
+                <!--<input class="col-xs-8"-->
+                       <!--id="vnName"-->
+                       <!--name="vnName"-->
+                       <!--autocomplete="off"-->
+                       <!--type="text"-->
+                       <!--required-->
+                       <!--maxlength="255"-->
+                       <!--minlength="4"-->
+                       <!--[(ngModel)]="model.vnName"-->
+                       <!--#vnName="ngModel">-->
+                <!--<div class="col-xs-12 input-info">-->
+                    <!--<p *ngIf="(vnName.invalid && vnName.touched) || showInfo">-->
+                        <!--Needs to be at least 4 characters long, and can't be longer than 255 characters-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="row">
-                <label class="col-xs-4 right"
-                       for="type">Category Type:</label>
-                <select class="col-xs-8"
-                        id="type"
-                        name="type"
-                        required
-                        [(ngModel)]="model.type"
-                        #type="ngModel">
-                    <option>food</option>
-                    <option>drink</option>
-                </select>
-                <div class="col-xs-12 input-info">
-                    <p *ngIf="(type.invalid && type.touched) || showInfo">
-                       Category type is required
-                    </p>
-                </div>
-            </div>
+            <!--<div class="row">-->
+                <!--<label class="col-xs-4 right"-->
+                       <!--for="type">Category Type:</label>-->
+                <!--<select class="col-xs-8"-->
+                        <!--id="type"-->
+                        <!--name="type"-->
+                        <!--required-->
+                        <!--[(ngModel)]="model.type"-->
+                        <!--#type="ngModel">-->
+                    <!--<option>food</option>-->
+                    <!--<option>drink</option>-->
+                <!--</select>-->
+                <!--<div class="col-xs-12 input-info">-->
+                    <!--<p *ngIf="(type.invalid && type.touched) || showInfo">-->
+                       <!--Category type is required-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="row">
-                <label class="col-xs-4 right"
-                       for="position">Page position:</label>
-                <input class="col-xs-8"
-                       id="position"
-                       name="position"
-                       autocomplete="off"
-                       type="number"
-                       required
-                       min="1"
-                       (blur)="formatPagePosition()"
-                       [(ngModel)]="model.position"
-                       #position="ngModel">
-            </div>
-            <div class="col-xs-12 input-info" style="height: 40px;">
-                <p *ngIf="position.invalid">Test</p>
-                <p *ngIf="showInfo">
-                    Page position needs to be between 1 and {{highestPosition}} (including {{highestPosition}})
-                </p>
-            </div>
-        </div>
+            <!--<div class="row">-->
+                <!--<label class="col-xs-4 right"-->
+                       <!--for="position">Page position:</label>-->
+                <!--<input class="col-xs-8"-->
+                       <!--id="position"-->
+                       <!--name="position"-->
+                       <!--autocomplete="off"-->
+                       <!--type="number"-->
+                       <!--required-->
+                       <!--min="1"-->
+                       <!--(blur)="formatPagePosition()"-->
+                       <!--[(ngModel)]="model.position"-->
+                       <!--#position="ngModel">-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 input-info" style="height: 40px;">-->
+                <!--<p *ngIf="position.invalid">Test</p>-->
+                <!--<p *ngIf="showInfo">-->
+                    <!--Page position needs to be between 1 and {{highestPosition}} (including {{highestPosition}})-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <!-- Form buttons -->
-        <div class="col-xs-3">
+        <!--&lt;!&ndash; Form buttons &ndash;&gt;-->
+        <!--<div class="col-xs-3">-->
 
-            <button class="button-edit"
-                    (click)="toggleShowInfo()">
-                Info
-            </button>
-            <button class="button-edit"
-                    [disabled]="!categoryForm.form.valid"
-                    [class.invalid]="categoryForm.form.invalid"
-                    (click)="initializeNewCategory()">
-                Save<img src="/assets/icons/icon-save-25x25.png">
-            </button>
-            <button class="button-edit" (click)="categoryForm.reset()">
-                Clear<img src="/assets/icons/icon-edit-25x25.png">
-            </button>
-            <button class="button-edit">
-                Cancel<img src="/assets/icons/icon-cancel-25x25.png">
-            </button>
+            <!--<button class="button-edit"-->
+                    <!--(click)="toggleShowInfo()">-->
+                <!--Info-->
+            <!--</button>-->
+            <!--<button class="button-edit"-->
+                    <!--[disabled]="!categoryForm.form.valid"-->
+                    <!--[class.invalid]="categoryForm.form.invalid"-->
+                    <!--(click)="initializeNewCategory()">-->
+                <!--Save<img src="/assets/icons/icon-save-25x25.png">-->
+            <!--</button>-->
+            <!--<button class="button-edit" (click)="categoryForm.reset()">-->
+                <!--Clear<img src="/assets/icons/icon-edit-25x25.png">-->
+            <!--</button>-->
+            <!--<button class="button-edit">-->
+                <!--Cancel<img src="/assets/icons/icon-cancel-25x25.png">-->
+            <!--</button>-->
 
-        </div>
-    </form>
-</article>
-<!-- todo For debugging purposes -->
-<p>EnName: {{model.enName}}</p>
-<p>VnName: {{model.vnName}}</p>
-<p>Type: {{model.type}}</p>
-<p>Position: {{model.position}}</p>
+        <!--</div>-->
+    <!--</form>-->
+<!--</article>-->
+<!--&lt;!&ndash; todo For debugging purposes &ndash;&gt;-->
+<!--<p>EnName: {{model.enName}}</p>-->
+<!--<p>VnName: {{model.vnName}}</p>-->
+<!--<p>Type: {{model.type}}</p>-->
+<!--<p>Position: {{model.position}}</p>-->

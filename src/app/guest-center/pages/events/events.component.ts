@@ -17,10 +17,13 @@ export class EventsComponent implements OnInit {
 
     eventWeeklyItems = EVENTWEEKLYITEMS;
 
+    _hideWeeklyEvents: boolean;
+
     constructor() {
     }
 
     ngOnInit() {
+        this.hideWeeklyEvents();
         const todaysDate = new Date();
 
         for (const category of this.eventItemsPreCheck) {
@@ -64,5 +67,11 @@ export class EventsComponent implements OnInit {
                 this.eventItems.push.apply(this.eventItems, test);
             }
         }
+    }
+
+    hideWeeklyEvents() {
+        const tetEndDate = new Date('February 10 2019');
+        const now = new Date();
+        this._hideWeeklyEvents = tetEndDate < now;
     }
 }
