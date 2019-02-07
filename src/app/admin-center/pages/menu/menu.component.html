@@ -1,38 +1,36 @@
 <section class="container">
     <article class="row create-item">
-        <button class="col-xs-6 button"
-                [disabled]="!gotData || updating"
-                [class.disabled]="!gotData || updating"
-                (click)="toggleNewItem()">
+        <a class="col-xs-6 button"
+           routerLink="add-item"
+           [class.disabled]="!gotData || updating"
+           (click)="toggleNewItem()">
             Add new menu item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
-        </button>
+        </a>
 
-        <button class="col-xs-6 button"
-                [disabled]="updating"
-                [class.disabled]="updating"
-                (click)="toggleNewCategory()">
+        <a class="col-xs-6 button"
+           routerLink="add-category"
+           [class.disabled]="updating"
+           (click)="toggleNewCategory()">
             Add new menu category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
-        </button>
+        </a>
 
-        <button class="col-xs-6 button"
-                [disabled]="!gotData || updating"
-                [class.disabled]="!gotData || updating"
-                (click)="toggleEditItem()">
+        <a class="col-xs-6 button"
+           routerLink="edit-items"
+           [class.disabled]="!gotData || updating"
+           (click)="toggleEditItem()">
             Edit Menu Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
-        </button>
+        </a>
 
-        <button class="col-xs-6 button"
-                [disabled]="!gotData || updating"
-                [class.disabled]="!gotData || updating"
-                (click)="toggleEditCategory()">
+        <a class="col-xs-6 button"
+           routerLink="edit-category"
+           [class.disabled]="!gotData || updating"
+           (click)="toggleEditCategory()">
             Edit Menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
-        </button>
+        </a>
     </article>
 </section>
-
-<app-edit-menu-items *ngIf="editItemToggle && gotData"></app-edit-menu-items>
-<!--<app-edit-menu-items [menuData]="menuData"></app-edit-menu-items>-->
-<app-edit-menu-category *ngIf="editCategoryToggle && gotData"></app-edit-menu-category>
-<!--<app-edit-menu-category [menuData]="menuData"></app-edit-menu-category>-->
-<app-new-menu-category *ngIf="newCategoryToggle" [(newCatComponentToggle)]="newCategoryToggle"></app-new-menu-category>
-<app-new-menu-item *ngIf="newItemToggle && gotData" [(newItemComponentToggle)]="newItemToggle"></app-new-menu-item>
+<router-outlet></router-outlet>
+<!--<app-edit-menu-items *ngIf="editItemToggle && gotData"></app-edit-menu-items>-->
+<!--<app-edit-menu-category *ngIf="editCategoryToggle && gotData"></app-edit-menu-category>-->
+<!--<app-new-menu-category *ngIf="newCategoryToggle" [(newCatComponentToggle)]="newCategoryToggle"></app-new-menu-category>-->
+<!--<app-new-menu-item *ngIf="newItemToggle && gotData" [(newItemComponentToggle)]="newItemToggle"></app-new-menu-item>-->

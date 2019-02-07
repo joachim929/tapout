@@ -9,22 +9,53 @@ import {GalleryComponent} from './pages/gallery/gallery.component';
 import {EventsComponent} from './pages/events/events.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {MenuComponent} from './pages/menu/menu.component';
+import {EditMenuItemsComponent} from './pages/menu/edit-menu-items/edit-menu-items.component';
+import {EditMenuCategoryComponent} from './pages/menu/edit-menu-category/edit-menu-category.component';
+import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-category.component';
+import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
 
 const adminRoutes: Routes = [
     {
         path: 'edit',
         component: AdminCenterComponent,
         children: [
-            {
-                path: 'about',
-                component: AboutComponent,
-            },
+            {path: 'about', component: AboutComponent},
             {path: 'home', component: HomeComponent},
             {path: 'gallery', component: GalleryComponent},
             {path: 'events', component: EventsComponent},
             {path: 'contact', component: ContactComponent},
-            {path: 'menu', component: MenuComponent},
+            {
+                path: 'menu',
+                component: MenuComponent,
+                children: [
+                    {
+                        path: 'add-item',
+                        component: NewMenuItemComponent
+                    },
+                    {
+                        path: 'edit-items',
+                        component: EditMenuItemsComponent
+                    },
+                    {
+                        path: 'add-category',
+                        component: NewMenuCategoryComponent
+                    },
+                    {
+                        path: 'edit-category',
+                        component: EditMenuCategoryComponent
+                    },
+                    {
+                        path: '',
+                        redirectTo: '/edit/menu',
+                        pathMatch: 'full'
+                    }
+                ]
+            },
         ]
+    },
+    {
+        path: '**',
+        redirectTo: '/edit'
     }
 ];
 
