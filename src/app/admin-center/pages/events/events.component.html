@@ -2,18 +2,18 @@
     <article class="row">
 
         <a class="col-xs-6 button"
-           [routerLink]="!gotData || updating ? null : 'add-item'"
-           [class.disabled]="!gotData || updating"
+           [routerLink]="checkDisabled ? null : 'add-item'"
+           [class.disabled]="checkDisabled"
            [class.button-active]="newItemToggle && gotData"
-           (click)="!gotData || updating ? null : toggleNewItem()">
+           (click)="checkDisabled ? null : toggleNewItem()">
             Add new event item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
-           [routerLink]="!gotData || updating ? null : 'edit-items'"
-           [class.disabled]="!gotData || updating"
+           [routerLink]="checkDisabled ? null : 'edit-items'"
+           [class.disabled]="checkDisabled"
            [class.button-active]="editItemToggle && gotData"
-           (click)="!gotData || updating ? null : toggleEditItem()">
+           (click)="checkDisabled ? null : toggleEditItem()">
             Edit Event Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
         </a>
 
@@ -26,10 +26,10 @@
         </a>
 
         <a class="col-xs-6 button"
-           [routerLink]="!gotData || updating ? null : 'edit-category'"
-           [class.disabled]="!gotData || updating"
+           [routerLink]="checkDisabled ? null : 'edit-category'"
+           [class.disabled]="checkDisabled"
            [class.button-active]="editCategoryToggle && gotData"
-           (click)="!gotData || updating ? null : toggleEditCategory()">
+           (click)="checkDisabled ? null : toggleEditCategory()">
             Edit Event Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
         </a>
 

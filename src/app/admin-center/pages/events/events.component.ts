@@ -59,6 +59,10 @@ export class EventsComponent implements OnInit {
         return this.eventsFactoryService.updating;
     }
 
+    get checkDisabled(): boolean {
+        return !this.gotData || this.updating;
+    }
+
     ngOnInit() {
         this.getData();
         this.taskRouteService.baseNav = 'edit/events';

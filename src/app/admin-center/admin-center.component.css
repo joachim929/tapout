@@ -35,3 +35,13 @@ input[type="number"]:hover {
     position: relative;
     margin-top: 100%;
 }
+
+.disabled:hover {
+    background-color: var(--darkest-grey-color);
+    color: var(--main-disabled-color);
+    cursor: default;
+}
+
+.disabled:focus {
+    color: var(--main-disabled-color);
+}
