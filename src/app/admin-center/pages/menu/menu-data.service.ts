@@ -120,6 +120,4 @@ export class MenuDataService {
         this.menuData[index].position = category.position;
         this.menuData[index].editedAt = category.editedAt;
     }
-
-
 }

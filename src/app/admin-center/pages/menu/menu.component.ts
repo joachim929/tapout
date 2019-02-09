@@ -7,7 +7,7 @@ import {MenuCategory} from './menu-category.model';
 import {UpdateMenuService} from './update-menu.service';
 import {MenuDataService} from './menu-data.service';
 import {NotificationService} from '../../shared/notification.service';
-import {MenuRouteService} from './menu-route.service';
+import {TaskRouteService} from '../../shared/task-route.service';
 
 @Component({
     selector: 'app-menu',
@@ -20,42 +20,42 @@ export class MenuComponent implements OnInit {
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
-                private menuRouteService: MenuRouteService) {
+                private taskRouteService: TaskRouteService) {
 
         this.gotData = false;
-        this.menuRouteService.toggleAllOff();
+        this.taskRouteService.toggleAllOff();
     }
 
     get editItemToggle(): boolean {
-        return this.menuRouteService.editItemToggle;
+        return this.taskRouteService.editItemToggle;
     }
 
     set editItemToggle(boolValue: boolean) {
-        this.menuRouteService.editItemToggle = boolValue;
+        this.taskRouteService.editItemToggle = boolValue;
     }
 
     get editCategoryToggle(): boolean {
-        return this.menuRouteService.editCategoryToggle;
+        return this.taskRouteService.editCategoryToggle;
     }
 
     set editCategoryToggle(boolValue: boolean) {
-        this.menuRouteService.editCategoryToggle = boolValue;
+        this.taskRouteService.editCategoryToggle = boolValue;
     }
 
     get newCategoryToggle(): boolean {
-        return this.menuRouteService.newCategoryToggle;
+        return this.taskRouteService.newCategoryToggle;
     }
 
     set newCategoryToggle(boolValue: boolean) {
-        this.menuRouteService.newCategoryToggle = boolValue;
+        this.taskRouteService.newCategoryToggle = boolValue;
     }
 
     get newItemToggle(): boolean {
-        return this.menuRouteService.newItemToggle;
+        return this.taskRouteService.newItemToggle;
     }
 
     set newItemToggle(boolValue: boolean) {
-        this.menuRouteService.newItemToggle = boolValue;
+        this.taskRouteService.newItemToggle = boolValue;
     }
 
 
@@ -69,6 +69,7 @@ export class MenuComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
+        this.taskRouteService.baseNav = 'edit/menu';
     }
 
     getData() {
@@ -88,18 +89,18 @@ export class MenuComponent implements OnInit {
     }
 
     toggleNewItem() {
-        this.menuRouteService.toggleNewItem();
+        this.taskRouteService.toggleNewItem();
     }
 
     toggleNewCategory() {
-        this.menuRouteService.toggleNewCategory();
+        this.taskRouteService.toggleNewCategory();
     }
 
     toggleEditItem() {
-        this.menuRouteService.toggleEditItem();
+        this.taskRouteService.toggleEditItem();
     }
 
     toggleEditCategory() {
-        this.menuRouteService.toggleEditCategory();
+        this.taskRouteService.toggleEditCategory();
     }
 }

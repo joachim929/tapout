@@ -1,5 +1,6 @@
 <section class="container">
     <article class="row create-item">
+
         <a class="col-xs-6 button"
            routerLink="add-item"
            [class.disabled]="!gotData || updating"
@@ -31,6 +32,7 @@
            (click)="toggleEditCategory()">
             Edit Menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
         </a>
+
     </article>
 </section>
 <router-outlet></router-outlet>

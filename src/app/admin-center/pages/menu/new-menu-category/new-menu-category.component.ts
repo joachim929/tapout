@@ -7,7 +7,7 @@ import {MenuCategory} from '../menu-category.model';
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
 import {NotificationService} from '../../../shared/notification.service';
-import {MenuRouteService} from '../menu-route.service';
+import {TaskRouteService} from '../../../shared/task-route.service';
 
 @Component({
     selector: 'app-new-menu-category',
@@ -25,7 +25,7 @@ export class NewMenuCategoryComponent implements OnInit {
     constructor(private menuDataService: MenuDataService,
                 private updateMenuService: UpdateMenuService,
                 private notificationService: NotificationService,
-                private menuRouteService: MenuRouteService) {
+                private menuRouteService: TaskRouteService) {
 
         this.highestPagePosition = 0;
         this.model = new MenuCategory();

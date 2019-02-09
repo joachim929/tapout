@@ -9,12 +9,21 @@ export class TaskRouteService {
     public _editCategoryToggle: boolean;
     public _newCategoryToggle: boolean;
     public _newItemToggle: boolean;
+    public _baseNav: string;
 
     constructor(private router: Router) {
         this._editCategoryToggle = false;
         this._editItemToggle = false;
         this._newCategoryToggle = false;
         this._newItemToggle = false;
+    }
+
+    get baseNav(): string {
+        return this._baseNav;
+    }
+
+    set baseNav(location: string) {
+        this._baseNav = location;
     }
 
     get editItemToggle(): boolean {
@@ -50,11 +59,7 @@ export class TaskRouteService {
     }
 
     routeToMenu() {
-        this.router.navigate(['edit/menu']);
-    }
-
-    routeToEvents() {
-        this.router.navigate(['edit/events']);
+        this.router.navigate([this.baseNav]);
     }
 
     toggleAllOff() {

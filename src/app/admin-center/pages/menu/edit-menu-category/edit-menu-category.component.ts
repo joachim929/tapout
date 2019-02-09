@@ -7,7 +7,7 @@ import {MenuCategory} from '../menu-category.model';
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
 import {NotificationService} from '../../../shared/notification.service';
-import {MenuRouteService} from '../menu-route.service';
+import {TaskRouteService} from '../../../shared/task-route.service';
 
 @Component({
     selector: 'app-edit-menu-category',
@@ -22,7 +22,7 @@ export class EditMenuCategoryComponent implements OnInit {
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
-                private menuRouteService: MenuRouteService) {
+                private menuRouteService: TaskRouteService) {
         this.menuRouteService.editCategoryToggle = true;
     }
 

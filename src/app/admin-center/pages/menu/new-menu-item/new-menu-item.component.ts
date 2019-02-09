@@ -8,7 +8,7 @@ import {MenuItem} from '../menu-item.model';
 import {NotificationService} from '../../../shared/notification.service';
 import {MenuDataService} from '../menu-data.service';
 import {UpdateMenuService} from '../update-menu.service';
-import {MenuRouteService} from '../menu-route.service';
+import {TaskRouteService} from '../../../shared/task-route.service';
 
 @Component({
     selector: 'app-new-menu-item',
@@ -24,7 +24,7 @@ export class NewMenuItemComponent implements OnInit {
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
-                private menuRouteService: MenuRouteService) {
+                private menuRouteService: TaskRouteService) {
         this.menuRouteService.newItemToggle = true;
     }
 
