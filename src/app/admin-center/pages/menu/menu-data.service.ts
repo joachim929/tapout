@@ -9,16 +9,25 @@ import {MenuItem} from './menu-item.model';
 })
 export class MenuDataService {
     public _menuData: MenuCategory[];
+    public _gotData: boolean;
 
     constructor() {
+        this._gotData = false;
+    }
+
+    get gotData(): boolean {
+        return this._gotData;
     }
 
     get menuData(): MenuCategory[] {
-        return this._menuData;
+        if (typeof this._menuData !== 'undefined') {
+            return this._menuData;
+        }
     }
 
     set menuData(newMenuData: MenuCategory[]) {
         if (typeof  newMenuData !== 'undefined' && newMenuData !== null) {
+            this._gotData = true;
             this._menuData = newMenuData;
             this.sortMenu();
         }

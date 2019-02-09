@@ -51,12 +51,13 @@ const adminRoutes: Routes = [
                     }
                 ]
             },
+            {
+                path: '**',
+                redirectTo: '/edit'
+            }
         ]
     },
-    {
-        path: '**',
-        redirectTo: '/edit'
-    }
+
 ];
 
 @NgModule({

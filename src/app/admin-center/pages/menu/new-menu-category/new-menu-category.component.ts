@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // Objects
 import {MenuCategory} from '../menu-category.model';
@@ -7,6 +7,7 @@ import {MenuCategory} from '../menu-category.model';
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
 import {NotificationService} from '../../../shared/notification.service';
+import {MenuRouteService} from '../menu-route.service';
 
 @Component({
     selector: 'app-new-menu-category',
@@ -14,20 +15,6 @@ import {NotificationService} from '../../../shared/notification.service';
     styleUrls: ['../menu.component.css']
 })
 export class NewMenuCategoryComponent implements OnInit {
-    _componentToggle: boolean;
-
-    @Output()
-    newCatComponentToggleChange = new EventEmitter<boolean>();
-
-    @Input()
-    get newCatComponentToggle(): boolean {
-        return this._componentToggle;
-    }
-
-    set newCatComponentToggle(val: boolean) {
-        this._componentToggle = val;
-        this.newCatComponentToggleChange.emit(this.newCatComponentToggle);
-    }
 
     public model: MenuCategory;
     public showInfo: boolean;
@@ -37,10 +24,12 @@ export class NewMenuCategoryComponent implements OnInit {
 
     constructor(private menuDataService: MenuDataService,
                 private updateMenuService: UpdateMenuService,
-                private notificationService: NotificationService) {
+                private notificationService: NotificationService,
+                private menuRouteService: MenuRouteService) {
 
         this.highestPagePosition = 0;
         this.model = new MenuCategory();
+        this.menuRouteService.newCategoryToggle = true;
     }
 
     get menuData(): MenuCategory[] {
@@ -58,6 +47,10 @@ export class NewMenuCategoryComponent implements OnInit {
     ngOnInit() {
         this.showInfo = false;
         this.setHighestPagePosition();
+    }
+
+    goBack() {
+        this.menuRouteService.routeToMenu();
     }
 
     formatPagePosition() {
@@ -95,7 +88,7 @@ export class NewMenuCategoryComponent implements OnInit {
                             }, error => this.notificationService.addMessage('Couldn\'t get page items'));
 
                         this.model = new MenuCategory();
-                        this.newCatComponentToggle = false;
+                        this.goBack();
                         this.notificationService.addMessage('New category created');
                     }
                 }, (error) => {

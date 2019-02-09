@@ -7,6 +7,7 @@ import {MenuCategory} from '../menu-category.model';
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
 import {NotificationService} from '../../../shared/notification.service';
+import {MenuRouteService} from '../menu-route.service';
 
 @Component({
     selector: 'app-edit-menu-category',
@@ -20,7 +21,22 @@ export class EditMenuCategoryComponent implements OnInit {
 
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
-                private notificationService: NotificationService) {
+                private notificationService: NotificationService,
+                private menuRouteService: MenuRouteService) {
+        this.menuRouteService.editCategoryToggle = true;
+    }
+
+    get gotData(): boolean {
+        let gotData = false;
+        if (this.menuDataService.gotData === true) {
+
+            if (typeof this.menuData !== 'undefined' && this.menuData !== null && this.menuData !== []) {
+                if (this.menuData.length > 0) {
+                    gotData = true;
+                }
+            }
+        }
+        return gotData;
     }
 
     get menuData(): MenuCategory[] {
@@ -32,6 +48,7 @@ export class EditMenuCategoryComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.menuRouteService.editCategoryToggle = true;
         this.model = new MenuCategory();
     }
 

@@ -7,6 +7,7 @@ import {MenuCategory} from './menu-category.model';
 import {UpdateMenuService} from './update-menu.service';
 import {MenuDataService} from './menu-data.service';
 import {NotificationService} from '../../shared/notification.service';
+import {MenuRouteService} from './menu-route.service';
 
 @Component({
     selector: 'app-menu',
@@ -15,22 +16,48 @@ import {NotificationService} from '../../shared/notification.service';
 })
 export class MenuComponent implements OnInit {
     public gotData: boolean;
-    public editItemToggle: boolean;
-    public editCategoryToggle: boolean;
-    public newCategoryToggle: boolean;
-    public newItemToggle: boolean;
 
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
-                private notificationService: NotificationService) {
+                private notificationService: NotificationService,
+                private menuRouteService: MenuRouteService) {
 
-        this.editItemToggle = false;
-        this.editCategoryToggle = false;
-        this.editItemToggle = false;
-        this.newItemToggle = false;
         this.gotData = false;
-
+        this.menuRouteService.toggleAllOff();
     }
+
+    get editItemToggle(): boolean {
+        return this.menuRouteService.editItemToggle;
+    }
+
+    set editItemToggle(boolValue: boolean) {
+        this.menuRouteService.editItemToggle = boolValue;
+    }
+
+    get editCategoryToggle(): boolean {
+        return this.menuRouteService.editCategoryToggle;
+    }
+
+    set editCategoryToggle(boolValue: boolean) {
+        this.menuRouteService.editCategoryToggle = boolValue;
+    }
+
+    get newCategoryToggle(): boolean {
+        return this.menuRouteService.newCategoryToggle;
+    }
+
+    set newCategoryToggle(boolValue: boolean) {
+        this.menuRouteService.newCategoryToggle = boolValue;
+    }
+
+    get newItemToggle(): boolean {
+        return this.menuRouteService.newItemToggle;
+    }
+
+    set newItemToggle(boolValue: boolean) {
+        this.menuRouteService.newItemToggle = boolValue;
+    }
+
 
     get menuData(): MenuCategory[] {
         return this.menuDataService.menuData;
@@ -61,54 +88,18 @@ export class MenuComponent implements OnInit {
     }
 
     toggleNewItem() {
-        this.newItemToggle = !this.newItemToggle;
-        if (this.newCategoryToggle) {
-            this.newCategoryToggle = false;
-        }
-        if (this.editCategoryToggle) {
-            this.editCategoryToggle = false;
-        }
-        if (this.editItemToggle) {
-            this.editItemToggle = false;
-        }
+        this.menuRouteService.toggleNewItem();
     }
 
     toggleNewCategory() {
-        this.newCategoryToggle = !this.newCategoryToggle;
-        if (this.newItemToggle) {
-            this.newItemToggle = false;
-        }
-        if (this.editCategoryToggle) {
-            this.editCategoryToggle = false;
-        }
-        if (this.editItemToggle) {
-            this.editItemToggle = false;
-        }
+        this.menuRouteService.toggleNewCategory();
     }
 
     toggleEditItem() {
-        this.editItemToggle = !this.editItemToggle;
-        if (this.newItemToggle) {
-            this.newItemToggle = false;
-        }
-        if (this.newCategoryToggle) {
-            this.newCategoryToggle = false;
-        }
-        if (this.editCategoryToggle) {
-            this.editCategoryToggle = false;
-        }
+        this.menuRouteService.toggleEditItem();
     }
 
     toggleEditCategory() {
-        this.editCategoryToggle = !this.editCategoryToggle;
-        if (this.newItemToggle) {
-            this.newItemToggle = false;
-        }
-        if (this.newCategoryToggle) {
-            this.newCategoryToggle = false;
-        }
-        if (this.editItemToggle) {
-            this.editItemToggle = false;
-        }
+        this.menuRouteService.toggleEditCategory();
     }
 }

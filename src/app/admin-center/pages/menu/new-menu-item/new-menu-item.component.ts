@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // Objects
 import {MenuCategory} from '../menu-category.model';
@@ -8,6 +8,7 @@ import {MenuItem} from '../menu-item.model';
 import {NotificationService} from '../../../shared/notification.service';
 import {MenuDataService} from '../menu-data.service';
 import {UpdateMenuService} from '../update-menu.service';
+import {MenuRouteService} from '../menu-route.service';
 
 @Component({
     selector: 'app-new-menu-item',
@@ -15,15 +16,16 @@ import {UpdateMenuService} from '../update-menu.service';
     styleUrls: ['./new-menu-item.component.css']
 })
 export class NewMenuItemComponent implements OnInit {
+    model: MenuItem;
+    categories: MenuCategory[];
+    hideTableHints = true;
+    selectedCategory: MenuCategory;
 
-    _componentToggle: boolean;
-
-    @Output()
-    newItemComponentToggleChange = new EventEmitter<boolean>();
-
-    @Input()
-    get newItemComponentToggle(): boolean {
-        return this._componentToggle;
+    constructor(private updateMenuService: UpdateMenuService,
+                private menuDataService: MenuDataService,
+                private notificationService: NotificationService,
+                private menuRouteService: MenuRouteService) {
+        this.menuRouteService.newItemToggle = true;
     }
 
     get menuData() {
@@ -32,22 +34,6 @@ export class NewMenuItemComponent implements OnInit {
 
     get updating(): boolean {
         return this.updateMenuService.updating;
-    }
-
-    set newItemComponentToggle(val: boolean) {
-        this._componentToggle = val;
-        this.newItemComponentToggleChange.emit(this.newItemComponentToggle);
-    }
-
-    model: MenuItem;
-    categories: MenuCategory[];
-    hideTableHints = true;
-    selectedCategory: MenuCategory;
-
-    constructor(private updateMenuService: UpdateMenuService,
-                private menuDataService: MenuDataService,
-                private notificationService: NotificationService) {
-
     }
 
     ngOnInit() {
@@ -112,7 +98,7 @@ export class NewMenuItemComponent implements OnInit {
                         this.menuDataService.addMenuItemToCategory(response.data);
 
                         this.notificationService.addMessage('Added new item to ' + response.data.enTitle);
-                        this.newItemComponentToggle = false;
+                        this.menuRouteService.routeToMenu();
                     } else {
                         this.notificationService.addMessage('Failed to add a new item');
                     }

@@ -1,4 +1,4 @@
-<div *ngIf="menuData.length > 0">
+<div *ngIf="gotData === true">
     <ng-container *ngFor="let category of menuData; let index = index;">
         <button class="button"
                 data-toggle="collapse"
@@ -140,6 +140,6 @@
         </div>
     </ng-container>
 </div>
-<div *ngIf="menuData.length === 0" class="col-xs-12 menu-item border-black">
+<div *ngIf="gotData && menuData.length === 0" class="col-xs-12 menu-item border-black">
     <p>No categories found, either you haven't created one yet or something went wrong</p>
 </div>

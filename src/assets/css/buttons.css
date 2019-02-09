@@ -1,5 +1,6 @@
 /* Project buttons */
 .button {
+    text-align: center;
     width: 100%;
     font-size: 16px;
     border-radius: 0;
