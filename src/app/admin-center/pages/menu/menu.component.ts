@@ -58,13 +58,16 @@ export class MenuComponent implements OnInit {
         this.taskRouteService.newItemToggle = boolValue;
     }
 
-
     get menuData(): MenuCategory[] {
         return this.menuDataService.menuData;
     }
 
     get updating(): boolean {
         return this.updateMenuService.updating;
+    }
+
+    get checkDisabled(): boolean {
+        return !this.gotData || this.updating;
     }
 
     ngOnInit() {

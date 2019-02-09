@@ -2,35 +2,35 @@
     <article class="row sub-nav-bar">
 
         <a class="col-xs-6 button"
-           routerLink="add-item"
-           [class.disabled]="!gotData || updating"
-           [class.button-active]="newItemToggle"
-           (click)="toggleNewItem()">
-            Add new menu item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
+           [routerLink]="checkDisabled ? null : 'add-item'"
+           [class.disabled]="checkDisabled"
+           [class.button-active]="newItemToggle && gotData"
+           (click)="checkDisabled ? null : toggleNewItem()">
+            Add new event item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
-           routerLink="add-category"
+           [routerLink]="checkDisabled ? null : 'edit-items'"
+           [class.disabled]="checkDisabled"
+           [class.button-active]="editItemToggle && gotData"
+           (click)="checkDisabled ? null : toggleEditItem()">
+            Edit Event Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
+        </a>
+
+        <a class="col-xs-6 button"
+           [routerLink]="updating ? null : 'add-category'"
            [class.disabled]="updating"
            [class.button-active]="newCategoryToggle"
            (click)="toggleNewCategory()">
-            Add new menu category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
+            Add new event category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
-           routerLink="edit-items"
-           [class.disabled]="!gotData || updating"
-           [class.button-active]="editItemToggle"
-           (click)="toggleEditItem()">
-            Edit Menu Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
-        </a>
-
-        <a class="col-xs-6 button"
-           routerLink="edit-category"
-           [class.disabled]="!gotData || updating"
-           [class.button-active]="editCategoryToggle"
-           (click)="toggleEditCategory()">
-            Edit Menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
+           [routerLink]="checkDisabled ? null : 'edit-category'"
+           [class.disabled]="checkDisabled"
+           [class.button-active]="editCategoryToggle && gotData"
+           (click)="checkDisabled ? null : toggleEditCategory()">
+            Edit Event Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
         </a>
 
     </article>
