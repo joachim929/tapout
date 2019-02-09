@@ -27,16 +27,7 @@ export class EditMenuCategoryComponent implements OnInit {
     }
 
     get gotData(): boolean {
-        let gotData = false;
-        if (this.menuDataService.gotData === true) {
-
-            if (typeof this.menuData !== 'undefined' && this.menuData !== null && this.menuData !== []) {
-                if (this.menuData.length > 0) {
-                    gotData = true;
-                }
-            }
-        }
-        return gotData;
+        return this.menuDataService.gotData === true;
     }
 
     get menuData(): MenuCategory[] {
