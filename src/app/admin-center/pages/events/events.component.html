@@ -1,3 +1,38 @@
-<p>
-  events works!
-</p>
+<section class="container">
+    <article class="row">
+
+        <a class="col-xs-6 button"
+           [routerLink]="!gotData || updating ? null : 'add-item'"
+           [class.disabled]="!gotData || updating"
+           [class.button-active]="newItemToggle && gotData"
+           (click)="!gotData || updating ? null : toggleNewItem()">
+            Add new event item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
+        </a>
+
+        <a class="col-xs-6 button"
+           [routerLink]="!gotData || updating ? null : 'edit-items'"
+           [class.disabled]="!gotData || updating"
+           [class.button-active]="editItemToggle && gotData"
+           (click)="!gotData || updating ? null : toggleEditItem()">
+            Edit Event Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
+        </a>
+
+        <a class="col-xs-6 button"
+           [routerLink]="updating ? null : 'add-category'"
+           [class.disabled]="updating"
+           [class.button-active]="newCategoryToggle"
+           (click)="toggleNewCategory()">
+            Add new event category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
+        </a>
+
+        <a class="col-xs-6 button"
+           [routerLink]="!gotData || updating ? null : 'edit-category'"
+           [class.disabled]="!gotData || updating"
+           [class.button-active]="editCategoryToggle && gotData"
+           (click)="!gotData || updating ? null : toggleEditCategory()">
+            Edit Event Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
+        </a>
+
+    </article>
+</section>
+<router-outlet></router-outlet>

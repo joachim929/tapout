@@ -13,6 +13,10 @@ import {EditMenuItemsComponent} from './pages/menu/edit-menu-items/edit-menu-ite
 import {EditMenuCategoryComponent} from './pages/menu/edit-menu-category/edit-menu-category.component';
 import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-category.component';
 import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
+import {NewEventItemComponent} from "./pages/events/new-event-item/new-event-item.component";
+import {EditEventItemsComponent} from "./pages/events/edit-event-items/edit-event-items.component";
+import {NewEventCategoryComponent} from "./pages/events/new-event-category/new-event-category.component";
+import {EditEventCategoryComponent} from "./pages/events/edit-event-category/edit-event-category.component";
 
 const adminRoutes: Routes = [
     {
@@ -22,7 +26,28 @@ const adminRoutes: Routes = [
             {path: 'about', component: AboutComponent},
             {path: 'home', component: HomeComponent},
             {path: 'gallery', component: GalleryComponent},
-            {path: 'events', component: EventsComponent},
+            {
+                path: 'events',
+                component: EventsComponent,
+                children: [
+                    {
+                        path: 'add-item',
+                        component: NewEventItemComponent
+                    },
+                    {
+                        path: 'edit-items',
+                        component: EditEventItemsComponent
+                    },
+                    {
+                        path: 'add-category',
+                        component: NewEventCategoryComponent
+                    },
+                    {
+                        path: 'edit-category',
+                        component: EditEventCategoryComponent
+                    }
+                ]
+            },
             {path: 'contact', component: ContactComponent},
             {
                 path: 'menu',

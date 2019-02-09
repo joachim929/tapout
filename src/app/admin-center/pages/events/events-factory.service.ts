@@ -10,18 +10,27 @@ import {ExternalLinksService} from '../../../shared/external-links.service';
     providedIn: 'root'
 })
 export class EventsFactoryService {
-
-    apiRoot: string;
+    readonly apiRoot: string;
     readonly httpPostOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
     };
+    public _updating: boolean;
 
     constructor(private httpClient: HttpClient,
                 private externalLinksService: ExternalLinksService) {
+        this._updating = false;
         this.apiRoot = this.externalLinksService.localhost + 'event/';
     }
 
-    test(): Observable<any> {
+    set updating(toggle: boolean) {
+        this._updating = toggle;
+    }
+
+    get updating(): boolean {
+        return this._updating;
+    }
+
+    getPageItems(): Observable<any> {
         const now = new Date();
         const test = {
             'now': now,

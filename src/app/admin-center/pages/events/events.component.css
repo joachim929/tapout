@@ -1,0 +1,13 @@
+.button {
+    width: 50%;
+}
+
+.disabled:hover {
+    background-color: var(--darkest-grey-color);
+    color: var(--main-disabled-color);
+    cursor: default;
+}
+
+.disabled:focus {
+    color: var(--main-disabled-color);
+}

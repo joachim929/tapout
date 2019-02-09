@@ -20,13 +20,18 @@ import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-
 import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
 import { EditMenuCategoryComponent } from './pages/menu/edit-menu-category/edit-menu-category.component';
 import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-items.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { NewEventItemComponent } from './pages/events/new-event-item/new-event-item.component';
+import { NewEventCategoryComponent } from './pages/events/new-event-category/new-event-category.component';
+import { EditEventCategoryComponent } from './pages/events/edit-event-category/edit-event-category.component';
+import { EditEventItemsComponent } from './pages/events/edit-event-items/edit-event-items.component';
 
 // Modules
 import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
-import { NotificationComponent } from './components/notification/notification.component';
+
 
 
 @NgModule({
@@ -54,7 +59,11 @@ import { NotificationComponent } from './components/notification/notification.co
         NewMenuItemComponent,
         EditMenuCategoryComponent,
         EditMenuItemsComponent,
-        NotificationComponent
+        NotificationComponent,
+        NewEventItemComponent,
+        NewEventCategoryComponent,
+        EditEventCategoryComponent,
+        EditEventItemsComponent
     ],
     providers: [
         PageInfoService

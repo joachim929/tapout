@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 @Injectable({
     providedIn: 'root'
 })
-export class MenuRouteService {
+export class TaskRouteService {
     public _editItemToggle: boolean;
     public _editCategoryToggle: boolean;
     public _newCategoryToggle: boolean;
@@ -51,6 +51,10 @@ export class MenuRouteService {
 
     routeToMenu() {
         this.router.navigate(['edit/menu']);
+    }
+
+    routeToEvents() {
+        this.router.navigate(['edit/events']);
     }
 
     toggleAllOff() {
