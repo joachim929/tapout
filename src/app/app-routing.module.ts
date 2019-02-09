@@ -9,7 +9,7 @@ const routes: Routes = [
         data: {preload: true},
     },
     {
-        path: 'edit',
+        path: 'admin',
         loadChildren: './admin-center/admin-center.module#AdminCenterModule',
         data: { preload: true}
     },

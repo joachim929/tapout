@@ -13,14 +13,14 @@ import {EditMenuItemsComponent} from './pages/menu/edit-menu-items/edit-menu-ite
 import {EditMenuCategoryComponent} from './pages/menu/edit-menu-category/edit-menu-category.component';
 import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-category.component';
 import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
-import {NewEventItemComponent} from "./pages/events/new-event-item/new-event-item.component";
-import {EditEventItemsComponent} from "./pages/events/edit-event-items/edit-event-items.component";
-import {NewEventCategoryComponent} from "./pages/events/new-event-category/new-event-category.component";
-import {EditEventCategoryComponent} from "./pages/events/edit-event-category/edit-event-category.component";
+import {NewEventItemComponent} from './pages/events/new-event-item/new-event-item.component';
+import {EditEventItemsComponent} from './pages/events/edit-event-items/edit-event-items.component';
+import {NewEventCategoryComponent} from './pages/events/new-event-category/new-event-category.component';
+import {EditEventCategoryComponent} from './pages/events/edit-event-category/edit-event-category.component';
 
 const adminRoutes: Routes = [
     {
-        path: 'edit',
+        path: 'admin',
         component: AdminCenterComponent,
         children: [
             {path: 'about', component: AboutComponent},
@@ -45,6 +45,11 @@ const adminRoutes: Routes = [
                     {
                         path: 'edit-category',
                         component: EditEventCategoryComponent
+                    },
+                    {
+                        path: '',
+                        redirectTo: '/admin/events',
+                        pathMatch: 'full'
                     }
                 ]
             },
@@ -71,14 +76,14 @@ const adminRoutes: Routes = [
                     },
                     {
                         path: '',
-                        redirectTo: '/edit/menu',
+                        redirectTo: '/admin/menu',
                         pathMatch: 'full'
                     }
                 ]
             },
             {
                 path: '**',
-                redirectTo: '/edit'
+                redirectTo: '/admin'
             }
         ]
     },

@@ -72,7 +72,7 @@ export class MenuComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
-        this.taskRouteService.baseNav = 'edit/menu';
+        this.taskRouteService.baseNav = 'admin/menu';
     }
 
     getData() {

@@ -65,7 +65,7 @@ export class EventsComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
-        this.taskRouteService.baseNav = 'edit/events';
+        this.taskRouteService.baseNav = 'admin/events';
     }
 
     getData() {
