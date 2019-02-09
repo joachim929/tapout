@@ -41,6 +41,10 @@ export class NewMenuItemComponent implements OnInit {
         this.model.disableDescription = false;
     }
 
+    goBack() {
+        this.menuRouteService.routeToMenu();
+    }
+
     public toggleTableHints(formInvalid) {
         if (formInvalid) {
             this.hideTableHints = !this.hideTableHints;
@@ -98,7 +102,7 @@ export class NewMenuItemComponent implements OnInit {
                         this.menuDataService.addMenuItemToCategory(response.data);
 
                         this.notificationService.addMessage('Added new item to ' + response.data.enTitle);
-                        this.menuRouteService.routeToMenu();
+                        this.goBack();
                     } else {
                         this.notificationService.addMessage('Failed to add a new item');
                     }

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
 // Services
+import {EventsDataService} from './events-data.service';
 import {EventsFactoryService} from './events-factory.service';
 import {TaskRouteService} from '../../shared/task-route.service';
-import {EventsDataService} from './events-data.service';
 import {NotificationService} from '../../shared/notification.service';
 
 @Component({
@@ -14,10 +14,10 @@ import {NotificationService} from '../../shared/notification.service';
 export class EventsComponent implements OnInit {
     public gotData: boolean;
 
-    constructor(private eventsFactoryService: EventsFactoryService,
-                private taskRouteService: TaskRouteService,
-                private eventsDataService: EventsDataService,
-                private notificationService: NotificationService) {
+    constructor(private eventsDataService: EventsDataService,
+                private eventsFactoryService: EventsFactoryService,
+                private notificationService: NotificationService,
+                private taskRouteService: TaskRouteService) {
 
         this.gotData = false;
         this.taskRouteService.toggleAllOff();

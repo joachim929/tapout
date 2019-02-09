@@ -59,6 +59,7 @@ export class TaskRouteService {
     }
 
     routeToMenu() {
+        this.toggleAllOff();
         this.router.navigate([this.baseNav]);
     }
 
@@ -72,65 +73,36 @@ export class TaskRouteService {
     toggleNewCategory() {
         if (this.newCategoryToggle === true) {
             this.routeToMenu();
+        } else {
+            this.toggleAllOff();
+            this.newCategoryToggle = true;
         }
-        this.newCategoryToggle = !this.newCategoryToggle;
-        if (this.newItemToggle) {
-            this.newItemToggle = false;
-        }
-        if (this.editCategoryToggle) {
-            this.editCategoryToggle = false;
-        }
-        if (this.editItemToggle) {
-            this.editItemToggle = false;
-        }
-
     }
 
     toggleNewItem() {
         if (this.newItemToggle === true) {
             this.routeToMenu();
-        }
-        this.newItemToggle = !this.newItemToggle;
-        if (this.newCategoryToggle) {
-            this.newCategoryToggle = false;
-        }
-        if (this.editCategoryToggle) {
-            this.editCategoryToggle = false;
-        }
-        if (this.editItemToggle) {
-            this.editItemToggle = false;
+        } else {
+            this.toggleAllOff();
+            this.newItemToggle = true;
         }
     }
 
     toggleEditCategory() {
         if (this.editCategoryToggle === true) {
             this.routeToMenu();
-        }
-        this.editCategoryToggle = !this.editCategoryToggle;
-        if (this.newItemToggle) {
-            this.newItemToggle = false;
-        }
-        if (this.newCategoryToggle) {
-            this.newCategoryToggle = false;
-        }
-        if (this.editItemToggle) {
-            this.editItemToggle = false;
+        } else {
+            this.toggleAllOff();
+            this.editCategoryToggle = true;
         }
     }
 
     toggleEditItem() {
         if (this.editItemToggle === true) {
             this.routeToMenu();
-        }
-        this.editItemToggle = !this.editItemToggle;
-        if (this.newItemToggle) {
-            this.newItemToggle = false;
-        }
-        if (this.newCategoryToggle) {
-            this.newCategoryToggle = false;
-        }
-        if (this.editCategoryToggle) {
-            this.editCategoryToggle = false;
+        } else {
+            this.toggleAllOff();
+            this.editItemToggle = true;
         }
     }
 }

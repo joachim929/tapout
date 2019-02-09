@@ -1,4 +1,4 @@
-<article class="col-xs-12 editable-container border-black spacer">
+<article class="col-xs-12 editable-container spacer">
 
     <form #itemForm="ngForm">
         <div class="col-xs-9">
@@ -200,7 +200,7 @@
             <button class="button-edit"
                     [disabled]="updating"
                     [class.disabled]="updating"
-                    (click)="newItemComponentToggle = false">
+                    (click)="goBack()">
                 Cancel<img src="/assets/icons/icon-cancel-25x25.png">
             </button>
 

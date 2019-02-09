@@ -6,7 +6,7 @@
            [class.disabled]="checkDisabled"
            [class.button-active]="newItemToggle && gotData"
            (click)="checkDisabled ? null : toggleNewItem()">
-            Add new event item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
+            Add new menu item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
@@ -14,7 +14,7 @@
            [class.disabled]="checkDisabled"
            [class.button-active]="editItemToggle && gotData"
            (click)="checkDisabled ? null : toggleEditItem()">
-            Edit Event Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
+            Edit menu Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
@@ -22,7 +22,7 @@
            [class.disabled]="updating"
            [class.button-active]="newCategoryToggle"
            (click)="toggleNewCategory()">
-            Add new event category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
+            Add new menu category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
@@ -30,7 +30,7 @@
            [class.disabled]="checkDisabled"
            [class.button-active]="editCategoryToggle && gotData"
            (click)="checkDisabled ? null : toggleEditCategory()">
-            Edit Event Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
+            Edit menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
         </a>
 
     </article>
