@@ -1,4 +1,4 @@
-<article class="col-xs-12 edit-category new-item-container border-black spacer">
+<article class="col-xs-12 editable-container border-black spacer">
 
     <form #itemForm="ngForm">
         <div class="col-xs-9">
@@ -14,7 +14,8 @@
                         {{category.enName}} / {{category.vnName}}
                     </option>
                 </select>
-                <p *ngIf="category.invalid && category.touched" class="col-xs-12">
+                <p class="col-xs-12"
+                   *ngIf="category.invalid && category.touched">
                     A category needs to be selected
                 </p>
 
@@ -32,10 +33,13 @@
                        autocomplete="off"
                        minlength="2" maxlength="200"
                        placeholder="Enter the item price...">
-                <p *ngIf="price.invalid && price.touched" class="col-xs-12">
+
+                <p class="col-xs-12"
+                   *ngIf="price.invalid && price.touched">
                     A price needs to be set
                 </p>
-                <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                <p class="col-xs-12"
+                   [hidden]="hideTableHints">
                     You don't need to use the dong sign, make sure a 'K' is after each price
                 </p>
 
@@ -53,10 +57,13 @@
                        [disabled]="category.invalid"
                        #categoryPosition="ngModel" required
                        placeholder="Enter the placement...">
-                <p *ngIf="categoryPosition.invalid && categoryPosition.touched" class="col-xs-12">
+
+                <p class="col-xs-12"
+                   *ngIf="categoryPosition.invalid && categoryPosition.touched">
                     A page position needs to be set
                 </p>
-                <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                <p class="col-xs-12"
+                   [hidden]="hideTableHints">
                     Category needs to be selected
                 </p>
             </div>
@@ -79,7 +86,8 @@
                                minlength="2"
                                maxlength="255"
                                placeholder="Enter the desired English title...">
-                        <p *ngIf="enTitle.invalid && enTitle.touched" class="col-xs-12">
+                        <p class="col-xs-12"
+                           *ngIf="enTitle.invalid && enTitle.touched">
                             The title needs to be set, needs to be between 4 and 255 characters</p>
 
                     </div>
@@ -98,7 +106,8 @@
                                minlength="2"
                                maxlength="255"
                                placeholder="Enter the desired Vietnamese title...">
-                        <p *ngIf="vnTitle.invalid && vnTitle.touched" class="col-xs-12">
+                        <p class="col-xs-12"
+                           *ngIf="vnTitle.invalid && vnTitle.touched">
                             The title needs to be set, needs to be between 4 and 255 characters
                         </p>
 
@@ -117,12 +126,13 @@
                                   #enDescription="ngModel"
                                   minlength="4" required
                                   [disabled]="model.disableDescription"></textarea>
-                        <p *ngIf="enDescription.invalid && enDescription.touched && !model.disableDescription"
-                           class="col-xs-12">
+                        <p class="col-xs-12"
+                           *ngIf="enDescription.invalid && enDescription.touched && !model.disableDescription">
                             The description needs to be set, needs to be between longer than 4 characters,
                             you can also disable the description
                         </p>
-                        <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                        <p class="col-xs-12"
+                           [hidden]="hideTableHints">
                             Don't forget the Vietnamese description
                         </p>
 
@@ -148,12 +158,13 @@
                                   minlength="4" required
                                   [disabled]="model.disableDescription"></textarea>
 
-                        <p *ngIf="vnDescription.invalid && vnDescription.touched && !model.disableDescription"
-                           class="col-xs-12">
+                        <p class="col-xs-12"
+                           *ngIf="vnDescription.invalid && vnDescription.touched && !model.disableDescription">
                             The description needs to be set, needs to be between longer than 4 characters,
                             you can also disable the description
                         </p>
-                        <p [hidden]="hideTableHints" class="col-xs-12 menu-hints">
+                        <p class="col-xs-12"
+                           [hidden]="hideTableHints">
                             Don't forget the English description
                         </p>
 
@@ -195,14 +206,4 @@
 
         </div>
     </form>
-    <!--<div class="row" style="width: 100%">-->
-    <!--<p>Category ID: {{model.categoryId}}</p>-->
-    <!--<p>Price: {{model.price}}</p>-->
-    <!--<p>Page position: {{model.position}}</p>-->
-    <!--<p>English Title: {{model.enTitle}}</p>-->
-    <!--<p>English Description: {{model.enDescription}}</p>-->
-    <!--<p>Vietnamese Title: {{model.vnTitle}}</p>-->
-    <!--<p>Vietnamese Description: {{model.vnDescription}}</p>-->
-    <!--<p>Disable description: {{model.disableDescription}}</p>-->
-    <!--</div>-->
 </article>

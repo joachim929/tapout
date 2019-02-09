@@ -1,3 +1,37 @@
-.container {
+input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+input[type="number"]:hover {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.router-outlet-container {
     padding: 0;
+}
+
+.right {
+    text-align: right;
+}
+
+.warning .warning {
+    font-weight: bold;
+}
+
+.warning .invalid {
+    color: var(--comp-color);
+}
+
+.spacer {
+    margin-top: 10px;
+}
+
+.button-edit {
+    margin: 5px;
+}
+
+.button-delete {
+    position: relative;
+    margin-top: 100%;
 }

@@ -12,7 +12,7 @@ import {TaskRouteService} from '../../../shared/task-route.service';
 @Component({
     selector: 'app-edit-menu-category',
     templateUrl: './edit-menu-category.component.html',
-    styleUrls: ['../menu.component.css']
+    styleUrls: ['./edit-menu-category.component.css']
 })
 export class EditMenuCategoryComponent implements OnInit {
     public model: MenuCategory;

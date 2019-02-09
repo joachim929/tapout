@@ -1,4 +1,4 @@
-@import url("../menu.component.css");
+@import "../menu.component.css";
 
 p {
     color: var(--comp-color);

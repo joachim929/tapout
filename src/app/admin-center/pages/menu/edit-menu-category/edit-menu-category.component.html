@@ -8,11 +8,11 @@
             <span style="float: left">Page Position: {{category.position}}</span>
             {{category.enName}} / {{category.vnName}}
         </button>
-        <div class="col-xs-12 menu-item border-black collapse in"
+        <div class="col-xs-12 editable-container collapse in"
              id="category-{{category.id}}">
 
             <form #categoryItem="ngForm" *ngIf="category.editToggle">
-                <div class="edit-category col-xs-9">
+                <div class="col-xs-9">
 
                     <label class="col-xs-3" for="enName">English name:</label>
                     <input class="col-xs-3"
@@ -140,6 +140,6 @@
         </div>
     </ng-container>
 </div>
-<div *ngIf="gotData && menuData.length === 0" class="col-xs-12 menu-item border-black">
+<div *ngIf="gotData && menuData.length === 0" class="col-xs-12 border-black">
     <p>No categories found, either you haven't created one yet or something went wrong</p>
 </div>

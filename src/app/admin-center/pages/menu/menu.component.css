@@ -1,41 +1,45 @@
-input[type="number"] {
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-}
-input[type="number"]:hover {
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-}
-.spacer {
-    margin-top: 10px;
-}
+@import "../../admin-center.component.css";
 
-.menu-item p {
+.editable-container p {
     line-height: 26px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.editable-container {
+    border: 1px solid var(--background-color);
+    background-color: var(--off-background-color);
+}
 
-.create-item .button img {
+.editable-container select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.editable-container label {
+    line-height: 26px;
+}
+
+.editable-container input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.editable-container input[type="checkbox"] {
+    margin-top: 17px;
+    width: 13px;
+}
+
+.editable-container textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sub-nav-bar .button img {
     margin-right: -22px;
     padding-right: 0;
 }
-.create-item .button {
+.sub-nav-bar .button {
     width: 50%;
-}
-
-.button-container {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.button-edit-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.menu-item {
-    background-color: var(--off-background-color);
 }
 
 .input-info p {
@@ -46,45 +50,3 @@ input[type="number"]:hover {
     min-height: 40px;
 }
 
-.button-edit {
-    margin: 5px;
-}
-
-.edit-category select {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.edit-category label {
-    line-height: 26px;
-}
-
-.edit-category input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.edit-category input[type="checkbox"] {
-    margin-top: 17px;
-    width: 13px;
-}
-
-.edit-category textarea {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.right {
-    text-align: right;
-}
-
-.warning .warning {
-    font-weight: bold;
-}
-
-.warning .invalid {
-    color: var(--comp-color);
-}
-
-.button-delete {
-    margin-top: auto;
-}
