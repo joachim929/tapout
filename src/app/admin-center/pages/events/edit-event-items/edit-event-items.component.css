@@ -1,1 +1,5 @@
 @import '../events.component.css';
+
+.button {
+    width: 100%;
+}

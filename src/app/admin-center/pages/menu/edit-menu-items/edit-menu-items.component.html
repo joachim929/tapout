@@ -1,6 +1,7 @@
 <div class="no-padding col-xs-6"
      *ngFor="let category of menuData; let index = index;"
      [class.spacer]="(index === 0) || (index === 1)">
+
     <button class="button"
             [disabled]="category.items === null"
             (click)="toggleCategory(category)"
@@ -8,6 +9,7 @@
             [class.button-active]="compareCategoryIds(category.id)">
         {{category.enName}} / {{category.vnName}}
     </button>
+
 </div>
 <div *ngIf="selectedCategory">
     <div *ngFor="let item of selectedCategory.items; let index = index">

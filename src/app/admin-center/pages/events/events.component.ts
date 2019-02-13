@@ -12,15 +12,21 @@ import {NotificationService} from '../../shared/notification.service';
     styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-    public gotData: boolean;
 
     constructor(private eventsDataService: EventsDataService,
                 private eventsFactoryService: EventsFactoryService,
                 private notificationService: NotificationService,
                 private taskRouteService: TaskRouteService) {
 
-        this.gotData = false;
         this.taskRouteService.toggleAllOff();
+    }
+
+    get gotData(): boolean {
+        return this.eventsDataService.gotData;
+    }
+
+    set gotData(value: boolean) {
+        this.eventsDataService.gotData = value;
     }
 
     get editItemToggle(): boolean {
@@ -70,12 +76,11 @@ export class EventsComponent implements OnInit {
 
     getData() {
         this.eventsFactoryService.getPageItems()
-            .subscribe(data => {
+            .subscribe(response => {
                 this.eventsFactoryService.updating = false;
-
-                if (data !== null) {
+                if (response.success === true && response.data !== null) {
                     this.gotData = true;
-                    this.eventsDataService.eventsData = data;
+                    this.eventsDataService.eventsData = response.data;
                 } else {
                     this.gotData = false;
                 }

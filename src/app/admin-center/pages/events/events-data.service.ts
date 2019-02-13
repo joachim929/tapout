@@ -15,14 +15,20 @@ export class EventsDataService {
         return this._gotData;
     }
 
+    set gotData(value: boolean) {
+        this._gotData = value;
+    }
+
     get eventsData(): object {
         if (typeof this._eventsData !== 'undefined') {
             return this._eventsData;
         }
     }
 
-    // todo unfinished
-    set eventsData(something) {
-        this._eventsData = something;
+    set eventsData(data) {
+        if (typeof data !== 'undefined' && data !== null) {
+            this._gotData = true;
+            this._eventsData = data;
+        }
     }
 }

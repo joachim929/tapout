@@ -1,3 +1,27 @@
-<p>
-  edit-event-items works!
-</p>
+<div class="no-padding col-xs-6"
+     *ngFor="let category of eventsData; let index = index;"
+     [class.spacer]="(index === 0) || (index === 1)">
+
+    <button class="button"
+            [disabled]="category.items === null"
+            (click)="toggleCategory(category)"
+            [class.disabled]="category.items === null"
+            [class.button-active]="activeCategory(category.id)">
+        {{category.enName}} / {{category.vnName}}
+    </button>
+
+</div>
+
+<ng-container *ngIf="selectedCategory">
+    <div *ngFor="let item of selectedCategory.items; let index = index">
+        <button class="button"
+                data-toggle="collapse"
+                attr.data-target="#item-{{item.itemId}}"
+                [class.spacer]="index === 0"
+                >
+            <!--(click)="cancelEdit(index)"-->
+            <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
+            <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
+        </button>
+    </div>
+</ng-container>

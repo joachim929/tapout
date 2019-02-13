@@ -26,8 +26,8 @@ export class EditMenuItemsComponent implements OnInit {
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
-                private menuRouteService: TaskRouteService) {
-        this.menuRouteService.editItemToggle = true;
+                private taskRouteService: TaskRouteService) {
+        this.taskRouteService.editItemToggle = true;
     }
 
     get updating(): boolean {
@@ -130,7 +130,6 @@ export class EditMenuItemsComponent implements OnInit {
     moveUp(index: number) {
         this.cancelEdit(index);
         const tempCurrent = this._category.items[index];
-
 
         const tempPrevious = this._category.items[index - 1];
         tempCurrent.position--;
