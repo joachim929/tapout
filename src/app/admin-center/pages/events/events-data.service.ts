@@ -4,8 +4,8 @@ import {Injectable} from '@angular/core';
     providedIn: 'root'
 })
 export class EventsDataService {
-    public _gotData: boolean;
-    public _eventsData: object;
+    private _gotData: boolean;
+    private _eventsData: object;
 
     constructor() {
         this._gotData = false;
@@ -27,6 +27,7 @@ export class EventsDataService {
 
     set eventsData(data) {
         if (typeof data !== 'undefined' && data !== null) {
+            console.log(data);
             this._gotData = true;
             this._eventsData = data;
         }

@@ -24,8 +24,8 @@ export class NewMenuItemComponent implements OnInit {
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
-                private menuRouteService: TaskRouteService) {
-        this.menuRouteService.newItemToggle = true;
+                private taskRouteService: TaskRouteService) {
+        this.taskRouteService.newItemToggle = true;
     }
 
     get menuData() {
@@ -38,11 +38,10 @@ export class NewMenuItemComponent implements OnInit {
 
     ngOnInit() {
         this.model = new MenuItem();
-        this.model.disableDescription = false;
     }
 
     goBack() {
-        this.menuRouteService.routeToMenu();
+        this.taskRouteService.routeToMenu();
     }
 
     public toggleTableHints(formInvalid) {

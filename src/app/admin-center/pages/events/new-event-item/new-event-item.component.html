@@ -1,3 +1,181 @@
-<p>
-  new-event-item works!
-</p>
+<article class="col-xs-12 editable-container spacer no-padding" *ngIf="eventsData">
+    <form #itemForm="ngForm">
+        <!-- Variables -->
+        <div class="col-xs-9">
+
+            <!-- Category -->
+            <div class="col-xs-4">
+                <label for="category">Category</label>
+                <select id="category"
+                        name="category"
+                        [(ngModel)]="model.categoryId"
+                        #category="ngModel"
+                        required>
+                    <option *ngFor="let category of eventsData" [value]="category.id">
+                        {{category.enName}} / {{category.vnName}}
+                    </option>
+                </select>
+            </div>
+
+            <!-- Category Type -->
+            <div class="col-xs-4">
+                <p>Category Type</p>
+                <p>{{model.categoryType}}</p>
+            </div>
+
+            <!-- Position -->
+            <div class="col-xs-4">
+                <label for="position">Position</label>
+                <input id="position"
+                       name="position"
+                       type="number"
+                       [(ngModel)]="model.position"
+                       [disabled]="category.invalid"
+                       #position="ngModel"
+                       required
+                       placeholder="Enter position">
+            </div>
+
+            <!-- English Title -->
+            <div class="col-xs-6">
+                <label for="enTitle">English Title</label>
+                <input id="enTitle"
+                       type="text"
+                       name="enTitle"
+                       [(ngModel)]="model.enTitle"
+                       #enTitle="ngModel"
+                       minlength="4"
+                       maxlength="255"
+                       required>
+            </div>
+
+            <!-- Vietnamese Title -->
+            <div class="col-xs-6">
+                <label for="vnTitle">Vietnamese Title</label>
+                <input id="vnTitle"
+                       type="text"
+                       name="vnTitle"
+                       [(ngModel)]="model.vnTitle"
+                       #vnTitle="ngModel"
+                       minlength="4"
+                       maxlength="255"
+                       required>
+            </div>
+
+            <!-- English Description -->
+            <div class="col-xs-6">
+                <label for="enDescription">English Description</label>
+                <textarea id="enDescription"
+                          name="enDescription"
+                          [(ngModel)]="model.enDescription"
+                          #enDescription="ngModel"
+                          placeholder="English event description"
+                          minlength="4"
+                          required></textarea>
+            </div>
+
+            <!-- Vietnamese Description -->
+            <div class="col-xs-6">
+                <label for="enDescription">Vietnamese Description</label>
+                <textarea id="vnDescription"
+                          name="vnDescription"
+                          [(ngModel)]="model.vnDescription"
+                          #vnDescription="ngModel"
+                          placeholder="Vietnamese event description"
+                          minlength="4"
+                          required></textarea>
+            </div>
+
+
+            <!-- Uses Start Time -->
+            <div class="col-xs-4">
+                <label for="usesStartTime">Has Start Time</label>
+                <input id="usesStartTime"
+                       type="checkbox"
+                       name="usesStartTime"
+                       [(ngModel)]="model.usesStartTime"
+                       #usesStartTime="ngModel">
+            </div>
+
+            <!-- Uses End Date -->
+            <div class="col-xs-4">
+                <label for="usesEndDate">Has End Date</label>
+                <input id="usesEndDate"
+                       type="checkbox"
+                       name="usesEndDate"
+                       [(ngModel)]="model.usesEndDate"
+                       #usesEndDate="ngModel">
+            </div>
+
+            <!-- Uses End Time -->
+            <div class="col-xs-4">
+                <label for="usesEndTime">Has End Time</label>
+                <input id="usesEndTime"
+                       type="checkbox"
+                       name="usesEndTime"
+                       [(ngModel)]="model.usesEndTime"
+                       #usesEndTime="ngModel">
+            </div>
+
+            <!-- Start Date/Time -->
+            <div class="col-xs-6">
+
+            </div>
+            <!-- End Date/Time -->
+            <div class="col-xs-6">
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-xs-3">
+
+            <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
+                    (click)="toggleHints(itemForm.form.invalid)">
+                Info
+            </button>
+
+            <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
+                    [class.invalid]="itemForm.form.invalid"
+                    (click)="saveItem()">
+                Save<img src="/assets/icons/icon-save-25x25.png">
+            </button>
+
+            <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
+                    (click)="itemForm.reset()">
+                Clear<img src="/assets/icons/icon-edit-25x25.png">
+            </button>
+
+            <button class="button-edit"
+                    [disabled]="updating"
+                    [class.disabled]="updating"
+                    (click)="goBack()">
+                Cancel<img src="/assets/icons/icon-cancel-25x25.png">
+            </button>
+        </div>
+    </form>
+</article>
+<div class="row">
+    <div class="col-xs-12">
+        <p>categoryId: {{model.categoryId}}</p>
+        <p>position: {{model.position}}</p>
+        <p>itemId: {{model.itemId}}</p>
+        <p>enTitle: {{model.enTitle}}</p>
+        <p>enDescription: {{model.enDescription}}</p>
+        <p>vnTitle: {{model.vnTitle}}</p>
+        <p>vnDescription: {{model.vnDescription}}</p>
+        <p>start: {{model.start}}</p>
+        <p>end: {{model.end}}</p>
+        <p>usesStartTime: {{model.usesStartTime}}</p>
+        <p>usesEndTime: {{model.usesEndTime}}</p>
+        <p>usesEndDate: {{model.usesEndDate}}</p>
+        <p>valid: {{model.valid}}</p>
+    </div>
+</div>

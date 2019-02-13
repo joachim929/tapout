@@ -1,39 +1,5 @@
 @import "../../admin-center.component.css";
 
-.editable-container p {
-    line-height: 26px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.editable-container {
-    border: 1px solid var(--background-color);
-    background-color: var(--off-background-color);
-}
-
-.editable-container select {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.editable-container label {
-    line-height: 26px;
-}
-
-.editable-container input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.editable-container input[type="checkbox"] {
-    margin-top: 17px;
-    width: 13px;
-}
-
-.editable-container textarea {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .sub-nav-bar .button img {
     margin-right: -22px;
     padding-right: 0;

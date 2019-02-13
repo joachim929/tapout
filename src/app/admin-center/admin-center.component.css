@@ -7,6 +7,42 @@ input[type="number"]:hover {
     -moz-appearance: textfield;
 }
 
+.editable-container p {
+    line-height: 26px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.editable-container select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.editable-container label {
+    line-height: 26px;
+}
+
+.editable-container input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.editable-container input[type="checkbox"] {
+    margin-top: 17px;
+    width: 13px;
+}
+
+.editable-container textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.editable-container {
+    border: 1px solid var(--background-color);
+    background-color: var(--off-background-color);
+}
+
 .router-outlet-container {
     padding: 0;
 }
