@@ -78,7 +78,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '60K',
                 description: ' ABV 5.0%'
             }
-        ], drinkCategoryID: 1, drinkCategoryName: 'From the Tap'
+        ],
+        drinkCategoryID: 1,
+        drinkCategoryName: 'From the Tap',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -94,7 +97,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '490K',
                 description: 'false'
             }
-        ], drinkCategoryID: 2, drinkCategoryName: 'Flights'
+        ],
+        drinkCategoryID: 2,
+        drinkCategoryName: 'Flights',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -140,7 +146,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '60K',
                 description: 'ABV 5.9%'
             }
-        ], drinkCategoryID: 3, drinkCategoryName: 'The Bottle Fridge'
+        ],
+        drinkCategoryID: 3,
+        drinkCategoryName: 'The Bottle Fridge',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -180,7 +189,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '120K',
                 description: 'One to make you walk wonky'
             }
-        ], drinkCategoryID: 4, drinkCategoryName: 'Boozie Iced Teas'
+        ],
+        drinkCategoryID: 4,
+        drinkCategoryName: 'Boozie Iced Teas',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -268,7 +280,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '140K',
                 description: 'false'
             }
-        ], drinkCategoryID: 5, drinkCategoryName: 'Cocktails'
+        ],
+        drinkCategoryID: 5,
+        drinkCategoryName: 'Cocktails',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -296,7 +311,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '1,250K',
                 description: 'Bottle'
             }
-        ], drinkCategoryID: 6, drinkCategoryName: 'Red Wine'
+        ],
+        drinkCategoryID: 6,
+        drinkCategoryName: 'Red Wine',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -318,7 +336,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '1,000K',
                 description: 'Bottle'
             }
-        ], drinkCategoryID: 7, drinkCategoryName: 'White Wine'
+        ],
+        drinkCategoryID: 7,
+        drinkCategoryName: 'White Wine',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -334,7 +355,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '1,200K',
                 description: 'Bottle'
             }
-        ], drinkCategoryID: 8, drinkCategoryName: 'Rose and Prosecco'
+        ],
+        drinkCategoryID: 8,
+        drinkCategoryName: 'Rose and Prosecco',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -356,7 +380,10 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '60K',
                 description: 'false'
             }
-        ], drinkCategoryID: 9, drinkCategoryName: 'Iced Teas'
+        ],
+        drinkCategoryID: 9,
+        drinkCategoryName: 'Iced Teas',
+        isCollapsed: true
     },
     {
         drinkCategory: [
@@ -396,6 +423,9 @@ export const DRINKITEMS: DrinkItem[] = [
                 price: '40K',
                 description: 'false'
             }
-        ], drinkCategoryID: 10, drinkCategoryName: 'Coffee, Juices & Soft Drinks'
+        ],
+        drinkCategoryID: 10,
+        drinkCategoryName: 'Coffee, Juices & Soft Drinks',
+        isCollapsed: true
     }
 ];

@@ -12,4 +12,5 @@ export class DrinkItem {
         }[];
     drinkCategoryID: number;
     drinkCategoryName: string;
+    isCollapsed: boolean;
 }

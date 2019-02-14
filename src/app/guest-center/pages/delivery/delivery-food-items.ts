@@ -36,7 +36,8 @@ export const FOODITEMS: DeliveryItem[] = [
             }
         ],
         categoryId: 21,
-        categoryName: 'Snacks'
+        categoryName: 'Snacks',
+        isCollapsed: false
     },
     {
         category: [
@@ -93,7 +94,8 @@ export const FOODITEMS: DeliveryItem[] = [
             }
         ],
         categoryId: 23,
-        categoryName: 'Smoked BBQ Meat'
+        categoryName: 'Smoked BBQ Meat',
+        isCollapsed: false
     },
     {
         category: [
@@ -137,7 +139,8 @@ export const FOODITEMS: DeliveryItem[] = [
             }
         ],
         categoryId: 24,
-        categoryName: 'Burgers & Sandwiches'
+        categoryName: 'Burgers & Sandwiches',
+        isCollapsed: false
     },
     {
         category: [
@@ -169,7 +172,8 @@ export const FOODITEMS: DeliveryItem[] = [
             }
         ],
         categoryId: 26,
-        categoryName: 'Salads'
+        categoryName: 'Salads',
+        isCollapsed: false
     },
     {
         category: [
@@ -224,7 +228,8 @@ export const FOODITEMS: DeliveryItem[] = [
             }
         ],
         categoryId: 25,
-        categoryName: 'Sides'
+        categoryName: 'Sides',
+        isCollapsed: false
     },
     {
         category: [
@@ -267,6 +272,7 @@ export const FOODITEMS: DeliveryItem[] = [
             }
         ],
         categoryId: 221,
-        categoryName: 'Drinks'
+        categoryName: 'Drinks',
+        isCollapsed: false
     }
 ];

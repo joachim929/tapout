@@ -2,12 +2,18 @@
     <div class="col-xs-12 col-sm-12">
 
         <section class="inner-container" *ngFor="let events of eventWeeklyItems">
-            <button class="btn-primary" type="button" data-toggle="collapse" attr.data-target=".{{events.eventID}}"
-                    aria-expanded="false" aria-controls="collapsible-content">
+
+            <button class="btn-primary"
+                    type="button"
+                    (click)="events.isCollapsed = !events.isCollapsed"
+                    [attr.aria-expanded]="!events.isCollapsed"
+                    aria-controls="collapsible-event-content">
                 <!-- 'fullDate' has the following format: Monday, July 14, 2005 -->
                 {{events.eventSubHeading}}
             </button>
-            <div class="collapse in tap-out-content-container {{events.eventID}}">
+
+            <div class="tap-out-content-container"
+                 [ngbCollapse]="!events.isCollapsed">
                 <article class="row tap-out-row">
                     <!-- Checks to see if description is false or not so we don't get unnecessary CSS which makes it look ugly -->
                     <div class="tap-out-description" *ngIf="events.eventDescription != 'false'">
@@ -15,15 +21,20 @@
                     </div>
                 </article>
             </div>
+
         </section>
 
         <section class="inner-container" *ngFor="let eventsObjects of eventItems">
-            <button class="btn-primary" type="button" data-toggle="collapse"
-                    attr.data-target=".{{eventsObjects.eventCategoryID}}" aria-expanded="false"
-                    aria-controls="collapsible-content">
+
+            <button class="btn-primary"
+                    type="button"
+                    (click)="eventsObjects.isCollapsed = !eventsObjects.isCollapsed"
+                    [attr.aria-expanded]="!eventsObjects.isCollapsed"
+                    aria-controls="collapsible-event-content">
                 {{eventsObjects.eventCategoryName}}
             </button>
-            <div class="collapse in tap-out-content-container {{eventsObjects.eventCategoryID}}">
+            <div class="tap-out-content-container"
+                 [ngbCollapse]="!eventsObjects.isCollapsed">
                 <article *ngFor="let eventObject of eventsObjects.eventCategory" class="row tap-out-row">
                     <!--<div class="row row-eq-height tap-out-row">-->
                     <!--<div class="col-xs-9 tap-out-content-border">-->
@@ -45,6 +56,7 @@
                     </div>
                 </article>
             </div>
+
         </section>
     </div>
 </div>

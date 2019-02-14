@@ -57,7 +57,8 @@ export class EventsComponent implements OnInit {
                     {
                         eventCategory: tempInnerArray,
                         eventCategoryID: category.eventCategoryID,
-                        eventCategoryName: category.eventCategoryName
+                        eventCategoryName: category.eventCategoryName,
+                        isCollapsed: true
                     }
                 ];
 

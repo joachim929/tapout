@@ -68,7 +68,8 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 21,
-        foodCategoryName: 'Breakfast'
+        foodCategoryName: 'Breakfast',
+        isCollapsed: true
     },
     {
         foodCategory: [
@@ -122,7 +123,8 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 22,
-        foodCategoryName: 'Bar Snacks'
+        foodCategoryName: 'Bar Snacks',
+        isCollapsed: true
     },
     {
         foodCategory: [
@@ -179,7 +181,8 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 23,
-        foodCategoryName: 'Smoked BBQ Plates & Sharing'
+        foodCategoryName: 'Smoked BBQ Plates & Sharing',
+        isCollapsed: true
     },
     {
         foodCategory: [
@@ -226,7 +229,8 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 24,
-        foodCategoryName: 'Burgers & Sandwiches'
+        foodCategoryName: 'Burgers & Sandwiches',
+        isCollapsed: true
     },
     {
         foodCategory: [
@@ -274,7 +278,8 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 25,
-        foodCategoryName: 'Sides'
+        foodCategoryName: 'Sides',
+        isCollapsed: true
     },
     {
         foodCategory: [
@@ -302,7 +307,8 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 26,
-        foodCategoryName: 'Salads'
+        foodCategoryName: 'Salads',
+        isCollapsed: true
     },
     {
         foodCategory: [
@@ -327,6 +333,7 @@ export const FOODITEMS: FoodItem[] = [
             }
         ],
         foodCategoryID: 27,
-        foodCategoryName: 'Desserts'
+        foodCategoryName: 'Desserts',
+        isCollapsed: true
     }
 ];

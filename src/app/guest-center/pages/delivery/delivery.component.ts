@@ -8,7 +8,7 @@ import {FOODITEMS} from './delivery-food-items';
     styleUrls: ['./delivery.component.css']
 })
 export class DeliveryComponent implements OnInit {
-
+    public isCollapsed = false;
     public foodItems = FOODITEMS;
     public vietnameseDong = '&#8363';
 

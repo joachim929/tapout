@@ -8,13 +8,17 @@
 <section class="col-sm-4 col-xs-12">
     <article class="inner-container">
 
-        <button class="btn-primary" type="button" data-toggle="collapse"
-                data-target="#delivery-details"
-                aria-expanded="false" aria-controls="collapsible-delivery-details">
+        <button class="btn-primary"
+                type="button"
+                (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="isCollapsed"
+                aria-controls="collapsible-delivery-details">
             <img src="/assets/icons/icon-phone-25x25.png">Tap Out Delivery
         </button>
 
-        <div id="delivery-details" class="collapse in tap-out-content-container">
+        <div id="delivery-details"
+             class="tap-out-content-container"
+             [ngbCollapse]="isCollapsed">
 
             <div class="row tap-out-row">
                 <div class="col-xs-12 tap-out-content-border">
@@ -42,13 +46,16 @@
 
     <!-- Loop through left menu categories -->
     <article class="inner-container" *ngFor="let foods of foodItems">
-        <button class="btn-primary" type="button" data-toggle="collapse"
-                attr.data-target=".{{foods.categoryId}}"
-                aria-expanded="false" aria-controls="collapsible-food-category">
+
+        <button class="btn-primary"
+                type="button"
+                (click)="foods.isCollapsed = !foods.isCollapsed"
+                [attr.aria-expanded]="!foods.isCollapsed"
+                aria-controls="collapsible-food-category">
             {{foods.categoryName}}
         </button>
-
-        <div class="collapse in tap-out-content-container {{foods.categoryId}}">
+        <div class="tap-out-content-container"
+             [ngbCollapse]="foods.isCollapsed">
 
             <!-- Loop through menu items -->
             <ng-container *ngFor="let food of foods.category">

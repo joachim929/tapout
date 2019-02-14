@@ -15,7 +15,6 @@
         </div>
     </div>
 </section>
-
 <!-- Containing 2 for loops -->
 <section class="row">
 
@@ -24,13 +23,16 @@
 
         <!-- Loop through left menu categories -->
         <article class="inner-container" *ngFor="let foods of foodItems">
-            <button class="btn-primary" type="button" data-toggle="collapse"
-                    attr.data-target=".{{foods.foodCategoryID}}"
-                    aria-expanded="false" aria-controls="collapsible-food-category">
+            <button class="btn-primary"
+                    type="button"
+                    (click)="foods.isCollapsed = !foods.isCollapsed"
+                    [attr.aria-expanded]="!foods.isCollapsed"
+                    aria-controls="collapsible-food-category">
                 {{foods.foodCategoryName}}
             </button>
 
-            <div class="collapse tap-out-content-container {{foods.foodCategoryID}}">
+            <div class="tap-out-content-container"
+                 [ngbCollapse]="foods.isCollapsed">
 
                 <!-- Loop through menu items -->
                 <ng-container *ngFor="let food of foods.foodCategory">
@@ -63,13 +65,16 @@
 
         <!-- Loop through left menu categories -->
         <article class="inner-container" *ngFor="let drinks of drinkItems">
-            <button class="btn-primary" type="button" data-toggle="collapse"
-                    attr.data-target=".{{drinks.drinkCategoryID}}"
-                    aria-expanded="false" aria-controls="collapsible-drink-category">
+            <button class="btn-primary"
+                    type="button"
+                    (click)="drinks.isCollapsed = !drinks.isCollapsed"
+                    [attr.aria-expanded]="!drinks.isCollapsed"
+                    aria-controls="collapsible-drink-category">
                 {{drinks.drinkCategoryName}}
             </button>
 
-            <div class="collapse tap-out-content-container {{drinks.drinkCategoryID}}">
+            <div class="tap-out-content-container"
+                 [ngbCollapse]="drinks.isCollapsed">
                 <!-- Loop through menu items -->
                 <ng-container *ngFor="let drink of drinks.drinkCategory">
                     <div class="row tap-out-row">

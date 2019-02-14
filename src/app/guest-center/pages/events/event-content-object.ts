@@ -3,6 +3,7 @@ export class WeeklyEventObject {
     eventSubHeading: string;
     eventTime: Date;
     eventDescription: string;
+    isCollapsed: boolean;
 }
 
 export class EventContentObject {
@@ -14,4 +15,5 @@ export class EventContentObject {
         }[];
     eventCategoryID: number;
     eventCategoryName: string;
+    isCollapsed: boolean;
 }

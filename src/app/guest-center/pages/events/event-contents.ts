@@ -20,7 +20,8 @@ export const EVENTITEMS: EventContentObject[] = [
     //         }
     //     ],
     //     eventCategoryID: 100,
-    //     eventCategoryName: 'Audium Charity'
+    //     eventCategoryName: 'Audium Charity',
+    //     isCollapsed: true
     // }
 ];
 

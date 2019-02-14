@@ -11,6 +11,7 @@ export class FoodItem {
     }[];
     foodCategoryID: number;
     foodCategoryName: string;
+    isCollapsed: boolean;
 }
 
 export class DeliveryItem {
@@ -23,6 +24,7 @@ export class DeliveryItem {
     }[];
     categoryId: number;
     categoryName: string;
+    isCollapsed: boolean;
 }
 
 export class MultiPrice {
