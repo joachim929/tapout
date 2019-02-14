@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // Main website components
 import {AppComponent} from './app.component';
@@ -19,6 +20,7 @@ import {AppRoutingModule} from './app-routing.module';
         AppComponent
     ],
     imports: [
+        NgbModule,
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
