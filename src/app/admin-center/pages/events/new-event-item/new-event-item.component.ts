@@ -19,10 +19,20 @@ export class NewEventItemComponent implements OnInit {
     public categories: EventCategory[];
     public tableHints: boolean;
     public selectedCategory: EventCategory;
+    public _initialPositionPlaceholder = 'Enter the category placement...';
+    public _positionPlaceholder = 'Select a category first';
 
     constructor(private taskRouteService: TaskRouteService,
                 private eventsDataService: EventsDataService,
                 private eventsFactoryService: EventsFactoryService) {
+    }
+
+    get positionPlaceholder(): string {
+        if (this.model.categoryId === null) {
+            return this._positionPlaceholder;
+        } else {
+            return this._initialPositionPlaceholder;
+        }
     }
 
     get eventsData() {
