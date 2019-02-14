@@ -13,4 +13,5 @@ export class MenuItem {
     vnTitle: string;
     editToggle: boolean;
     disableDescription: boolean;
+    isCollapsed: boolean;
 }

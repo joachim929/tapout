@@ -10,4 +10,5 @@ export class MenuCategory {
     position: number;
     items: MenuItem[];
     editToggle: boolean;
+    isCollapsed: boolean;
 }

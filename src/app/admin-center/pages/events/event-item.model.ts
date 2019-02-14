@@ -19,13 +19,23 @@ export class EventItem {
     private _valid: boolean;
     private _active: boolean;
     private _editToggle: boolean;
+    private _isCollapsed: boolean;
 
     constructor() {
         this.usesStartTime = false;
         this.usesEndTime = false;
         this.usesEndDate = false;
         this.editToggle = false;
+        this.isCollapsed = true;
         this.validate();
+    }
+
+    get isCollapsed(): boolean {
+        return this._isCollapsed;
+    }
+
+    set isCollapsed(value: boolean) {
+        this._isCollapsed = value;
     }
 
     get categoryId(): number {

@@ -3,6 +3,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // Components
 import {AdminCenterComponent} from './admin-center.component';
@@ -36,6 +37,7 @@ import {PageInfoService} from './shared/page-info.service';
 
 @NgModule({
     imports: [
+        NgbModule,
         HttpClientModule,
         CommonModule,
         FormsModule,

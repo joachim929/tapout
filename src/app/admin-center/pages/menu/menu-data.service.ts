@@ -29,6 +29,14 @@ export class MenuDataService {
         if (typeof  newMenuData !== 'undefined' && newMenuData !== null) {
             this._gotData = true;
             this._menuData = newMenuData;
+            this._menuData.forEach((value, key) => {
+                if (this._menuData[key].items !== null) {
+                    this._menuData[key].items.forEach((item, itemKey) => {
+                        this._menuData[key].items[itemKey].isCollapsed = true;
+                    });
+                }
+                this._menuData[key].isCollapsed = true;
+            });
             this.sortMenu();
         }
     }

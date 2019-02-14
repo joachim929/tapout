@@ -15,13 +15,17 @@
 <ng-container *ngIf="selectedCategory">
     <div *ngFor="let item of selectedCategory.items; let index = index">
         <button class="button"
-                data-toggle="collapse"
-                attr.data-target="#item-{{item.itemId}}"
-                [class.spacer]="index === 0"
-                >
+                type="button"
+                (click)="item.isCollapsed = !item.isCollapsed"
+                [attr.aria-expanded]="!item.isCollapsed"
+                [class.spacer]="index === 0">
             <!--(click)="cancelEdit(index)"-->
             <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
             <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
         </button>
+        <div class=""
+             [ngbCollapse]="!item.isCollapsed">
+            Test
+        </div>
     </div>
 </ng-container>

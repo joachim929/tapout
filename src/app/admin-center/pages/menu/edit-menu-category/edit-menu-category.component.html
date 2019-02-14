@@ -1,15 +1,18 @@
 <div *ngIf="gotData === true">
     <ng-container *ngFor="let category of menuData; let index = index;">
+
         <button class="button"
-                data-toggle="collapse"
-                attr.data-target="#category-{{category.id}}"
+                type="button"
+                (click)="category.isCollapsed = !category.isCollapsed"
+                [attr.aria-expanded]="!category.isCollapsed"
                 [class.spacer]="index === 0"
                 [disabled]="updating">
             <span style="float: left">Page Position: {{category.position}}</span>
             {{category.enName}} / {{category.vnName}}
         </button>
-        <div class="col-xs-12 editable-container collapse in"
-             id="category-{{category.id}}">
+
+        <div class="col-xs-12 editable-container"
+             [ngbCollapse]="!category.isCollapsed">
 
             <form #categoryItem="ngForm" *ngIf="category.editToggle">
                 <div class="col-xs-9">

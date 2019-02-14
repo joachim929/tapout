@@ -11,4 +11,5 @@ export class EventCategory {
     editedAt: string;
     active: boolean;
     editToggle: boolean;
+    isCollapsed: boolean;
 }
