@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {NgbDateStruct, NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 // Objects
 import {EventItem} from '../event-item.model';
@@ -15,6 +16,11 @@ import {EventsFactoryService} from '../events-factory.service';
     styleUrls: ['./new-event-item.component.css']
 })
 export class NewEventItemComponent implements OnInit {
+    hoveredDate: NgbDate;
+    monthsDisplayed: number;
+    fromDate: NgbDate;
+    toDate: NgbDate;
+
     public model: EventItem;
     public categories: EventCategory[];
     public tableHints: boolean;
@@ -24,7 +30,11 @@ export class NewEventItemComponent implements OnInit {
 
     constructor(private taskRouteService: TaskRouteService,
                 private eventsDataService: EventsDataService,
-                private eventsFactoryService: EventsFactoryService) {
+                private eventsFactoryService: EventsFactoryService,
+                private ngbCalendar: NgbCalendar) {
+        this.monthsDisplayed = 2;
+        this.fromDate = ngbCalendar.getToday();
+        this.toDate = ngbCalendar.getNext(ngbCalendar.getToday(), 'd', 10);
     }
 
     get positionPlaceholder(): string {
@@ -60,4 +70,37 @@ export class NewEventItemComponent implements OnInit {
 
     }
 
+    toggleEndDate() {
+        if (this.model.usesEndDate === false) {
+            this.toDate = null;
+            this.monthsDisplayed = 1;
+        } else {
+            this.monthsDisplayed = 2;
+        }
+    }
+
+    onDateSelection(date: NgbDate) {
+        if (!this.fromDate && !this.toDate) {
+            this.fromDate = date;
+        } else if (this.model.usesEndDate && this.fromDate && !this.toDate && date.after(this.fromDate)) {
+            this.toDate = date;
+        } else {
+            this.toDate = null;
+            this.fromDate = date;
+        }
+    }
+
+    isHovered(date: NgbDate) {
+        return this.model.usesEndDate && this.fromDate && !this.toDate && this.hoveredDate &&
+            date.after(this.fromDate) && date.before(this.hoveredDate);
+    }
+
+    isInside(date: NgbDate) {
+        return this.model.usesEndDate && date.after(this.fromDate) && date.before(this.toDate);
+    }
+
+    isRange(date: NgbDate) {
+        return date.equals(this.fromDate) ||
+            date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+    }
 }
