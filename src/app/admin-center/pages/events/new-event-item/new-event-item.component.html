@@ -86,7 +86,6 @@
                           required></textarea>
             </div>
 
-
             <!-- Uses Start Time -->
             <div class="col-xs-4">
                 <label for="usesStartTime">Has Start Time</label>
@@ -118,9 +117,12 @@
                        #usesEndTime="ngModel">
             </div>
 
-            <!-- Start Date/Time -->
-            <div class="col-xs-6">
-                <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="monthsDisplayed" [dayTemplate]="t"
+            <!-- Start/End Time -->
+            <div class="col-xs-12">
+                <ngb-datepicker #dp (select)="onDateSelection($event)"
+                                [class.date-picker]="true"
+                                [displayMonths]="monthsDisplayed"
+                                [dayTemplate]="t"
                                 outsideDays="hidden">
                 </ngb-datepicker>
 
@@ -134,11 +136,12 @@
                     {{ date.day }}
                   </span>
                 </ng-template>
-                <pre>From: {{ fromDate | json }} </pre>
-                <pre>To: {{ toDate | json }} </pre>
+                <!--<pre>From: {{ fromDate | json }} </pre>-->
+                <!--<pre>To: {{ toDate | json }} </pre>-->
             </div>
-            <!-- End Date/Time -->
-            <div class="col-xs-6">
+
+            <!-- Start/End Time-->
+            <div class="col-xs-6" style="height: 100px">
 
             </div>
 

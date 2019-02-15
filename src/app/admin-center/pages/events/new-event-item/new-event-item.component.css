@@ -2,18 +2,87 @@
 
 .custom-day {
     text-align: center;
-    padding: 0.185rem 0.25rem;
+    padding: 0.5rem 0.75rem;
     display: inline-block;
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
 }
+
 .custom-day.focused {
     background-color: #e6e6e6;
 }
+
 .custom-day.range, .custom-day:hover {
-    background-color: rgb(2, 117, 216);
-    color: white;
+    background-color: var(--main-color);
+    color: var(--text-color);
 }
+
+.custom-day:focus {
+    outline: none;
+}
+
 .custom-day.faded {
-    background-color: rgba(2, 117, 216, 0.5);
+    background-color: var(--main-color-opacity);
 }
+
+.date-picker {
+    border: 1px solid var(--border-split-color);
+    border-radius: 0;
+}
+
+:host ::ng-deep .date-picker .btn-link {
+    color: var(--main-color);
+}
+
+:host ::ng-deep .date-picker .ngb-dp-day {
+    height: 3rem;
+    width: 3rem;
+}
+
+:host ::ng-deep .date-picker .ngb-dp-weekday {
+    height: 3rem;
+    width: 3rem;
+}
+
+/*:host ::ng-deep .date-picker .ngb-dp-navigation-select {*/
+    /*flex: 1 1 25rem;*/
+/*}*/
+
+:host ::ng-deep .date-picker .custom-select {
+    /*margin-left: 1rem;*/
+    /*margin-right: 1rem;*/
+    font-size: 1.25rem;
+    height: 2rem;
+}
+
+:host ::ng-deep .date-picker .ngb-dp-month {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-split-color);
+}
+
+:host ::ng-deep .date-picker .ngb-dp-day:focus {
+    outline: none
+}
+
+:host ::ng-deep .date-picker .ngb-dp-arrow {
+    width: 0;
+}
+
+:host ::ng-deep .date-picker .ngb-dp-header {
+    margin-top: 1rem;
+    padding-top: 0;
+}
+
+:host ::ng-deep .date-picker .ngb-dp-month-name {
+    font-size: 14px;
+}
+
+:host ::ng-deep .date-picker {
+}
+
+:host ::ng-deep .date-picker {
+}
+
+:host ::ng-deep .date-picker {
+}
+

@@ -6,6 +6,7 @@
     --text-color: white;
     --off-white-color: #CDCDCD;
     --main-color: #7ADAD7;
+    --main-color-opacity: rgba(122, 218, 215, 0.5);
     --main-disabled-color: #3E7D7A;
     --comp-color: #DA7A7D;
     --background-color: black;

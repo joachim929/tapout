@@ -32,9 +32,8 @@ export class NewEventItemComponent implements OnInit {
                 private eventsDataService: EventsDataService,
                 private eventsFactoryService: EventsFactoryService,
                 private ngbCalendar: NgbCalendar) {
-        this.monthsDisplayed = 2;
+        this.monthsDisplayed = 1;
         this.fromDate = ngbCalendar.getToday();
-        this.toDate = ngbCalendar.getNext(ngbCalendar.getToday(), 'd', 10);
     }
 
     get positionPlaceholder(): string {
