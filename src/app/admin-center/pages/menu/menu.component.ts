@@ -22,40 +22,6 @@ export class MenuComponent implements OnInit {
                 private notificationService: NotificationService,
                 private taskRouteService: TaskRouteService) {
 
-        this.gotData = false;
-        this.taskRouteService.toggleAllOff();
-    }
-
-    get editItemToggle(): boolean {
-        return this.taskRouteService.editItemToggle;
-    }
-
-    set editItemToggle(boolValue: boolean) {
-        this.taskRouteService.editItemToggle = boolValue;
-    }
-
-    get editCategoryToggle(): boolean {
-        return this.taskRouteService.editCategoryToggle;
-    }
-
-    set editCategoryToggle(boolValue: boolean) {
-        this.taskRouteService.editCategoryToggle = boolValue;
-    }
-
-    get newCategoryToggle(): boolean {
-        return this.taskRouteService.newCategoryToggle;
-    }
-
-    set newCategoryToggle(boolValue: boolean) {
-        this.taskRouteService.newCategoryToggle = boolValue;
-    }
-
-    get newItemToggle(): boolean {
-        return this.taskRouteService.newItemToggle;
-    }
-
-    set newItemToggle(boolValue: boolean) {
-        this.taskRouteService.newItemToggle = boolValue;
     }
 
     get menuData(): MenuCategory[] {
@@ -66,12 +32,19 @@ export class MenuComponent implements OnInit {
         return this.updateMenuService.updating;
     }
 
-    get checkDisabled(): boolean {
-        return !this.gotData || this.updating;
+    get isDisabled(): boolean {
+        if (this.gotData === true) {
+            return this.updating;
+        } else {
+            return true;
+        }
     }
 
     ngOnInit() {
-        this.getData();
+        setTimeout(() => {
+            this.getData();
+        }, 2500);
+
         this.taskRouteService.baseNav = 'admin/menu';
     }
 
@@ -87,23 +60,7 @@ export class MenuComponent implements OnInit {
                     this.gotData = false;
                 }
             }, error => {
-                this.notificationService.addMessage(error);
+                this.notificationService.addMessage(error + '. Couldn\'t get data from the database');
             });
-    }
-
-    toggleNewItem() {
-        this.taskRouteService.toggleNewItem();
-    }
-
-    toggleNewCategory() {
-        this.taskRouteService.toggleNewCategory();
-    }
-
-    toggleEditItem() {
-        this.taskRouteService.toggleEditItem();
-    }
-
-    toggleEditCategory() {
-        this.taskRouteService.toggleEditCategory();
     }
 }

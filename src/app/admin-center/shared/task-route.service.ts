@@ -22,6 +22,9 @@ export class TaskRouteService {
         return this._baseNav;
     }
 
+    goBack(): void {
+    }
+
     set baseNav(location: string) {
         this._baseNav = location;
     }

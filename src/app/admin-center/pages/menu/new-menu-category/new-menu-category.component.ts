@@ -29,7 +29,7 @@ export class NewMenuCategoryComponent implements OnInit {
 
         this.highestPagePosition = 0;
         this.model = new MenuCategory();
-        this.menuRouteService.newCategoryToggle = true;
+        // this.menuRouteService.newCategoryToggle = true;
     }
 
     get menuData(): MenuCategory[] {

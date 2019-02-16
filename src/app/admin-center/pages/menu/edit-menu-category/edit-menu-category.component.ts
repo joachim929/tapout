@@ -23,7 +23,7 @@ export class EditMenuCategoryComponent implements OnInit {
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
                 private menuRouteService: TaskRouteService) {
-        this.menuRouteService.editCategoryToggle = true;
+        // this.menuRouteService.editCategoryToggle = true;
     }
 
     get gotData(): boolean {
@@ -39,7 +39,7 @@ export class EditMenuCategoryComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.menuRouteService.editCategoryToggle = true;
+        // this.menuRouteService.editCategoryToggle = true;
         this.model = new MenuCategory();
     }
 

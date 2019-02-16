@@ -27,7 +27,7 @@ export class EditMenuItemsComponent implements OnInit {
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
                 private taskRouteService: TaskRouteService) {
-        this.taskRouteService.editItemToggle = true;
+        // this.taskRouteService.editItemToggle = true;
     }
 
     get updating(): boolean {
