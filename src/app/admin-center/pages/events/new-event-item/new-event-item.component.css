@@ -1,5 +1,58 @@
 @import '../events.component.css';
 
+.date-time-container input[type="checkbox"]{
+    margin: 10px;
+    vertical-align: middle;
+    height: 26px;
+}
+.date-time-container {
+    margin-bottom: 10px;
+}
+
+.date-time-container hr {
+    margin: 0;
+    border: 1px solid var(--border-split-color);
+    border-bottom: 0;
+}
+
+/* Time pickers styling */
+:host ::ng-deep .time-picker .disabled {
+    background-color: var(--off-background-color);
+    color: var(--main-color-opacity);
+}
+
+:host ::ng-deep .time-picker .btn-link {
+    color: var(--main-color);
+}
+
+:host ::ng-deep .time-picker .form-control {
+    border-radius: 0;
+}
+
+:host ::ng-deep .time-picker .ngb-tp-meridian .btn {
+    border-radius: 0;
+    color: var(--main-color);
+    background-color: var(--off-background-color);
+    border-color: var(--background-color);
+}
+
+:host ::ng-deep .time-picker .ngb-tp-meridian .btn:hover {
+    color: var(--main-color);
+}
+
+:host ::ng-deep .time-picker .btn:focus {
+    outline: none;
+}
+
+:host ::ng-deep .time-picker .ngb-tp-input-container {
+    width: 5rem;
+}
+
+:host ::ng-deep .time-picker .ngb-tp-meridian {
+    width: 5rem;
+}
+
+/* Date picker styling */
 .custom-day {
     text-align: center;
     padding: 0.5rem 0.75rem;
@@ -44,13 +97,7 @@
     width: 3rem;
 }
 
-/*:host ::ng-deep .date-picker .ngb-dp-navigation-select {*/
-    /*flex: 1 1 25rem;*/
-/*}*/
-
 :host ::ng-deep .date-picker .custom-select {
-    /*margin-left: 1rem;*/
-    /*margin-right: 1rem;*/
     font-size: 1.25rem;
     height: 2rem;
 }
@@ -76,13 +123,3 @@
 :host ::ng-deep .date-picker .ngb-dp-month-name {
     font-size: 14px;
 }
-
-:host ::ng-deep .date-picker {
-}
-
-:host ::ng-deep .date-picker {
-}
-
-:host ::ng-deep .date-picker {
-}
-

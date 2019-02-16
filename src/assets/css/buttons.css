@@ -60,6 +60,7 @@
 }
 
 .disabled {
+    border-color: var(--background-color);
     background-color: var(--darkest-grey-color);
     color: var(--main-disabled-color);
 }

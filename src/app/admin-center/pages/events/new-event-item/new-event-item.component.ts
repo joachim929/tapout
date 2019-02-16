@@ -20,6 +20,10 @@ export class NewEventItemComponent implements OnInit {
     monthsDisplayed: number;
     fromDate: NgbDate;
     toDate: NgbDate;
+    startTime: {hour: number, minute: number};
+    endTime: {hour: number, minute: number};
+    startMeridian = true;
+    endMeridian = true;
 
     public model: EventItem;
     public categories: EventCategory[];
@@ -33,7 +37,7 @@ export class NewEventItemComponent implements OnInit {
                 private eventsFactoryService: EventsFactoryService,
                 private ngbCalendar: NgbCalendar) {
         this.monthsDisplayed = 1;
-        this.fromDate = ngbCalendar.getToday();
+        // this.fromDate = ngbCalendar.getToday();
     }
 
     get positionPlaceholder(): string {
@@ -61,12 +65,12 @@ export class NewEventItemComponent implements OnInit {
         this.taskRouteService.routeToMenu();
     }
 
-    toggleHints(formInvalid: boolean) {
-
+    toggleHints(form) {
+        console.log(form);
     }
 
     saveItem() {
-
+        console.log('saving');
     }
 
     toggleEndDate() {

@@ -71,8 +71,10 @@ input[type="number"]:hover {
     position: relative;
     margin-top: 100%;
 }
-
+.disabled {
+}
 .disabled:hover {
+    border-color: var(--background-color);
     background-color: var(--darkest-grey-color);
     color: var(--main-disabled-color);
     cursor: default;

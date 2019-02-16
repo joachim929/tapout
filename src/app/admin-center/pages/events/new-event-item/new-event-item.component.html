@@ -1,4 +1,4 @@
-<article class="col-xs-12 editable-container spacer no-padding" *ngIf="eventsData">
+<article class="row row-eq-height no-margin editable-container" *ngIf="eventsData">
     <form #itemForm="ngForm">
         <!-- Variables -->
         <div class="col-xs-9">
@@ -46,7 +46,8 @@
                        #enTitle="ngModel"
                        minlength="4"
                        maxlength="255"
-                       required>
+                       required
+                       placeholder="English event title">
             </div>
 
             <!-- Vietnamese Title -->
@@ -59,7 +60,8 @@
                        #vnTitle="ngModel"
                        minlength="4"
                        maxlength="255"
-                       required>
+                       required
+                       placeholder="Vietnamese event title">
             </div>
 
             <!-- English Description -->
@@ -86,65 +88,84 @@
                           required></textarea>
             </div>
 
-            <!-- Uses Start Time -->
-            <div class="col-xs-4">
-                <label for="usesStartTime">Has Start Time</label>
-                <input id="usesStartTime"
-                       type="checkbox"
-                       name="usesStartTime"
-                       [(ngModel)]="model.usesStartTime"
-                       #usesStartTime="ngModel">
-            </div>
+            <!-- Start/End Date -->
+            <div class="col-xs-8 no-padding date-time-container">
 
-            <!-- Uses End Date -->
-            <div class="col-xs-4">
-                <label for="usesEndDate">Has End Date</label>
-                <input id="usesEndDate"
-                       type="checkbox"
-                       name="usesEndDate"
-                       [(ngModel)]="model.usesEndDate"
-                       (change)="toggleEndDate()"
-                       #usesEndDate="ngModel">
-            </div>
+                <!-- Uses End Date -->
+                <div class="col-xs-4">
+                    <label for="usesEndDate">Has End Date</label>
+                    <input id="usesEndDate"
+                           type="checkbox"
+                           name="usesEndDate"
+                           [(ngModel)]="model.usesEndDate"
+                           (change)="toggleEndDate()"
+                           #usesEndDate="ngModel">
+                </div>
 
-            <!-- Uses End Time -->
-            <div class="col-xs-4">
-                <label for="usesEndTime">Has End Time</label>
-                <input id="usesEndTime"
-                       type="checkbox"
-                       name="usesEndTime"
-                       [(ngModel)]="model.usesEndTime"
-                       #usesEndTime="ngModel">
-            </div>
+                <div class="col-xs-12">
+                    <ngb-datepicker #dp (select)="onDateSelection($event)"
+                                    [class.date-picker]="true"
+                                    [displayMonths]="monthsDisplayed"
+                                    [dayTemplate]="t"
+                                    outsideDays="hidden">
+                    </ngb-datepicker>
 
-            <!-- Start/End Time -->
-            <div class="col-xs-12">
-                <ngb-datepicker #dp (select)="onDateSelection($event)"
-                                [class.date-picker]="true"
-                                [displayMonths]="monthsDisplayed"
-                                [dayTemplate]="t"
-                                outsideDays="hidden">
-                </ngb-datepicker>
+                    <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                </div>
 
-                <ng-template #t let-date let-focused="focused">
-                  <span class="custom-day"
-                        [class.focused]="focused"
-                        [class.range]="isRange(date)"
-                        [class.faded]="isHovered(date) || isInside(date)"
-                        (mouseenter)="hoveredDate = date"
-                        (mouseleave)="hoveredDate = null">
-                    {{ date.day }}
-                  </span>
-                </ng-template>
-                <!--<pre>From: {{ fromDate | json }} </pre>-->
-                <!--<pre>To: {{ toDate | json }} </pre>-->
             </div>
 
             <!-- Start/End Time-->
-            <div class="col-xs-6" style="height: 100px">
+            <div class="col-xs-4 no-padding date-time-container">
+                <!-- Uses Start Time -->
+                <div class="col-xs-12">
+                    <label for="usesStartTime">Has Start Time</label>
+                    <input id="usesStartTime"
+                           type="checkbox"
+                           name="usesStartTime"
+                           [(ngModel)]="model.usesStartTime"
+                           #usesStartTime="ngModel">
+                </div>
+
+                <div class="col-xs-12">
+                    <ngb-timepicker name="startTime"
+                                    class="time-picker"
+                                    [(ngModel)]="startTime"
+                                    [meridian]="startMeridian"
+                                    [disabled]="!model.usesStartTime"
+                                    required></ngb-timepicker>
+                </div>
+                <hr>
+                <!-- Uses End Time -->
+                <div class="col-xs-12">
+                    <label for="usesEndTime">Has End Time</label>
+                    <input id="usesEndTime"
+                           type="checkbox"
+                           name="usesEndTime"
+                           [(ngModel)]="model.usesEndTime"
+                           #usesEndTime="ngModel">
+                </div>
+
+                <div class="col-xs-12">
+                    <ngb-timepicker name="endTime"
+                                    class="time-picker"
+                                    [(ngModel)]="endTime"
+                                    [meridian]="endMeridian"
+                                    [disabled]="!model.usesEndTime"
+                                    [hidden]="!model.usesEndTime"
+                                    required></ngb-timepicker>
+                </div>
 
             </div>
-
         </div>
 
         <!-- Buttons -->
@@ -153,12 +174,12 @@
             <button class="button-edit"
                     [disabled]="updating"
                     [class.disabled]="updating"
-                    (click)="toggleHints(itemForm.form.invalid)">
+                    (click)="toggleHints(itemForm.form)">
                 Info
             </button>
 
             <button class="button-edit"
-                    [disabled]="updating"
+                    [disabled]="updating || model.valid === false || itemForm.form.invalid"
                     [class.disabled]="updating"
                     [class.invalid]="itemForm.form.invalid"
                     (click)="saveItem()">
@@ -178,6 +199,7 @@
                     (click)="goBack()">
                 Cancel<img src="/assets/icons/icon-cancel-25x25.png">
             </button>
+
         </div>
     </form>
 </article>
