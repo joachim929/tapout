@@ -8,6 +8,13 @@
                     (click)="events.isCollapsed = !events.isCollapsed"
                     [attr.aria-expanded]="!events.isCollapsed"
                     aria-controls="collapsible-event-content">
+                <div class="arrow-container"
+                     [class.up]="events.isCollapsed"
+                     [class.down]="!events.isCollapsed">
+                    <div class="arrow"
+                         [class.up]="events.isCollapsed"
+                         [class.down]="!events.isCollapsed"></div>
+                </div>
                 <!-- 'fullDate' has the following format: Monday, July 14, 2005 -->
                 {{events.eventSubHeading}}
             </button>
@@ -31,6 +38,13 @@
                     (click)="eventsObjects.isCollapsed = !eventsObjects.isCollapsed"
                     [attr.aria-expanded]="!eventsObjects.isCollapsed"
                     aria-controls="collapsible-event-content">
+                <div class="arrow-container"
+                     [class.up]="eventsObjects.isCollapsed"
+                     [class.down]="!eventsObjects.isCollapsed">
+                    <div class="arrow"
+                         [class.up]="eventsObjects.isCollapsed"
+                         [class.down]="!eventsObjects.isCollapsed"></div>
+                </div>
                 {{eventsObjects.eventCategoryName}}
             </button>
             <div class="tap-out-content-container"

@@ -1,0 +1,39 @@
+.arrow {
+    box-sizing: border-box;
+    height: 14px;
+    width: 14px;
+    border-style: solid;
+    border-color: var(--main-color);
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+    border-radius: 1px;
+    transition: border-width 200ms ease-in-out;
+}
+
+.arrow.up {
+    border-width: 1px 0 0 1px;
+}
+
+.arrow.down {
+    border-width: 0 1px 1px 0;
+}
+
+button:hover .arrow.down {
+    border-bottom-width: 4px;
+    border-right-width: 4px;
+}
+
+button:hover .arrow.up {
+    border-top-width: 4px;
+    border-left-width: 4px;
+}
+
+.arrow-container {
+    float: left;
+}
+.arrow-container.up {
+    margin: 5px 4px 3px;
+}
+.arrow-container.down {
+    margin: 3px 4px 5px;
+}

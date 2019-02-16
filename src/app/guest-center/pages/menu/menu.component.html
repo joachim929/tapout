@@ -28,6 +28,13 @@
                     (click)="foods.isCollapsed = !foods.isCollapsed"
                     [attr.aria-expanded]="!foods.isCollapsed"
                     aria-controls="collapsible-food-category">
+                <div class="arrow-container"
+                     [class.up]="!foods.isCollapsed"
+                     [class.down]="foods.isCollapsed">
+                    <div class="arrow"
+                         [class.up]="!foods.isCollapsed"
+                         [class.down]="foods.isCollapsed"></div>
+                </div>
                 {{foods.foodCategoryName}}
             </button>
 
@@ -70,6 +77,13 @@
                     (click)="drinks.isCollapsed = !drinks.isCollapsed"
                     [attr.aria-expanded]="!drinks.isCollapsed"
                     aria-controls="collapsible-drink-category">
+                <div class="arrow-container"
+                     [class.up]="!drinks.isCollapsed"
+                     [class.down]="drinks.isCollapsed">
+                    <div class="arrow"
+                         [class.up]="!drinks.isCollapsed"
+                         [class.down]="drinks.isCollapsed"></div>
+                </div>
                 {{drinks.drinkCategoryName}}
             </button>
 

@@ -1,7 +1,9 @@
+@import "../../guest-center.component.css";
+
 img {
     border: 0;
     height: 22px;
-    float: left;
+    float: right;
 }
 
 .multi-description {

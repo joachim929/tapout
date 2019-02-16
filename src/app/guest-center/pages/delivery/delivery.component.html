@@ -13,6 +13,13 @@
                 (click)="isCollapsed = !isCollapsed"
                 [attr.aria-expanded]="isCollapsed"
                 aria-controls="collapsible-delivery-details">
+            <div class="arrow-container"
+                 [class.up]="!isCollapsed"
+                 [class.down]="isCollapsed">
+                <div class="arrow"
+                     [class.up]="!isCollapsed"
+                     [class.down]="isCollapsed"></div>
+            </div>
             <img src="/assets/icons/icon-phone-25x25.png">Tap Out Delivery
         </button>
 
@@ -52,6 +59,13 @@
                 (click)="foods.isCollapsed = !foods.isCollapsed"
                 [attr.aria-expanded]="!foods.isCollapsed"
                 aria-controls="collapsible-food-category">
+            <div class="arrow-container"
+                 [class.up]="!foods.isCollapsed"
+                 [class.down]="foods.isCollapsed">
+                <div class="arrow"
+                     [class.up]="!foods.isCollapsed"
+                     [class.down]="foods.isCollapsed"></div>
+            </div>
             {{foods.categoryName}}
         </button>
         <div class="tap-out-content-container"
