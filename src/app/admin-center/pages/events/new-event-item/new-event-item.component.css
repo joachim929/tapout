@@ -29,6 +29,10 @@
     border-radius: 0;
 }
 
+:host ::ng-deep .time-picker .ngb-tp-input-container .disabled {
+    border-color: var(--off-background-color);
+}
+
 :host ::ng-deep .time-picker .ngb-tp-meridian .btn {
     border-radius: 0;
     color: var(--main-color);

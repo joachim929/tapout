@@ -2,35 +2,51 @@
     <article class="row sub-nav-bar">
 
         <a class="col-xs-6 button"
+           #newItem="routerLinkActive"
            [routerLink]="updating ? null : 'add-item'"
            routerLinkActive="button-active"
            [routerLinkActiveOptions]="{exact: true}"
            [class.disabled]="isDisabled">
-            Add new menu item<img *ngIf="newItemToggle" src="/assets/icons/icon-add-25x25.png">
+
+            Add new menu item
+            <img *ngIf="newItem.isActive && isDisabled === false"
+                 src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
+           #editItem="routerLinkActive"
            [routerLink]="updating ? null : 'edit-items'"
            routerLinkActive="button-active"
            [routerLinkActiveOptions]="{exact: true}"
            [class.disabled]="isDisabled">
-            Edit menu Items<img *ngIf="editItemToggle" src="/assets/icons/icon-edit-25x25.png">
+
+            Edit menu Items
+            <img *ngIf="editItem.isActive && isDisabled === false"
+                 src="/assets/icons/icon-edit-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
+           #newCategory="routerLinkActive"
            [routerLink]="updating ? null : 'add-category'"
            routerLinkActive="button-active"
            [routerLinkActiveOptions]="{exact: true}"
            [class.disabled]="updating">
-            Add new menu category<img *ngIf="newCategoryToggle" src="/assets/icons/icon-add-25x25.png">
+
+            Add new menu category
+            <img *ngIf="newCategory.isActive && isDisabled === false"
+                 src="/assets/icons/icon-add-25x25.png">
         </a>
 
         <a class="col-xs-6 button"
+           #editCategory="routerLinkActive"
            [routerLink]="updating ? null : 'edit-category'"
            routerLinkActive="button-active"
            [routerLinkActiveOptions]="{exact: true}"
            [class.disabled]="isDisabled">
-            Edit menu Categories<img *ngIf="editCategoryToggle" src="/assets/icons/icon-edit-25x25.png">
+
+            Edit menu Categories
+            <img *ngIf="editCategory.isActive && isDisabled === false"
+                 src="/assets/icons/icon-edit-25x25.png">
         </a>
 
     </article>

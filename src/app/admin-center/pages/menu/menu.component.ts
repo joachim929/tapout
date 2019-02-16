@@ -41,10 +41,7 @@ export class MenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        setTimeout(() => {
-            this.getData();
-        }, 2500);
-
+        this.getData();
         this.taskRouteService.baseNav = 'admin/menu';
     }
 
