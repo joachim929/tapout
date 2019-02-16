@@ -25,11 +25,10 @@ export class NewMenuCategoryComponent implements OnInit {
     constructor(private menuDataService: MenuDataService,
                 private updateMenuService: UpdateMenuService,
                 private notificationService: NotificationService,
-                private menuRouteService: TaskRouteService) {
+                private taskRouteService: TaskRouteService) {
 
         this.highestPagePosition = 0;
         this.model = new MenuCategory();
-        // this.menuRouteService.newCategoryToggle = true;
     }
 
     get menuData(): MenuCategory[] {
@@ -50,7 +49,7 @@ export class NewMenuCategoryComponent implements OnInit {
     }
 
     goBack() {
-        this.menuRouteService.routeToMenu();
+        this.taskRouteService.routeToMenu();
     }
 
     formatPagePosition() {

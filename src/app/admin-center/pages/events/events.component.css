@@ -1,5 +1,13 @@
 @import "../../admin-center.component.css";
 
+.editable-container p {
+    line-height: 26px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .button {
     width: 50%;
 }

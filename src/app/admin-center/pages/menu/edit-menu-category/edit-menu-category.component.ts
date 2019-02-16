@@ -21,9 +21,7 @@ export class EditMenuCategoryComponent implements OnInit {
 
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
-                private notificationService: NotificationService,
-                private menuRouteService: TaskRouteService) {
-        // this.menuRouteService.editCategoryToggle = true;
+                private notificationService: NotificationService) {
     }
 
     get gotData(): boolean {

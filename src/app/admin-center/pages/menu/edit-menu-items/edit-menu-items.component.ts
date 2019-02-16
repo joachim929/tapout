@@ -8,7 +8,6 @@ import {MenuItem} from '../menu-item.model';
 import {UpdateMenuService} from '../update-menu.service';
 import {MenuDataService} from '../menu-data.service';
 import {NotificationService} from '../../../shared/notification.service';
-import {TaskRouteService} from '../../../shared/task-route.service';
 
 @Component({
     selector: 'app-edit-menu-items',
@@ -25,9 +24,7 @@ export class EditMenuItemsComponent implements OnInit {
 
     constructor(private updateMenuService: UpdateMenuService,
                 private menuDataService: MenuDataService,
-                private notificationService: NotificationService,
-                private taskRouteService: TaskRouteService) {
-        // this.taskRouteService.editItemToggle = true;
+                private notificationService: NotificationService) {
     }
 
     get updating(): boolean {

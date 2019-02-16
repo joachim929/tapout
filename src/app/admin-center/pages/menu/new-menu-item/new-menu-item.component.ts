@@ -25,7 +25,6 @@ export class NewMenuItemComponent implements OnInit {
                 private menuDataService: MenuDataService,
                 private notificationService: NotificationService,
                 private taskRouteService: TaskRouteService) {
-        // this.taskRouteService.newItemToggle = true;
     }
 
     get menuData() {

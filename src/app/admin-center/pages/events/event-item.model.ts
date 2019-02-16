@@ -43,7 +43,7 @@ export class EventItem {
     }
 
     set categoryId(value: number) {
-        this._categoryId = value;
+        this._categoryId = Number(value);
     }
 
     get categoryType(): string {
@@ -59,6 +59,9 @@ export class EventItem {
     }
 
     set position(value: number) {
+        if (value < 1) {
+            value = 1;
+        }
         this._position = value;
     }
 

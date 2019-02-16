@@ -3,6 +3,9 @@ import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/c
 import {catchError} from 'rxjs/internal/operators';
 import {Observable, of, throwError} from 'rxjs';
 
+// Objects
+import {EventCategory} from './event-category.model';
+
 // Services
 import {ExternalLinksService} from '../../../shared/external-links.service';
 

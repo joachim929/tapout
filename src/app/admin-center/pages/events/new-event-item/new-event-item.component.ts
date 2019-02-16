@@ -20,8 +20,8 @@ export class NewEventItemComponent implements OnInit {
     monthsDisplayed: number;
     fromDate: NgbDate;
     toDate: NgbDate;
-    startTime: {hour: number, minute: number};
-    endTime: {hour: number, minute: number};
+    startTime: { hour: number, minute: number };
+    endTime: { hour: number, minute: number };
     startMeridian = true;
     endMeridian = true;
 
@@ -29,15 +29,14 @@ export class NewEventItemComponent implements OnInit {
     public categories: EventCategory[];
     public tableHints: boolean;
     public selectedCategory: EventCategory;
-    public _initialPositionPlaceholder = 'Enter the category placement...';
-    public _positionPlaceholder = 'Select a category first';
+    public _initialPositionPlaceholder = 'Select category position...';
+    public _positionPlaceholder = 'Select a category first...';
 
     constructor(private taskRouteService: TaskRouteService,
                 private eventsDataService: EventsDataService,
                 private eventsFactoryService: EventsFactoryService,
                 private ngbCalendar: NgbCalendar) {
         this.monthsDisplayed = 1;
-        // this.fromDate = ngbCalendar.getToday();
     }
 
     get positionPlaceholder(): string {
@@ -61,6 +60,34 @@ export class NewEventItemComponent implements OnInit {
         this.tableHints = false;
     }
 
+    categoryChange() {
+        for (let i = 0; i < this.eventsData.length; i++) {
+            if (this.model.categoryId === this.eventsData[i].id) {
+
+                this.selectedCategory = new EventCategory();
+                this.selectedCategory.setFromExisting(this.eventsData[i]);
+
+                this.model.categoryType = this.selectedCategory.type;
+                if (this.model.position !== null) {
+                    this.formatPosition();
+                }
+            }
+        }
+    }
+
+    formatPosition() {
+        if (this.selectedCategory.items !== null) {
+
+            const itemsLength = this.selectedCategory.itemsLength;
+
+            if (this.model.position > itemsLength) {
+                this.model.position = itemsLength + 1;
+            }
+        } else {
+            this.model.position = 1;
+        }
+    }
+
     goBack() {
         this.taskRouteService.routeToMenu();
     }
@@ -73,6 +100,7 @@ export class NewEventItemComponent implements OnInit {
         console.log('saving');
     }
 
+    // Date picker and Time picker stuff
     toggleEndDate() {
         if (this.model.usesEndDate === false) {
             this.toDate = null;

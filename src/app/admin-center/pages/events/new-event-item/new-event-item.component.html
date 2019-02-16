@@ -8,6 +8,7 @@
                 <label for="category">Category</label>
                 <select id="category"
                         name="category"
+                        (change)="categoryChange()"
                         [(ngModel)]="model.categoryId"
                         #category="ngModel"
                         required>
@@ -18,9 +19,9 @@
             </div>
 
             <!-- Category Type -->
-            <div class="col-xs-4">
-                <p>Category Type</p>
-                <p>{{model.categoryType}}</p>
+            <div class="col-xs-4 no-padding">
+                <p class="col-xs-12">Category Type</p>
+                <p class="col-xs-12">{{model.categoryType}}</p>
             </div>
 
             <!-- Position -->
@@ -29,6 +30,7 @@
                 <input id="position"
                        name="position"
                        type="number"
+                       (blur)="formatPosition()"
                        [(ngModel)]="model.position"
                        [disabled]="category.invalid"
                        #position="ngModel"

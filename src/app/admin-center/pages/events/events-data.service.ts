@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 
+// Objects
+import {EventCategory} from './event-category.model';
+
 @Injectable({
     providedIn: 'root'
 })
 export class EventsDataService {
     private _gotData: boolean;
-    private _eventsData: object;
+    private _eventsData: EventCategory[];
 
     constructor() {
         this._gotData = false;
@@ -19,13 +22,13 @@ export class EventsDataService {
         this._gotData = value;
     }
 
-    get eventsData(): object {
+    get eventsData(): EventCategory[] {
         if (typeof this._eventsData !== 'undefined') {
             return this._eventsData;
         }
     }
 
-    set eventsData(data) {
+    set eventsData(data: EventCategory[]) {
         if (typeof data !== 'undefined' && data !== null) {
             console.log(data);
             this._gotData = true;
