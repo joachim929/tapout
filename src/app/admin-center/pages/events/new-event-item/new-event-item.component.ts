@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbDateStruct, NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {
+    NgbDateStruct,
+    NgbCalendar,
+    NgbDate,
+    NgbTimeStruct,
+    NgbDateParserFormatter,
+    NgbDatepickerI18n,
+    NgbTimeAdapter
+} from '@ng-bootstrap/ng-bootstrap';
 
 // Objects
 import {EventItem} from '../event-item.model';
@@ -18,12 +26,6 @@ import {EventsFactoryService} from '../events-factory.service';
 export class NewEventItemComponent implements OnInit {
     hoveredDate: NgbDate;
     monthsDisplayed: number;
-    fromDate: NgbDate;
-    toDate: NgbDate;
-    startTime: { hour: number, minute: number };
-    endTime: { hour: number, minute: number };
-    startMeridian = true;
-    endMeridian = true;
 
     public model: EventItem;
     public categories: EventCategory[];
@@ -35,7 +37,8 @@ export class NewEventItemComponent implements OnInit {
     constructor(private taskRouteService: TaskRouteService,
                 private eventsDataService: EventsDataService,
                 private eventsFactoryService: EventsFactoryService,
-                private ngbCalendar: NgbCalendar) {
+                private ngbCalendar: NgbCalendar,
+                private ngbDateParserFormatter: NgbDateParserFormatter) {
         this.monthsDisplayed = 1;
     }
 
@@ -57,6 +60,7 @@ export class NewEventItemComponent implements OnInit {
 
     ngOnInit() {
         this.model = new EventItem();
+        this.model.startDate = this.ngbCalendar.getToday();
         this.tableHints = false;
     }
 
@@ -93,7 +97,7 @@ export class NewEventItemComponent implements OnInit {
     }
 
     toggleHints(form) {
-        console.log(form);
+        console.log(this.ngbDateParserFormatter.format(this.model.startDate), this.ngbDateParserFormatter.format(this.model.endDate));
     }
 
     saveItem() {
@@ -103,35 +107,36 @@ export class NewEventItemComponent implements OnInit {
     // Date picker and Time picker stuff
     toggleEndDate() {
         if (this.model.usesEndDate === false) {
-            this.toDate = null;
+            this.model.endDate = null;
             this.monthsDisplayed = 1;
         } else {
+            this.model.endDate = this.ngbCalendar.getNext(this.model.startDate, 'd', 6);
             this.monthsDisplayed = 2;
         }
     }
 
     onDateSelection(date: NgbDate) {
-        if (!this.fromDate && !this.toDate) {
-            this.fromDate = date;
-        } else if (this.model.usesEndDate && this.fromDate && !this.toDate && date.after(this.fromDate)) {
-            this.toDate = date;
+        if (!this.model.startDate && !this.model.endDate) {
+            this.model.startDate = date;
+        } else if (this.model.usesEndDate && this.model.startDate && !this.model.endDate && date.after(this.model.startDate)) {
+            this.model.endDate = date;
         } else {
-            this.toDate = null;
-            this.fromDate = date;
+            this.model.endDate = null;
+            this.model.startDate = date;
         }
     }
 
     isHovered(date: NgbDate) {
-        return this.model.usesEndDate && this.fromDate && !this.toDate && this.hoveredDate &&
-            date.after(this.fromDate) && date.before(this.hoveredDate);
+        return this.model.usesEndDate && this.model.startDate && !this.model.endDate && this.hoveredDate &&
+            date.after(this.model.startDate) && date.before(this.hoveredDate);
     }
 
     isInside(date: NgbDate) {
-        return this.model.usesEndDate && date.after(this.fromDate) && date.before(this.toDate);
+        return this.model.usesEndDate && date.after(this.model.startDate) && date.before(this.model.endDate);
     }
 
     isRange(date: NgbDate) {
-        return date.equals(this.fromDate) ||
-            date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+        return date.equals(this.model.startDate) ||
+            date.equals(this.model.endDate) || this.isInside(date) || this.isHovered(date);
     }
 }

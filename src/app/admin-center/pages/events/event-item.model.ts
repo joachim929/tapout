@@ -1,18 +1,22 @@
+import {NgbDate, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+
 export class EventItem {
-    private _categoryId?: number = null;
-    private _categoryType?: string = null;
-    private _position?: number = null;
-    private _itemId?: number = null;
-    private _createAt?: Date = null;
-    private _editedAt?: Date = null;
-    private _enId?: number = null;
+    private _categoryId?: number;
+    private _categoryType: string;
+    private _position: number;
+    private _itemId?: number;
+    private _createAt?: Date;
+    private _editedAt?: Date;
+    private _enId?: number;
     private _enTitle: string;
-    private _enDescription?: string = null;
-    private _vnId?: number = null;
+    private _enDescription: string;
+    private _vnId?: number;
     private _vnTitle: string;
-    private _vnDescription?: string = null;
-    private _start?: Date = null;
-    private _end?: Date = null;
+    private _vnDescription: string;
+    private _startDate: NgbDate;
+    private _startTime?: NgbTimeStruct;
+    private _endDate?: NgbDate;
+    private _endTime?: NgbTimeStruct;
     private _usesStartTime: boolean;
     private _usesEndTime: boolean;
     private _usesEndDate: boolean;
@@ -27,7 +31,52 @@ export class EventItem {
         this.usesEndDate = false;
         this.editToggle = false;
         this.isCollapsed = true;
-        this.validate();
+        this.startTime = {hour: 0, minute: 0, second: 0};
+        this.endTime = {hour: 0, minute: 0, second: 0};
+    }
+
+    get startTimeString(): string {
+        if (this.startTime !== null) {
+            return this.toModel(this.startTime);
+        }
+    }
+
+    get endTimeString(): string {
+        if (this.endTime !== null) {
+            return this.toModel(this.endTime);
+        }
+    }
+
+    get startTime(): NgbTimeStruct {
+        return this._startTime;
+    }
+
+    set startTime(value: NgbTimeStruct) {
+        this._startTime = value;
+    }
+
+    get endTime(): NgbTimeStruct {
+        return this._endTime;
+    }
+
+    set endTime(value: NgbTimeStruct) {
+        this._endTime = value;
+    }
+
+    get startDate(): NgbDate {
+        return this._startDate;
+    }
+
+    set startDate(value: NgbDate) {
+        this._startDate = value;
+    }
+
+    get endDate(): NgbDate {
+        return this._endDate;
+    }
+
+    set endDate(value: NgbDate) {
+        this._endDate = value;
     }
 
     get isCollapsed(): boolean {
@@ -137,27 +186,14 @@ export class EventItem {
         this._vnDescription = value;
     }
 
-    get start(): Date {
-        return this._start;
-    }
-
-    set start(value: Date) {
-        this._start = value;
-    }
-
-    get end(): Date {
-        return this._end;
-    }
-
-    set end(value: Date) {
-        this._end = value;
-    }
-
     get usesStartTime(): boolean {
         return this._usesStartTime;
     }
 
     set usesStartTime(value: boolean) {
+        if (value === false) {
+            this.startTime = {hour: 0, minute: 0, second: 0};
+        }
         this._usesStartTime = value;
     }
 
@@ -166,6 +202,9 @@ export class EventItem {
     }
 
     set usesEndTime(value: boolean) {
+        if (value === false) {
+            this.endTime = {hour: 0, minute: 0, second: 0};
+        }
         this._usesEndTime = value;
     }
 
@@ -179,6 +218,10 @@ export class EventItem {
 
     get valid(): boolean {
         return this._valid;
+    }
+
+    set valid(value: boolean) {
+        this._valid = value;
     }
 
     get active(): boolean {
@@ -197,61 +240,64 @@ export class EventItem {
         this._editToggle = value;
     }
 
-    private validate() {
-        if (this.start === null || this.end === null) {
-            this._valid = false;
-        } else if (this.usesStartTime === true) {
-            if (this.usesEndDate === true) {
-                if (this.usesEndTime === true) {
-                    this._valid = this.start.getTime() < this.end.getTime();
-                } else {
-                    this.compareStartAndEndDate();
-                }
-            } else {
-                if (this.usesEndTime === true) {
-                    this.compareStartAndEndTime();
-                } else {
-                    this._valid = true;
-                }
-            }
+    private toModel(time: NgbTimeStruct): string {
+        if (!time) {
+            return null;
+        }
+        return `${this.pad(time.hour)}:${this.pad(time.minute)}`;
+    }
+
+    private pad(i: number): string {
+        return i < 10 ? `0${i}` : `${i}`;
+    }
+
+    private usesStartAndEndTime(): boolean {
+        return this.usesStartTime && this.usesEndTime;
+    }
+
+    private validateEndTimeParams(): boolean {
+        return !(this.endTime === null || typeof this.endTime === 'undefined');
+    }
+
+    private validateStartTimeParams(): boolean {
+        return !(this.startTime === null || typeof this.startTime === 'undefined');
+    }
+
+    private timeValidate() {
+        if (this.startTime.hour < this.endTime.hour) {
+            this.valid = true;
+        } else if (this.startTime.hour === this.endTime.hour) {
+            this.valid = this.startTime.minute < this.endTime.minute;
         } else {
-            if (this.usesEndDate === true) {
-                this._valid = this.start.getTime() < this.end.getTime();
-            } else {
-                this.usesEndTime = false;
-                this._valid = true;
-            }
+            this.valid = false;
         }
     }
 
-    private compareStartAndEndTime() {
-        const startHour = this.start.getUTCHours();
-        const startMinutes = this.start.getUTCMinutes();
-        const endHour = this.end.getUTCHours();
-        const endMinutes = this.end.getUTCMinutes();
-        if (startHour > endHour) {
-            this._valid = false;
-        } else {
-            this._valid = startMinutes > endMinutes;
-        }
-    }
+    dateTimeValidate() {
+        if (this.usesEndDate === true && this.startDate !== null && this.endDate !== null) {
+            let check  = this.startDate.before(this.endDate);
 
-    private compareStartAndEndDate() {
-        const startYear = this.start.getUTCFullYear();
-        const startMonth = this.start.getUTCMonth();
-        const startDay = this.start.getUTCDay();
-        const endYear = this.end.getUTCFullYear();
-        const endMonth = this.end.getUTCMonth();
-        const endDay = this.end.getUTCDay();
-        if (startYear > endYear) {
-            this._valid = false;
+            if (this.usesEndTime === true && !this.validateEndTimeParams()) {
+                check = false;
+            }
+            if (this.usesStartTime === true && !this.validateStartTimeParams()) {
+                check = false;
+            }
+            this.valid = check;
         } else {
-            if (startMonth > endMonth) {
-                this._valid = false;
+            if (this.usesStartAndEndTime()) {
+                if (this.validateEndTimeParams() && this.validateStartTimeParams()) {
+                    this.timeValidate();
+                } else {
+                    this.valid = false;
+                }
+            } else if (this.usesStartTime === true) {
+                this.valid = this.validateStartTimeParams();
+            } else if (this.usesEndTime === true) {
+                this.valid = this.validateEndTimeParams();
             } else {
-                this._valid = startDay > endDay;
+                this.valid = true;
             }
         }
-
     }
 }

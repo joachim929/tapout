@@ -127,3 +127,7 @@
 :host ::ng-deep .date-picker .ngb-dp-month-name {
     font-size: 14px;
 }
+
+:host ::ng-deep .hidden {
+    display: inline !important;
+}
