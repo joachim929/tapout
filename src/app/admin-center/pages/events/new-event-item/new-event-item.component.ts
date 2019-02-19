@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {
-    NgbDateStruct,
     NgbCalendar,
     NgbDate,
-    NgbTimeStruct,
-    NgbDateParserFormatter,
-    NgbDatepickerI18n,
-    NgbTimeAdapter
+    NgbDateParserFormatter
 } from '@ng-bootstrap/ng-bootstrap';
 
 // Objects
@@ -39,7 +35,7 @@ export class NewEventItemComponent implements OnInit {
                 private eventsFactoryService: EventsFactoryService,
                 private ngbCalendar: NgbCalendar,
                 private ngbDateParserFormatter: NgbDateParserFormatter) {
-        this.monthsDisplayed = 1;
+        this.monthsDisplayed = 2;
     }
 
     get positionPlaceholder(): string {
@@ -59,8 +55,7 @@ export class NewEventItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.model = new EventItem();
-        this.model.startDate = this.ngbCalendar.getToday();
+        this.resetModel();
         this.tableHints = false;
     }
 
@@ -97,7 +92,12 @@ export class NewEventItemComponent implements OnInit {
     }
 
     toggleHints(form) {
-        console.log(this.ngbDateParserFormatter.format(this.model.startDate), this.ngbDateParserFormatter.format(this.model.endDate));
+        console.log(form);
+    }
+
+    resetModel() {
+        this.model = new EventItem();
+        this.model.startDate = this.ngbCalendar.getToday();
     }
 
     saveItem() {
@@ -108,10 +108,8 @@ export class NewEventItemComponent implements OnInit {
     toggleEndDate() {
         if (this.model.usesEndDate === false) {
             this.model.endDate = null;
-            this.monthsDisplayed = 1;
         } else {
             this.model.endDate = this.ngbCalendar.getNext(this.model.startDate, 'd', 6);
-            this.monthsDisplayed = 2;
         }
     }
 

@@ -104,6 +104,7 @@
                            #usesEndDate="ngModel">
                 </div>
 
+                <!-- Date Picker -->
                 <div class="col-xs-12">
                     <ngb-datepicker #dp (select)="onDateSelection($event)"
                                     (click)="model.dateTimeValidate()"
@@ -129,6 +130,7 @@
 
             <!-- Start/End Time-->
             <div class="col-xs-4 no-padding date-time-container">
+
                 <!-- Uses Start Time -->
                 <div class="col-xs-12">
                     <label for="usesStartTime">Has Start Time</label>
@@ -140,6 +142,7 @@
                            #usesStartTime="ngModel">
                 </div>
 
+                <!-- Start Time Picker -->
                 <div class="col-xs-12">
                     <ngb-timepicker name="startTime"
                                     class="time-picker"
@@ -162,6 +165,7 @@
                            #usesEndTime="ngModel">
                 </div>
 
+                <!-- End Time Picker -->
                 <div class="col-xs-12">
                     <ngb-timepicker name="endTime"
                                     class="time-picker"
@@ -196,7 +200,7 @@
             <button class="button-edit"
                     [disabled]="updating"
                     [class.disabled]="updating"
-                    (click)="itemForm.reset()">
+                    (click)="itemForm.reset(); resetModel();">
                 Clear<img src="/assets/icons/icon-edit-25x25.png">
             </button>
 
@@ -208,8 +212,10 @@
             </button>
 
         </div>
+
     </form>
 </article>
+
 <div class="row">
     <div class="col-xs-12">
         <p>Valid: {{model.valid}}</p>

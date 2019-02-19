@@ -23,9 +23,153 @@
             <span style="float: left; text-transform: none; margin-right: -150px;">Category Position: {{item.position}}</span>
             <span style="align-content: center">{{item.enTitle}} / {{item.vnTitle}}</span>
         </button>
-        <div class=""
-             [ngbCollapse]="!item.isCollapsed">
-            Test
+
+        <!-- None Edit Mode -->
+        <div class="row row-eq-height no-margin editable-container"
+             [ngbCollapse]="!item.isCollapsed" *ngIf="!item.editToggle">
+
+            <!-- Item Details -->
+            <div class="col-xs-9">
+
+                <!-- English Title & Category -->
+                <div class="row no-margin">
+
+                    <p class="col-xs-2">English Title:</p>
+                    <p class="col-xs-6">{{item.enTitle}}</p>
+
+                    <p class="col-xs-2">Category:</p>
+                    <p class="col-xs-2">{{selectedCategory.enName}}/<br>{{selectedCategory.vnName}}</p>
+
+                </div>
+
+                <!-- Vietnamese Title & Position -->
+                <div class="row no-margin">
+
+                    <p class="col-xs-2">Vietnamese Title:</p>
+                    <p class="col-xs-6">{{item.vnTitle}}</p>
+
+                    <p class="col-xs-2">Position:</p>
+                    <p class="col-xs-2">{{item.position}}</p>
+
+                </div>
+
+                <!-- Description -->
+                <div class="row no-margin">
+
+                    <p class="col-xs-6">English Description:</p>
+                    <p class="col-xs-6">Vietnamese Description:</p>
+
+                    <p class="col-xs-6">{{item.enDescription}}</p>
+                    <p class="col-xs-6">{{item.vnDescription}}</p>
+
+                </div>
+
+                <!-- Dates and Times -->
+                <div class="row row-eq-height no-margin">
+
+                    <!-- Dates -->
+                    <div class="col-xs-6 no-padding">
+
+                        <p class="col-xs-6">Start Date:</p>
+                        <p class="col-xs-6">{{item.startDate}}</p>
+
+                        <p class="col-xs-6">End Date:</p>
+                        <p class="col-xs-6">{{item.endDate}}</p>
+
+                    </div>
+
+                    <!-- Times -->
+                    <div class="col-xs-6 no-padding">
+
+                        <p class="col-xs-6">Start Time:</p>
+                        <p class="col-xs-6">{{item.startTimeString}}</p>
+
+                        <p class="col-xs-6">End Time:</p>
+                        <p class="col-xs-6">{{item.endTimeString}}</p>
+
+                    </div>
+
+                </div>
+
+                <!--Created at and editedAt-->
+                <div class="row no-margin">
+
+                    <p class="col-xs-3">Created at:</p>
+                    <p class="col-xs-3">{{item.createdAt}}</p>
+
+                    <p class="col-xs-3">Last edited at:</p>
+                    <p class="col-xs-3">{{item.editedAt}}</p>
+
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-xs-3">
+Test
+            </div>
+
+
         </div>
+
+        <!-- Form -->
+        <form class="row row-eq-height no-margin editable-container"
+              [ngbCollapse]="!item.isCollapsed"
+              #menuItem="ngForm" *ngIf="item.editToggle">
+
+            <!-- Item Details -->
+            <div class="col-xs-9">
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-xs-3">
+
+                <button class="button-edit"
+                        (click)="moveUp(index)"
+                        [disabled]="index === 0 || updating"
+                        [class.disabled]="index === 0 || updating">
+                    Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+                </button>
+
+                <button class="button-edit"
+                        (click)="moveDown(index)"
+                        [disabled]="lastItem(index) || updating"
+                        [class.disabled]="lastItem(index) || updating">
+                    Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+                </button>
+
+                <button class="button-edit"
+                        [disabled]="updating"
+                        (click)="cancelEdit(index);"
+                        [class.disabled]="updating">
+                    Cancel<img src="/assets/icons/icon-cancel-25x25.png">
+                </button>
+
+                <button class="button-edit">
+                        <!--(click)="initializeSave(index)"-->
+                        <!--[disabled]="menuItem.form.invalid || updating || !hasChanged"-->
+                        <!--[class.invalid]="menuItem.form.invalid || !hasChanged"-->
+                        <!--[class.disabled]="updating">-->
+                    Save<img src="/assets/icons/icon-save-25x25.png">
+                </button>
+
+                <button class="button-edit button-delete"
+                        (click)="initializeDelete(item)"
+                        [class.disabled]="updating">
+                    Delete<img src="/assets/icons/icon-delete-25x25.png">
+                </button>
+
+                <div class="warning">
+                    <p class="warning" *ngIf="model.categoryId !== selectedCategory.id">
+                        You have selected to move this item to a different category
+                    </p>
+                </div>
+
+            </div>
+
+        </form>
+
+
     </div>
 </ng-container>

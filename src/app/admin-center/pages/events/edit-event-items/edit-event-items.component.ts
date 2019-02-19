@@ -52,10 +52,43 @@ export class EditEventItemsComponent implements OnInit {
 
     ngOnInit() {
         this.model = new EventItem();
+
+        const test = new Date();
+        console.log(test);
+    }
+
+    initializeDelete(item: EventItem) {
+
+    }
+
+    initializeSave(index: number) {
+
+    }
+
+    cancelEdit(index: number) {
+
+    }
+
+    lastItem(index: number) {
+
+    }
+
+    moveDown(index: number) {
+
+    }
+
+    moveUp(index: number) {
+
     }
 
     toggleCategory(category: EventCategory) {
         this.selectedCategory = category;
+        this._item = this.selectedCategory.items[0];
+        // console.log(this._item._createdAt.toString());
+        console.log(this._item._createdAt.toLocaleDateString());
+        console.log(this._item._createdAt.toDateString());
+        console.log(this._item._createdAt.toUTCString());
+
     }
 
     /**

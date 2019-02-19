@@ -5,7 +5,7 @@ export class EventItem {
     private _categoryType: string;
     private _position: number;
     private _itemId?: number;
-    private _createAt?: Date;
+    public _createdAt?: Date;
     private _editedAt?: Date;
     private _enId?: number;
     private _enTitle: string;
@@ -122,12 +122,12 @@ export class EventItem {
         this._itemId = value;
     }
 
-    get createAt(): Date {
-        return this._createAt;
+    get createdAt(): Date {
+        return this._createdAt;
     }
 
-    set createAt(value: Date) {
-        this._createAt = value;
+    set createdAt(value: Date) {
+        this._createdAt = value;
     }
 
     get editedAt(): Date {
@@ -240,6 +240,34 @@ export class EventItem {
         this._editToggle = value;
     }
 
+    dateTimeValidate() {
+        if (this.usesEndDate === true && this.startDate !== null && this.endDate !== null) {
+            let check  = this.startDate.before(this.endDate);
+
+            if (this.usesEndTime === true && !this.validateEndTimeParams()) {
+                check = false;
+            }
+            if (this.usesStartTime === true && !this.validateStartTimeParams()) {
+                check = false;
+            }
+            this.valid = check;
+        } else {
+            if (this.usesStartAndEndTime()) {
+                if (this.validateEndTimeParams() && this.validateStartTimeParams()) {
+                    this.timeValidate();
+                } else {
+                    this.valid = false;
+                }
+            } else if (this.usesStartTime === true) {
+                this.valid = this.validateStartTimeParams();
+            } else if (this.usesEndTime === true) {
+                this.valid = this.validateEndTimeParams();
+            } else {
+                this.valid = true;
+            }
+        }
+    }
+
     private toModel(time: NgbTimeStruct): string {
         if (!time) {
             return null;
@@ -270,34 +298,6 @@ export class EventItem {
             this.valid = this.startTime.minute < this.endTime.minute;
         } else {
             this.valid = false;
-        }
-    }
-
-    dateTimeValidate() {
-        if (this.usesEndDate === true && this.startDate !== null && this.endDate !== null) {
-            let check  = this.startDate.before(this.endDate);
-
-            if (this.usesEndTime === true && !this.validateEndTimeParams()) {
-                check = false;
-            }
-            if (this.usesStartTime === true && !this.validateStartTimeParams()) {
-                check = false;
-            }
-            this.valid = check;
-        } else {
-            if (this.usesStartAndEndTime()) {
-                if (this.validateEndTimeParams() && this.validateStartTimeParams()) {
-                    this.timeValidate();
-                } else {
-                    this.valid = false;
-                }
-            } else if (this.usesStartTime === true) {
-                this.valid = this.validateStartTimeParams();
-            } else if (this.usesEndTime === true) {
-                this.valid = this.validateEndTimeParams();
-            } else {
-                this.valid = true;
-            }
         }
     }
 }

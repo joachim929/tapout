@@ -3,3 +3,7 @@
 .button {
     width: 100%;
 }
+
+.editable-container p {
+    min-height: 26px;
+}
