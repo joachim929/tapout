@@ -31,7 +31,7 @@ export class EditEventItemsComponent implements OnInit {
         }
     }
 
-    get categoryKey(): number {
+    get categoryIndexById(): number {
         const categoryKey = this.eventsDataService.getCategoryIndexById(this.selectedCategory.id);
         if (categoryKey !== -1) {
             return categoryKey;
@@ -60,12 +60,22 @@ export class EditEventItemsComponent implements OnInit {
         this.model = new EventItem();
     }
 
+    formChange() {
+
+    }
+
+    // todo see what this is supposed to do again
+    checkCategory() {
+
+    }
+
     initializeDelete(item: EventItem) {
 
     }
 
     initializeEdit(item: EventItem, index: number) {
         this.selectedCategory.items[index].editToggle = true;
+        // todo might need to make function to set model properly
         this.model = item;
     }
 
@@ -135,8 +145,8 @@ export class EditEventItemsComponent implements OnInit {
                         current.editedAt = response.data[1].editedAt;
                         other.editedAt = response.data[0].editedAt;
                     }
-                    this.eventsDataService.eventsData[this.categoryKey].updateMenuItem(current);
-                    this.eventsDataService.eventsData[this.categoryKey].updateMenuItem(other);
+                    this.eventsDataService.eventsData[this.categoryIndexById].updateMenuItem(current);
+                    this.eventsDataService.eventsData[this.categoryIndexById].updateMenuItem(other);
                 } else {
                     this.notificationService.addMessage('Whoops, something went wrong changing item positions');
                 }

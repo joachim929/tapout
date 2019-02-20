@@ -148,6 +148,140 @@
             <!-- Item Details -->
             <div class="col-xs-9">
 
+                <!-- English Title & Category -->
+                <div class="row no-margin">
+
+                    <label class="col-xs-2" for="enTitle">English Title:</label>
+                    <input class="col-xs-6"
+                           id="enTitle"
+                           name="enTitle"
+                           type="text"
+                           minlength="4"
+                           maxlength="255"
+                           required
+                           (change)="formChange()"
+                           [(ngModel)]="model.enTitle"
+                           #enTitle="ngModel">
+
+                    <label class="col-xs-2" for="category">Category:</label>
+                    <select class="col-xs-2"
+                            id="category"
+                            name="category"
+                            required
+                            (change)="checkCategory()"
+                            [(ngModel)]="model.categoryId"
+                            #category="ngModel">
+
+                        <option *ngFor="let category of eventsData"
+                                [ngValue]="category.id">
+                            {{category.enName}} / {{category.vnName}}
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Vietnamese Title & Position -->
+                <div class="row no-margin">
+
+                    <label class="col-xs-2" for="vnTitle">Vietnamese Title:</label>
+                    <input class="col-xs-6"
+                           id="vnTitle"
+                           name="vnTitle"
+                           type="text"
+                           minlength="4"
+                           maxlength="255"
+                           required
+                           (change)="formChange()"
+                           [(ngModel)]="model.vnTitle"
+                           #vnTitle="ngModel">
+
+                    <p class="col-xs-2">Position:</p>
+                    <p class="col-xs-2">{{model.position}}</p>
+
+                </div>
+
+                <!-- Description -->
+                <div class="row no-margin">
+
+                    <label class="col-xs-2" for="enDescription">English Description:</label>
+                    <textarea class="col-xs-10"
+                              id="enDescription"
+                              name="enDescription"
+                              minlength="4"
+                              required
+                              (change)="formChange()"
+                              [disabled]="model.disableDescription"
+                              [(ngModel)]="model.enDescription"
+                              #enDescription="ngModel"></textarea>
+
+                    <label class="col-xs-2" for="vnDescription">Vietnamese Description:</label>
+                    <textarea class="col-xs-10"
+                              id="vnDescription"
+                              name="vnDescription"
+                              minlength="4"
+                              required
+                              (change)="formChange()"
+                              [disabled]="model.disableDescription"
+                              [(ngModel)]="model.vnDescription"
+                              #vnDescription="ngModel"></textarea>
+
+                </div>
+
+                <!-- Dates and Times -->
+                <div class="row row-eq-height no-margin">
+
+                    <!-- Start/End Date -->
+                    <div class="col-xs-8 no-padding date-time-container">
+
+                        <!-- Uses End Date -->
+                        <div class="col-xs-12">
+                            <label for="usesEndDate">Event spans over more than 1 day</label>
+                            <input id="usesEndDate"
+                                   type="checkbox"
+                                   name="usesEndDate"
+                                   [(ngModel)]="model.usesEndDate"
+                                   (change)="toggleEndDate(); model.dateTimeValidate()"
+                                   #usesEndDate="ngModel">
+                        </div>
+
+                        <!-- Date Picker -->
+                        <div class="col-xs-12">
+                            <ngb-datepicker #dp (select)="onDateSelection($event)"
+                                            (click)="model.dateTimeValidate()"
+                                            [class.date-picker]="true"
+                                            [displayMonths]="monthsDisplayed"
+                                            [dayTemplate]="t"
+                                            outsideDays="hidden">
+                            </ngb-datepicker>
+
+                            <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                            </ng-template>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Created at and editedAt-->
+                <div class="row no-margin">
+
+                    <p class="col-xs-3">Created at:</p>
+                    <p class="col-xs-3">{{model.createdAt.date.substring(0, 19)}}</p>
+
+                    <p class="col-xs-3">Last edited at:</p>
+                    <p class="col-xs-3">{{model.editedAt.date.substring(0, 19)}}</p>
+
+                </div>
+
             </div>
 
             <!-- Buttons -->
@@ -175,10 +309,10 @@
                 </button>
 
                 <button class="button-edit">
-                        <!--(click)="initializeSave(index)"-->
-                        <!--[disabled]="menuItem.form.invalid || updating || !hasChanged"-->
-                        <!--[class.invalid]="menuItem.form.invalid || !hasChanged"-->
-                        <!--[class.disabled]="updating">-->
+                    <!--(click)="initializeSave(index)"-->
+                    <!--[disabled]="menuItem.form.invalid || updating || !hasChanged"-->
+                    <!--[class.invalid]="menuItem.form.invalid || !hasChanged"-->
+                    <!--[class.disabled]="updating">-->
                     Save<img src="/assets/icons/icon-save-25x25.png">
                 </button>
 

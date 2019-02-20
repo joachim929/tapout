@@ -15,6 +15,7 @@ export class EventItem {
     private _vnTitle: string;
     private _vnDescription: string;
     private _startDate: NgbDate;
+    private _disableDescription: boolean;
     private _startTime?: NgbTimeStruct;
     private _endDate?: NgbDate;
     private _endTime?: NgbTimeStruct;
@@ -34,6 +35,14 @@ export class EventItem {
         this.isCollapsed = true;
         this.startTime = {hour: 0, minute: 0, second: 0};
         this.endTime = {hour: 0, minute: 0, second: 0};
+    }
+
+    get disableDescription(): boolean {
+        return this._disableDescription;
+    }
+
+    set disableDescription(value: boolean) {
+        this._disableDescription = value;
     }
 
     get startTimeString(): string {
