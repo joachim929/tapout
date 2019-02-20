@@ -35,4 +35,16 @@ export class EventsDataService {
             this._eventsData = data;
         }
     }
+
+    getCategoryIndexById(id: number): number {
+        let requiredKey = -1;
+
+        this.eventsData.forEach((category, key) => {
+            if (category.id === id) {
+                requiredKey = key;
+            }
+        });
+
+        return requiredKey;
+    }
 }

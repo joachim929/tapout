@@ -8,6 +8,7 @@ import {EventCategory} from './event-category.model';
 
 // Services
 import {ExternalLinksService} from '../../../shared/external-links.service';
+import {EventItem} from "./event-item.model";
 
 @Injectable({
     providedIn: 'root'
@@ -45,6 +46,22 @@ export class EventsFactoryService {
         };
 
         return this.httpClient.get(this.apiRoot + 'read.php', httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    updateItemPositions(current: EventItem, other: EventItem): Observable<any> {
+        const body = new HttpParams()
+            .set('page', 'Events')
+            .set('task', 'updateItemPositions')
+            .set('module', 'Admin')
+            .set('items', JSON.stringify([current, other]));
+
+        this.updating = true;
+
+        return this.httpClient.post<any>(this.apiRoot + 'update.php', body,
+            this.httpPostOptions)
             .pipe(
                 catchError(this.handleError)
             );

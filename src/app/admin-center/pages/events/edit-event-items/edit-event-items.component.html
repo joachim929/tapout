@@ -95,10 +95,10 @@
                 <div class="row no-margin">
 
                     <p class="col-xs-3">Created at:</p>
-                    <p class="col-xs-3">{{item.createdAt}}</p>
+                    <p class="col-xs-3">{{item.createdAt.date.substring(0, 19)}}</p>
 
                     <p class="col-xs-3">Last edited at:</p>
-                    <p class="col-xs-3">{{item.editedAt}}</p>
+                    <p class="col-xs-3">{{item.editedAt.date.substring(0, 19)}}</p>
 
                 </div>
 
@@ -106,7 +106,35 @@
 
             <!-- Buttons -->
             <div class="col-xs-3">
-Test
+
+                <button class="button-edit"
+                        (click)="moveUp(index)"
+                        [disabled]="index === 0 || updating"
+                        [class.disabled]="index === 0 || updating">
+                    Move up<img src="/assets/icons/icon-arrow-up-25x25.png">
+                </button>
+
+                <button class="button-edit"
+                        (click)="moveDown(index)"
+                        [disabled]="lastItem(index) || updating"
+                        [class.disabled]="lastItem(index) || updating">
+                    Move down<img src="/assets/icons/icon-arrow-down-25x25.png">
+                </button>
+
+                <button class="button-edit"
+                        (click)="initializeEdit(item, index);"
+                        [disabled]="updating"
+                        [class.disabled]="updating">
+                    Edit<img src="/assets/icons/icon-edit-25x25.png">
+                </button>
+
+                <button class="button-edit button-delete"
+                        (click)="initializeDelete(item)"
+                        [disabled]="updating"
+                        [class.disabled]="updating">
+                    Delete<img src="/assets/icons/icon-delete-25x25.png">
+                </button>
+
             </div>
 
 

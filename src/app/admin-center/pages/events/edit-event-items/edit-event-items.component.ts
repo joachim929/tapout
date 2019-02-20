@@ -5,9 +5,9 @@ import {EventCategory} from '../event-category.model';
 import {EventItem} from '../event-item.model';
 
 // Services
-import {TaskRouteService} from '../../../shared/task-route.service';
 import {EventsFactoryService} from '../events-factory.service';
 import {EventsDataService} from '../events-data.service';
+import {NotificationService} from '../../../shared/notification.service';
 
 @Component({
     selector: 'app-edit-event-items',
@@ -19,16 +19,22 @@ export class EditEventItemsComponent implements OnInit {
     public hasChanged: boolean;
 
     private _category: EventCategory;
-    private _item: EventItem;
 
-    constructor(private taskRouteService: TaskRouteService,
-                private eventsFactoryService: EventsFactoryService,
-                private eventsDataService: EventsDataService) {
+    constructor(private eventsFactoryService: EventsFactoryService,
+                private eventsDataService: EventsDataService,
+                private notificationService: NotificationService) {
     }
 
     get selectedCategory() {
         if (typeof this._category !== 'undefined') {
             return this._category;
+        }
+    }
+
+    get categoryKey(): number {
+        const categoryKey = this.eventsDataService.getCategoryIndexById(this.selectedCategory.id);
+        if (categoryKey !== -1) {
+            return categoryKey;
         }
     }
 
@@ -52,13 +58,15 @@ export class EditEventItemsComponent implements OnInit {
 
     ngOnInit() {
         this.model = new EventItem();
-
-        const test = new Date();
-        console.log(test);
     }
 
     initializeDelete(item: EventItem) {
 
+    }
+
+    initializeEdit(item: EventItem, index: number) {
+        this.selectedCategory.items[index].editToggle = true;
+        this.model = item;
     }
 
     initializeSave(index: number) {
@@ -66,29 +74,42 @@ export class EditEventItemsComponent implements OnInit {
     }
 
     cancelEdit(index: number) {
-
+        this.selectedCategory.items[index].editToggle = false;
+        this.model = new EventItem;
     }
 
     lastItem(index: number) {
-
+        return index === (this.selectedCategory.items.length - 1);
     }
 
     moveDown(index: number) {
+        this.cancelEdit(index);
+        const tempCurrent = this.selectedCategory.items[index];
+        const tempNext = this.selectedCategory.items[index + 1];
+        tempCurrent.position++;
+        tempNext.position--;
+        if (tempNext.position < 1) {
+            tempNext.position = 1;
+        }
 
+        this.moveItemPositions(tempCurrent, tempNext);
     }
 
     moveUp(index: number) {
+        this.cancelEdit(index);
+        const tempCurrent = this.selectedCategory.items[index];
+        const tempPrevious = this.selectedCategory.items[index - 1];
+        tempCurrent.position--;
+        tempPrevious.position++;
+        if (tempCurrent.position < 1) {
+            tempCurrent.position = 1;
+        }
 
+        this.moveItemPositions(tempCurrent, tempPrevious);
     }
 
     toggleCategory(category: EventCategory) {
         this.selectedCategory = category;
-        this._item = this.selectedCategory.items[0];
-        // console.log(this._item._createdAt.toString());
-        console.log(this._item._createdAt.toLocaleDateString());
-        console.log(this._item._createdAt.toDateString());
-        console.log(this._item._createdAt.toUTCString());
-
     }
 
     /**
@@ -102,4 +123,34 @@ export class EditEventItemsComponent implements OnInit {
         return comparison;
     }
 
+    private moveItemPositions(current: EventItem, other: EventItem) {
+        this.eventsFactoryService.updateItemPositions(current, other)
+            .subscribe(response => {
+
+                if (this.checkResponse(response) && response.success === true && response.data.length === 2) {
+                    if (response.data[0].itemId === current.itemId) {
+                        current.editedAt = response.data[0].editedAt;
+                        other.editedAt = response.data[1].editedAt;
+                    } else {
+                        current.editedAt = response.data[1].editedAt;
+                        other.editedAt = response.data[0].editedAt;
+                    }
+                    this.eventsDataService.eventsData[this.categoryKey].updateMenuItem(current);
+                    this.eventsDataService.eventsData[this.categoryKey].updateMenuItem(other);
+                } else {
+                    this.notificationService.addMessage('Whoops, something went wrong changing item positions');
+                }
+
+                this.eventsFactoryService.updating = false;
+            }, error => {
+                this.eventsFactoryService.updating = false;
+                this.notificationService.addMessage('Failed to update category position');
+            });
+    }
+
+    private checkResponse(response: any): boolean {
+        return typeof response !== 'undefined' && response !== null &&
+            typeof response.success !== 'undefined' && response.success !== null &&
+            typeof response.data !== 'undefined' && response.data !== null;
+    }
 }

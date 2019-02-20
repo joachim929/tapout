@@ -1,3 +1,4 @@
+import {PhpDateTime} from '../../../shared/php-date-time.model';
 import {NgbDate, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 
 export class EventItem {
@@ -5,8 +6,8 @@ export class EventItem {
     private _categoryType: string;
     private _position: number;
     private _itemId?: number;
-    public _createdAt?: Date;
-    private _editedAt?: Date;
+    private _createdAt?: PhpDateTime;
+    private _editedAt?: PhpDateTime;
     private _enId?: number;
     private _enTitle: string;
     private _enDescription: string;
@@ -122,19 +123,19 @@ export class EventItem {
         this._itemId = value;
     }
 
-    get createdAt(): Date {
+    get createdAt(): PhpDateTime {
         return this._createdAt;
     }
 
-    set createdAt(value: Date) {
+    set createdAt(value: PhpDateTime) {
         this._createdAt = value;
     }
 
-    get editedAt(): Date {
+    get editedAt(): PhpDateTime {
         return this._editedAt;
     }
 
-    set editedAt(value: Date) {
+    set editedAt(value: PhpDateTime) {
         this._editedAt = value;
     }
 

@@ -122,4 +122,13 @@ export class EventCategory {
             return 0;
         }
     }
+
+    updateMenuItem(item: EventItem) {
+        this._items.forEach((eventItem, key) => {
+            if (eventItem.itemId === item.itemId) {
+                this._items[key] = item;
+                return;
+            }
+        });
+    }
 }
