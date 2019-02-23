@@ -46,7 +46,7 @@ label {
 
 input {
     color: var(--background-color);
-    width: 100%;
+    max-width: 100%;
     padding: 3px;
     outline: none;
     border: 0;

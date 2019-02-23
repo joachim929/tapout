@@ -1,5 +1,9 @@
 @import '../events.component.css';
 
+input {
+    width: 100%;
+}
+
 .date-time-container input[type="checkbox"]{
     margin: 10px;
     vertical-align: middle;

@@ -19,21 +19,20 @@ import {NewImageComponent} from './components/new-image/new-image.component';
 import {ImageComponent} from './components/image/image.component';
 import {NewMenuCategoryComponent} from './pages/menu/new-menu-category/new-menu-category.component';
 import {NewMenuItemComponent} from './pages/menu/new-menu-item/new-menu-item.component';
-import { EditMenuCategoryComponent } from './pages/menu/edit-menu-category/edit-menu-category.component';
-import { EditMenuItemsComponent } from './pages/menu/edit-menu-items/edit-menu-items.component';
-import { NotificationComponent } from './components/notification/notification.component';
-import { NewEventItemComponent } from './pages/events/new-event-item/new-event-item.component';
-import { NewEventCategoryComponent } from './pages/events/new-event-category/new-event-category.component';
-import { EditEventCategoryComponent } from './pages/events/edit-event-category/edit-event-category.component';
-import { EditEventItemsComponent } from './pages/events/edit-event-items/edit-event-items.component';
+import {EditMenuCategoryComponent} from './pages/menu/edit-menu-category/edit-menu-category.component';
+import {EditMenuItemsComponent} from './pages/menu/edit-menu-items/edit-menu-items.component';
+import {NotificationComponent} from './components/notification/notification.component';
+import {NewEventItemComponent} from './pages/events/new-event-item/new-event-item.component';
+import {NewEventCategoryComponent} from './pages/events/new-event-category/new-event-category.component';
+import {EditEventCategoryComponent} from './pages/events/edit-event-category/edit-event-category.component';
+import {EditEventItemsComponent} from './pages/events/edit-event-items/edit-event-items.component';
+import {TapoutDateTimePickerComponent} from './components/tapout-date-time-picker/tapout-date-time-picker.component';
 
 // Modules
 import {AdminCenterRoutingModule} from './admin-center-routing.module';
 
 // Services
 import {PageInfoService} from './shared/page-info.service';
-
-
 
 @NgModule({
     imports: [
@@ -65,7 +64,8 @@ import {PageInfoService} from './shared/page-info.service';
         NewEventItemComponent,
         NewEventCategoryComponent,
         EditEventCategoryComponent,
-        EditEventItemsComponent
+        EditEventItemsComponent,
+        TapoutDateTimePickerComponent
     ],
     providers: [
         PageInfoService

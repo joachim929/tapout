@@ -1,0 +1,85 @@
+<!-- Start/End Date -->
+<div class="col-xs-8 no-padding date-time-container">
+
+    <!-- Uses End Date -->
+    <div class="col-xs-12">
+        <label for="usesEndDate">Event spans over more than 1 day</label>
+        <input id="usesEndDate"
+               type="checkbox"
+               name="usesEndDate"
+               [(ngModel)]="model.usesEndDate"
+               (change)="toggleEndDate()">
+        <!--dateTimeValidate()-->
+    </div>
+
+    <!-- Date Picker -->
+    <div class="col-xs-12">
+        <ngb-datepicker #dp (select)="onDateSelection($event)"
+                        [class.date-picker]="true"
+                        [displayMonths]="monthsDisplayed"
+                        [dayTemplate]="t"
+                        outsideDays="hidden">
+            <!--(click)="dateTimeValidate()"-->
+        </ngb-datepicker>
+
+        <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+        </ng-template>
+    </div>
+
+</div>
+
+<!-- Start/End Time-->
+<div class="col-xs-4 no-padding date-time-container">
+
+    <!-- Uses Start Time -->
+    <div class="col-xs-12">
+        <label for="usesStartTime">Has Start Time</label>
+        <input id="usesStartTime"
+               type="checkbox"
+               name="usesStartTime"
+               (change)="startFinishChange()"
+               [(ngModel)]="model.usesStartTime">
+    </div>
+
+    <!-- Start Time Picker -->
+    <div class="col-xs-12">
+        <ngb-timepicker name="startTime"
+                        class="time-picker"
+                        [(ngModel)]="model.startTime"
+                        [minuteStep]="5"
+                        [disabled]="!model.usesStartTime"
+                        (click)="startFinishChange()"
+                        required></ngb-timepicker>
+    </div>
+    <hr>
+
+    <!-- Uses End Time -->
+    <div class="col-xs-12">
+        <label for="usesEndTime">Has End Time</label>
+        <input id="usesEndTime"
+               type="checkbox"
+               name="usesEndTime"
+               (change)="startFinishChange()"
+               [(ngModel)]="model.usesEndTime">
+    </div>
+
+    <!-- End Time Picker -->
+    <div class="col-xs-12">
+        <ngb-timepicker name="endTime"
+                        class="time-picker"
+                        [(ngModel)]="model.endTime"
+                        [minuteStep]="5"
+                        [disabled]="!model.usesEndTime"
+                        (click)="startFinishChange()"
+                        required></ngb-timepicker>
+    </div>
+
+</div>

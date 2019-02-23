@@ -228,48 +228,8 @@
 
                 </div>
 
-                <!-- Dates and Times -->
-                <div class="row row-eq-height no-margin">
-
-                    <!-- Start/End Date -->
-                    <div class="col-xs-8 no-padding date-time-container">
-
-                        <!-- Uses End Date -->
-                        <div class="col-xs-12">
-                            <label for="usesEndDate">Event spans over more than 1 day</label>
-                            <input id="usesEndDate"
-                                   type="checkbox"
-                                   name="usesEndDate"
-                                   [(ngModel)]="model.usesEndDate"
-                                   (change)="toggleEndDate(); model.dateTimeValidate()"
-                                   #usesEndDate="ngModel">
-                        </div>
-
-                        <!-- Date Picker -->
-                        <div class="col-xs-12">
-                            <ngb-datepicker #dp (select)="onDateSelection($event)"
-                                            (click)="model.dateTimeValidate()"
-                                            [class.date-picker]="true"
-                                            [displayMonths]="monthsDisplayed"
-                                            [dayTemplate]="t"
-                                            outsideDays="hidden">
-                            </ngb-datepicker>
-
-                            <ng-template #t let-date let-focused="focused">
-                      <span class="custom-day"
-                            [class.focused]="focused"
-                            [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)"
-                            (mouseenter)="hoveredDate = date"
-                            (mouseleave)="hoveredDate = null">
-                        {{ date.day }}
-                      </span>
-                            </ng-template>
-                        </div>
-
-                    </div>
-
-                </div>
+                <app-tapout-date-time-picker class="row no-margin" [item]="model"
+                                             (dateTimeEmitter)="dateTimeChange($event)"></app-tapout-date-time-picker>
 
                 <!--Created at and editedAt-->
                 <div class="row no-margin">
@@ -308,16 +268,16 @@
                     Cancel<img src="/assets/icons/icon-cancel-25x25.png">
                 </button>
 
-                <button class="button-edit">
-                    <!--(click)="initializeSave(index)"-->
-                    <!--[disabled]="menuItem.form.invalid || updating || !hasChanged"-->
-                    <!--[class.invalid]="menuItem.form.invalid || !hasChanged"-->
-                    <!--[class.disabled]="updating">-->
+                <button class="button-edit"
+                    (click)="initializeSave(index)"
+                    [disabled]="menuItem.form.invalid || updating || !hasChanged"
+                    [class.invalid]="menuItem.form.invalid || !hasChanged"
+                    [class.disabled]="updating">
                     Save<img src="/assets/icons/icon-save-25x25.png">
                 </button>
 
                 <button class="button-edit button-delete"
-                        (click)="initializeDelete(item)"
+                        (click)="initializeDelete(item, index)"
                         [class.disabled]="updating">
                     Delete<img src="/assets/icons/icon-delete-25x25.png">
                 </button>

@@ -8,6 +8,7 @@ import {EventItem} from '../event-item.model';
 import {EventsFactoryService} from '../events-factory.service';
 import {EventsDataService} from '../events-data.service';
 import {NotificationService} from '../../../shared/notification.service';
+import {EventStartFinish} from "../../../components/tapout-date-time-picker/event-start-finish.model";
 
 @Component({
     selector: 'app-edit-event-items',
@@ -15,9 +16,9 @@ import {NotificationService} from '../../../shared/notification.service';
     styleUrls: ['./edit-event-items.component.css']
 })
 export class EditEventItemsComponent implements OnInit {
-    public model;
-    public hasChanged: boolean;
-
+    public model: EventItem;
+    // public hasChanged: boolean;
+    public hasChanged = true;
     private _category: EventCategory;
 
     constructor(private eventsFactoryService: EventsFactoryService,
@@ -38,7 +39,7 @@ export class EditEventItemsComponent implements OnInit {
         }
     }
 
-    set selectedCategory(category) {
+    set selectedCategory(category: EventCategory) {
         if (typeof this._category === 'undefined') {
             this._category = category;
         } else if (this._category.id === category.id) {
@@ -69,18 +70,34 @@ export class EditEventItemsComponent implements OnInit {
 
     }
 
-    initializeDelete(item: EventItem) {
-
+    initializeDelete(item: EventItem, index: number) {
+        console.log(item);
     }
 
     initializeEdit(item: EventItem, index: number) {
-        this.selectedCategory.items[index].editToggle = true;
-        // todo might need to make function to set model properly
-        this.model = item;
+        this.selectedCategory.items.forEach((value, key) => {
+            this.selectedCategory.items[key].editToggle = key === index;
+        });
+
+        this.model = new EventItem();
+        this.model.manualConstructor(item);
+
     }
 
     initializeSave(index: number) {
+        this.selectedCategory.items[index] = this.model;
+        this.selectedCategory.items[index].editToggle = false;
+    }
 
+    dateTimeChange(event: EventStartFinish) {
+        this.model.startDate = event.startDate;
+        this.model.endDate = event.endDate;
+        this.model.startTime = event.startTime;
+        this.model.endTime = event.endTime;
+        this.model.usesStartTime = event.usesStartTime;
+        this.model.usesEndTime = event.usesEndTime;
+        this.model.usesEndDate = event.usesEndDate;
+        this.model.dateTimeValidate();
     }
 
     cancelEdit(index: number) {

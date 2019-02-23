@@ -1,5 +1,6 @@
 import {PhpDateTime} from '../../../shared/php-date-time.model';
 import {NgbDate, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import {EventStartFinish} from '../../components/tapout-date-time-picker/event-start-finish.model';
 
 export class EventItem {
     private _categoryId?: number;
@@ -14,8 +15,8 @@ export class EventItem {
     private _vnId?: number;
     private _vnTitle: string;
     private _vnDescription: string;
-    private _startDate: NgbDate;
     private _disableDescription: boolean;
+    private _startDate: NgbDate;
     private _startTime?: NgbTimeStruct;
     private _endDate?: NgbDate;
     private _endTime?: NgbTimeStruct;
@@ -35,6 +36,44 @@ export class EventItem {
         this.isCollapsed = true;
         this.startTime = {hour: 0, minute: 0, second: 0};
         this.endTime = {hour: 0, minute: 0, second: 0};
+    }
+
+    public manualConstructor(item: EventItem) {
+        this.categoryId = item.categoryId;
+        this.categoryType = item.categoryType;
+        this.position = item.position;
+        this.itemId = item.itemId;
+        this.createdAt = item.createdAt;
+        this.editedAt = item.editedAt;
+        this.enId = item.enId;
+        this.enTitle = item.enTitle;
+        this.enDescription = item.enDescription;
+        this.vnId = item.vnId;
+        this.vnTitle = item.vnTitle;
+        this.vnDescription = item.vnDescription;
+        this.disableDescription = item.disableDescription;
+        this.startDate = item.startDate;
+        this.startTime = item.startTime;
+        this.endDate = item.endDate;
+        this.endTime = item.endTime;
+        this.usesStartTime = item.usesStartTime;
+        this.usesEndTime = item.usesEndTime;
+        this.usesStartTime = item.usesStartTime;
+        this.valid = item.valid;
+        this.active = item.active;
+        this.editToggle = true;
+        this.isCollapsed = false;
+    }
+
+    startFinishChange(values: EventStartFinish) {
+        this.startDate = values.startDate;
+        this.endDate = values.endDate;
+        this.startTime = values.startTime;
+        this.endTime = values.endTime;
+        this.usesStartTime = values.usesStartTime;
+        this.usesEndTime = values.usesEndTime;
+        this.usesEndDate = values.usesEndDate;
+        this.dateTimeValidate();
     }
 
     get disableDescription(): boolean {
@@ -252,7 +291,7 @@ export class EventItem {
 
     dateTimeValidate() {
         if (this.usesEndDate === true && this.startDate !== null && this.endDate !== null) {
-            let check  = this.startDate.before(this.endDate);
+            let check = this.startDate.before(this.endDate);
 
             if (this.usesEndTime === true && !this.validateEndTimeParams()) {
                 check = false;
