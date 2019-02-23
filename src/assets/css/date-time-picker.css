@@ -1,0 +1,132 @@
+.date-time-container input[type="checkbox"] {
+    margin: 10px;
+    vertical-align: middle;
+    height: 26px;
+}
+
+.date-time-container {
+    margin-bottom: 10px;
+}
+
+.date-time-container hr {
+    margin: 0;
+    border: 1px solid var(--border-split-color);
+    border-bottom: 0;
+}
+
+/* Time pickers styling */
+.time-picker .disabled {
+    background-color: var(--off-background-color);
+    color: var(--main-color-opacity);
+}
+
+.time-picker .btn-link {
+    color: var(--main-color);
+}
+
+.time-picker .form-control {
+    border-radius: 0;
+}
+
+.time-picker .ngb-tp-input-container .disabled {
+    border-color: var(--off-background-color);
+}
+
+.time-picker .ngb-tp-meridian .btn {
+    border-radius: 0;
+    color: var(--main-color);
+    background-color: var(--off-background-color);
+    border-color: var(--background-color);
+}
+
+.time-picker .ngb-tp-meridian .btn:hover {
+    color: var(--main-color);
+}
+
+.time-picker .btn:focus {
+    outline: none;
+}
+
+.time-picker .ngb-tp-input-container {
+    width: 5rem;
+}
+
+.time-picker .ngb-tp-meridian {
+    width: 5rem;
+}
+
+/* Date picker styling */
+.custom-day {
+    text-align: center;
+    padding: 0.5rem 0.75rem;
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+}
+
+.custom-day.focused {
+    background-color: #e6e6e6;
+}
+
+.custom-day.range, .custom-day:hover {
+    background-color: var(--main-color);
+    color: var(--text-color);
+}
+
+.custom-day:focus {
+    outline: none;
+}
+
+.custom-day.faded {
+    background-color: var(--main-color-opacity);
+}
+
+.date-picker {
+    border: 1px solid var(--border-split-color);
+    border-radius: 0;
+}
+
+.date-picker .btn-link {
+    color: var(--main-color);
+}
+
+.date-picker .ngb-dp-day {
+    height: 3rem;
+    width: 3rem;
+}
+
+.date-picker .ngb-dp-weekday {
+    height: 3rem;
+    width: 3rem;
+}
+
+.date-picker .custom-select {
+    font-size: 1.25rem;
+    height: 2rem;
+}
+
+.date-picker .ngb-dp-month {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-split-color);
+}
+
+.date-picker .ngb-dp-day:focus {
+    outline: none
+}
+
+.date-picker .ngb-dp-arrow {
+    width: 0;
+}
+
+.date-picker .ngb-dp-header {
+    margin-top: 1rem;
+    padding-top: 0;
+}
+
+.date-picker .ngb-dp-month-name {
+    font-size: 14px;
+}
+
+.date-picker .hidden {
+    display: inline !important;
+}
