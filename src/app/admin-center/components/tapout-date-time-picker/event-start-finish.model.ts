@@ -1,10 +1,8 @@
-import {NgbDate, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
-
 export class EventStartFinish {
-    startDate?: NgbDate;
-    endDate?: NgbDate;
-    startTime?: NgbTimeStruct;
-    endTime?: NgbTimeStruct;
+    startDate?: string;
+    endDate?: string;
+    startTime?: string;
+    endTime?: string;
     usesStartTime: boolean;
     usesEndTime: boolean;
     usesEndDate: boolean;

@@ -8,7 +8,7 @@ import {EventItem} from '../event-item.model';
 import {EventsFactoryService} from '../events-factory.service';
 import {EventsDataService} from '../events-data.service';
 import {NotificationService} from '../../../shared/notification.service';
-import {EventStartFinish} from "../../../components/tapout-date-time-picker/event-start-finish.model";
+import {NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-edit-event-items',
@@ -23,7 +23,8 @@ export class EditEventItemsComponent implements OnInit {
 
     constructor(private eventsFactoryService: EventsFactoryService,
                 private eventsDataService: EventsDataService,
-                private notificationService: NotificationService) {
+                private notificationService: NotificationService,
+                private ngbCalendar: NgbCalendar) {
     }
 
     get selectedCategory() {
@@ -58,6 +59,7 @@ export class EditEventItemsComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.eventsData);
         this.model = new EventItem();
     }
 
@@ -81,7 +83,6 @@ export class EditEventItemsComponent implements OnInit {
 
         this.model = new EventItem();
         this.model.manualConstructor(item);
-
     }
 
     initializeSave(index: number) {
@@ -89,15 +90,16 @@ export class EditEventItemsComponent implements OnInit {
         this.selectedCategory.items[index].editToggle = false;
     }
 
-    dateTimeChange(event: EventStartFinish) {
-        this.model.startDate = event.startDate;
-        this.model.endDate = event.endDate;
-        this.model.startTime = event.startTime;
-        this.model.endTime = event.endTime;
-        this.model.usesStartTime = event.usesStartTime;
-        this.model.usesEndTime = event.usesEndTime;
-        this.model.usesEndDate = event.usesEndDate;
-        this.model.dateTimeValidate();
+    dateTimeChange(event: any) {
+        // Change startDate/endDate etc to string, let datepicker do the heavy lifting
+        // this.model.startDate = event.startDate;
+        // this.model.endDate = event.endDate;
+        // this.model.startTime = event.startTime;
+        // this.model.endTime = event.endTime;
+        // this.model.usesStartTime = event.usesStartTime;
+        // this.model.usesEndTime = event.usesEndTime;
+        // this.model.usesEndDate = event.usesEndDate;
+        // this.model.dateTimeValidate();
     }
 
     cancelEdit(index: number) {

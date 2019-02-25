@@ -1,14 +1,10 @@
-import {PhpDateTime} from '../../../shared/php-date-time.model';
-import {NgbDate, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
-import {EventStartFinish} from '../../components/tapout-date-time-picker/event-start-finish.model';
-
 export class EventItem {
     private _categoryId?: number;
     private _categoryType: string;
     private _position: number;
     private _itemId?: number;
-    private _createdAt?: PhpDateTime;
-    private _editedAt?: PhpDateTime;
+    private _createdAt?: string;
+    private _editedAt?: string;
     private _enId?: number;
     private _enTitle: string;
     private _enDescription: string;
@@ -16,10 +12,12 @@ export class EventItem {
     private _vnTitle: string;
     private _vnDescription: string;
     private _disableDescription: boolean;
-    private _startDate: NgbDate;
-    private _startTime?: NgbTimeStruct;
-    private _endDate?: NgbDate;
-    private _endTime?: NgbTimeStruct;
+    private _start: string;
+    private _end: string;
+    private _startDate: string;
+    private _startTime?: string;
+    private _endDate?: string;
+    private _endTime?: string;
     private _usesStartTime: boolean;
     private _usesEndTime: boolean;
     private _usesEndDate: boolean;
@@ -34,8 +32,6 @@ export class EventItem {
         this.usesEndDate = false;
         this.editToggle = false;
         this.isCollapsed = true;
-        this.startTime = {hour: 0, minute: 0, second: 0};
-        this.endTime = {hour: 0, minute: 0, second: 0};
     }
 
     public manualConstructor(item: EventItem) {
@@ -65,75 +61,29 @@ export class EventItem {
         this.isCollapsed = false;
     }
 
-    startFinishChange(values: EventStartFinish) {
-        this.startDate = values.startDate;
-        this.endDate = values.endDate;
-        this.startTime = values.startTime;
-        this.endTime = values.endTime;
-        this.usesStartTime = values.usesStartTime;
-        this.usesEndTime = values.usesEndTime;
-        this.usesEndDate = values.usesEndDate;
-        this.dateTimeValidate();
-    }
-
-    get disableDescription(): boolean {
-        return this._disableDescription;
-    }
-
-    set disableDescription(value: boolean) {
-        this._disableDescription = value;
-    }
-
     get startTimeString(): string {
-        if (this.startTime !== null) {
-            return this.toModel(this.startTime);
+        if (this.start !== null) {
+            const startTime = this.start.split(' ');
+            return startTime[1];
+        } else {
+            return;
         }
     }
 
-    get endTimeString(): string {
-        if (this.endTime !== null) {
-            return this.toModel(this.endTime);
-        }
+    get start(): string {
+        return this._start;
     }
 
-    get startTime(): NgbTimeStruct {
-        return this._startTime;
+    set start(value: string) {
+        this._start = value;
     }
 
-    set startTime(value: NgbTimeStruct) {
-        this._startTime = value;
+    get end(): string {
+        return this._end;
     }
 
-    get endTime(): NgbTimeStruct {
-        return this._endTime;
-    }
-
-    set endTime(value: NgbTimeStruct) {
-        this._endTime = value;
-    }
-
-    get startDate(): NgbDate {
-        return this._startDate;
-    }
-
-    set startDate(value: NgbDate) {
-        this._startDate = value;
-    }
-
-    get endDate(): NgbDate {
-        return this._endDate;
-    }
-
-    set endDate(value: NgbDate) {
-        this._endDate = value;
-    }
-
-    get isCollapsed(): boolean {
-        return this._isCollapsed;
-    }
-
-    set isCollapsed(value: boolean) {
-        this._isCollapsed = value;
+    set end(value: string) {
+        this._end = value;
     }
 
     get categoryId(): number {
@@ -141,7 +91,7 @@ export class EventItem {
     }
 
     set categoryId(value: number) {
-        this._categoryId = Number(value);
+        this._categoryId = value;
     }
 
     get categoryType(): string {
@@ -157,9 +107,6 @@ export class EventItem {
     }
 
     set position(value: number) {
-        if (value < 1) {
-            value = 1;
-        }
         this._position = value;
     }
 
@@ -171,19 +118,19 @@ export class EventItem {
         this._itemId = value;
     }
 
-    get createdAt(): PhpDateTime {
+    get createdAt(): string {
         return this._createdAt;
     }
 
-    set createdAt(value: PhpDateTime) {
+    set createdAt(value: string) {
         this._createdAt = value;
     }
 
-    get editedAt(): PhpDateTime {
+    get editedAt(): string {
         return this._editedAt;
     }
 
-    set editedAt(value: PhpDateTime) {
+    set editedAt(value: string) {
         this._editedAt = value;
     }
 
@@ -235,14 +182,51 @@ export class EventItem {
         this._vnDescription = value;
     }
 
+    get disableDescription(): boolean {
+        return this._disableDescription;
+    }
+
+    set disableDescription(value: boolean) {
+        this._disableDescription = value;
+    }
+
+    get startDate(): string {
+        return this._startDate;
+    }
+
+    set startDate(value: string) {
+        this._startDate = value;
+    }
+
+    get startTime(): string {
+        return this._startTime;
+    }
+
+    set startTime(value: string) {
+        this._startTime = value;
+    }
+
+    get endDate(): string {
+        return this._endDate;
+    }
+
+    set endDate(value: string) {
+        this._endDate = value;
+    }
+
+    get endTime(): string {
+        return this._endTime;
+    }
+
+    set endTime(value: string) {
+        this._endTime = value;
+    }
+
     get usesStartTime(): boolean {
         return this._usesStartTime;
     }
 
     set usesStartTime(value: boolean) {
-        if (value === false) {
-            this.startTime = {hour: 0, minute: 0, second: 0};
-        }
         this._usesStartTime = value;
     }
 
@@ -251,9 +235,6 @@ export class EventItem {
     }
 
     set usesEndTime(value: boolean) {
-        if (value === false) {
-            this.endTime = {hour: 0, minute: 0, second: 0};
-        }
         this._usesEndTime = value;
     }
 
@@ -289,64 +270,72 @@ export class EventItem {
         this._editToggle = value;
     }
 
-    dateTimeValidate() {
-        if (this.usesEndDate === true && this.startDate !== null && this.endDate !== null) {
-            let check = this.startDate.before(this.endDate);
-
-            if (this.usesEndTime === true && !this.validateEndTimeParams()) {
-                check = false;
-            }
-            if (this.usesStartTime === true && !this.validateStartTimeParams()) {
-                check = false;
-            }
-            this.valid = check;
-        } else {
-            if (this.usesStartAndEndTime()) {
-                if (this.validateEndTimeParams() && this.validateStartTimeParams()) {
-                    this.timeValidate();
-                } else {
-                    this.valid = false;
-                }
-            } else if (this.usesStartTime === true) {
-                this.valid = this.validateStartTimeParams();
-            } else if (this.usesEndTime === true) {
-                this.valid = this.validateEndTimeParams();
-            } else {
-                this.valid = true;
-            }
-        }
+    get isCollapsed(): boolean {
+        return this._isCollapsed;
     }
 
-    private toModel(time: NgbTimeStruct): string {
-        if (!time) {
-            return null;
-        }
-        return `${this.pad(time.hour)}:${this.pad(time.minute)}`;
+    set isCollapsed(value: boolean) {
+        this._isCollapsed = value;
     }
 
-    private pad(i: number): string {
-        return i < 10 ? `0${i}` : `${i}`;
-    }
-
-    private usesStartAndEndTime(): boolean {
-        return this.usesStartTime && this.usesEndTime;
-    }
-
-    private validateEndTimeParams(): boolean {
-        return !(this.endTime === null || typeof this.endTime === 'undefined');
-    }
-
-    private validateStartTimeParams(): boolean {
-        return !(this.startTime === null || typeof this.startTime === 'undefined');
-    }
-
-    private timeValidate() {
-        if (this.startTime.hour < this.endTime.hour) {
-            this.valid = true;
-        } else if (this.startTime.hour === this.endTime.hour) {
-            this.valid = this.startTime.minute < this.endTime.minute;
-        } else {
-            this.valid = false;
-        }
-    }
+    // dateTimeValidate() {
+    //     if (this.usesEndDate === true && this.startDate !== null && this.endDate !== null) {
+    //         let check = this.startDate.before(this.endDate);
+    //
+    //         if (this.usesEndTime === true && !this.validateEndTimeParams()) {
+    //             check = false;
+    //         }
+    //         if (this.usesStartTime === true && !this.validateStartTimeParams()) {
+    //             check = false;
+    //         }
+    //         this.valid = check;
+    //     } else {
+    //         if (this.usesStartAndEndTime()) {
+    //             if (this.validateEndTimeParams() && this.validateStartTimeParams()) {
+    //                 this.timeValidate();
+    //             } else {
+    //                 this.valid = false;
+    //             }
+    //         } else if (this.usesStartTime === true) {
+    //             this.valid = this.validateStartTimeParams();
+    //         } else if (this.usesEndTime === true) {
+    //             this.valid = this.validateEndTimeParams();
+    //         } else {
+    //             this.valid = true;
+    //         }
+    //     }
+    // }
+    //
+    // private toModel(time: NgbTimeStruct): string {
+    //     if (!time) {
+    //         return null;
+    //     }
+    //     return `${this.pad(time.hour)}:${this.pad(time.minute)}`;
+    // }
+    //
+    // private pad(i: number): string {
+    //     return i < 10 ? `0${i}` : `${i}`;
+    // }
+    //
+    // private usesStartAndEndTime(): boolean {
+    //     return this.usesStartTime && this.usesEndTime;
+    // }
+    //
+    // private validateEndTimeParams(): boolean {
+    //     return !(this.endTime === null || typeof this.endTime === 'undefined');
+    // }
+    //
+    // private validateStartTimeParams(): boolean {
+    //     return !(this.startTime === null || typeof this.startTime === 'undefined');
+    // }
+    //
+    // private timeValidate() {
+    //     if (this.startTime.hour < this.endTime.hour) {
+    //         this.valid = true;
+    //     } else if (this.startTime.hour === this.endTime.hour) {
+    //         this.valid = this.startTime.minute < this.endTime.minute;
+    //     } else {
+    //         this.valid = false;
+    //     }
+    // }
 }
